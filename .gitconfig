@@ -1,0 +1,19 @@
+[user]
+	name = Siddhanta
+	email = sid.choco@gmail.com
+[alias]
+	st = status
+	br = branch
+	ci = commit --verbose
+	ca = commit -a --verbose
+	cam = commit --verbose -a -m
+	cmend = commit --amend
+	ls = log --pretty=format:\"%C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%cn]\" --decorate
+	ll = log --pretty=format:\"%C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%cn]\" --decorate --numstat
+	ld = log --pretty=format:\"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cgreen\\ [%cn]\" --decorate --date=short	
+	lg = log --pretty=format:\"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cgreen\\ [%cn]\" --graph --decorate --date=short
+	co = checkout
+[core]
+	autocrlf = false
+[credential]
+	helper = manager
