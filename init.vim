@@ -1,6 +1,6 @@
 
 " Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.local/share/nvim/plugged')
 
 " Make sure you use single quotes
 
@@ -35,7 +35,10 @@ colorscheme codedark
 
 let mapleader=";"
 
-let g:python3_host_prog = "C:/Users/Sidd/AppData/Local/Programs/Python/Python37/python.exe"
+let g:python3_host_prog = "/usr/bin/python"
+
+set number
+set showmatch
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
