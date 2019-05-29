@@ -91,6 +91,19 @@ map ,e :e <C-R>=expand("%:p:h") . "\\" <CR>
 map ,t :tabe <C-R>=expand("%:p:h") . "\\" <CR>
 map ,s :vsplit <C-R>=expand("%:p:h") . "\\" <CR>
 
+" replace word under cursor
+nnoremap <leader>* :%s/\<<c-r><c-w>\>//g<left><left>
+
+" autoclose brackets and quotes
+inoremap ( ()<Left>
+inoremap { {}<Left>
+inoremap [ []<Left>
+inoremap " ""<Left>
+
+nnoremap <leader>k :m-2<cr>==
+nnoremap <leader>j :m+<cr>==
+xnoremap <leader>k :m-2<cr>gv=gv
+xnoremap <leader>j :m'>+<cr>gv=gv
 
 " easier split navigation
 nnoremap <C-J> <C-W><C-J>
@@ -106,7 +119,11 @@ augroup numbertoggle
     autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
 augroup END
 
-nnoremap <Leader>bb :b#<CR>
+" buffer manipulation
+nnoremap <Leader><Leader> :b#<CR>
+nnoremap <Tab> :bnext<cr>
+nnoremap <S-Tab> :bprevious<cr>
+
 nnoremap <Leader>ww :w<bar>so%<CR>
 
 set foldmethod=indent
