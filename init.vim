@@ -9,16 +9,17 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/vim-easy-align' " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'https://github.com/junegunn/vim-github-dashboard.git'   " Any valid git URL is allowed
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }            " Go plugin
-Plug 'scrooloose/nerdcommenter'                               " Code comments
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " Deoplete - autocompletion framework
 Plug 'zchee/deoplete-go', { 'do': 'make'}                     " go plugin for deoplete
 Plug 'vim-python/python-syntax'                               " python syntax highlighting
 Plug 'airblade/vim-gitgutter'                                 " git
 Plug 'scrooloose/nerdtree'                                    " file tree explorer
+Plug 'scrooloose/nerdcommenter'                               " code comments
 Plug 'ctrlpvim/ctrlp.vim'                                     " fuzzy file searcher
 Plug 'vim-airline/vim-airline'                                " Airline - improves the statusline
 Plug 'vim-airline/vim-airline-themes'                         " themes for Airline
 Plug 'tpope/vim-fugitive'                                     " git support (needed for Airline)
+Plug 'tpope/vim-surround'                                     " surround text with symbols/tags/brackets
 
 Plug 'tomasiser/vim-code-dark'                                " colorscheme
 Plug 'kaicataldo/material.vim'                                " colorscheme
@@ -39,7 +40,7 @@ set background=dark
 "colorscheme codedark
 colorscheme gruvbox
 
-"let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_contrast_dark='hard'
 
 let g:airline_theme='bubblegum'
 let g:airline_powerline_fonts=1
@@ -124,7 +125,8 @@ nnoremap <Leader><Leader> :b#<CR>
 nnoremap <Tab> :bnext<cr>
 nnoremap <S-Tab> :bprevious<cr>
 
-nnoremap <Leader>ww :w<bar>so%<CR>
+nnoremap <Leader>ws :w<bar>so%<CR>
+nnoremap <Leader>w :w<CR>
 
 set foldmethod=indent
 set foldlevel=2
@@ -133,6 +135,7 @@ set nofoldenable
 syntax on
 set laststatus=2
 set splitright
+set splitbelow
 set hlsearch
 set ignorecase smartcase
 
@@ -180,7 +183,7 @@ let g:go_highlight_structs = 1
 let g:go_highlight_types = 1
 let g:go_auto_sameids = 1
 let g:go_fmt_command = "goimports"
-let g:go_auto_type_info = 0
+let g:go_auto_type_info = 1
 
 " python highlighting settings
 let g:python_highlight_all = 1
@@ -215,4 +218,29 @@ call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
 call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 " ======================================================================================================
 
+" autosave and autoreload sessions
+" ====================
+let sessionFile = expand("~/session.vim")
+
+fu! SaveSession()
+    execute 'mksession! ' . g:sessionFile
+endfunction
+
+fu! RestoreSession()
+    if filereadable(g:sessionFile)
+	execute 'so ' . g:sessionFile
+	if bufexists(1)
+	    for l in range(1, bufnr('$'))
+		if bufwinnr(l) == -1
+		    exec 'sbuffer ' . l
+		endif
+	    endfor
+	endif
+    else
+	echom "no session file"
+    endif
+endfunction
+
+autocmd VimLeave * call SaveSession()
+autocmd VimEnter * nested call RestoreSession()
 
