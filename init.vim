@@ -20,6 +20,7 @@ Plug 'vim-airline/vim-airline'                                " Airline - improv
 Plug 'vim-airline/vim-airline-themes'                         " themes for Airline
 Plug 'tpope/vim-fugitive'                                     " git support (needed for Airline)
 Plug 'tpope/vim-surround'                                     " surround text with symbols/tags/brackets
+Plug 'jiangmiao/auto-pairs'                                   " manage bracket/parens pairs
 
 Plug 'tomasiser/vim-code-dark'                                " colorscheme
 Plug 'kaicataldo/material.vim'                                " colorscheme
@@ -95,12 +96,6 @@ map ,s :vsplit <C-R>=expand("%:p:h") . "\\" <CR>
 " replace word under cursor
 nnoremap <leader>* :%s/\<<c-r><c-w>\>//g<left><left>
 
-" autoclose brackets and quotes
-inoremap ( ()<Left>
-inoremap { {}<Left>
-inoremap [ []<Left>
-inoremap " ""<Left>
-
 nnoremap <leader>k :m-2<cr>==
 nnoremap <leader>j :m+<cr>==
 xnoremap <leader>k :m-2<cr>gv=gv
@@ -131,6 +126,7 @@ nnoremap <Leader>w :w<CR>
 set foldmethod=indent
 set foldlevel=2
 set nofoldenable
+set foldlevelstart=99
 
 syntax on
 set laststatus=2
@@ -243,4 +239,3 @@ endfunction
 
 autocmd VimLeave * call SaveSession()
 autocmd VimEnter * nested call RestoreSession()
-
