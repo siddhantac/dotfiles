@@ -6,8 +6,7 @@ call plug#begin('~/.vim/plugged')
 
 " Make sure you use single quotes
 
-Plug 'junegunn/vim-easy-align' " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
-Plug 'https://github.com/junegunn/vim-github-dashboard.git'   " Any valid git URL is allowed
+Plug 'junegunn/vim-easy-align'                                " fetches https://github.com/junegunn/vim-easy-align
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }            " Go plugin
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " Deoplete - autocompletion framework
 Plug 'zchee/deoplete-go', { 'do': 'make'}                     " go plugin for deoplete
@@ -21,6 +20,8 @@ Plug 'vim-airline/vim-airline-themes'                         " themes for Airli
 Plug 'tpope/vim-fugitive'                                     " git support (needed for Airline)
 Plug 'tpope/vim-surround'                                     " surround text with symbols/tags/brackets
 Plug 'jiangmiao/auto-pairs'                                   " manage bracket/parens pairs
+Plug 'SirVer/ultisnips'                                       " snippet engine
+Plug 'machakann/vim-highlightedyank'                          " highlight the yank area
 
 Plug 'tomasiser/vim-code-dark'                                " colorscheme
 Plug 'kaicataldo/material.vim'                                " colorscheme
@@ -123,7 +124,7 @@ nnoremap <S-Tab> :bprevious<cr>
 nnoremap <Leader>ws :w<bar>so%<CR>
 nnoremap <Leader>w :w<CR>
 
-set foldmethod=indent
+set foldmethod=syntax
 set foldlevel=2
 set nofoldenable
 set foldlevelstart=99
@@ -152,6 +153,14 @@ set undofile " maintain undo history between sessions
 set undodir=~/.vim/undodir
 " ======================================================================================================
 
+" easy align
+" =========
+" start interactive EasyAlign in visual mode (eg. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" start interactive EasyAlign for a motion/text object (eg. gaip)
+nmap ga <Plug>(EasyAlign)
+" =========
 
 let g:python3_host_prog = "C:/Users/Sidd/AppData/Local/Programs/Python/Python37/python.exe"
 
@@ -179,7 +188,7 @@ let g:go_highlight_structs = 1
 let g:go_highlight_types = 1
 let g:go_auto_sameids = 1
 let g:go_fmt_command = "goimports"
-let g:go_auto_type_info = 1
+let g:go_auto_type_info = 0
 
 " python highlighting settings
 let g:python_highlight_all = 1
@@ -219,6 +228,7 @@ call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 let sessionFile = expand("~/session.vim")
 
 fu! SaveSession()
+    NERDTreeClose
     execute 'mksession! ' . g:sessionFile
 endfunction
 
@@ -239,3 +249,7 @@ endfunction
 
 autocmd VimLeave * call SaveSession()
 autocmd VimEnter * nested call RestoreSession()
+" ====================
+
+let g:UltiSnipsSnippetDirectories=['UltiSnips', 'gosnippets/UltiSnips', $HOME.'/.vim/UltiSnips']
+
