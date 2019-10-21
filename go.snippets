@@ -1,0 +1,17 @@
+
+# map[string]interface{}
+snippet msi "map[string]interface{}" i
+map[string]interface{}
+endsnippet
+
+# context.Context
+snippet ctxo "ctx context.Context" i
+ctx context.Context
+endsnippet
+
+# cmp.Diff
+snippet diff "cmp.Diff t.Fatalf"
+if diff := cmp.Diff(${1:want}, ${0:got}); diff != "" {
+	t.Fatalf(diff)
+}
+endsnippet
