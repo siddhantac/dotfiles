@@ -1,29 +1,25 @@
 
-" > plugins
-" ======================================================================================================
-" Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
-call plug#begin('~/.vim/plugged')
+" >>> plugins
+" ==========================================================
+call plug#begin('~/.vim/plugged') " specify a directory for plugins
 
-" Make sure you use single quotes
-
-Plug 'junegunn/vim-easy-align'                                " fetches https://github.com/junegunn/vim-easy-align
+Plug 'junegunn/vim-easy-align'                                " easy alignment
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }            " Go plugin
-
-"Plug 'zchee/deoplete-go', { 'do': 'make'}                     " go plugin for deoplete
 Plug 'vim-python/python-syntax'                               " python syntax highlighting
 Plug 'airblade/vim-gitgutter'                                 " git
 Plug 'scrooloose/nerdtree'                                    " file tree explorer
 Plug 'scrooloose/nerdcommenter'                               " code comments
 Plug 'ctrlpvim/ctrlp.vim'                                     " fuzzy file searcher
-"Plug 'vim-airline/vim-airline'                                " Airline - improves the statusline
-"Plug 'vim-airline/vim-airline-themes'                         " themes for Airline
-"Plug 'tpope/vim-fugitive'                                     " git support (needed for Airline)
 Plug 'tpope/vim-surround'                                     " surround text with symbols/tags/brackets
 Plug 'jiangmiao/auto-pairs'                                   " manage bracket/parens pairs
 Plug 'SirVer/ultisnips'                                       " snippet engine
 Plug 'machakann/vim-highlightedyank'                          " highlight the yank area
 Plug 'majutsushi/tagbar' 				      " display source code tags
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " code-completion framework
+"
+"Plug 'vim-airline/vim-airline'                               " Airline - improves the statusline
+"Plug 'vim-airline/vim-airline-themes'                        " themes for Airline
+"Plug 'tpope/vim-fugitive'                                    " git support (needed for Airline)
 
 " colorschemes
 Plug 'tomasiser/vim-code-dark'
@@ -31,15 +27,12 @@ Plug 'kaicataldo/material.vim'
 Plug 'morhetz/gruvbox'
 Plug 'fatih/molokai'
 
-" Initialize plugin system
-call plug#end()
-
-" ======================================================================================================
+call plug#end() " initialize plugin system
+" =========================================================
 
 
-" > appearance
-" ======================================================================================================
-"
+" >>> appearance
+" =========================================================
 set background=dark
 
 "colorscheme material
@@ -49,13 +42,16 @@ colorscheme molokai
 "colorscheme gruvbox
 "let g:gruvbox_contrast_dark='hard'
 
-" nvim-qt does not display colors in popupmenu correctly, so disable
-" gui popupmenu
+" nvim-qt does not display colors in popupmenu correctly,
+" so disable gui popupmenu
 au VimEnter * GuiPopupmenu 0
 syntax on
 
+set cursorline
+set lazyredraw
 
-
+" airline
+" -------------------------------------
 "let g:airline_theme='bubblegum'
 "let g:airline_powerline_fonts=1
 "set guifont=Ubuntu\ Mono\ derivative\ Powerline:h12
@@ -93,18 +89,17 @@ syntax on
 "let g:airline_symbols.readonly = ''
 "let g:airline_symbols.linenr = '☰'
 "let g:airline_symbols.maxlinenr = ''
+" -------------------------------------
 
-set cursorline
-set lazyredraw
-
-" > general
-" ======================================================================================================
+" >>> behaviour
+" ==========================================================
 let mapleader=";"
-" Autosave only when there is something to save. Always saving makes build
-" watchers crazy
+
+" Autosave only when there is something to save,
+" always saving makes build watchers crazy
 :au FocusLost * silent! wa
 
-set autowrite " save file when :make of :GoBuild is called
+set autowrite " save file when :make or :GoBuild is called
 
 " open files relative to the path of current file
 map ,e :e <C-R>=expand("%:p:h") . "\\" <CR>
@@ -114,6 +109,7 @@ map ,s :vsplit <C-R>=expand("%:p:h") . "\\" <CR>
 " replace word under cursor
 nnoremap <leader>* :%s/\<<c-r><c-w>\>//g<left><left>
 
+" move files
 nnoremap <leader>k :m-2<cr>==
 nnoremap <leader>j :m+<cr>==
 xnoremap <leader>k :m-2<cr>gv=gv
@@ -125,6 +121,7 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+" line numbers
 set number relativenumber
 set numberwidth=5
 augroup numbertoggle
@@ -138,9 +135,11 @@ nnoremap <Leader><Leader> :b#<CR>
 nnoremap ]b :bnext<cr>
 nnoremap [b :bprevious<cr>
 
+" easy write and source
 nnoremap <Leader>ws :w<bar>so%<CR>
 nnoremap <Leader>w :w<CR>
 
+" code folding
 set foldmethod=syntax
 set foldlevel=2
 set nofoldenable
@@ -152,9 +151,8 @@ set splitbelow
 set hlsearch
 set ignorecase smartcase
 
-"set completeopt=longest,menuone
-"set completeopt+=noinsert
-"set completeopt+=noselect
+" <Enter> will simply select the highlighted item
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 autocmd Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4
@@ -169,36 +167,61 @@ set undofile " maintain undo history between sessions
 set undodir=~/.vim/undodir
 
 nnoremap <leader><space> :nohlsearch<CR>
-" ======================================================================================================
+
+" autosave and autoreload sessions
+" -------------------------------------
+let sessionFile = expand("~/session.vim")
+
+fu! SaveSession()
+    NERDTreeClose
+    execute 'mksession! ' . g:sessionFile
+endfunction
+
+fu! RestoreSession()
+    if filereadable(g:sessionFile)
+	execute 'so ' . g:sessionFile
+	if bufexists(1)
+	    for l in range(1, bufnr('$'))
+		if bufwinnr(l) == -1
+		    exec 'sbuffer ' . l
+		endif
+	    endfor
+	endif
+    else
+	echom "no session file"
+    endif
+endfunction
+
+autocmd VimLeave * call SaveSession()
+autocmd VimEnter * nested call RestoreSession()
+" -------------------------------------
+" ==========================================================
+
+
+
+" >>> plugin settings
+" ==========================================================
 
 " easy align
-" =========
+" -------------------------------------
 " start interactive EasyAlign in visual mode (eg. vipga)
 xmap ga <Plug>(EasyAlign)
 
 " start interactive EasyAlign for a motion/text object (eg. gaip)
 nmap ga <Plug>(EasyAlign)
-" =========
+" -------------------------------------
 
-let g:python3_host_prog = "C:/Users/Sidd/AppData/Local/Programs/Python/Python37/python.exe"
 
 " deoplete
+" -------------------------------------
+let g:python3_host_prog = "C:/Users/Sidd/AppData/Local/Programs/Python/Python37/python.exe"
 let g:deoplete#enable_at_startup = 1
-
-" deoplete-go
-"let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
-"let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
 call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
-"call deoplete#custom#option('auto_refresh_delay', 2)
-"call deoplete#custom#option('num_processes', 5)
+" -------------------------------------
 
-" <Enter> will simply select the highlighted item
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-" use Ctrl+n and Ctrl+p to navigate autocomplete menu
-inoremap <expr> <C-n> pumvisible() ? '<C-n>' : '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-
-" vim-go settings
+" vim-go 
+" -------------------------------------
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_fields = 1
@@ -222,15 +245,16 @@ autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
 autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
 
 autocmd Filetype go nmap <leader>i <Plug>(go-info)
+" -------------------------------------
 
-" python highlighting settings
+" python highlighting
 let g:python_highlight_all = 1
 
-" tagbar settings
+" tagbar
 nmap <leader>tt :TagbarToggle<CR>
 
-" > nerdtree settings
-" ======================================================================================================
+" nerdtree
+" -------------------------------------
 
 " quick toggle (Ctrl+n)
 map <C-n> :NERDTreeToggle<CR>
@@ -263,35 +287,9 @@ call NERDTreeHighlightFile('md', 'white', 'none', 'wheat', '#151515')
 hi NERDTreeOpenable ctermfg=green guifg=#00FF00
 hi NERDTreeClosable ctermfg=green guifg=#FF0000
 hi Directory guifg=LemonChiffon ctermfg=white
-" ======================================================================================================
+" -------------------------------------
 
-" autosave and autoreload sessions
-" ====================
-let sessionFile = expand("~/session.vim")
 
-fu! SaveSession()
-    NERDTreeClose
-    execute 'mksession! ' . g:sessionFile
-endfunction
-
-fu! RestoreSession()
-    if filereadable(g:sessionFile)
-	execute 'so ' . g:sessionFile
-	if bufexists(1)
-	    for l in range(1, bufnr('$'))
-		if bufwinnr(l) == -1
-		    exec 'sbuffer ' . l
-		endif
-	    endfor
-	endif
-    else
-	echom "no session file"
-    endif
-endfunction
-
-autocmd VimLeave * call SaveSession()
-autocmd VimEnter * nested call RestoreSession()
-" ====================
-
+" UltiSnips
 let g:UltiSnipsSnippetDirectories=['UltiSnips', 'gosnippets/UltiSnips', $HOME.'/.vim/UltiSnips']
 
