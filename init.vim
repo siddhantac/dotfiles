@@ -44,12 +44,17 @@ set background=dark
 
 "colorscheme material
 "colorscheme codedark
-"colorscheme gruvbox
 colorscheme molokai
-syntax on
-hi Pmenu guibg=black gui=bold
 
+"colorscheme gruvbox
 "let g:gruvbox_contrast_dark='hard'
+
+" nvim-qt does not display colors in popupmenu correctly, so disable
+" gui popupmenu
+au VimEnter * GuiPopupmenu 0
+syntax on
+
+
 
 "let g:airline_theme='bubblegum'
 "let g:airline_powerline_fonts=1
@@ -141,16 +146,15 @@ set foldlevel=2
 set nofoldenable
 set foldlevelstart=99
 
-syntax on
 set laststatus=2
 set splitright
 set splitbelow
 set hlsearch
 set ignorecase smartcase
 
-set completeopt=longest,menuone
-set completeopt+=noinsert
-set completeopt+=noselect
+"set completeopt=longest,menuone
+"set completeopt+=noinsert
+"set completeopt+=noselect
 
 autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 autocmd Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4
