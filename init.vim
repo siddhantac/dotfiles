@@ -233,6 +233,9 @@ let g:go_highlight_types = 1
 let g:go_auto_sameids = 1
 let g:go_fmt_command = "goimports"
 let g:go_auto_type_info = 0
+let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck', 'staticcheck']
+let g:go_metalinter_autosave = 1
+let g:go_metalinter_autosave_enabled = ['vet', 'golint'] " only run these when gometalinter is called on autosave
 
 " open alternate (test file) files easily
 " 	:A = replace current buffer
