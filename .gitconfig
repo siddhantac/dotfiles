@@ -1,19 +1,18 @@
-[user]
-	name = Siddhanta
-	email = sid.choco@gmail.com
 [alias]
 	st = status
+	ci = commit -m
+	ca = commit -a -m 
+	cm = commit --amend --no-edit 
+	cmm = commit --amend -m
 	br = branch
-	ci = commit --verbose
-	ca = commit -a --verbose
-	cam = commit --verbose -a -m
-	cmend = commit --amend
+	co = checkout
+	pu = !git push origin $(git rev-parse --abbrev-ref HEAD)
 	ls = log --pretty=format:\"%C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%cn]\" --decorate
 	ll = log --pretty=format:\"%C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%cn]\" --decorate --numstat
-	ld = log --pretty=format:\"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cgreen\\ [%cn]\" --decorate --date=short	
-	lg = log --pretty=format:\"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cgreen\\ [%cn]\" --graph --decorate --date=short
-	co = checkout
-[core]
-	autocrlf = false
+	lg = log --pretty=format:\"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cgreen\\ [%cn]\" --decorate --date=short --graph
+	me = "!f() { branch=$(git rev-parse --abbrev-ref HEAD) && git checkout $1 && git merge $branch; }; f"
+
 [credential]
-	helper = manager
+	helper = store
+[core]
+	editor = vim
