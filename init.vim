@@ -17,7 +17,7 @@ Plug 'machakann/vim-highlightedyank'                          " highlight the ya
 Plug 'majutsushi/tagbar' 				      " display source code tags
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " code-completion framework
 "
-"Plug 'vim-airline/vim-airline'                               " Airline - improves the statusline
+Plug 'vim-airline/vim-airline'                               " Airline - improves the statusline
 "Plug 'vim-airline/vim-airline-themes'                        " themes for Airline
 "Plug 'tpope/vim-fugitive'                                    " git support (needed for Airline)
 
@@ -230,12 +230,14 @@ let g:go_highlight_methods = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_types = 1
-let g:go_auto_sameids = 1
+let g:go_auto_sameids = 0
 let g:go_fmt_command = "goimports"
 let g:go_auto_type_info = 0
 let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck', 'staticcheck']
 let g:go_metalinter_autosave = 1
 let g:go_metalinter_autosave_enabled = ['vet', 'errcheck'] " only run these when gometalinter is called on autosave
+let g:go_fmt_experimental = 1
+let g:go_rename_command = 'gopls'
 
 " open alternate (test file) files easily
 " 	:A = replace current buffer
@@ -294,5 +296,12 @@ hi Directory guifg=LemonChiffon ctermfg=white
 
 
 " UltiSnips
+" -------------------------------------
 let g:UltiSnipsSnippetDirectories=['UltiSnips', 'gosnippets/UltiSnips', $HOME.'/.vim/UltiSnips']
+" -------------------------------------
 
+" Nerd commenter
+" -------------------------------------
+let g:NERDSpaceDelims = 1
+let g:NERDDefaultAlign = 1
+" -------------------------------------
