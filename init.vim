@@ -102,9 +102,9 @@ let mapleader=";"
 set autowrite " save file when :make or :GoBuild is called
 
 " open files relative to the path of current file
-map ,e :e <C-R>=expand("%:p:h") . "\\" <CR>
-map ,t :tabe <C-R>=expand("%:p:h") . "\\" <CR>
-map ,s :vsplit <C-R>=expand("%:p:h") . "\\" <CR>
+map ,e :e <C-R>=expand("%:p:h") . "/" <CR>
+map ,t :tabe <C-R>=expand("%:p:h") . "/" <CR>
+map ,s :vsplit <C-R>=expand("%:p:h") . "/" <CR>
 
 " replace word under cursor
 nnoremap <leader>* :%s/\<<c-r><c-w>\>//g<left><left>
