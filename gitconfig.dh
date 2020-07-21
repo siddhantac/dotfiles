@@ -1,0 +1,27 @@
+[user]
+	signingkey = 8D3EBABA6B595720
+	name = Siddhanta
+	email = siddhanta.c@foodpanda.com
+[alias]
+	s = status --short
+	st = status
+	ci = commit -m
+	ca = commit -a -m 
+	cm = commit --amend --no-edit 
+	cmm = commit --amend -m
+	br = branch
+	co = checkout
+	pu = !git push origin $(git rev-parse --abbrev-ref HEAD)
+	ls = log --pretty=format:\"%C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%cn]\" --decorate
+	ll = log --pretty=format:\"%C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%cn]\" --decorate --numstat
+	lg = log --pretty=format:\"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cgreen\\ [%cn]\" --decorate --date=short --graph
+	me = "!f() { branch=$(git rev-parse --abbrev-ref HEAD) && git checkout $1 && git merge $branch; }; f"
+        sy = "!f() { git checkout master && git pull -p; }; f"
+[pull]
+	rebase = true
+
+[url "git@github.com:"]
+       insteadOf = https://github.com/
+
+[pager]
+	branch = false
