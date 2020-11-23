@@ -5,17 +5,19 @@ call plug#begin('~/.vim/plugged') " specify a directory for plugins
 
 " general tools
 " -------------
-Plug 'airblade/vim-gitgutter'                                 " git
-Plug 'scrooloose/nerdtree'                                    " file tree explorer
-Plug 'scrooloose/nerdcommenter'                               " code comments
-Plug 'ctrlpvim/ctrlp.vim'                                     " fuzzy file searcher
-Plug 'tpope/vim-surround'                                     " surround text with symbols/tags/brackets
-Plug 'jiangmiao/auto-pairs'                                   " manage bracket/parens pairs
-Plug 'SirVer/ultisnips'                                       " snippet engine
-Plug 'machakann/vim-highlightedyank'                          " highlight the yank area
-Plug 'majutsushi/tagbar' 				      " display source code tags
-Plug 'junegunn/vim-easy-align'                                " easy alignment
-Plug 'mileszs/ack.vim'                                        " fast text search
+Plug 'airblade/vim-gitgutter'         " git
+Plug 'scrooloose/nerdtree'            " file tree explorer
+Plug 'scrooloose/nerdcommenter'       " code comments
+Plug 'ctrlpvim/ctrlp.vim'             " fuzzy file searcher
+Plug 'tpope/vim-surround'             " surround text with symbols/tags/brackets
+Plug 'jiangmiao/auto-pairs'           " manage bracket/parens pairs
+Plug 'SirVer/ultisnips'               " snippet engine
+Plug 'machakann/vim-highlightedyank'  " highlight the yank area
+Plug 'majutsushi/tagbar' 	      " display source code tags
+Plug 'junegunn/vim-easy-align'        " easy alignment
+Plug 'mileszs/ack.vim'                " fast text search
+Plug 'godlygeek/tabular'              " dependency for vim-markdown
+Plug 'plasticboy/vim-markdown'        " markdown syntax highlighting etc
 
 " code tools
 " -------------
@@ -29,10 +31,10 @@ Plug 'peitalin/vim-jsx-typescript'                                 " jsx syntax
 
 " appearance
 " -------------
-Plug 'vim-airline/vim-airline'                               " Airline - improves the statusline
-Plug 'tpope/vim-fugitive'                                    " git support (needed for Airline)
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'               " highlight files in nerdtree
-" Plug 'vim-airline/vim-airline-themes'                        " themes for Airline
+Plug 'vim-airline/vim-airline'                 " Airline - improves the statusline
+Plug 'tpope/vim-fugitive'                      " git support (needed for Airline)
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " highlight files in nerdtree
+" Plug 'vim-airline/vim-airline-themes'        " themes for Airline
 
 " colorschemes
 Plug 'tomasiser/vim-code-dark'
