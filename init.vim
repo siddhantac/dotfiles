@@ -341,7 +341,7 @@ let g:NERDTreeExtensionHighlightColor['php'] = s:purple " sets the color of css 
 let g:NERDTreeExactMatchHighlightColor = {} " this line is needed to avoid error
 
 let g:NERDTreePatternMatchHighlightColor = {} " this line is needed to avoid error
-let g:NERDTreePatternMatchHighlightColor['.*git.*'] = s:git_orange
+let g:NERDTreePatternMatchHighlightColor['\.git.*'] = s:git_orange
 
 let g:DevIconsEnableFoldersOpenClose = 1
 let g:WebDevIconsDefaultFileSymbolColor = s:white " sets the color for files that did not match any rule
