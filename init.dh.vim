@@ -62,11 +62,11 @@ set encoding=utf8
 "colorscheme minimalist
 colorscheme one
 
-"colorscheme gruvbox
-"let g:gruvbox_contrast_dark='hard'
+colorscheme gruvbox
+let g:gruvbox_contrast_dark='hard'
 
 "autocmd BufEnter *.{js,jsx,ts,tsx} colorscheme minimalist
-autocmd BufEnter *.go colorscheme molokai
+autocmd BufEnter *.go colorscheme gruvbox
 
 
 " nvim-qt does not display colors in popupmenu correctly,
@@ -186,6 +186,7 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 autocmd Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4
+autocmd Filetype js setlocal tabstop=4 noexpandtab
 " ts - show existing tab with 4 spaces width
 " sw - when indenting with '>', use 4 spaces width
 " sts - control <tab> and <bs> keys to match tabstop
