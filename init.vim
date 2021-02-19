@@ -71,10 +71,9 @@ colorscheme one
 "colorscheme gruvbox
 "let g:gruvbox_contrast_dark='hard'
 
-" TODO
 " nvim-qt does not display colors in popupmenu correctly,
 " so disable gui popupmenu
-au VimEnter * GuiPopupmenu 0
+au GUIEnter * GuiPopupmenu 0
 
 
 " airline
@@ -215,8 +214,8 @@ endfunction
 
 fu! RestoreSession()
     let sessionFile = GetSessionFile()
-    if filereadable(g:sessionFile)
-	execute 'so ' . g:sessionFile
+    if filereadable(sessionFile)
+	execute 'so ' . sessionFile
 	if bufexists(1)
 	    for l in range(1, bufnr('$'))
 		if bufwinnr(l) == -1
@@ -297,6 +296,7 @@ nmap <leader>tt :TagbarToggle<CR>
 
 " nerdtree
 " -------------------------------------
+let NERDTreeShowHidden = 1
 
 " quick toggle (nn)
 map <leader>nn :NERDTreeToggle<CR>
@@ -305,34 +305,78 @@ map <leader>nn :NERDTreeToggle<CR>
 map <leader>nf :NERDTreeFind<CR>
 
 " file highlighting
-function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
- exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
- exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
-endfunction
+" -------------------------------------
+"
+" Highlight full name (not only icons)
+let g:NERDTreeFileExtensionHighlightFullName = 1
+let g:NERDTreeExactMatchHighlightFullName = 1
+let g:NERDTreePatternMatchHighlightFullName = 1
 
-" TODO
-" note: for Neovim, change 'guifg' term (4th param)
-call NERDTreeHighlightFile('py', 'green', 'none', 'green', '#151515')
-call NERDTreeHighlightFile('pyc', 'grey', 'none', 'grey', '#151515')
-call NERDTreeHighlightFile('go', 'blue', 'none', 'DeepSkyBlue', '#151515')
-call NERDTreeHighlightFile('Makefile', 'yellow', 'none', 'Gold', '#151515')
-call NERDTreeHighlightFile('ini', 'yellow', 'none', 'LightYellow', '#151515')
-call NERDTreeHighlightFile('yml', 'yellow', 'none', 'LightYellow', '#151515')
-call NERDTreeHighlightFile('config', 'yellow', 'none', 'LightYellow', '#151515')
-call NERDTreeHighlightFile('conf', 'yellow', 'none', 'LightYellow', '#151515')
-call NERDTreeHighlightFile('json', 'yellow', 'none', 'LightYellow', '#151515')
-call NERDTreeHighlightFile('exe', 'green', 'none', 'LimeGreen', '#151515')
-call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
-call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
-call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
-call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
-call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
-call NERDTreeHighlightFile('md', 'white', 'none', 'wheat', '#151515')
+let s:brown = "905532"
+let s:aqua =  "3AFFDB"
+let s:blue = "689FB6"
+let s:darkBlue = "44788E"
+let s:purple = "834F79"
+let s:lightPurple = "834F79"
+let s:red = "AE403F"
+let s:beige = "F5C06F"
+let s:yellow = "F09F17"
+let s:orange = "D4843E"
+let s:darkOrange = "F16529"
+let s:pink = "CB6F6F"
+let s:salmon = "EE6E73"
+let s:green = "8FAA54"
+let s:lightGreen = "31B53E"
+let s:white = "FFFFFF"
+let s:rspec_red = 'FE405F'
+let s:git_orange = 'F54D27'
 
-hi NERDTreeOpenable ctermfg=green guifg=#00FF00
-hi NERDTreeClosable ctermfg=green guifg=#FF0000
-hi Directory guifg=LemonChiffon ctermfg=white
+let g:NERDTreeExtensionHighlightColor = {} " this line is needed to avoid error
+let g:NERDTreeExtensionHighlightColor['go'] = s:blue " sets the color of css files to blue
+let g:NERDTreeExtensionHighlightColor['md'] = s:orange " sets the color of css files to blue
+let g:NERDTreeExtensionHighlightColor['ini'] = s:yellow " sets the color of css files to blue
+let g:NERDTreeExtensionHighlightColor['exe'] = s:green " sets the color of css files to blue
+let g:NERDTreeExtensionHighlightColor['php'] = s:purple " sets the color of css files to blue
+
+let g:NERDTreeExactMatchHighlightColor = {} " this line is needed to avoid error
+
+let g:NERDTreePatternMatchHighlightColor = {} " this line is needed to avoid error
+let g:NERDTreePatternMatchHighlightColor['.*git.*'] = s:git_orange
+
+let g:DevIconsEnableFoldersOpenClose = 1
+let g:WebDevIconsDefaultFileSymbolColor = s:white " sets the color for files that did not match any rule
+let g:WebDevIconsDefaultFolderSymbolColor = s:beige " sets the color for folders that did not match any rule
+let g:WebDevIconsDefaultOpenFolderSymbolColor= s:white
+
+
+" function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
+"  exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+"  exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+" endfunction
+
+" " TODO
+" " note: for Neovim, change 'guifg' term (4th param)
+" " call NERDTreeHighlightFile('py', 'green', 'none', 'green', '#151515')
+" " call NERDTreeHighlightFile('pyc', 'grey', 'none', 'grey', '#151515')
+" " call NERDTreeHighlightFile('go', 'blue', 'none', 'DeepSkyBlue', '#151515')
+" " call NERDTreeHighlightFile('Makefile', 'yellow', 'none', 'Gold', '#151515')
+" " call NERDTreeHighlightFile('ini', 'yellow', 'none', 'LightYellow', '#151515')
+" " call NERDTreeHighlightFile('yml', 'yellow', 'none', 'LightYellow', '#151515')
+" " call NERDTreeHighlightFile('config', 'yellow', 'none', 'LightYellow', '#151515')
+" " call NERDTreeHighlightFile('conf', 'yellow', 'none', 'LightYellow', '#151515')
+" " call NERDTreeHighlightFile('json', 'yellow', 'none', 'LightYellow', '#151515')
+" " call NERDTreeHighlightFile('exe', 'green', 'none', 'LimeGreen', '#151515')
+" " call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
+" " call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
+" " call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
+" " call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
+" " call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
+" " call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
+" " call NERDTreeHighlightFile('md', 'white', 'none', 'wheat', '#151515')
+
+" hi NERDTreeOpenable ctermfg=red guifg=#00FF00
+" hi NERDTreeClosable ctermfg=white guifg=#FF0000
+" hi Directory guifg=LemonChiffon ctermfg=green
 " -------------------------------------
 
 
