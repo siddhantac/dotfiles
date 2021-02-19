@@ -348,13 +348,17 @@ let g:WebDevIconsDefaultFileSymbolColor = s:white " sets the color for files tha
 let g:WebDevIconsDefaultFolderSymbolColor = s:beige " sets the color for folders that did not match any rule
 let g:WebDevIconsDefaultOpenFolderSymbolColor= s:white
 
+hi NERDTreeOpenable ctermfg=red guifg=#00FF00
+hi NERDTreeClosable ctermfg=white guifg=#FF0000
+" hi Directory guifg=LemonChiffon ctermfg=green
 
+
+" " TODO: delete
 " function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
 "  exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
 "  exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
 " endfunction
 
-" " TODO
 " " note: for Neovim, change 'guifg' term (4th param)
 " " call NERDTreeHighlightFile('py', 'green', 'none', 'green', '#151515')
 " " call NERDTreeHighlightFile('pyc', 'grey', 'none', 'grey', '#151515')
@@ -374,9 +378,6 @@ let g:WebDevIconsDefaultOpenFolderSymbolColor= s:white
 " " call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 " " call NERDTreeHighlightFile('md', 'white', 'none', 'wheat', '#151515')
 
-" hi NERDTreeOpenable ctermfg=red guifg=#00FF00
-" hi NERDTreeClosable ctermfg=white guifg=#FF0000
-" hi Directory guifg=LemonChiffon ctermfg=green
 " -------------------------------------
 
 
