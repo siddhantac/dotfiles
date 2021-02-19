@@ -17,5 +17,13 @@
 
 [credential]
 	helper = store
+
 [core]
 	editor = vim
+	pager = less -F -X
+
+[pull]
+	rebase = true
+
+[pager]
+	branch = false
