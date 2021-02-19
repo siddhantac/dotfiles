@@ -3,29 +3,48 @@
 " ==========================================================
 call plug#begin('~/.vim/plugged') " specify a directory for plugins
 
-Plug 'junegunn/vim-easy-align'                                " easy alignment
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }            " Go plugin
-Plug 'vim-python/python-syntax'                               " python syntax highlighting
-Plug 'airblade/vim-gitgutter'                                 " git
-Plug 'scrooloose/nerdtree'                                    " file tree explorer
-Plug 'scrooloose/nerdcommenter'                               " code comments
-Plug 'ctrlpvim/ctrlp.vim'                                     " fuzzy file searcher
-Plug 'tpope/vim-surround'                                     " surround text with symbols/tags/brackets
-Plug 'jiangmiao/auto-pairs'                                   " manage bracket/parens pairs
-Plug 'SirVer/ultisnips'                                       " snippet engine
-Plug 'machakann/vim-highlightedyank'                          " highlight the yank area
-Plug 'majutsushi/tagbar' 				      " display source code tags
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " code-completion framework
-"
-Plug 'vim-airline/vim-airline'                               " Airline - improves the statusline
-"Plug 'vim-airline/vim-airline-themes'                        " themes for Airline
-"Plug 'tpope/vim-fugitive'                                    " git support (needed for Airline)
+" general tools
+" -------------
+Plug 'airblade/vim-gitgutter'         " git
+Plug 'scrooloose/nerdtree'            " file tree explorer
+Plug 'scrooloose/nerdcommenter'       " code comments
+Plug 'ctrlpvim/ctrlp.vim'             " fuzzy file searcher
+Plug 'tpope/vim-surround'             " surround text with symbols/tags/brackets
+Plug 'jiangmiao/auto-pairs'           " manage bracket/parens pairs
+Plug 'SirVer/ultisnips'               " snippet engine
+Plug 'machakann/vim-highlightedyank'  " highlight the yank area
+Plug 'majutsushi/tagbar' 	      " display source code tags
+Plug 'junegunn/vim-easy-align'        " easy alignment
+Plug 'mileszs/ack.vim'                " fast text search
+Plug 'godlygeek/tabular'              " dependency for vim-markdown
+Plug 'plasticboy/vim-markdown'        " markdown syntax highlighting etc
+
+" code tools
+" -------------
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }                 " Go plugin
+Plug 'vim-python/python-syntax'                                    " python syntax highlighting
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'} " conquer of completion
+Plug 'pangloss/vim-javascript'                                     " javascript syntax
+Plug 'leafgarland/typescript-vim'                                  " typescript syntax
+Plug 'peitalin/vim-jsx-typescript'                                 " jsx syntax
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }    " code-completion framework
+
+" appearance
+" -------------
+Plug 'vim-airline/vim-airline'                 " Airline - improves the statusline
+Plug 'tpope/vim-fugitive'                      " git support (needed for Airline)
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " highlight files in nerdtree
+" Plug 'vim-airline/vim-airline-themes'        " themes for Airline
 
 " colorschemes
 Plug 'tomasiser/vim-code-dark'
 Plug 'kaicataldo/material.vim'
 Plug 'morhetz/gruvbox'
 Plug 'fatih/molokai'
+Plug 'dikiaap/minimalist'
+Plug 'rakr/vim-one'
+
+Plug 'ryanoasis/vim-devicons'                                " file icons
 
 call plug#end() " initialize plugin system
 " =========================================================
@@ -33,22 +52,30 @@ call plug#end() " initialize plugin system
 
 " >>> appearance
 " =========================================================
+
+" vim settings
+" -------------------------------------
 set background=dark
+set encoding=utf8
+set cursorline
+set lazyredraw
+syntax on
+" -------------------------------------
 
 "colorscheme material
 "colorscheme codedark
-colorscheme molokai
+"colorscheme molokai
+"colorscheme minimalist
+colorscheme one
 
 "colorscheme gruvbox
 "let g:gruvbox_contrast_dark='hard'
 
+" TODO
 " nvim-qt does not display colors in popupmenu correctly,
 " so disable gui popupmenu
 au VimEnter * GuiPopupmenu 0
-syntax on
 
-set cursorline
-set lazyredraw
 
 " airline
 " -------------------------------------
@@ -156,6 +183,7 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 autocmd Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4
+autocmd Filetype js setlocal tabstop=4 noexpandtab
 " ts - show existing tab with 4 spaces width
 " sw - when indenting with '>', use 4 spaces width
 " sts - control <tab> and <bs> keys to match tabstop
@@ -170,14 +198,23 @@ nnoremap <leader><space> :nohlsearch<CR>
 
 " autosave and autoreload sessions
 " -------------------------------------
-let sessionFile = expand("~/session.vim")
+"let sessionFile = expand("~/session.vim")
+
+fu! GetSessionFile()
+    let wd = substitute(getcwd(), "/", "_", "g")
+    let sessionFile = expand("~/.nvim/session") . wd
+    return sessionFile
+endfunction
 
 fu! SaveSession()
-    NERDTreeClose
-    execute 'mksession! ' . g:sessionFile
+    tabdo NERDTreeClose
+    let sessionFile = GetSessionFile()
+    echom sessionFile
+    execute 'mksession! ' . sessionFile
 endfunction
 
 fu! RestoreSession()
+    let sessionFile = GetSessionFile()
     if filereadable(g:sessionFile)
 	execute 'so ' . g:sessionFile
 	if bufexists(1)
@@ -187,6 +224,7 @@ fu! RestoreSession()
 		endif
 	    endfor
 	endif
+	echom "restored session from" . sessionFile
     else
 	echom "no session file"
     endif
@@ -196,8 +234,6 @@ autocmd VimLeave * call SaveSession()
 autocmd VimEnter * nested call RestoreSession()
 " -------------------------------------
 " ==========================================================
-
-
 
 " >>> plugin settings
 " ==========================================================
@@ -214,9 +250,9 @@ nmap ga <Plug>(EasyAlign)
 
 " deoplete
 " -------------------------------------
-let g:python3_host_prog = "C:/Users/Sidd/AppData/Local/Programs/Python/Python37/python.exe"
-let g:deoplete#enable_at_startup = 1
-call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
+" let g:python3_host_prog = "C:/Users/Sidd/AppData/Local/Programs/Python/Python37/python.exe"
+" let g:deoplete#enable_at_startup = 1
+" call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
 " -------------------------------------
 
 
@@ -234,10 +270,11 @@ let g:go_auto_sameids = 0
 let g:go_fmt_command = "goimports"
 let g:go_auto_type_info = 0
 let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck', 'staticcheck']
-let g:go_metalinter_autosave = 1
+let g:go_metalinter_autosave = 0
 let g:go_metalinter_autosave_enabled = ['vet', 'errcheck'] " only run these when gometalinter is called on autosave
 let g:go_fmt_experimental = 1
 let g:go_rename_command = 'gopls'
+let g:go_def_mapping_enabled = 0      " this is handled by CoC
 
 " open alternate (test file) files easily
 " 	:A = replace current buffer
@@ -261,8 +298,11 @@ nmap <leader>tt :TagbarToggle<CR>
 " nerdtree
 " -------------------------------------
 
-" quick toggle (Ctrl+n)
-map <C-n> :NERDTreeToggle<CR>
+" quick toggle (nn)
+map <leader>nn :NERDTreeToggle<CR>
+
+" find file in NERDTree
+map <leader>nf :NERDTreeFind<CR>
 
 " file highlighting
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
@@ -270,6 +310,7 @@ function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
  exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
 endfunction
 
+" TODO
 " note: for Neovim, change 'guifg' term (4th param)
 call NERDTreeHighlightFile('py', 'green', 'none', 'green', '#151515')
 call NERDTreeHighlightFile('pyc', 'grey', 'none', 'grey', '#151515')
@@ -305,3 +346,73 @@ let g:UltiSnipsSnippetDirectories=['UltiSnips', 'gosnippets/UltiSnips', $HOME.'/
 let g:NERDSpaceDelims = 1
 let g:NERDDefaultAlign = 1
 " -------------------------------------
+
+" use silver-surfer for ack
+let g:ackprg = 'ag --vimgrep --smart-case'                                                   
+cnoreabbrev ag Ack                                                                           
+cnoreabbrev aG Ack                                                                           
+cnoreabbrev Ag Ack                                                                           
+cnoreabbrev AG Ack 
+
+
+" coc.nvim default settings
+" ---------------------------------------------
+set hidden         " if hidden is not set, TextEdit might fail.
+set cmdheight=2    " Better display for messages
+set updatetime=300 " Smaller updatetime for CursorHold & CursorHoldI
+set shortmess+=c   " don't give |ins-completion-menu| messages.
+set signcolumn=yes " always show signcolumns
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use `[c` and `]c` to navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use U to show documentation in preview window
+nnoremap <silent> U :call <SID>show_documentation()<CR>
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr> " Show all diagnostics
+nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>  " Manage extensions
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>    " Show commands
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr>     " Find symbol of current document
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>  " Search workspace symbols
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>             " Do default action for next item.
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>             " Do default action for previous item.
+nnoremap <silent> <space>p  :<C-u>CocListResume<CR>       " Resume latest coc list
+
+let g:coc_global_extensions = [ 'coc-tsserver' ]
+" ---------------------------------------------
+
+" ctrlp
+" ---------------------------------------------
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+" ---------------------------------------------
+
