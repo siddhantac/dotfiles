@@ -13,7 +13,6 @@ Plug 'tpope/vim-surround'             " surround text with symbols/tags/brackets
 Plug 'jiangmiao/auto-pairs'           " manage bracket/parens pairs
 Plug 'SirVer/ultisnips'               " snippet engine
 Plug 'machakann/vim-highlightedyank'  " highlight the yank area
-Plug 'majutsushi/tagbar' 	      " display source code tags
 Plug 'junegunn/vim-easy-align'        " easy alignment
 Plug 'mileszs/ack.vim'                " fast text search
 Plug 'godlygeek/tabular'              " dependency for vim-markdown
@@ -292,9 +291,6 @@ autocmd Filetype go nmap <leader>i <Plug>(go-info)
 
 " python highlighting
 let g:python_highlight_all = 1
-
-" tagbar
-nmap <leader>tt :TagbarToggle<CR>
 
 " nerdtree
 " -------------------------------------
