@@ -43,6 +43,7 @@ Plug 'morhetz/gruvbox'
 Plug 'fatih/molokai'
 Plug 'dikiaap/minimalist'
 Plug 'rakr/vim-one'
+Plug 'cocopon/iceberg.vim'
 
 Plug 'ryanoasis/vim-devicons'                                " file icons
 
@@ -66,7 +67,8 @@ syntax on
 "colorscheme codedark
 "colorscheme molokai
 "colorscheme minimalist
-colorscheme one
+" colorscheme one
+colorscheme iceberg
 
 "colorscheme gruvbox
 "let g:gruvbox_contrast_dark='hard'
@@ -201,7 +203,7 @@ nnoremap <leader><space> :nohlsearch<CR>
 
 fu! GetSessionFile()
     let wd = substitute(getcwd(), "/", "_", "g")
-    let sessionFile = expand("~/.nvim/session") . wd
+    let sessionFile = expand("/tmp/nvim_session") . wd
     return sessionFile
 endfunction
 
