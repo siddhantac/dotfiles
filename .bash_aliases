@@ -1,5 +1,5 @@
 
-alias ll='ls -alFh'
+alias ll='ls -Alh'
 alias la='ls -A'
 alias l='ls -CF'
 
@@ -17,3 +17,6 @@ alias cpv='rsync -ah --info=progress2'
 
 # find command in history
 alias gh='history|grep'
+
+# use grc colorizer
+alias go='grc go'
