@@ -1,22 +1,18 @@
-
-alias ll='ls -Alh'
-alias la='ls -A'
+alias ll='ls -lh'
+alias la='ls -Alh'
 alias l='ls -CF'
 
 # sort files by file size
-alias lt='ls -h --size -1 -S --classify'
+alias lz='ls -hlS'
 
 # sort files by modification time
-alias lf='ls -t -1'
+alias lt='ls -l -t'
 
 # count files
 alias count='find . -type f | wc -l'
 
 # copy with progress bar
 alias cpv='rsync -ah --info=progress2'
-
-# find command in history
-alias gh='history|grep'
 
 # use grc colorizer
 alias go='grc go'
