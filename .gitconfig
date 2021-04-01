@@ -8,6 +8,7 @@
 	br = branch
 	co = checkout
 	pu = !git push origin $(git rev-parse --abbrev-ref HEAD)
+	pun = !git push origin $(git rev-parse --abbrev-ref HEAD) --no-verify
 	puu = !git push origin --set-upstream $(git rev-parse --abbrev-ref HEAD)
 	ls = log --pretty=format:\"%C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%cn]\" --decorate
 	ll = log --pretty=format:\"%C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%cn]\" --decorate --numstat
