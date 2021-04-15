@@ -16,3 +16,19 @@ alias cpv='rsync -ah --info=progress2'
 
 # use grc colorizer
 alias go='grc go'
+
+alias d='docker'
+alias dc='docker-compose'
+alias dps='docker ps'
+
+# suffix aliases
+alias -s json=vim
+
+# global alias: 
+#  replace all occurrences of the alias name with the command
+alias -g awsdumcred='AWS_SECRET_ACCESS_KEY=dummy_secret AWS_ACCESS_KEY_ID=dummy_key'
+
+# source the zsh config file
+alias sc='source $HOME/.zshrc'
+# edit the zsh config file
+alias ec='$EDITOR $HOME/.zshrc'
