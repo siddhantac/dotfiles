@@ -32,3 +32,9 @@ alias -g awsdumcred='AWS_SECRET_ACCESS_KEY=dummy_secret AWS_ACCESS_KEY_ID=dummy_
 alias sc='source $HOME/.zshrc'
 # edit the zsh config file
 alias ec='$EDITOR $HOME/.zshrc'
+
+
+# run a specific go test 
+gtr() {
+  go test -v -run $1 $2
+}
