@@ -200,25 +200,17 @@ nnoremap <leader><space> :nohlsearch<CR>
 
 " autosave and autoreload sessions
 " -------------------------------------
-"let sessionFile = expand("~/session.vim")
-
-fu! GetSessionFile()
-    let wd = substitute(getcwd(), "/", "_", "g")
-    let sessionFile = expand("/tmp/nvim_session") . wd
-    return sessionFile
-endfunction
+let s:sessionFile = ".workspace.nvim"
 
 fu! SaveSession()
     tabdo NERDTreeClose
-    let sessionFile = GetSessionFile()
-    echom sessionFile
-    execute 'mksession! ' . sessionFile
+    echom s:sessionFile
+    execute 'mksession! ' . s:sessionFile
 endfunction
 
 fu! RestoreSession()
-    let sessionFile = GetSessionFile()
-    if filereadable(sessionFile)
-	execute 'so ' . sessionFile
+    if filereadable(s:sessionFile)
+	execute 'so ' . s:sessionFile
 	if bufexists(1)
 	    for l in range(1, bufnr('$'))
 		if bufwinnr(l) == -1
@@ -226,7 +218,7 @@ fu! RestoreSession()
 		endif
 	    endfor
 	endif
-	echom "restored session from" . sessionFile
+	echom "restored session from " . s:sessionFile
     else
 	echom "no session file"
     endif
