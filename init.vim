@@ -280,7 +280,13 @@ autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit'
 autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
 autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
 
-autocmd Filetype go nmap <leader>i <Plug>(go-info)
+autocmd Filetype go nnoremap <leader>i <Plug>(go-info)             " show func info
+autocmd Filetype go nnoremap <leader>t <Plug>(go-test)             " run all tests in file
+autocmd Filetype go nnoremap <leader>tf <Plug>(go-test-func)       " run current test function in file
+autocmd Filetype go nnoremap <leader>tc <Plug>(go-coverage-toggle) " toggle coverage profile for current file
+autocmd Filetype go nnoremap <leader>cc <Plug>(go-callers)         " see callers of a function
+autocmd Filetype go nnoremap <leader>d  :GoDecls<CR>               " see declarations in a file
+autocmd Filetype go nnoremap <leader>dd  :GoDeclsDir<CR>           " see declarations in a dir
 " -------------------------------------
 
 " python highlighting
@@ -425,9 +431,6 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-
-" Use U to show documentation in preview window
-nnoremap <silent> U :call <SID>show_documentation()<CR>
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
