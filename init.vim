@@ -34,6 +34,7 @@ Plug 'vim-airline/vim-airline'                 " Airline - improves the statusli
 Plug 'tpope/vim-fugitive'                      " git support (needed for Airline)
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " highlight files in nerdtree
 " Plug 'vim-airline/vim-airline-themes'        " themes for Airline
+Plug 'edkolev/tmuxline.vim'
 
 " colorschemes
 Plug 'tomasiser/vim-code-dark'
