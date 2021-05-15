@@ -452,7 +452,7 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>             " Do default action fo
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>             " Do default action for previous item.
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>       " Resume latest coc list
 
-let g:coc_global_extensions = [ 'coc-tsserver' ]
+let g:coc_global_extensions = [ 'coc-tsserver' , 'coc-go' ]
 " ---------------------------------------------
 
 " ctrlp
