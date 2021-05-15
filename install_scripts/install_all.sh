@@ -4,3 +4,5 @@
 ./git-split-diff.sh
 ./neovim.sh
 ./vim-plug.sh
+
+apt install grc
