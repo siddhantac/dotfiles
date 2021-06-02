@@ -45,6 +45,7 @@ Plug 'dikiaap/minimalist'
 Plug 'rakr/vim-one'
 Plug 'cocopon/iceberg.vim'
 Plug 'arcticicestudio/nord-vim'
+Plug 'gantoreno/vim-substrata'
 
 Plug 'ryanoasis/vim-devicons'                                " file icons
 
@@ -62,6 +63,7 @@ set encoding=utf8
 set cursorline
 set lazyredraw
 syntax on
+set termguicolors
 " -------------------------------------
 
 "colorscheme material
@@ -70,6 +72,7 @@ syntax on
 "colorscheme minimalist
 " colorscheme one
 "colorscheme iceberg
+"colorscheme substrata
 colorscheme nord
 
 "colorscheme gruvbox
@@ -82,7 +85,8 @@ au GUIEnter * GuiPopupmenu 0
 
 " airline
 " -------------------------------------
-let g:airline_theme='nord'
+"let g:airline_theme='nord'
+let g:airline_theme='substrata'
 let g:airline_powerline_fonts=1
 let g:airline_section_b = ' %{FugitiveHead()}' " display only git branch
 
