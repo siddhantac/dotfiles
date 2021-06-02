@@ -16,7 +16,3 @@ set -g window-status-current-format "#[fg=#2e313d,bold]#[bg=#a0b9d8]#[fg=#2e3
 set -g  status-right-length 36
 set -g  status-right        "#[fg=#8296b0]#[bg=#2e313d]#[fg=#2e313d]#[bg=#8296b0]  %H:%M "
 set -ga status-right        "#[fg=#a0b9d8]#[bg=#8296b0]#[fg=#2e313d,bold]#[bg=#a0b9d8]  #h "
-
-# when window has monitoring notification
-setw -g monitor-activity on
-setw -g window-status-activity-style "bg=white,blink"
