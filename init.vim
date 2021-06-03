@@ -137,9 +137,18 @@ let mapleader=";"
 set autowrite " save file when :make or :GoBuild is called
 
 " open files relative to the path of current file
+
+" open file in current buffer
 map ,e :e <C-R>=expand("%:p:h") . "/" <CR>
+
+" open file in new tab
 map ,t :tabe <C-R>=expand("%:p:h") . "/" <CR>
-map ,s :vsplit <C-R>=expand("%:p:h") . "/" <CR>
+
+" open file in vertical split
+map ,v :vsplit <C-R>=expand("%:p:h") . "/" <CR>
+
+" open file in horizontal split
+map ,h :split <C-R>=expand("%:p:h") . "/" <CR>
 
 " replace word under cursor
 nnoremap <leader>* :%s/\<<c-r><c-w>\>//g<left><left>
