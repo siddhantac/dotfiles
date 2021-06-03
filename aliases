@@ -1,18 +1,18 @@
+alias ls='exa --icons'
 alias ll='ls -lh'
-alias la='ls -Alh'
-alias l='ls -CF'
+alias la='ll -a'
 
 # sort files by file size
-alias lz='ls -hlS'
+alias lz='la --sort size'
 
 # sort files by modification time
-alias lt='ls -l -t'
+alias lt='la --sort modified'
 
 # count files
 alias count='find . -type f | wc -l'
 
 # copy with progress bar
-alias cpv='rsync -ah --info=progress2'
+alias cpv='rsync -ah --progress'
 
 # use grc colorizer
 alias go='grc go'
