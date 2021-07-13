@@ -3,15 +3,13 @@ export GOPATH=$HOME/go
 export DOTFILES=$HOME/workspace/dotfiles
 export ZSH="$HOME/.oh-my-zsh"
 
-source $ZSH/oh-my-zsh.sh
-
-# === theme ===
 #ZSH_THEME="avit"
 ZSH_THEME="agnoster"
 #ZSH_THEME="spaceship"
 
-
 plugins=(git zsh-syntax-highlighting zsh-autosuggestions z fzf docker)
+
+source $ZSH/oh-my-zsh.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
