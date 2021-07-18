@@ -1,5 +1,7 @@
 #!/bin/sh
 
+apt install zsh
+
 ./tmux.sh
 ./git-split-diff.sh
 ./neovim.sh
