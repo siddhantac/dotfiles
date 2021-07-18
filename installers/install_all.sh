@@ -20,4 +20,9 @@ echo ""
 npm install -g git-split-diffs
 
 echo ""
+echo ">>> installing oh-my-zsh..."
+echo ""
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+echo ""
 echo ">>> DONE! <<<"
