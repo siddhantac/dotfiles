@@ -17,7 +17,7 @@ tar -xf libevent.tar.gz
 cd libevent-2.1.8-stable
 ./configure
 make
-sudo make install
+make install
 cd ..
 
 # install ncurses
@@ -27,7 +27,7 @@ cd ncurses-6.1
 
 ./configure
 make
-sudo make install
+make install
 cd ..
 
 # install tmux
@@ -37,7 +37,7 @@ cd tmux-$ver
 
 ./configure
 make 
-sudo make install
+make install
 
 echo ""
 echo "done!"
