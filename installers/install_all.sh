@@ -1,6 +1,6 @@
 #!/bin/sh
 
-apt install zsh
+apt install -y curl zsh nodejs npm
 
 ./tmux.sh
 ./git-split-diff.sh
