@@ -8,8 +8,8 @@ apt install -y --no-install-recommends curl zsh tmux
 
 echo ">>> installing dev stuff..."
 echo ""
-add-apt-repository ppa:neovim-ppa/stable 
-apt-get update
+#add-apt-repository ppa:neovim-ppa/stable 
+#apt-get update
 apt install -y --no-install-recommends neovim nodejs npm grc
 
 echo ""
