@@ -13,16 +13,17 @@ echo ""
 apt install -y --no-install-recommends neovim nodejs npm grc
 
 echo ""
-echo ">>> installing vim-plug..."
-echo ""
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-	       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-
-echo ""
 echo ">>> installing git-split-diff..."
 echo ""
 # ref: https://github.com/banga/git-split-diffs
 npm install -g git-split-diffs
+apt remove npm
+
+echo ""
+echo ">>> installing vim-plug..."
+echo ""
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+	       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 echo ""
 echo ">>> installing oh-my-zsh..."
