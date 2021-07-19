@@ -5,7 +5,7 @@ apt-get update
 
 echo ">>> installing basic stuff..."
 echo ""
-apt install -y curl zsh tmux neovim nodejs npm grc
+DEBIAN_FRONTEND=noninteractive apt install -y --no-install-recommends curl zsh tmux neovim nodejs npm grc
 
 echo ""
 echo ">>> installing vim-plug..."
