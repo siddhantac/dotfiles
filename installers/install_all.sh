@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e 
+
 export DEBIAN_FRONTEND=noninteractive 
 
 echo ">>> installing basic stuff..."
@@ -8,16 +10,21 @@ apt install -y --no-install-recommends curl zsh tmux
 
 echo ">>> installing dev stuff..."
 echo ""
+curl -sL https://deb.nodesource.com/setup_12.x | bash -
+apt-get install -y nodejs
+node -v
+# npm
+
 #add-apt-repository ppa:neovim-ppa/stable 
 #apt-get update
-apt install -y --no-install-recommends neovim nodejs npm grc
+apt install -y --no-install-recommends neovim grc
 
 echo ""
 echo ">>> installing git-split-diff..."
 echo ""
 # ref: https://github.com/banga/git-split-diffs
-npm install -g git-split-diffs
-apt remove npm
+#npm install -g git-split-diffs
+#apt remove npm
 
 echo ""
 echo ">>> installing vim-plug..."
@@ -29,6 +36,8 @@ echo ""
 echo ">>> installing oh-my-zsh..."
 echo ""
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+apt-get clean
 
 echo ""
 echo ">>> DONE! <<<"
