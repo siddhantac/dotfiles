@@ -1,11 +1,16 @@
 #!/bin/sh
 
-add-apt-repository ppa:neovim-ppa/stable 
-apt-get update
+export DEBIAN_FRONTEND=noninteractive 
 
 echo ">>> installing basic stuff..."
 echo ""
-DEBIAN_FRONTEND=noninteractive apt install -y --no-install-recommends curl zsh tmux neovim nodejs npm grc
+apt install -y --no-install-recommends curl zsh tmux 
+
+echo ">>> installing dev stuff..."
+echo ""
+add-apt-repository ppa:neovim-ppa/stable 
+apt-get update
+apt install -y --no-install-recommends neovim nodejs npm grc
 
 echo ""
 echo ">>> installing vim-plug..."
