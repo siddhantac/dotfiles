@@ -232,18 +232,20 @@ fu! SaveSession()
 endfunction
 
 fu! RestoreSession()
-    if filereadable(s:sessionFile)
-	execute 'so ' . s:sessionFile
-	if bufexists(1)
-	    for l in range(1, bufnr('$'))
-		if bufwinnr(l) == -1
-		    exec 'sbuffer ' . l
-		endif
-	    endfor
+    if argc() == 0
+	if filereadable(s:sessionFile)
+	    execute 'so ' . s:sessionFile
+	    if bufexists(1)
+		for l in range(1, bufnr('$'))
+		    if bufwinnr(l) == -1
+			exec 'sbuffer ' . l
+		    endif
+		endfor
+	    endif
+	    echom "restored session from " . s:sessionFile
+	else
+	    echom "no session file"
 	endif
-	echom "restored session from " . s:sessionFile
-    else
-	echom "no session file"
     endif
 endfunction
 
