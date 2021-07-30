@@ -44,7 +44,6 @@ Plug 'dikiaap/minimalist'
 Plug 'rakr/vim-one'
 Plug 'cocopon/iceberg.vim'
 Plug 'arcticicestudio/nord-vim'
-Plug 'gantoreno/vim-substrata'
 
 Plug 'ryanoasis/vim-devicons'                                " file icons
 
@@ -62,8 +61,18 @@ set encoding=utf8
 set cursorline
 set lazyredraw
 syntax on
-set termguicolors
+
+if (has("termguicolors"))
+  set termguicolors
+endif
 " -------------------------------------
+
+augroup nord-theme-overrides
+  autocmd!
+  " Use 'nord7' as foreground color for Vim comment titles.
+  autocmd ColorScheme nord highlight Normal guibg=#293039
+  "autocmd ColorScheme nord highlight Normal guifg=#FFFFFF 
+augroup END
 
 "colorscheme material
 "colorscheme codedark
@@ -71,7 +80,6 @@ set termguicolors
 "colorscheme minimalist
 " colorscheme one
 "colorscheme iceberg
-"colorscheme substrata
 colorscheme nord
 
 "colorscheme gruvbox
@@ -84,8 +92,8 @@ au GUIEnter * GuiPopupmenu 0
 
 " airline
 " -------------------------------------
-"let g:airline_theme='nord'
-let g:airline_theme='substrata'
+let g:airline_theme='nord'
+"let g:airline_theme='substrata'
 let g:airline_powerline_fonts=1
 let g:airline_section_b = ' %{FugitiveHead()}' " display only git branch
 
