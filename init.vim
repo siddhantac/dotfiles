@@ -174,9 +174,10 @@ augroup numbertoggle
 augroup END
 
 " buffer manipulation
-nnoremap <Leader><Leader> :b#<CR>
+nnoremap <Leader><Leader> :b#<CR> " switch buffers
 nnoremap ]b :bnext<cr>
 nnoremap [b :bprevious<cr>
+nnoremap <leader>c :close<cr>     " close buffer
 
 " easy write and source
 nnoremap <Leader>ws :w<bar>so%<CR>
