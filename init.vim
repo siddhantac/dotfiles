@@ -36,12 +36,9 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " highlight files in nerdtree
 " Plug 'vim-airline/vim-airline-themes'        " themes for Airline
 
 " colorschemes
-Plug 'tomasiser/vim-code-dark'
-Plug 'kaicataldo/material.vim'
 Plug 'morhetz/gruvbox'
 Plug 'fatih/molokai'
 Plug 'dikiaap/minimalist'
-Plug 'rakr/vim-one'
 Plug 'cocopon/iceberg.vim'
 Plug 'arcticicestudio/nord-vim'
 
@@ -69,16 +66,11 @@ endif
 
 augroup nord-theme-overrides
   autocmd!
-  " Use 'nord7' as foreground color for Vim comment titles.
-  autocmd ColorScheme nord highlight Normal guibg=#293039
-  "autocmd ColorScheme nord highlight Normal guifg=#FFFFFF 
+  autocmd ColorScheme nord highlight Normal guibg=#192029
 augroup END
 
-"colorscheme material
-"colorscheme codedark
 "colorscheme molokai
 "colorscheme minimalist
-" colorscheme one
 "colorscheme iceberg
 colorscheme nord
 
@@ -93,7 +85,6 @@ au GUIEnter * GuiPopupmenu 0
 " airline
 " -------------------------------------
 let g:airline_theme='nord'
-"let g:airline_theme='substrata'
 let g:airline_powerline_fonts=1
 let g:airline_section_b = ' %{FugitiveHead()}' " display only git branch
 
