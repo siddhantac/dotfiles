@@ -297,8 +297,13 @@ autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit'
 autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
 autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
 
+function GoTest()
+    echo 'running tests in file...'
+    :GoTest
+endfunction
+
+autocmd Filetype go nmap <leader>t :call GoTest()<CR>          " run tests
 autocmd Filetype go nmap <leader>i <Plug>(go-info)             " show func info
-autocmd Filetype go nmap <leader>t <Plug>(go-test)             " run all tests in file
 autocmd Filetype go nmap <leader>tf <Plug>(go-test-func)       " run current test function in file
 autocmd Filetype go nmap <leader>tc <Plug>(go-coverage-toggle) " toggle coverage profile for current file
 autocmd Filetype go nmap <leader>cl <Plug>(go-callers)         " see callers of a function
