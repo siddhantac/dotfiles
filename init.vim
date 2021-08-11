@@ -121,6 +121,12 @@ let g:airline_section_b = ' %{FugitiveHead()}' " display only git branch
 " >>> behaviour <<<
 " =================
 
+set laststatus=2
+set splitright
+set splitbelow
+set hlsearch
+set ignorecase smartcase
+
 let mapleader=";"
 
 " Autosave only when there is something to save,
@@ -128,8 +134,6 @@ let mapleader=";"
 :au FocusLost * silent! wa
 
 set autowrite " save file when :make or :GoBuild is called
-
-" open files relative to the path of current file
 
 " open file in current buffer
 map ,e :e <C-R>=expand("%:p:h") . "/" <CR>
@@ -182,12 +186,6 @@ set foldmethod=syntax
 set foldlevel=2
 set nofoldenable
 set foldlevelstart=99
-
-set laststatus=2
-set splitright
-set splitbelow
-set hlsearch
-set ignorecase smartcase
 
 " <Enter> will simply select the highlighted item
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
@@ -397,10 +395,10 @@ function! s:check_back_space() abort
 endfunction
 
 " use <c-space> to trigger completion.
-inuremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <c-space> coc#refresh()
 
 " use `[c` and `]c` to navigate diagnostics
-nmup <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
 nmap <silent> gd <Plug>(coc-definition)
