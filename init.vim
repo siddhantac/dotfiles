@@ -280,10 +280,14 @@ let g:go_def_mapping_enabled = 0      " this is handled by CoC
 " 	:AV = vertical split
 " 	:AS = horizontal split
 " 	:AT = new tab
-autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit') 
-autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
-autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
-autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+augroup go
+    autocmd!
+    autocmd Filetype go
+	\  command! -bang A call go#alternate#Switch(<bang>0, 'edit') 
+	\| command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+	\| command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+	\| command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+augroup END
 
 function GoTest()
     echo 'running tests in file...'
