@@ -213,6 +213,11 @@ set undodir=~/.vim/undodir
 
 nnoremap <leader><space> :nohlsearch<CR>
 
+" copy/paste to/from system clipboard
+vnoremap <leader>y "*y
+nnoremap <leader>yy "*yy
+nnoremap <leader>v "*p
+
 " autosave and autoreload sessions
 " -------------------------------------
 let s:sessionFile = ".workspace.nvim"
@@ -317,6 +322,7 @@ let g:python_highlight_all = 1
 " nerdtree
 " -------------------------------------
 let NERDTreeShowHidden = 1
+let NERDTreeMinimalUI = 1
 
 " quick toggle (nn)
 map <leader>nn :NERDTreeToggle<CR>
@@ -371,7 +377,6 @@ let g:WebDevIconsDefaultOpenFolderSymbolColor= s:white
 hi NERDTreeOpenable ctermfg=red guifg=#00FF00
 hi NERDTreeClosable ctermfg=white guifg=#FF0000
 " hi Directory guifg=LemonChiffon ctermfg=green
-
 
 " " TODO: delete
 " function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
