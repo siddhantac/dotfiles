@@ -1,4 +1,3 @@
-
 " >>> plugins
 " ==========================================================
 call plug#begin('~/.vim/plugged') " specify a directory for plugins
@@ -26,7 +25,6 @@ Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'} " conquer of 
 Plug 'pangloss/vim-javascript'                                     " javascript syntax
 Plug 'leafgarland/typescript-vim'                                  " typescript syntax
 Plug 'peitalin/vim-jsx-typescript'                                 " jsx syntax
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }    " code-completion framework
 
 " appearance
 " -------------
@@ -263,15 +261,6 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 " -------------------------------------
 
-
-" deoplete
-" -------------------------------------
-" let g:python3_host_prog = "C:/Users/Sidd/AppData/Local/Programs/Python/Python37/python.exe"
-" let g:deoplete#enable_at_startup = 1
-" call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
-" -------------------------------------
-
-
 " vim-go 
 " -------------------------------------
 let g:go_highlight_build_constraints = 1
@@ -364,8 +353,6 @@ let g:NERDTreeExtensionHighlightColor['ini'] = s:yellow " sets the color of css 
 let g:NERDTreeExtensionHighlightColor['exe'] = s:green " sets the color of css files to blue
 let g:NERDTreeExtensionHighlightColor['php'] = s:purple " sets the color of css files to blue
 
-let g:NERDTreeExactMatchHighlightColor = {} " this line is needed to avoid error
-
 let g:NERDTreePatternMatchHighlightColor = {} " this line is needed to avoid error
 let g:NERDTreePatternMatchHighlightColor['\.git.*'] = s:git_orange
 
@@ -378,33 +365,7 @@ hi NERDTreeOpenable ctermfg=red guifg=#00FF00
 hi NERDTreeClosable ctermfg=white guifg=#FF0000
 " hi Directory guifg=LemonChiffon ctermfg=green
 
-" " TODO: delete
-" function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
-"  exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
-"  exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
-" endfunction
-
-" " note: for Neovim, change 'guifg' term (4th param)
-" " call NERDTreeHighlightFile('py', 'green', 'none', 'green', '#151515')
-" " call NERDTreeHighlightFile('pyc', 'grey', 'none', 'grey', '#151515')
-" " call NERDTreeHighlightFile('go', 'blue', 'none', 'DeepSkyBlue', '#151515')
-" " call NERDTreeHighlightFile('Makefile', 'yellow', 'none', 'Gold', '#151515')
-" " call NERDTreeHighlightFile('ini', 'yellow', 'none', 'LightYellow', '#151515')
-" " call NERDTreeHighlightFile('yml', 'yellow', 'none', 'LightYellow', '#151515')
-" " call NERDTreeHighlightFile('config', 'yellow', 'none', 'LightYellow', '#151515')
-" " call NERDTreeHighlightFile('conf', 'yellow', 'none', 'LightYellow', '#151515')
-" " call NERDTreeHighlightFile('json', 'yellow', 'none', 'LightYellow', '#151515')
-" " call NERDTreeHighlightFile('exe', 'green', 'none', 'LimeGreen', '#151515')
-" " call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
-" " call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
-" " call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
-" " call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
-" " call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
-" " call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
-" " call NERDTreeHighlightFile('md', 'white', 'none', 'wheat', '#151515')
-
 " -------------------------------------
-
 
 " UltiSnips
 " -------------------------------------
