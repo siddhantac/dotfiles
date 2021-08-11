@@ -1,0 +1,4 @@
+{
+  "go.goplsArgs": ["-remote=auto"],
+  "go.goplsPath": "/Users/s.c/go/bin/gopls"
+}
