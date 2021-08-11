@@ -150,7 +150,7 @@ map ,h :split <C-R>=expand("%:p:h") . "/" <CR>
 " replace word under cursor
 nnoremap <leader>* :%s/\<<c-r><c-w>\>//g<left><left>
 
-" move files
+" move lines
 nnoremap <leader>k :m-2<cr>==
 nnoremap <leader>j :m+<cr>==
 xnoremap <leader>k :m-2<cr>gv=gv
@@ -208,7 +208,7 @@ nnoremap <leader><space> :nohlsearch<CR>
 " copy/paste to/from system clipboard
 vnoremap <leader>y "*y
 nnoremap <leader>yy "*yy
-nnoremap <leader>v "*p
+nnoremap <leader>p "*p
 
 " autosave and autoreload sessions
 " --------------------------------
