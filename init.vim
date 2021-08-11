@@ -4,7 +4,6 @@
 call plug#begin('~/.vim/plugged') " specify a directory for plugins
 
 " general tools
-" -------------
 Plug 'airblade/vim-gitgutter'         " git
 Plug 'scrooloose/nerdtree'            " file tree explorer
 Plug 'scrooloose/nerdcommenter'       " code comments
@@ -19,7 +18,6 @@ Plug 'godlygeek/tabular'              " dependency for vim-markdown
 Plug 'plasticboy/vim-markdown'        " markdown syntax highlighting etc
 
 " code tools
-" -------------
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }                 " Go plugin
 Plug 'vim-python/python-syntax'                                    " python syntax highlighting
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'} " conquer of completion
@@ -28,11 +26,9 @@ Plug 'leafgarland/typescript-vim'                                  " typescript 
 Plug 'peitalin/vim-jsx-typescript'                                 " jsx syntax
 
 " appearance
-" -------------
 Plug 'vim-airline/vim-airline'                 " Airline - improves the statusline
 Plug 'tpope/vim-fugitive'                      " git support (needed for Airline)
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " highlight files in nerdtree
-" Plug 'vim-airline/vim-airline-themes'        " themes for Airline
 
 " colorschemes
 Plug 'morhetz/gruvbox'
@@ -79,7 +75,7 @@ au GUIEnter * GuiPopupmenu 0
 
 
 " airline
-" -------------------------------------
+" -------
 let g:airline_theme='nord'
 let g:airline_powerline_fonts=1
 let g:airline_section_b = ' %{FugitiveHead()}' " display only git branch
@@ -124,6 +120,7 @@ let g:airline_section_b = ' %{FugitiveHead()}' " display only git branch
 " =================
 " >>> behaviour <<<
 " =================
+
 let mapleader=";"
 
 " Autosave only when there is something to save,
@@ -216,7 +213,7 @@ nnoremap <leader>yy "*yy
 nnoremap <leader>v "*p
 
 " autosave and autoreload sessions
-" -------------------------------------
+" --------------------------------
 let s:sessionFile = ".workspace.nvim"
 
 fu! SaveSession()
@@ -252,7 +249,7 @@ autocmd VimEnter * nested call RestoreSession()
 " =======================
 
 " easy align
-" -------------------------------------
+" ----------
 " start interactive EasyAlign in visual mode (eg. vipga)
 xmap ga <Plug>(EasyAlign)
 
@@ -261,7 +258,7 @@ nmap ga <Plug>(EasyAlign)
 
 
 " vim-go 
-" -------------------------------------
+" ------
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_fields = 1
@@ -303,12 +300,11 @@ autocmd Filetype go nmap <leader>cl <Plug>(go-callers)         " see callers of 
 autocmd Filetype go nnoremap <leader>d  :GoDecls<CR>               " see declarations in a file
 autocmd Filetype go nnoremap <leader>dd  :GoDeclsDir<CR>           " see declarations in a dir
 
-
 " python highlighting
 let g:python_highlight_all = 1
 
 " nerdtree
-" -------------------------------------
+" --------
 let NERDTreeShowHidden = 1
 let NERDTreeMinimalUI = 1
 
@@ -319,7 +315,6 @@ map <leader>nn :NERDTreeToggle<CR>
 map <leader>nf :NERDTreeFind<CR>
 
 " file highlighting
-" -------------------------------------
 
 " highlight full name (not only icons)
 let g:NERDTreeFileExtensionHighlightFullName = 1
@@ -366,11 +361,9 @@ hi NERDTreeClosable ctermfg=white guifg=#FF0000
 
 
 " UltiSnips
-" -------------------------------------
 let g:UltiSnipsSnippetDirectories=['UltiSnips', 'gosnippets/UltiSnips', $HOME.'/.vim/UltiSnips']
 
 " Nerd commenter
-" -------------------------------------
 let g:NERDSpaceDelims = 1
 let g:NERDDefaultAlign = 1
 
@@ -382,7 +375,7 @@ cnoreabbrev Ag Ack
 cnoreabbrev AG Ack 
 
 
-" coc.nvim default settings
+" coc
 " ---------------------------------------------
 set hidden         " if hidden is not set, TextEdit might fail.
 set cmdheight=2    " Better display for messages
@@ -390,8 +383,8 @@ set updatetime=300 " Smaller updatetime for CursorHold & CursorHoldI
 set shortmess+=c   " don't give |ins-completion-menu| messages.
 set signcolumn=yes " always show signcolumns
 
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+" use tab for trigger completion with characters ahead and navigate.
+" use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
@@ -403,23 +396,20 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
+" use <c-space> to trigger completion.
+inuremap <silent><expr> <c-space> coc#refresh()
 
-" Use `[c` and `]c` to navigate diagnostics
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
+" use `[c` and `]c` to navigate diagnostics
+nmup <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
-" Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-
-" Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 
-" Remap for format selected region
+" remap for format selected region
 vmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
@@ -435,6 +425,5 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>       " Resume latest coc li
 let g:coc_global_extensions = [ 'coc-tsserver' , 'coc-go' ]
 
 " ctrlp
-" ---------------------------------------------
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
