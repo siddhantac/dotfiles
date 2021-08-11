@@ -1,5 +1,6 @@
-" >>> plugins
-" ==========================================================
+" ===============
+" >>> plugins <<<
+" ===============
 call plug#begin('~/.vim/plugged') " specify a directory for plugins
 
 " general tools
@@ -43,14 +44,12 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'ryanoasis/vim-devicons'                                " file icons
 
 call plug#end() " initialize plugin system
-" =========================================================
 
 
-" >>> appearance
-" =========================================================
+" ==================
+" >>> appearance <<<
+" ==================
 
-" vim settings
-" -------------------------------------
 set background=dark
 set encoding=utf8
 set cursorline
@@ -60,7 +59,6 @@ syntax on
 if (has("termguicolors"))
   set termguicolors
 endif
-" -------------------------------------
 
 augroup nord-theme-overrides
   autocmd!
@@ -121,10 +119,11 @@ let g:airline_section_b = ' %{FugitiveHead()}' " display only git branch
 "let g:airline_symbols.readonly = ''
 "let g:airline_symbols.linenr = '☰'
 "let g:airline_symbols.maxlinenr = ''
-" -------------------------------------
 
-" >>> behaviour
-" ==========================================================
+
+" =================
+" >>> behaviour <<<
+" =================
 let mapleader=";"
 
 " Autosave only when there is something to save,
@@ -246,11 +245,11 @@ endfunction
 
 autocmd VimLeave * call SaveSession()
 autocmd VimEnter * nested call RestoreSession()
-" -------------------------------------
-" ==========================================================
 
-" >>> plugin settings
-" ==========================================================
+
+" =======================
+" >>> plugin settings <<<
+" =======================
 
 " easy align
 " -------------------------------------
@@ -259,7 +258,7 @@ xmap ga <Plug>(EasyAlign)
 
 " start interactive EasyAlign for a motion/text object (eg. gaip)
 nmap ga <Plug>(EasyAlign)
-" -------------------------------------
+
 
 " vim-go 
 " -------------------------------------
@@ -303,7 +302,7 @@ autocmd Filetype go nmap <leader>tc <Plug>(go-coverage-toggle) " toggle coverage
 autocmd Filetype go nmap <leader>cl <Plug>(go-callers)         " see callers of a function
 autocmd Filetype go nnoremap <leader>d  :GoDecls<CR>               " see declarations in a file
 autocmd Filetype go nnoremap <leader>dd  :GoDeclsDir<CR>           " see declarations in a dir
-" -------------------------------------
+
 
 " python highlighting
 let g:python_highlight_all = 1
@@ -321,8 +320,8 @@ map <leader>nf :NERDTreeFind<CR>
 
 " file highlighting
 " -------------------------------------
-"
-" Highlight full name (not only icons)
+
+" highlight full name (not only icons)
 let g:NERDTreeFileExtensionHighlightFullName = 1
 let g:NERDTreeExactMatchHighlightFullName = 1
 let g:NERDTreePatternMatchHighlightFullName = 1
@@ -365,18 +364,15 @@ hi NERDTreeOpenable ctermfg=red guifg=#00FF00
 hi NERDTreeClosable ctermfg=white guifg=#FF0000
 " hi Directory guifg=LemonChiffon ctermfg=green
 
-" -------------------------------------
 
 " UltiSnips
 " -------------------------------------
 let g:UltiSnipsSnippetDirectories=['UltiSnips', 'gosnippets/UltiSnips', $HOME.'/.vim/UltiSnips']
-" -------------------------------------
 
 " Nerd commenter
 " -------------------------------------
 let g:NERDSpaceDelims = 1
 let g:NERDDefaultAlign = 1
-" -------------------------------------
 
 " use silver-surfer for ack
 let g:ackprg = 'ag --vimgrep --smart-case'                                                   
@@ -437,10 +433,8 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>             " Do default action fo
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>       " Resume latest coc list
 
 let g:coc_global_extensions = [ 'coc-tsserver' , 'coc-go' ]
-" ---------------------------------------------
 
 " ctrlp
 " ---------------------------------------------
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
-" ---------------------------------------------
 
