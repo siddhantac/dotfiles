@@ -29,15 +29,14 @@ Plug 'peitalin/vim-jsx-typescript'                                 " jsx syntax
 Plug 'vim-airline/vim-airline'                 " Airline - improves the statusline
 Plug 'tpope/vim-fugitive'                      " git support (needed for Airline)
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " highlight files in nerdtree
+Plug 'ryanoasis/vim-devicons'                  " file icons
 
 " colorschemes
-Plug 'morhetz/gruvbox'
-Plug 'fatih/molokai'
-Plug 'dikiaap/minimalist'
-Plug 'cocopon/iceberg.vim'
+" Plug 'morhetz/gruvbox'
+" Plug 'fatih/molokai'
+" Plug 'dikiaap/minimalist'
+" Plug 'cocopon/iceberg.vim'
 Plug 'arcticicestudio/nord-vim'
-
-Plug 'ryanoasis/vim-devicons'                                " file icons
 
 call plug#end() " initialize plugin system
 
