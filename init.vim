@@ -56,8 +56,8 @@ if (has("termguicolors"))
 endif
 
 augroup nord-theme-overrides
-  autocmd!
-  autocmd ColorScheme nord highlight Normal guibg=#192029
+  au!
+  au ColorScheme nord highlight Normal guibg=#192029
 augroup END
 
 "colorscheme molokai
@@ -165,9 +165,9 @@ nnoremap <C-H> <C-W><C-H>
 set number relativenumber
 set numberwidth=5
 augroup numbertoggle
-    autocmd!
-    autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-    autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
+    au!
+    au BufEnter,FocusGained,InsertLeave * set relativenumber
+    au BufLeave,FocusLost,InsertEnter * set norelativenumber
 augroup END
 
 " buffer manipulation
@@ -189,9 +189,9 @@ set foldlevelstart=99
 " <Enter> will simply select the highlighted item
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
-autocmd Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4
-autocmd Filetype js setlocal tabstop=4 noexpandtab
+au Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
+au Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4
+au Filetype js setlocal tabstop=4 noexpandtab
 " ts - show existing tab with 4 spaces width
 " sw - when indenting with '>', use 4 spaces width
 " sts - control <tab> and <bs> keys to match tabstop
@@ -237,8 +237,8 @@ fu! RestoreSession()
     endif
 endfunction
 
-autocmd VimLeave * call SaveSession()
-autocmd VimEnter * nested call RestoreSession()
+au VimLeave * call SaveSession()
+au VimEnter * nested call RestoreSession()
 
 
 " =======================
@@ -279,27 +279,30 @@ let g:go_def_mapping_enabled = 0      " this is handled by CoC
 " 	:AV = vertical split
 " 	:AS = horizontal split
 " 	:AT = new tab
-augroup go
-    autocmd!
-    autocmd Filetype go
-	\  command! -bang A call go#alternate#Switch(<bang>0, 'edit') 
-	\| command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
-	\| command! -bang AS call go#alternate#Switch(<bang>0, 'split')
-	\| command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+augroup goTestSplit
+    au!
+    au Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit') 
+    au Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+    au Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+    au Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
 augroup END
+
 
 function GoTest()
     echo 'running tests in file...'
     :GoTest
 endfunction
 
-autocmd Filetype go nmap <leader>t :call GoTest()<CR>          " run tests
-autocmd Filetype go nmap <leader>i <Plug>(go-info)             " show func info
-autocmd Filetype go nmap <leader>tf <Plug>(go-test-func)       " run current test function in file
-autocmd Filetype go nmap <leader>tc <Plug>(go-coverage-toggle) " toggle coverage profile for current file
-autocmd Filetype go nmap <leader>cl <Plug>(go-callers)         " see callers of a function
-autocmd Filetype go nnoremap <leader>d  :GoDecls<CR>               " see declarations in a file
-autocmd Filetype go nnoremap <leader>dd  :GoDeclsDir<CR>           " see declarations in a dir
+augroup goCmds
+    au!
+    au Filetype go nmap <leader>t :call GoTest()<CR>          " run tests
+    au Filetype go nmap <leader>i <Plug>(go-info)             " show func info
+    au Filetype go nmap <leader>tf <Plug>(go-test-func)       " run current test function in file
+    au Filetype go nmap <leader>tc <Plug>(go-coverage-toggle) " toggle coverage profile for current file
+    au Filetype go nmap <leader>cl <Plug>(go-callers)         " see callers of a function
+    au Filetype go nnoremap <leader>d  :GoDecls<CR>           " see declarations in a file
+    au Filetype go nnoremap <leader>dd  :GoDeclsDir<CR>       " see declarations in a dir
+augroup END
 
 " python highlighting
 let g:python_highlight_all = 1
