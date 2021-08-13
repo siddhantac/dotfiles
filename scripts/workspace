@@ -14,8 +14,8 @@ usage() {
   echo "  ide up [1 | 2 | 3]"
   echo "  ide down"
   echo "Options:"
-  echo "  1  simple layout (1 extra pane)"
-  echo "  2  double layout (2 extra panes) (default)"
+  echo "  1  simple layout (1 extra pane) (default)"
+  echo "  2  double layout (2 extra panes)"
   echo "  3  extended layout (3 extra panes)"
 
   exit 1
@@ -41,7 +41,7 @@ case $1 in
   up)
     tmux split-window -v -p 25 
     panes=$2
-    [[ -z $panes ]] && panes=2
+    [[ -z $panes ]] && panes=1
 
     case $panes in
       1)
