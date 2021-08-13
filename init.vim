@@ -293,11 +293,16 @@ function GoTest()
     :GoTest
 endfunction
 
+function GoTestFunc()
+    echo 'running test...'
+    :GoTestFunc
+endfunction
+
 augroup goCmds
     au!
-    au Filetype go nmap <leader>t :call GoTest()<CR>          " run tests
-    au Filetype go nmap <leader>i <Plug>(go-info)             " show func info
-    au Filetype go nmap <leader>tf <Plug>(go-test-func)       " run current test function in file
+    au Filetype go nmap <leader>i  <Plug>(go-info)            " show func info
+    au Filetype go nmap <leader>t  :call GoTest()<CR>         " run tests
+    au Filetype go nmap <leader>tf :call GoTestFunc()<CR>     " run current test function in file
     au Filetype go nmap <leader>tc <Plug>(go-coverage-toggle) " toggle coverage profile for current file
     au Filetype go nmap <leader>cl <Plug>(go-callers)         " see callers of a function
     au Filetype go nnoremap <leader>d  :GoDecls<CR>           " see declarations in a file
