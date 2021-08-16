@@ -15,6 +15,8 @@ apt-get install -y nodejs
 node -v
 # npm
 
+go build -o /usr/local/bin/git-status-checker ./scripts/git-status-checker.go
+
 #add-apt-repository ppa:neovim-ppa/stable 
 #apt-get update
 apt install -y --no-install-recommends neovim grc
