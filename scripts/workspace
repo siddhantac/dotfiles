@@ -47,7 +47,7 @@ case $1 in
       1)
         ;;
       2)
-        tmux split-window -hb -p 50
+        tmux split-window -hb -p 66
         ;;
       3)
         tmux split-window -hb -p 66
