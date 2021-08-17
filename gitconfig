@@ -14,7 +14,7 @@
 	ll = log --pretty=format:\"%C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%cn]\" --decorate --numstat
 	lg = log --pretty=format:\"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cgreen\\ [%cn]\" --decorate --date=short --graph
 	me = "!f() { branch=$(git rev-parse --abbrev-ref HEAD) && git checkout $1 && git merge $branch; }; f"
-        sy = "!f() { git checkout master && git pull --all -p; }; f"
+        sy = "!f() { branch=$(git rev-parse --abbrev-ref HEAD) && git checkout master && git pull --all -p && git checkout $branch; }; f"
 
 [credential]
 	helper = store
