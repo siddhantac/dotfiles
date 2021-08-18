@@ -1,3 +1,10 @@
+
+# make dir and cd into it
+mdcd() {
+  mkdir -p -- "$1" && cd -P -- "$1"
+}
+
+# list files and dirs
 alias ls='exa --icons'
 alias ll='ls -lh'
 alias la='ll -a'
