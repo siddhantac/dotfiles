@@ -1,6 +1,6 @@
-export PATH=$PATH:/usr/local/bin:$HOME/go/bin:$HOME/bin
+export PATH=$PATH:/usr/local/bin:/usr/local/go/bin:$HOME/go/bin:$HOME/bin
 export GOPATH=$HOME/go
-export DOTFILES=$HOME/workspace/dotfiles
+#export DOTFILES=$HOME/workspace/dotfiles
 export ZSH="$HOME/.oh-my-zsh"
 
 #ZSH_THEME="avit"
