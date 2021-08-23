@@ -9,10 +9,13 @@ RUN adduser -D me
 USER me
 
 # bash and ncurses needed for tmux plugin manager
+# zsh-vcs needed for git in alpine with zsh
 RUN apk add -U --no-cache \
          neovim git \
 		 zsh tmux bash ncurses \
 		 curl
+		 
+RUN apk add -U --no-cache zsh-vcs
 		 
 RUN curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | zsh || true
 
@@ -38,5 +41,10 @@ RUN git clone https://github.com/tmux-plugins/tpm .tmux/plugins/tpm
 # TODO: figure out error here
 #RUN .tmux/plugins/tpm/bin/install_plugins
 
+# Install zsh plugins
+RUN git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions && \
+	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+
 # TODO: install exa, oh-my-zsh plugins 
-CMD ["/bin/zsh"]
+ENTRYPOINT ["/bin/zsh"]
