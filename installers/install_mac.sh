@@ -13,7 +13,9 @@ brew install \
 	go \
 	node \
 	neovim \
-	grc
+	grc \
+	exa \
+	the_silver_searcher
 
 node -v
 
@@ -31,9 +33,11 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 	       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 echo ""
-echo ">>> installing oh-my-zsh..."
+echo ">>> installing oh-my-zsh and plugins..."
 echo ""
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+brew install zsh-syntax-highlighting
 
 echo ""
 echo ">>> installing git-status-checker..."

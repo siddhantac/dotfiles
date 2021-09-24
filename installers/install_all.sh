@@ -6,7 +6,7 @@ export DEBIAN_FRONTEND=noninteractive
 
 echo ">>> installing basic stuff..."
 echo ""
-apt install -y --no-install-recommends curl zsh tmux 
+apt install -y --no-install-recommends curl zsh tmux exa silversearcher-ag
 
 echo ">>> installing dev stuff..."
 echo ""
