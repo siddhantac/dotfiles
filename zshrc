@@ -13,8 +13,6 @@ source $ZSH/oh-my-zsh.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-eval $(thefuck --alias)
-
 # see https://github.com/deliveryhero/kube-env
 if [[ -f ~/dh/bin/kube-env ]]; then
 	eval "$(~/dh/bin/kube-env)"
