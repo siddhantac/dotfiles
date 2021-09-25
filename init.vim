@@ -370,7 +370,7 @@ hi NERDTreeClosable ctermfg=white guifg=#FF0000
 
 
 " UltiSnips
-let g:UltiSnipsSnippetDirectories=['UltiSnips', 'gosnippets/UltiSnips', $HOME.'/.vim/UltiSnips']
+let g:UltiSnipsSnippetDirectories=['UltiSnips',  $HOME.'/.vim/UltiSnips']
 
 " Nerd commenter
 let g:NERDSpaceDelims = 1
