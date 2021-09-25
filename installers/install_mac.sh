@@ -41,6 +41,7 @@ echo ""
 echo ">>> [5/5] installing extra tools..."
 echo "          *  git-status-checker..."
 go build -o /usr/local/bin/git-status-checker ./scripts/git-status-checker.go
+cp ./scripts/workspace /usr/local/bin/ide
 
 echo ""
 echo "          *  git-split-diff..."
