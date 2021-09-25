@@ -1,0 +1,16 @@
+# Checklist for manual steps
+
+## Tmux
+* install plugins using `prefix + I` [see here](https://github.com/tmux-plugins/tpm#installing-plugins)
+
+## Neovim
+* run `:PlugInstall`
+* Add a symlink to `init.vim` from `~/.config/nvim/`
+* python3 provider: Run `pip3 install neovim`
+* UltiSnips: Add a symlink to `go.snippets` from `~/.vim/UltiSnips/`
+* coc: `cd ~/.vim/plugged/coc.nvim && yarn install && yarn build`
+
+## General
+
+* Add symlink for `.tmux.conf` and `.gitignore`
+* Update `.bashrc`, `.zshrc`, `.gitconfig`
