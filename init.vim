@@ -16,14 +16,14 @@ Plug 'junegunn/vim-easy-align'        " easy alignment
 Plug 'mileszs/ack.vim'                " fast text search
 Plug 'godlygeek/tabular'              " dependency for vim-markdown
 Plug 'plasticboy/vim-markdown'        " markdown syntax highlighting etc
+Plug 'Yggdroot/indentLine'            " vertical lines between braces
+Plug 'nvim-lua/plenary.nvim'          " telescope dependency
+Plug 'nvim-telescope/telescope.nvim'  " everything finder (trying it out)
+Plug 'justinmk/vim-sneak'             " improved motions
 
 " code tools
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }                 " Go plugin
-Plug 'vim-python/python-syntax'                                    " python syntax highlighting
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'} " conquer of completion
-Plug 'pangloss/vim-javascript'                                     " javascript syntax
-Plug 'leafgarland/typescript-vim'                                  " typescript syntax
-Plug 'peitalin/vim-jsx-typescript'                                 " jsx syntax
 
 " appearance
 Plug 'vim-airline/vim-airline'                 " Airline - improves the statusline
@@ -288,12 +288,12 @@ augroup goTestSplit
 augroup END
 
 
-function GoTest()
+function! GoTest()
     echo 'running tests in file...'
     :GoTest
 endfunction
 
-function GoTestFunc()
+function! GoTestFunc()
     echo 'running test...'
     :GoTestFunc
 endfunction
@@ -436,3 +436,12 @@ let g:coc_global_extensions = [ 'coc-tsserver' , 'coc-go' ]
 " ctrlp
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
+" telescope
+nnoremap <Leader>f :Telescope<CR>
+nnoremap <Leader>i :lua require'telescope.builtin'.find_files{}<CR>
+
+" sneak
+let g:sneak#s_next = 1
+map <Space> <Plug>Sneak_;
+" map f <Plug>Sneak_s;
+" map F <Plug>Sneak_S;
