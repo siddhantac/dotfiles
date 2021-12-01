@@ -17,6 +17,9 @@ Plug 'mileszs/ack.vim'                " fast text search
 Plug 'godlygeek/tabular'              " dependency for vim-markdown
 Plug 'plasticboy/vim-markdown'        " markdown syntax highlighting etc
 Plug 'Yggdroot/indentLine'            " vertical lines between braces
+Plug 'justinmk/vim-sneak'             " improved motions
+Plug 'xavierchow/vim-swagger-preview' " swagger (openAPI) preview in browser
+
 Plug 'nvim-lua/plenary.nvim'          " telescope dependency
 Plug 'nvim-telescope/telescope.nvim'  " everything finder (trying it out)
 Plug 'justinmk/vim-sneak'             " improved motions
