@@ -22,7 +22,7 @@ Plug 'xavierchow/vim-swagger-preview' " swagger (openAPI) preview in browser
 
 Plug 'nvim-lua/plenary.nvim'          " telescope dependency
 Plug 'nvim-telescope/telescope.nvim'  " everything finder (trying it out)
-Plug 'justinmk/vim-sneak'             " improved motions
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' } " better sorting for telescope
 
 " code tools
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }                 " Go plugin
