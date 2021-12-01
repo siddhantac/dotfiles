@@ -11,7 +11,7 @@
 # Usage function {{{
 usage() {
   echo "Usage:"
-  echo "  ide up [1 | 2 | 3]"
+  echo "  ide [1 | 2 | 3]"
   echo "  ide down"
   echo "Options:"
   echo "  1  simple layout (1 extra pane) (default)"
@@ -31,16 +31,9 @@ warning() {
 }
 # }}}
 
-# Check for parameters & TMUX availability {{{
-[[ -z $TMUX ]] && warning "Workspace will only work inside a TMUX session!"
-[[ "$#" != "1" && "$#" != "2" ]] && usage
-# }}}
-
-# Execute commands {{{
-case $1 in
-  up)
-    tmux split-window -v -p 25 
-    panes=$2
+runIde() {
+    tmux split-window -v -p 25
+    panes=$1
     [[ -z $panes ]] && panes=1
 
     case $panes in
@@ -56,9 +49,24 @@ case $1 in
     esac
 
     tmux select-pane -t 2
+}
 
+# Check for parameters & TMUX availability {{{
+[[ -z $TMUX ]] && warning "Workspace will only work inside a TMUX session!"
+[[ "$#" == 0 ]] && runIde && exit
+# }}}
+
+# Execute commands {{{
+case $1 in
+  2)
+    runIde 2
     exit
     ;;
+  3)
+    runIde 3
+    exit
+    ;;
+
   down)
     panes=$(tmux list-panes | wc -l | xargs)
 
@@ -72,6 +80,8 @@ case $1 in
     ;;
   *)
     usage
+
+    exit
     ;;
 esac
 # }}}
