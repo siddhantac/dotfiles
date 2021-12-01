@@ -417,6 +417,7 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
+nmap <leader>a <Plug>(coc-codeaction-line)
 
 " remap for format selected region
 vmap <leader>f  <Plug>(coc-format-selected)
