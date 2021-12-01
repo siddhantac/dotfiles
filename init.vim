@@ -438,8 +438,10 @@ let g:coc_global_extensions = [ 'coc-tsserver', 'coc-go', 'coc-yaml', 'coc-markd
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 " telescope
-nnoremap <Leader>f :Telescope<CR>
-nnoremap <Leader>i :lua require'telescope.builtin'.find_files{}<CR>
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 " sneak
 let g:sneak#s_next = 1
