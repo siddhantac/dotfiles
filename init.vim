@@ -152,12 +152,6 @@ map ,h :split <C-R>=expand("%:p:h") . "/" <CR>
 " replace word under cursor
 nnoremap <leader>* :%s/\<<c-r><c-w>\>//g<left><left>
 
-" move lines
-nnoremap <leader>k :m-2<cr>==
-nnoremap <leader>j :m+<cr>==
-xnoremap <leader>k :m-2<cr>gv=gv
-xnoremap <leader>j :m'>+<cr>gv=gv
-
 " easier split navigation
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -195,6 +189,7 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 au Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 au Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4
 au Filetype js setlocal tabstop=4 noexpandtab
+au FileType yaml setlocal ts=2 sts=2 sw=2 expandtab foldmethod=indent
 " ts - show existing tab with 4 spaces width
 " sw - when indenting with '>', use 4 spaces width
 " sts - control <tab> and <bs> keys to match tabstop
@@ -211,6 +206,8 @@ nnoremap <leader><space> :nohlsearch<CR>
 vnoremap <leader>y "*y
 nnoremap <leader>yy "*yy
 nnoremap <leader>p "*p
+nnoremap <leader>P "*P
+
 
 " autosave and autoreload sessions
 " --------------------------------
