@@ -18,7 +18,7 @@ Plug 'godlygeek/tabular'              " dependency for vim-markdown
 Plug 'plasticboy/vim-markdown'        " markdown syntax highlighting etc
 Plug 'Yggdroot/indentLine'            " vertical lines between braces
 Plug 'justinmk/vim-sneak'             " improved motions
-Plug 'xavierchow/vim-swagger-preview' " swagger (openAPI) preview in browser
+Plug 'pedrohdz/vim-yaml-folds'        " yaml folding
 
 Plug 'nvim-lua/plenary.nvim'          " telescope dependency
 Plug 'nvim-telescope/telescope.nvim'  " everything finder (trying it out)
@@ -304,8 +304,7 @@ augroup goCmds
     au Filetype go nmap <leader>t  :call GoTest()<CR>         " run tests
     au Filetype go nmap <leader>tf :call GoTestFunc()<CR>     " run current test function in file
     au Filetype go nmap <leader>tc <Plug>(go-coverage-toggle) " toggle coverage profile for current file
-    au Filetype go nmap <leader>cl <Plug>(go-callers)         " see callers of a function
-    au Filetype go nnoremap <leader>d  :GoDecls<CR>           " see declarations in a file
+    au Filetype go nnoremap <leader>df  :GoDecls<CR>           " see declarations in a file
     au Filetype go nnoremap <leader>dd  :GoDeclsDir<CR>       " see declarations in a dir
 augroup END
 
@@ -432,7 +431,7 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>             " Do default action fo
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>             " Do default action for previous item.
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>       " Resume latest coc list
 
-let g:coc_global_extensions = [ 'coc-tsserver', 'coc-go', 'coc-yaml', 'coc-markdownlint']
+let g:coc_global_extensions = [ 'coc-tsserver', 'coc-go', 'coc-yaml', 'coc-markdownlint', 'coc-protobuf', 'coc-swagger']
 
 " ctrlp
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
