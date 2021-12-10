@@ -1,49 +1,3 @@
-" ===============
-" >>> plugins <<<
-" ===============
-call plug#begin('~/.vim/plugged') " specify a directory for plugins
-
-" general tools
-Plug 'airblade/vim-gitgutter'         " git
-Plug 'scrooloose/nerdtree'            " file tree explorer
-Plug 'scrooloose/nerdcommenter'       " code comments
-Plug 'ctrlpvim/ctrlp.vim'             " fuzzy file searcher
-Plug 'tpope/vim-surround'             " surround text with symbols/tags/brackets
-Plug 'jiangmiao/auto-pairs'           " manage bracket/parens pairs
-Plug 'SirVer/ultisnips'               " snippet engine
-Plug 'machakann/vim-highlightedyank'  " highlight the yank area
-Plug 'junegunn/vim-easy-align'        " easy alignment
-Plug 'mileszs/ack.vim'                " fast text search
-Plug 'godlygeek/tabular'              " dependency for vim-markdown
-Plug 'plasticboy/vim-markdown'        " markdown syntax highlighting etc
-Plug 'Yggdroot/indentLine'            " vertical lines between braces
-Plug 'justinmk/vim-sneak'             " improved motions
-Plug 'pedrohdz/vim-yaml-folds'        " yaml folding
-
-Plug 'nvim-lua/plenary.nvim'          " telescope dependency
-Plug 'nvim-telescope/telescope.nvim'  " everything finder (trying it out)
-Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' } " better sorting for telescope
-
-" code tools
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }                 " Go plugin
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'} " conquer of completion
-
-" appearance
-Plug 'vim-airline/vim-airline'                 " Airline - improves the statusline
-Plug 'tpope/vim-fugitive'                      " git support (needed for Airline)
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " highlight files in nerdtree
-Plug 'ryanoasis/vim-devicons'                  " file icons
-
-" colorschemes
-" Plug 'morhetz/gruvbox'
-" Plug 'fatih/molokai'
-" Plug 'dikiaap/minimalist'
-" Plug 'cocopon/iceberg.vim'
-Plug 'arcticicestudio/nord-vim'
-
-call plug#end() " initialize plugin system
-
-
 " ==================
 " >>> appearance <<<
 " ==================
@@ -128,26 +82,56 @@ set splitright
 set splitbelow
 set hlsearch
 set ignorecase smartcase
+set undofile " maintain undo history between sessions
+set undodir=~/.vim/undodir
+set scrolloff=5
+set sidescrolloff=5
+set list
+set listchars=tab:▸\ ,trail:·
+set autowrite " save file when :make or :GoBuild is called
+set expandtab
+set tabstop=4     " show existing tab with 4 spaces width
+set shiftwidth=4  " when indenting with '>', use 4 spaces width
+set softtabstop=4 " control <tab> and <bs> keys to match tabstop
+set clipboard=unnamedplus
 
-let mapleader=";"
+set number relativenumber
+set numberwidth=5
+augroup numbertoggle
+    au!
+    au BufEnter,FocusGained,InsertLeave * set relativenumber
+    au BufLeave,FocusLost,InsertEnter * set norelativenumber
+augroup END
 
 " Autosave only when there is something to save,
 " always saving makes build watchers crazy
-:au FocusLost * silent! wa
+au FocusLost * silent! wa
 
-set autowrite " save file when :make or :GoBuild is called
+" code folding
+set foldmethod=syntax
+set foldlevel=2
+set nofoldenable
+set foldlevelstart=99
 
-" open file in current buffer
+
+" ==================================
+" Keymaps
+" ==================================
+let mapleader=";"
+
+" open file in
+"  e = current buffer
+"  t = new tab
+"  v = vertical split
+"  h = horizontal split
 map ,e :e <C-R>=expand("%:p:h") . "/" <CR>
-
-" open file in new tab
 map ,t :tabe <C-R>=expand("%:p:h") . "/" <CR>
-
-" open file in vertical split
 map ,v :vsplit <C-R>=expand("%:p:h") . "/" <CR>
-
-" open file in horizontal split
 map ,h :split <C-R>=expand("%:p:h") . "/" <CR>
+
+" edit,reload vim config
+nmap <leader>ve :edit ~/.config/nvim/init.vim<cr>
+nmap <leader>vr :source ~/.config/nvim/init.vim<cr>
 
 " replace word under cursor
 nnoremap <leader>* :%s/\<<c-r><c-w>\>//g<left><left>
@@ -158,55 +142,26 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-" line numbers
-set number relativenumber
-set numberwidth=5
-augroup numbertoggle
-    au!
-    au BufEnter,FocusGained,InsertLeave * set relativenumber
-    au BufLeave,FocusLost,InsertEnter * set norelativenumber
-augroup END
-
 " buffer manipulation
-nnoremap <Leader><Leader> :b#<CR> " switch buffers
-nnoremap ]b :bnext<cr>
-nnoremap [b :bprevious<cr>
+nnoremap <leader><leader> :b#<CR> " switch buffers
 nnoremap <leader>c :close<cr>     " close buffer
 
-" easy write and source
-nnoremap <Leader>ws :w<bar>so%<CR>
-nnoremap <Leader>w :w<CR>
+" easy write
+nnoremap <leader>w :w<CR>
 
-" code folding
-set foldmethod=syntax
-set foldlevel=2
-set nofoldenable
-set foldlevelstart=99
+" Paste replace visual selection without copying it
+vnoremap <leader>p "_dP
 
 " <Enter> will simply select the highlighted item
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-au Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
-au Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4
-au Filetype js setlocal tabstop=4 noexpandtab
-au FileType yaml setlocal ts=2 sts=2 sw=2 expandtab foldmethod=indent
-" ts - show existing tab with 4 spaces width
-" sw - when indenting with '>', use 4 spaces width
-" sts - control <tab> and <bs> keys to match tabstop
-"
-" control all other files
-set shiftwidth=4
-
-set undofile " maintain undo history between sessions
-set undodir=~/.vim/undodir
-set scrolloff=5
 nnoremap <leader><space> :nohlsearch<CR>
 
 " copy/paste to/from system clipboard
-vnoremap <leader>y "*y
-nnoremap <leader>yy "*yy
-nnoremap <leader>p "*p
-nnoremap <leader>P "*P
+" vnoremap <leader>y "*y
+" nnoremap <leader>yy "*yy
+" nnoremap <leader>p "*p
+" nnoremap <leader>P "*P
 
 
 " autosave and autoreload sessions
@@ -239,6 +194,58 @@ endfunction
 
 au VimLeave * call SaveSession()
 au VimEnter * nested call RestoreSession()
+
+" ===============
+" >>> plugins <<<
+" ===============
+" Automatically install vim-plug
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged') " specify a directory for plugins
+
+" general tools
+Plug 'airblade/vim-gitgutter'         " git
+Plug 'scrooloose/nerdtree'            " file tree explorer
+Plug 'scrooloose/nerdcommenter'       " code comments
+Plug 'ctrlpvim/ctrlp.vim'             " fuzzy file searcher
+Plug 'tpope/vim-surround'             " surround text with symbols/tags/brackets
+Plug 'jiangmiao/auto-pairs'           " manage bracket/parens pairs
+Plug 'SirVer/ultisnips'               " snippet engine
+Plug 'machakann/vim-highlightedyank'  " highlight the yank area
+Plug 'junegunn/vim-easy-align'        " easy alignment
+Plug 'mileszs/ack.vim'                " fast text search
+Plug 'godlygeek/tabular'              " dependency for vim-markdown
+Plug 'plasticboy/vim-markdown'        " markdown syntax highlighting etc
+Plug 'Yggdroot/indentLine'            " vertical lines between braces
+Plug 'justinmk/vim-sneak'             " improved motions
+Plug 'pedrohdz/vim-yaml-folds'        " yaml folding
+
+Plug 'nvim-lua/plenary.nvim'          " telescope dependency
+Plug 'nvim-telescope/telescope.nvim'  " everything finder (trying it out)
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' } " better sorting for telescope
+
+" code tools
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }                 " Go plugin
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'} " conquer of completion
+
+" appearance
+Plug 'vim-airline/vim-airline'                 " Airline - improves the statusline
+Plug 'tpope/vim-fugitive'                      " git support (needed for Airline)
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " highlight files in nerdtree
+Plug 'ryanoasis/vim-devicons'                  " file icons
+
+" colorschemes
+" Plug 'morhetz/gruvbox'
+" Plug 'fatih/molokai'
+" Plug 'dikiaap/minimalist'
+" Plug 'cocopon/iceberg.vim'
+Plug 'arcticicestudio/nord-vim'
+
+call plug#end() " initialize plugin system
 
 
 " =======================
