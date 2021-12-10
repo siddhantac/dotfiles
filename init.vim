@@ -199,7 +199,7 @@ set shiftwidth=4
 
 set undofile " maintain undo history between sessions
 set undodir=~/.vim/undodir
-
+set scrolloff=5
 nnoremap <leader><space> :nohlsearch<CR>
 
 " copy/paste to/from system clipboard
