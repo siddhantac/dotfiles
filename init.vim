@@ -2,32 +2,10 @@
 " >>> appearance <<<
 " ==================
 
-set background=dark
-set encoding=utf8
-set cursorline
-set lazyredraw
-syntax on
-
 if (has("termguicolors"))
   set termguicolors
 endif
 
-augroup nord-theme-overrides
-  au!
-  au ColorScheme nord highlight Normal guibg=#192029
-augroup END
-
-"colorscheme molokai
-"colorscheme minimalist
-"colorscheme iceberg
-colorscheme nord
-
-"colorscheme gruvbox
-"let g:gruvbox_contrast_dark='hard'
-
-" nvim-qt does not display colors in popupmenu correctly,
-" so disable gui popupmenu
-au GUIEnter * GuiPopupmenu 0
 
 
 " airline
@@ -77,6 +55,11 @@ let g:airline_section_b = ' %{FugitiveHead()}' " display only git branch
 " >>> behaviour <<<
 " =================
 
+set background=dark
+set encoding=utf8
+set cursorline
+set lazyredraw
+syntax on
 set laststatus=2
 set splitright
 set splitbelow
@@ -247,6 +230,17 @@ Plug 'arcticicestudio/nord-vim'
 
 call plug#end() " initialize plugin system
 
+augroup nord-theme-overrides
+  au!
+  au ColorScheme nord highlight Normal guibg=#192029
+augroup END
+colorscheme nord
+
+"colorscheme molokai
+"colorscheme minimalist
+"colorscheme iceberg
+"colorscheme gruvbox
+"let g:gruvbox_contrast_dark='hard'
 
 " =======================
 " >>> plugin settings <<<
