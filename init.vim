@@ -205,13 +205,16 @@ Plug 'plasticboy/vim-markdown'        " markdown syntax highlighting etc
 Plug 'Yggdroot/indentLine'            " vertical lines between braces
 Plug 'justinmk/vim-sneak'             " improved motions
 Plug 'pedrohdz/vim-yaml-folds'        " yaml folding
+Plug 'fannheyward/telescope-coc.nvim' 
+
 
 Plug 'nvim-lua/plenary.nvim'          " telescope dependency
 Plug 'nvim-telescope/telescope.nvim'  " everything finder (trying it out)
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' } " better sorting for telescope
-Plug 'fannheyward/telescope-coc.nvim'
 
 " code tools
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " dependency for fzf.vim
+Plug 'junegunn/fzf.vim' " dependency for vim-go
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }                 " Go plugin
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'} " conquer of completion
 
@@ -305,8 +308,10 @@ augroup goCmds
     au Filetype go nmap <leader>t  :call GoTest()<CR>         " run tests
     au Filetype go nmap <leader>tf :call GoTestFunc()<CR>     " run current test function in file
     au Filetype go nmap <leader>tc <Plug>(go-coverage-toggle) " toggle coverage profile for current file
-    au Filetype go nnoremap <leader>df  :GoDecls<CR>           " see declarations in a file
-    au Filetype go nnoremap <leader>dd  :GoDeclsDir<CR>       " see declarations in a dir
+    " see declarations in a file
+    au Filetype go nnoremap <leader>df  :GoDecls<CR>
+    " see declarations in a dir
+    au Filetype go nnoremap <leader>dd  :GoDeclsDir<CR>
 augroup END
 
 " python highlighting
