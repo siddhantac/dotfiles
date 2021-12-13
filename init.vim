@@ -70,7 +70,7 @@ set undodir=~/.vim/undodir
 set scrolloff=5
 set sidescrolloff=5
 set list
-set listchars=tab:▸\ ,trail:·
+set listchars=tab:\ \ ,trail:·
 set autowrite " save file when :make or :GoBuild is called
 set expandtab
 set tabstop=4     " show existing tab with 4 spaces width
