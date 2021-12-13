@@ -194,7 +194,6 @@ call plug#begin('~/.vim/plugged') " specify a directory for plugins
 Plug 'airblade/vim-gitgutter'         " git
 Plug 'scrooloose/nerdtree'            " file tree explorer
 Plug 'scrooloose/nerdcommenter'       " code comments
-Plug 'ctrlpvim/ctrlp.vim'             " fuzzy file searcher
 Plug 'tpope/vim-surround'             " surround text with symbols/tags/brackets
 Plug 'jiangmiao/auto-pairs'           " manage bracket/parens pairs
 Plug 'SirVer/ultisnips'               " snippet engine
@@ -442,9 +441,6 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>       " Resume latest coc li
 
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" ctrlp
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 " telescope
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
