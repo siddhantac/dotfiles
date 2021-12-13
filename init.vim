@@ -209,6 +209,7 @@ Plug 'pedrohdz/vim-yaml-folds'        " yaml folding
 Plug 'nvim-lua/plenary.nvim'          " telescope dependency
 Plug 'nvim-telescope/telescope.nvim'  " everything finder (trying it out)
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' } " better sorting for telescope
+Plug 'fannheyward/telescope-coc.nvim'
 
 " code tools
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }                 " Go plugin
@@ -422,7 +423,8 @@ nmap <silent> ]c <Plug>(coc-diagnostic-next)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+" nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gr :Telescope coc references<CR>
 nmap <leader>rn <Plug>(coc-rename)
 nmap <leader>a <Plug>(coc-codeaction-line)
 
