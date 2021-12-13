@@ -1,4 +1,8 @@
 {
   "go.goplsArgs": ["-remote=auto"],
-  "go.goplsPath": "/Users/s.c/go/bin/gopls"
+  "go.goplsPath": "/Users/s.c/go/bin/gopls",
+  "diagnostic.errorSign": "✖"
+  "diagnostic.warningSign": "⚠",
+  "diagnostic.infoSign": "•",
+  "diagnostic.hintSign": "•"
 }
