@@ -377,15 +377,23 @@ let g:NERDSpaceDelims = 1
 let g:NERDDefaultAlign = 1
 
 " use silver-surfer for ack
-let g:ackprg = 'ag --vimgrep --smart-case'                                                   
-cnoreabbrev ag Ack                                                                           
-cnoreabbrev aG Ack                                                                           
-cnoreabbrev Ag Ack                                                                           
-cnoreabbrev AG Ack 
+let g:ackprg = 'ag --vimgrep --smart-case'
+cnoreabbrev ag Ack
+cnoreabbrev aG Ack
+cnoreabbrev Ag Ack
+cnoreabbrev AG Ack
 
 
 " coc
 " ---------------------------------------------
+let g:coc_global_extensions = [
+            \ 'coc-tsserver',
+            \ 'coc-go',
+            \ 'coc-yaml',
+            \ 'coc-markdownlint',
+            \ 'coc-protobuf',
+            \ 'coc-swagger']
+
 set hidden         " if hidden is not set, TextEdit might fail.
 set cmdheight=2    " Better display for messages
 set updatetime=300 " Smaller updatetime for CursorHold & CursorHoldI
@@ -432,7 +440,8 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>             " Do default action fo
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>             " Do default action for previous item.
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>       " Resume latest coc list
 
-let g:coc_global_extensions = [ 'coc-tsserver', 'coc-go', 'coc-yaml', 'coc-markdownlint', 'coc-protobuf', 'coc-swagger']
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " ctrlp
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
