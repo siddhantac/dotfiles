@@ -206,6 +206,7 @@ Plug 'Yggdroot/indentLine'            " vertical lines between braces
 Plug 'justinmk/vim-sneak'             " improved motions
 Plug 'pedrohdz/vim-yaml-folds'        " yaml folding
 Plug 'fannheyward/telescope-coc.nvim' 
+Plug 'voldikss/vim-floaterm'
 
 
 Plug 'nvim-lua/plenary.nvim'          " telescope dependency
@@ -305,7 +306,7 @@ endfunction
 augroup goCmds
     au!
     au Filetype go nmap <leader>i  <Plug>(go-info)            " show func info
-    au Filetype go nmap <leader>t  :call GoTest()<CR>         " run tests
+    au Filetype go nmap <leader>tt :call GoTest()<CR>        " run tests
     au Filetype go nmap <leader>tf :call GoTestFunc()<CR>     " run current test function in file
     au Filetype go nmap <leader>tc <Plug>(go-coverage-toggle) " toggle coverage profile for current file
     " see declarations in a file
@@ -460,3 +461,21 @@ let g:sneak#s_next = 1
 map <Space> <Plug>Sneak_;
 " map f <Plug>Sneak_s;
 " map F <Plug>Sneak_S;
+
+" floaterm
+let g:floaterm_keymap_toggle = '<F1>'
+let g:floaterm_keymap_next   = '<F2>'
+let g:floaterm_keymap_prev   = '<F3>'
+let g:floaterm_keymap_new    = '<F4>'
+
+let g:floaterm_gitcommit='floaterm'
+let g:floaterm_autoinsert=1
+let g:floaterm_width=0.8
+let g:floaterm_height=0.8
+let g:floaterm_wintitle=0
+let g:floaterm_autoclose=1
+
+augroup FloatermCustomisations
+    autocmd!
+    autocmd ColorScheme * highlight FloatermBorder guibg=none
+augroup END
