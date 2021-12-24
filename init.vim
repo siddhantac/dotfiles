@@ -82,8 +82,8 @@ set number relativenumber
 set numberwidth=5
 augroup numbertoggle
     au!
-    au BufEnter,FocusGained,InsertLeave * set relativenumber
-    au BufLeave,FocusLost,InsertEnter * set norelativenumber
+    au BufEnter * set relativenumber
+    au BufLeave * set norelativenumber
 augroup END
 
 " Autosave only when there is something to save,
