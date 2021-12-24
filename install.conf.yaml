@@ -1,0 +1,24 @@
+- defaults:
+    link:
+      relink: true
+
+- clean: ['~']
+
+- create:
+    - ~/downloads
+    - ~/.vim/undodir
+    - ~/.config
+
+- link:
+    ~/.tmux.conf: tmux.conf
+    ~/.tmux/plugins/tpm:
+      create: true
+      path: tmux/plugins/tpm
+    ~/.config/nvim: nvim
+    ~/.config/kitty: kitty
+    ~/.vim/UltiSnips: UltiSnips
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
+  - [~/.tmux/plugins/tpm/scripts/install_plugins.sh >/dev/null 2>&1, Installing tmux plugins]
+  # - ["nvim +PlugUpdate +qa", Installing and updating plugins]
