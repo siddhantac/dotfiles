@@ -17,8 +17,10 @@
     ~/.config/nvim: nvim
     ~/.config/kitty: kitty
     ~/.vim/UltiSnips: UltiSnips
+    /usr/local/bin/ide: scripts/ide
+    ~/.zshrc: zshrc
 
-- shell:
-  - [git submodule update --init --recursive, Installing submodules]
-  - [~/.tmux/plugins/tpm/scripts/install_plugins.sh >/dev/null 2>&1, Installing tmux plugins]
-  - ["nvim +PlugUpdate +qa", Installing and updating plugins]
+# - shell:
+  # - [git submodule update --init --recursive, Installing submodules]
+  # - [~/.tmux/plugins/tpm/scripts/install_plugins.sh >/dev/null 2>&1, Installing tmux plugins]
+  # - ["nvim +PlugUpdate +qa", Installing and updating plugins]
