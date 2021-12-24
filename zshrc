@@ -1,16 +1,24 @@
+export DOTFILES=$HOME/workspace/dotfiles
 export PATH=$PATH:/usr/local/bin:$HOME/go/bin:$HOME/bin
 export GOPATH=$HOME/go
-export DOTFILES=$HOME/workspace/dotfiles
 export ZSH="$HOME/.oh-my-zsh"
 export TERM=screen-256color
 
-#ZSH_THEME="avit"
-ZSH_THEME="agnoster"
-#ZSH_THEME="spaceship"
+source $DOTFILES/antigen.zsh
+antigen use oh-my-zsh
 
-plugins=(git zsh-syntax-highlighting zsh-autosuggestions z fzf docker)
+antigen bundle z
+antigen bundle git
+antigen bundle fzf
+antigen bundle docker
+antigen bundle zsh-users/zsh-syntax-highlighting 
+antigen bundle zsh-users/zsh-autosuggestions 
 
-source $ZSH/oh-my-zsh.sh
+antigen theme agnoster
+# antigen theme avit
+# antigen theme spaceship
+
+antigen apply
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

@@ -20,7 +20,14 @@
     /usr/local/bin/ide: scripts/ide
     ~/.zshrc: zshrc
 
-# - shell:
-  # - [git submodule update --init --recursive, Installing submodules]
-  # - [~/.tmux/plugins/tpm/scripts/install_plugins.sh >/dev/null 2>&1, Installing tmux plugins]
-  # - ["nvim +PlugUpdate +qa", Installing and updating plugins]
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
+  - [/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)", Install homebrew]
+  - [brew update]
+  - [brew install curl zsh tmux exa silversearcher-ag nodejs neovim, Install basic dependencies]
+  - [sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)", Install oh-my-zsh]
+  - [~/.tmux/plugins/tpm/scripts/install_plugins.sh >/dev/null 2>&1, Installing tmux plugins]
+  - ["nvim +PlugUpdate +PlugClean! +qa", Installing and updating plugins]
+  - [npm install -g git-split-diffs && git config --global core.pager "git-split-diffs --color | less -RFX"]
+
+
