@@ -20,7 +20,10 @@ antigen theme agnoster
 
 antigen apply
 
+# load aliases
 [[ -s "$DOTFILES/aliases" ]] && source "$DOTFILES/aliases"
+[[ -s ".aliases.local" ]] && source ".aliases.local"
+
 [[ -s ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
 # see https://github.com/deliveryhero/kube-env
