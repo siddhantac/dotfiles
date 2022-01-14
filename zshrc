@@ -20,7 +20,8 @@ antigen theme agnoster
 
 antigen apply
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[[ -s "$DOTFILES/aliases" ]] && source "$DOTFILES/aliases"
+[[ -s ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
 # see https://github.com/deliveryhero/kube-env
 if [[ -f ~/dh/bin/kube-env ]]; then
