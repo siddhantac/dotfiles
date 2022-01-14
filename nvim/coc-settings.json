@@ -1,7 +1,11 @@
 {
+  "coc.preferences.extensionUpdateCheck": "daily",
   "go.goplsArgs": ["-remote=auto"],
   "go.goplsPath": "/Users/s.c/go/bin/gopls",
-  "diagnostic.errorSign": "✖"
+  "go.goplsOptions": {
+    "completeUnimported": true
+  },
+  "diagnostic.errorSign": "✖",
   "diagnostic.warningSign": "⚠",
   "diagnostic.infoSign": "•",
   "diagnostic.hintSign": "•"
