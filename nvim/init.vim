@@ -161,13 +161,6 @@ fu! RestoreSession()
     if argc() == 0
 	if filereadable(s:sessionFile)
 	    execute 'so ' . s:sessionFile
-	    if bufexists(1)
-		for l in range(1, bufnr('$'))
-		    if bufwinnr(l) == -1
-			exec 'sbuffer ' . l
-		    endif
-		endfor
-	    endif
 	    echom "restored session from " . s:sessionFile
 	else
 	    echom "no session file"
@@ -453,6 +446,7 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 " telescope
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fs <cmd>Telescope grep_string<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
