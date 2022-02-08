@@ -1,9 +1,4 @@
 
-# make dir and cd into it
-mdcd() {
-  mkdir -p -- "$1" && cd -P -- "$1"
-}
-
 # list files and dirs
 alias ls='exa --icons'
 alias ll='ls -lh'
@@ -21,17 +16,41 @@ alias count='find . -type f | wc -l'
 # copy with progress bar
 alias cpv='rsync -ah --progress'
 
+# git aliases
+alias gs='git status --short'
+alias gst='git status'
+alias gci='git commit -m'
+alias gca='git commit -a -m' 
+alias gcm='git commit --amend --no-edit' 
+alias gcmm='git commit --amend -m'
+alias gbr='git branch'
+alias gco='git checkout'
+alias gpu='git push origin $(git rev-parse --abbrev-ref HEAD)'
+alias gll='git log --pretty=format:"%C(yellow)%h%Cred%d %Creset%s%Cgreen [%cn]" --decorate --numstat'
+alias glg='git log --pretty=format:"%C(yellow)%h %ad%Cred%d %Creset%s%Cgreen [%cn]" --decorate --date=short --graph'
+alias gdiff='git diff'
+alias gpu='git push origin $(git rev-parse --abbrev-ref HEAD)'
+alias gpun='git push origin $(git rev-parse --abbrev-ref HEAD) --no-verify'
+alias gpuu='git push origin --set-upstream $(git rev-parse --abbrev-ref HEAD)'
+me() { 
+    branch=$(git rev-parse --abbrev-ref HEAD) && \
+    git checkout $1 && \
+    git merge $branch
+}
+gsy() {
+    branch=$(git rev-parse --abbrev-ref HEAD) && \
+    git checkout master && \
+    git pull --all -p && \
+    git checkout $branch
+}
+
 # use grc colorizer
 alias go='grc go'
 
-alias d='docker'
-alias dc='docker-compose'
-alias dps='docker ps'
-
-# suffix aliases
+# suffix aliases (just typing the json filename in terminal will open it in vim)
 alias -s json=vim
 
-# global alias: 
+# global alias:
 #  replace all occurrences of the alias name with the command
 alias -g awsdumcred='AWS_SECRET_ACCESS_KEY=dummy_secret AWS_ACCESS_KEY_ID=dummy_key'
 
@@ -40,13 +59,11 @@ alias sc='source $HOME/.zshrc'
 # edit the zsh config file
 alias ec='$EDITOR $HOME/.zshrc'
 
-
-# run a specific go test 
-gtr() {
-  go test -v -run $1 $2
-}
+alias d='docker'
+alias dps='docker ps'
 
 # docker-compose
+alias dc='docker-compose'
 alias dco='docker-compose'
 alias dcb='docker-compose build'
 alias dce='docker-compose exec'
@@ -64,3 +81,16 @@ alias dclf='docker-compose logs -f'
 alias dcpull='docker-compose pull'
 alias dcstart='docker-compose start'
 alias dck='docker-compose kill'
+
+# Functions
+#--------------------------------
+# make dir and cd into it
+mdcd() {
+  mkdir -p -- "$1" && cd -P -- "$1"
+}
+
+# run a specific go test 
+# TODO: delete if unused (last checked 8th Feb, 2022)
+gtr() {
+  go test -v -run $1 $2
+}
