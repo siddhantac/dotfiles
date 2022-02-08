@@ -36,3 +36,4 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
   export EDITOR='vim'
 fi
+export PATH="$PATH:$HOME/.spicetify"
