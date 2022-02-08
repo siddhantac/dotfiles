@@ -14,9 +14,12 @@ antigen bundle docker
 antigen bundle zsh-users/zsh-syntax-highlighting 
 antigen bundle zsh-users/zsh-autosuggestions 
 
-antigen theme agnoster
+# antigen theme agnoster
 # antigen theme avit
 # antigen theme spaceship
+# workaround for https://github.com/zsh-users/antigen/issues/675
+THEME=agnoster
+antigen list | grep $THEME; if [ $? -ne 0 ]; then antigen theme $THEME; fi
 
 antigen apply
 
