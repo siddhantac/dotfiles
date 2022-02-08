@@ -32,12 +32,16 @@ alias gdiff='git diff'
 alias gpu='git push origin $(git rev-parse --abbrev-ref HEAD)'
 alias gpun='git push origin $(git rev-parse --abbrev-ref HEAD) --no-verify'
 alias gpuu='git push origin --set-upstream $(git rev-parse --abbrev-ref HEAD)'
-me() { 
+
+# git merge: merge current branch to the given branch
+gmerge() { 
     branch=$(git rev-parse --abbrev-ref HEAD) && \
     git checkout $1 && \
     git merge $branch
 }
-gsy() {
+
+# git sync: checkout master, git pull, checkout previous branch
+gsync() {
     branch=$(git rev-parse --abbrev-ref HEAD) && \
     git checkout master && \
     git pull --all -p && \
