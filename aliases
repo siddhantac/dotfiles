@@ -40,7 +40,7 @@ gmerge() {
     git merge $branch
 }
 
-# git sync: checkout master, git pull, checkout previous branch
+# git sync: pull in latest changes on master/main branch
 gsync() {
     check_branch=$(git branch | grep master)
     $check_branch
