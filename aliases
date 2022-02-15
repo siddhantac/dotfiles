@@ -47,7 +47,7 @@ gsync() {
     status=$?
     [ $status -eq 0 ] && main_branch='master'
     [ $status -eq 1 ] && main_branch='main'
-    branch=$(git rev-parse --abbrev-ref HEAD) && \
+    # branch=$(git rev-parse --abbrev-ref HEAD) && \
     git checkout $main_branch && \
     git pull --all -p && \
     # git checkout $branch
