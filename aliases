@@ -25,10 +25,10 @@ alias gcm='git commit --amend --no-edit'
 alias gcmm='git commit --amend -m'
 alias gbr='git branch'
 alias gco='git checkout'
-alias gpu='git push origin $(git rev-parse --abbrev-ref HEAD)'
+alias gdiff='git diff'
+alias gpull='git pull'
 alias gll='git log --pretty=format:"%C(yellow)%h%Cred%d %Creset%s%Cgreen [%cn]" --decorate --numstat'
 alias glg='git log --pretty=format:"%C(yellow)%h %ad%Cred%d %Creset%s%Cgreen [%cn]" --decorate --date=short --graph'
-alias gdiff='git diff'
 alias gpu='git push origin $(git rev-parse --abbrev-ref HEAD)'
 alias gpun='git push origin $(git rev-parse --abbrev-ref HEAD) --no-verify'
 alias gpuu='git push origin --set-upstream $(git rev-parse --abbrev-ref HEAD)'
@@ -42,10 +42,15 @@ gmerge() {
 
 # git sync: checkout master, git pull, checkout previous branch
 gsync() {
+    check_branch=$(git branch | grep master)
+    $check_branch
+    status=$?
+    [ $status -eq 0 ] && main_branch='master'
+    [ $status -eq 1 ] && main_branch='main'
     branch=$(git rev-parse --abbrev-ref HEAD) && \
-    git checkout master && \
+    git checkout $main_branch && \
     git pull --all -p && \
-    git checkout $branch
+    # git checkout $branch
 }
 
 # use grc colorizer
