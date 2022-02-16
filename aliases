@@ -36,17 +36,19 @@ alias gpuu='git push origin --set-upstream $(git rev-parse --abbrev-ref HEAD)'
 # git merge: merge current branch to the given branch
 gmerge() { 
     branch=$(git rev-parse --abbrev-ref HEAD) && \
+    echo "merging" $branch "to" $1
     git checkout $1 && \
     git merge $branch
 }
 
 # git sync: pull in latest changes on master/main branch
 gsync() {
+    echo "checking out master and pulling latest changes..."
     check_branch=$(git branch | grep master)
-    $check_branch
-    status=$?
-    [ $status -eq 0 ] && main_branch='master'
-    [ $status -eq 1 ] && main_branch='main'
+    $check_branch > /dev/null 2>&1
+    output=$?
+    [ $output -eq 0 ] && main_branch='master'
+    [ $output -eq 1 ] && main_branch='main'
     # branch=$(git rev-parse --abbrev-ref HEAD) && \
     git checkout $main_branch && \
     git pull --all -p && \
