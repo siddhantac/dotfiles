@@ -198,8 +198,11 @@ Plug 'plasticboy/vim-markdown'        " markdown syntax highlighting etc
 Plug 'Yggdroot/indentLine'            " vertical lines between braces
 Plug 'justinmk/vim-sneak'             " improved motions
 Plug 'pedrohdz/vim-yaml-folds'        " yaml folding
-Plug 'fannheyward/telescope-coc.nvim' 
+Plug 'fannheyward/telescope-coc.nvim' " search buffers and files, symbol definitions etc.
+
+" trying out
 Plug 'voldikss/vim-floaterm'
+Plug 'rhysd/git-messenger.vim' " see git-blame quickly in a popup
 
 
 Plug 'nvim-lua/plenary.nvim'          " telescope dependency
