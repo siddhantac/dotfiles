@@ -318,6 +318,7 @@ let g:python_highlight_all = 1
 " --------
 let NERDTreeShowHidden = 1
 let NERDTreeMinimalUI = 1
+let g:NERDTreeWinSize=62
 
 " quick toggle (nn)
 map <leader>nn :NERDTreeToggle<CR>
