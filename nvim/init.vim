@@ -206,12 +206,12 @@ Plug 'rhysd/git-messenger.vim' " see git-blame quickly in a popup
 
 
 Plug 'nvim-lua/plenary.nvim'          " telescope dependency
-Plug 'nvim-telescope/telescope.nvim'  " everything finder (trying it out)
+Plug 'nvim-telescope/telescope.nvim'  " everything finder
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' } " better sorting for telescope
 
 " code tools
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " dependency for fzf.vim
-Plug 'junegunn/fzf.vim' " dependency for vim-go
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }                " dependency for fzf.vim
+Plug 'junegunn/fzf.vim'                                            " dependency for vim-go
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }                 " Go plugin
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'} " conquer of completion
 
