@@ -33,8 +33,14 @@ alias gpu='git push origin $(git rev-parse --abbrev-ref HEAD)'
 alias gpun='git push origin $(git rev-parse --abbrev-ref HEAD) --no-verify'
 alias gpuu='git push origin --set-upstream $(git rev-parse --abbrev-ref HEAD)'
 
+# gcap: commit all and push
+gcap() {
+    git commit -a -m $1
+    git push
+}
+
 # gmerge: merge current branch to the given branch
-gmerge() { 
+gmerge() {
     branch=$(git rev-parse --abbrev-ref HEAD) && \
     echo "merging" $branch "to" $1
     git checkout $1 && \
