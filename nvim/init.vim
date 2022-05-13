@@ -448,11 +448,10 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>       " Resume latest coc li
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " telescope
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>ff <cmd>Telescope git_files<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fs <cmd>Telescope grep_string<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 " sneak
 let g:sneak#s_next = 1
