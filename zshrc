@@ -1,5 +1,5 @@
 export DOTFILES=$HOME/workspace/dotfiles
-export PATH=$PATH:/usr/local/bin:$HOME/go/bin:$HOME/bin
+export PATH=$PATH:/usr/local/bin:$HOME/go/bin:$HOME/workspace/bin:/opt/homebrew/bin
 export GOPATH=$HOME/go
 export ZSH="$HOME/.oh-my-zsh"
 export TERM=screen-256color
