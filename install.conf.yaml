@@ -30,6 +30,7 @@
       force: true
 
 - shell:
+  - [bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh) -y]
   - [~/.tmux/plugins/tpm/scripts/install_plugins.sh >/dev/null 2>&1, Installing tmux plugins]
   - ["nvim --headless +PlugUpdate +PlugClean! +qa", Installing and updating plugins]
   - [npm install -g git-split-diffs && git config --global core.pager "git-split-diffs --color | less -RFX"]
