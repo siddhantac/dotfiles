@@ -4,6 +4,7 @@ tap "homebrew/cask-fonts"
 tap "homebrew/core"
 tap "homebrew/services"
 tap "versent/taps"
+
 brew "curl"
 brew "python@3.9"
 brew "exa"
@@ -20,7 +21,9 @@ brew "tmux"
 brew "watch"
 brew "yarn"
 brew "zsh"
+
 cask "font-fira-code-nerd-font"
 cask "font-hack-nerd-font"
 cask "obsidian"
 cask "spotify"
+cask "mos" # mouse scroll reverser and smoothen. from https://mos.caldis.me/
