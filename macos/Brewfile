@@ -27,3 +27,4 @@ cask "font-hack-nerd-font"
 cask "obsidian"
 cask "spotify"
 cask "mos" # mouse scroll reverser and smoothen. from https://mos.caldis.me/
+cask "lunar"
