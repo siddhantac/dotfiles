@@ -3,6 +3,7 @@ export PATH=$PATH:/usr/local/bin:$HOME/go/bin:$HOME/workspace/bin:/opt/homebrew/
 export GOPATH=$HOME/go
 export ZSH="$HOME/.oh-my-zsh"
 export TERM=screen-256color
+export LEDGER_FILE=$HOME/workspace/accounts/finances.journal
 
 source $DOTFILES/antigen.zsh
 antigen use oh-my-zsh
