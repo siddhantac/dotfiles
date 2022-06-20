@@ -10,8 +10,8 @@ vim.opt.undodir = HOME .. '/.lvim/undodir'
 vim.opt.scrolloff = 5
 vim.opt.sidescrolloff = 5
 vim.opt.expandtab = true
-vim.opt.tabstop = 4     -- show existing tab with 4 spaces width
-vim.opt.shiftwidth = 4  -- when indenting with '>', use 4 spaces width
+vim.opt.tabstop = 4 -- show existing tab with 4 spaces width
+vim.opt.shiftwidth = 4 -- when indenting with '>', use 4 spaces width
 vim.opt.softtabstop = 4 -- control <tab> and <bs> keys to match tabstop
 vim.opt.numberwidth = 5
 -- vim.opt.cursorline = true
@@ -49,7 +49,7 @@ lvim.colorscheme = "nord"
 lvim.builtin.which_key.mappings["<Leader>"] = { ":b#<CR>", "Switch buffer" }
 lvim.builtin.which_key.mappings["v"] = { ":Telescope find_files search_dirs=%:p:h<CR>", "Find files in same dir" }
 
-lvim.leader = "space"
+lvim.leader = " "
 lvim.log.level = "warn"
 lvim.format_on_save = true
 
