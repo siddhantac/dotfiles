@@ -100,7 +100,7 @@ set foldlevelstart=99
 " ==================================
 " Keymaps
 " ==================================
-let mapleader=";"
+let mapleader=" "
 
 " open file in
 "  e = current buffer
