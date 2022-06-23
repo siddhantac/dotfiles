@@ -29,6 +29,9 @@ vim.opt.numberwidth = 5
 lvim.plugins = {
     { "shaunsingh/nord.nvim" },
     { "fatih/vim-go" },
+    {
+        "tpope/vim-fugitive",
+    },
 }
 
 lvim.autocommands.custom_groups = {
