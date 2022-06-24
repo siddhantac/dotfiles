@@ -87,10 +87,6 @@ vim.keymap.set('n', '<leader><leader>', ':b#<CR>') -- buffer switch
 vim.keymap.set('n', '<leader>c', ':close<CR>') -- buffer close
 vim.keymap.set('n', '<leader>b', ':Telescope buffers<CR>') -- list git files
 
--- Opening files
-vim.keymap.set('n', '<leader>f', ':Telescope find_files<CR>') -- list git files
-vim.keymap.set('n', '<leader>d', ':Telescope find_files search_dirs=%:p:h<CR>') -- list files in same dir as current file
-
 vim.keymap.set('n', '<leader>s', ':Telescope live_grep<CR>') -- search for a string
 
 -- LSP
@@ -102,7 +98,28 @@ vim.keymap.set('n', '<leader>lR', ':Telescope lsp_references<CR>') -- lsp refere
 -- Run the following command to install packer
 --   git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
-require'lspconfig'.gopls.setup{}
+require 'lspconfig'.gopls.setup{}
+
+require ('which-key').register(
+  {
+      f = {
+            name = "Files", -- optional group name
+            f = { "<cmd>Telescope find_files<cr>", "Find File" }, -- create a binding with label
+            d = { "<cmd>Telescope find_files search_dirs=%:p:h<CR>", "Find Files in same dir", noremap=false }, 
+            n = { "New File" }, -- just a label. don't create any mapping
+            e = "Edit File", -- same as above
+            ["1"] = "which_key_ignore",  -- special label to hide it in the popup
+            b = { function() print("bar") end, "Foobar" } -- you can also pass functions!
+          },
+      b = {
+          name = "Buffers",
+          f = {"<cmd>Telescope buffers<CR>", "Find"},
+          c = {"<cmd>close<CR>", "Close"},
+          d = {"<cmd>bd<CR>", "Delete"},
+      }
+    }, 
+    { prefix = "<leader>" }
+)
 
 return require('packer').startup(function()
     use 'wbthomason/packer.nvim'
@@ -114,6 +131,16 @@ return require('packer').startup(function()
       requires = { {'nvim-lua/plenary.nvim'} }
     }
 
+    use {
+      "folke/which-key.nvim",
+      config = function()
+        require("which-key").setup {
+          -- your configuration comes here
+          -- or leave it empty to use the default settings
+          -- refer to the configuration section below
+        }
+      end
+    }
     -- Pending plugins
-    --     which-key, git, file browser, terminal (?), vim test, vim-go, lsp
+    --     which-key, git, file browser, vim test, vim-go, lsp, terminal (?)
 end)
