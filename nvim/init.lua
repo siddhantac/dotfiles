@@ -30,6 +30,7 @@ vim.opt.cursorline = true
 vim.opt.lazyredraw = true
 vim.opt.syntax = "on"
 
+-- TODO
 -- check if this is still required after installing lsp
 local augroup = vim.api.nvim_create_augroup('nord-theme-overrides', {clear = true})
 vim.api.nvim_create_autocmd('ColorScheme', {
@@ -92,14 +93,21 @@ vim.keymap.set('n', '<leader>d', ':Telescope find_files search_dirs=%:p:h<CR>') 
 
 vim.keymap.set('n', '<leader>s', ':Telescope live_grep<CR>') -- search for a string
 
+-- LSP
+vim.keymap.set('n', '<leader>lr', vim.lsp.buf.references, bufopts) -- lsp references
+vim.keymap.set('n', '<leader>lR', ':Telescope lsp_references<CR>') -- lsp references with telescope
+
 
 -- Plugins
 -- Run the following command to install packer
 --   git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
+require'lspconfig'.gopls.setup{}
+
 return require('packer').startup(function()
     use 'wbthomason/packer.nvim'
     use 'shaunsingh/nord.nvim'
+    use 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
 
     use {
       'nvim-telescope/telescope.nvim',
@@ -107,6 +115,5 @@ return require('packer').startup(function()
     }
 
     -- Pending plugins
-    --     git, file browser, terminal (?), vim test, vim-go, lsp
+    --     which-key, git, file browser, terminal (?), vim test, vim-go, lsp
 end)
-
