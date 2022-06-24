@@ -1,3 +1,36 @@
+-- Plugins
+-- Run the following command to install packer
+--   git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+
+require('packer').startup(function()
+    use 'wbthomason/packer.nvim'
+    use 'shaunsingh/nord.nvim'
+
+    use {
+      'neovim/nvim-lspconfig', -- Configurations for Nvim LSP
+      config = function()
+         require('lspconfig').gopls.setup{}
+      end
+    }
+
+    use {
+      'nvim-telescope/telescope.nvim',
+      requires = { {'nvim-lua/plenary.nvim'} }
+    }
+
+    use {
+      "folke/which-key.nvim",
+      config = function()
+        require("which-key").setup {
+          -- your configuration comes here
+          -- or leave it empty to use the default settings
+          -- refer to the configuration section below
+        }
+      end
+    }
+    -- Pending plugins
+    --     which-key, git, file browser, vim test, vim-go, lsp, terminal (?)
+end)
 HOME = os.getenv("HOME")
 
 -- Custom settings
@@ -40,7 +73,6 @@ vim.api.nvim_create_autocmd('ColorScheme', {
 })
 vim.cmd('colorscheme nord')
 
--- vim.opt.colorscheme = "nord"
 -- vim.opt.laststatus = 2
 -- vim.opt.hlsearch = true
 -- vim.opt.list = true
@@ -79,68 +111,29 @@ vim.keymap.set('', '<s-RIGHT>', ':vertical resize -5 <CR>')
 vim.keymap.set('', '<s-UP>', ':resize +5 <CR>')
 vim.keymap.set('', '<s-DOWN>', ':resize -5 <CR>')
 
--- Easy write
-vim.keymap.set('n', '<leader>w', ':w<CR>')
-
--- Buffers
-vim.keymap.set('n', '<leader><leader>', ':b#<CR>') -- buffer switch
-vim.keymap.set('n', '<leader>c', ':close<CR>') -- buffer close
-vim.keymap.set('n', '<leader>b', ':Telescope buffers<CR>') -- list git files
-
-vim.keymap.set('n', '<leader>s', ':Telescope live_grep<CR>') -- search for a string
-
--- LSP
-vim.keymap.set('n', '<leader>lr', vim.lsp.buf.references, bufopts) -- lsp references
-vim.keymap.set('n', '<leader>lR', ':Telescope lsp_references<CR>') -- lsp references with telescope
-
-
--- Plugins
--- Run the following command to install packer
---   git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-
-require 'lspconfig'.gopls.setup{}
-
 require ('which-key').register(
   {
       f = {
-            name = "Files", -- optional group name
-            f = { "<cmd>Telescope find_files<cr>", "Find File" }, -- create a binding with label
-            d = { "<cmd>Telescope find_files search_dirs=%:p:h<CR>", "Find Files in same dir", noremap=false }, 
-            n = { "New File" }, -- just a label. don't create any mapping
-            e = "Edit File", -- same as above
-            ["1"] = "which_key_ignore",  -- special label to hide it in the popup
-            b = { function() print("bar") end, "Foobar" } -- you can also pass functions!
+            name = "Files",
+            f = { "<cmd>Telescope find_files<cr>", "Find File" },
+            d = { "<cmd>Telescope find_files search_dirs=%:p:h<CR>", "Find Files in same dir", noremap=false },
           },
       b = {
           name = "Buffers",
+          b = {"<cmd>b#<CR>", "Swap"},
           f = {"<cmd>Telescope buffers<CR>", "Find"},
           c = {"<cmd>close<CR>", "Close"},
           d = {"<cmd>bd<CR>", "Delete"},
-      }
+      },
+      l = {
+          name = "LSP",
+          r = {vim.lsp.buf.references, "References in loc list"},
+          R = {':Telescope lsp_references<CR>', "References in Telescope"},
+
+      },
+      w = {"<cmd>w<CR>", "Save"},
+      s = {"<cmd>Telescope live_grep<CR>", "Search"}
     }, 
     { prefix = "<leader>" }
 )
 
-return require('packer').startup(function()
-    use 'wbthomason/packer.nvim'
-    use 'shaunsingh/nord.nvim'
-    use 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
-
-    use {
-      'nvim-telescope/telescope.nvim',
-      requires = { {'nvim-lua/plenary.nvim'} }
-    }
-
-    use {
-      "folke/which-key.nvim",
-      config = function()
-        require("which-key").setup {
-          -- your configuration comes here
-          -- or leave it empty to use the default settings
-          -- refer to the configuration section below
-        }
-      end
-    }
-    -- Pending plugins
-    --     which-key, git, file browser, vim test, vim-go, lsp, terminal (?)
-end)
