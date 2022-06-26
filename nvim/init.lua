@@ -6,12 +6,7 @@ require('packer').startup(function()
     use 'wbthomason/packer.nvim'
     use 'shaunsingh/nord.nvim'
 
-    use {
-      'neovim/nvim-lspconfig', -- Configurations for Nvim LSP
-      config = function()
-         require('lspconfig').gopls.setup{}
-      end
-    }
+    use 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
 
     use {
       'nvim-telescope/telescope.nvim',
@@ -31,6 +26,7 @@ require('packer').startup(function()
     -- Pending plugins
     --     which-key, git, file browser, vim test, vim-go, lsp, terminal (?)
 end)
+
 HOME = os.getenv("HOME")
 
 -- Custom settings
@@ -62,6 +58,7 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.cursorline = true
 vim.opt.lazyredraw = true
 vim.opt.syntax = "on"
+vim.opt.timeoutlen = 500 -- controls how long to wait before showing which-key menu
 
 -- TODO
 -- check if this is still required after installing lsp
@@ -111,6 +108,7 @@ vim.keymap.set('', '<s-RIGHT>', ':vertical resize -5 <CR>')
 vim.keymap.set('', '<s-UP>', ':resize +5 <CR>')
 vim.keymap.set('', '<s-DOWN>', ':resize -5 <CR>')
 
+require('lspconfig').gopls.setup{}
 require ('which-key').register(
   {
       f = {
@@ -127,6 +125,12 @@ require ('which-key').register(
       },
       l = {
           name = "LSP",
+          i = {vim.lsp.buf.implementation, "Implementation"},
+          s = {vim.lsp.buf.signature_help, "Signature help"},
+          h = {vim.lsp.buf.hover, "Hover"},
+          y = {vim.lsp.buf.type_definition, "Go to type def"},
+          d = {vim.lsp.buf.definition, "Go to def"},
+          n = {vim.lsp.buf.rename, "Rename"},
           r = {vim.lsp.buf.references, "References in loc list"},
           R = {':Telescope lsp_references<CR>', "References in Telescope"},
 
