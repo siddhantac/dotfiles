@@ -2,6 +2,10 @@ local au = require('au')
 -- for more examples, see: 
 --    https://gist.github.com/numToStr/1ab83dd2e919de9235f9f774ef8076da
 
+-- au.group('PackerGroup', {
+--     { 'BufWritePost', 'plugins.lua', 'source <afile> | PackerCompile' },
+-- })
+
 au.TextYankPost = function()
     vim.highlight.on_yank({ higroup = 'Visual', timeout = 120 })
 end
