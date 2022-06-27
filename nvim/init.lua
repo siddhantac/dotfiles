@@ -1,6 +1,6 @@
 -- TODO
 -- Pending plugins
---     git, file browser, vim test, vim-go, terminal (?), snippets (check nvim-cmp, cmp_luasnip)
+--     vim test, vim-go, terminal (?), snippets (check nvim-cmp, cmp_luasnip)
 --
 -- Plugins
 -- Run the following command to install packer
@@ -31,6 +31,15 @@ require('packer').startup(function()
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate'
+    }
+
+    use 'tpope/vim-fugitive'
+
+    use {
+      'kyazdani42/nvim-tree.lua',
+      requires = {
+        'kyazdani42/nvim-web-devicons', -- optional, for file icons
+      }
     }
 end)
 
@@ -194,8 +203,28 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
+-- file explorer setup
+require("nvim-tree").setup({
+  sort_by = "case_sensitive",
+  view = {
+    adaptive_size = true,
+    mappings = {
+      list = {
+        { key = "u", action = "dir_up" },
+      },
+    },
+  },
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = true,
+  },
+})
+
 require ('which-key').register(
   {
+      e = { "<cmd>NvimTreeFindFileToggle<CR>", "File Explorer" },
       f = {
             name = "Files",
             f = { "<cmd>Telescope find_files<cr>", "Find File" },
