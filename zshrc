@@ -4,6 +4,7 @@ export GOPATH=$HOME/go
 export ZSH="$HOME/.oh-my-zsh"
 export TERM=screen-256color
 export LEDGER_FILE=$HOME/workspace/accounts/finances.journal
+export XDG_CONFIG_HOME=$HOME/.config
 
 source $DOTFILES/antigen.zsh
 antigen use oh-my-zsh
