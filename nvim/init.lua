@@ -213,6 +213,14 @@ require("nvim-tree").setup({
 })
 
 require ('which-key').register(
+    {
+      e = { ":e <C-R>=expand('%:p:h') . '/' <CR>", "Edit file in same dir" },
+      v = { ":v <C-R>=expand('%:p:h') . '/' <CR>", "Vsplit file in same dir" },
+  },
+  { prefix = "," }
+)
+
+require ('which-key').register(
   {
       f = {
             name = "Files",
