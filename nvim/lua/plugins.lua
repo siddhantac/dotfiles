@@ -2,8 +2,8 @@
 -- TODO
 -- packer in floating window
 -- Pending plugins
---     vim test, vim-go, terminal (?), snippets (check nvim-cmp, cmp_luasnip),
---     vim surround, airline
+--     vim-go, terminal (?), snippets (check nvim-cmp, cmp_luasnip),
+--     vim surround
 --
 -- Plugins
 -- Run the following command to install packer
@@ -26,12 +26,15 @@ require('packer').startup({function()
     use 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
     use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
     use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
-    use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
-    use  'L3MON4D3/LuaSnip'
+    -- use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
+    --use  'L3MON4D3/LuaSnip'
     use {
       'nvim-telescope/telescope.nvim',
       requires = { {'nvim-lua/plenary.nvim'} }
     }
+   
+    use 'vim-test/vim-test'
+    use 'tpope/vim-dispatch'
 
     use {
         'nvim-treesitter/nvim-treesitter',
