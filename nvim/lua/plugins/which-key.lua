@@ -44,9 +44,8 @@ require ('which-key').register(
       },
 
       c = {
-          name = "Comment",
-          c = { "gcc", "Linewise comment" },
-          b = { "gcb", "Blockwise comment" },
+          name = "Config",
+          r = { "<cmd>source ~/.config/nvim/init.lua<CR>", "Reload config" },
       },
 
       e = { "<cmd>NvimTreeFindFileToggle<CR>", "File Explorer" },

@@ -15,6 +15,11 @@ require('packer').startup({function()
     use 'numToStr/Comment.nvim' 
     use "folke/which-key.nvim" 
 
+    use {
+        'goolord/alpha-nvim',
+        requires = { 'kyazdani42/nvim-web-devicons' }
+    }
+
     -- appearance
     use 'shaunsingh/nord.nvim'
     use {
