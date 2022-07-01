@@ -14,6 +14,11 @@ require('packer').startup({function()
     use 'tpope/vim-fugitive'
     use 'numToStr/Comment.nvim' 
     use "folke/which-key.nvim" 
+    use 'tpope/vim-surround'
+    use {
+      'Shatur/neovim-session-manager',
+      requires = {'nvim-lua/plenary.nvim'}
+    }
 
     use {
         'goolord/alpha-nvim',
