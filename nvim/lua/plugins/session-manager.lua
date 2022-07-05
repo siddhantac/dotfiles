@@ -12,3 +12,16 @@ require('session_manager').setup({
   autosave_only_in_session = false, -- Always autosaves session. If true, only autosaves after a session is active.
   max_path_length = 80,  -- Shorten the display path if length exceeds this threshold. Use 0 if don't want to shorten the path at all.
 })
+
+require ('which-key').register(
+  {
+      n = {
+          name = "Sessions",
+          n = { "<cmd>SessionManager load_session<cr>", "Choose session to load" },
+          d = { "<cmd>SessionManager load_current_dir_session<cr>", "Load current dir session" },
+          r = { "<cmd>SessionManager delete_session<cr>", "Remove session" },
+      }
+    },
+    { prefix = "<leader>" }
+)
+

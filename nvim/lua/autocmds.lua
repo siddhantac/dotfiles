@@ -32,4 +32,4 @@ au.group('NumberToggle', {
 }) 
 
 au.ColorScheme = { 'nord', 'highlight Normal guibg=#192029'}
-au.VimLeave = { '*', '<cmd>SSave mysess<cr>'}
+au.VimLeave = { '*', '<cmd>SessionManager save_session<cr>'}

@@ -10,11 +10,14 @@
 --   git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
 require('packer').startup({function()
+    -- tools and utilities
     use 'wbthomason/packer.nvim'
     use 'tpope/vim-fugitive'
-    use 'numToStr/Comment.nvim' 
-    use "folke/which-key.nvim" 
+    use 'numToStr/Comment.nvim'
+    use "folke/which-key.nvim"
     use 'tpope/vim-surround'
+    use 'jiangmiao/auto-pairs'
+
     use {
       'Shatur/neovim-session-manager',
       requires = {'nvim-lua/plenary.nvim'}

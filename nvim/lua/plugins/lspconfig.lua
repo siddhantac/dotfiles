@@ -12,3 +12,21 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
   }
 end
+
+require ('which-key').register(
+  {
+      l = {
+          name = "LSP",
+          i = {vim.lsp.buf.implementation, "Implementation"},
+          s = {vim.lsp.buf.signature_help, "Signature help"},
+          h = {vim.lsp.buf.hover, "Hover"},
+          y = {vim.lsp.buf.type_definition, "Go to type def"},
+          d = {vim.lsp.buf.definition, "Go to def"},
+          n = {vim.lsp.buf.rename, "Rename"},
+          r = {vim.lsp.buf.references, "References in loc list"},
+          R = {':Telescope lsp_references<CR>', "References in Telescope"},
+
+      }
+    },
+    { prefix = "<leader>" }
+)
