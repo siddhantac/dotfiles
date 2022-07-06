@@ -17,9 +17,9 @@ require ('which-key').register(
   {
       n = {
           name = "Sessions",
-          n = { "<cmd>SessionManager load_session<cr>", "Choose session to load" },
-          d = { "<cmd>SessionManager load_current_dir_session<cr>", "Load current dir session" },
-          r = { "<cmd>SessionManager delete_session<cr>", "Remove session" },
+          c = { "<cmd>SessionManager load_current_dir_session<cr>", "Load current dir session" },
+          l = { "<cmd>SessionManager load_session<cr>", "Choose session to load" },
+          d = { "<cmd>SessionManager delete_session<cr>", "Remove session" },
       }
     },
     { prefix = "<leader>" }
