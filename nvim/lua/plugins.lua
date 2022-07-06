@@ -1,9 +1,8 @@
 
 -- TODO
--- packer in floating window
 -- Pending plugins
---     vim-go, terminal (?), snippets (check nvim-cmp, cmp_luasnip),
---     vim surround
+--     vim-go
+--     snippets (check nvim-cmp, cmp_luasnip),
 --
 -- Plugins
 -- Run the following command to install packer
