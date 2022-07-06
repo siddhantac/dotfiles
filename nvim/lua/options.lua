@@ -30,6 +30,7 @@ vim.opt.cursorline = true
 vim.opt.lazyredraw = true
 vim.opt.syntax = "on"
 vim.opt.timeoutlen = 500 -- controls how long to wait before showing which-key menu
+vim.opt.hidden = true
 
 vim.cmd('colorscheme nord')
 

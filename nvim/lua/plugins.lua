@@ -19,6 +19,11 @@ require('packer').startup({function()
     use 'jiangmiao/auto-pairs'
 
     use {
+        "akinsho/toggleterm.nvim",
+        tag = 'v1.*'
+    }
+
+    use {
       'Shatur/neovim-session-manager',
       requires = {'nvim-lua/plenary.nvim'}
     }
@@ -49,7 +54,7 @@ require('packer').startup({function()
       'nvim-telescope/telescope.nvim',
       requires = { {'nvim-lua/plenary.nvim'} }
     }
-   
+
     use 'vim-test/vim-test'
     use 'tpope/vim-dispatch'
 
