@@ -9,4 +9,3 @@ vim.keymap.set('', '<s-LEFT>', ':vertical resize +5 <CR>')
 vim.keymap.set('', '<s-RIGHT>', ':vertical resize -5 <CR>')
 vim.keymap.set('', '<s-UP>', ':resize +5 <CR>')
 vim.keymap.set('', '<s-DOWN>', ':resize -5 <CR>')
-

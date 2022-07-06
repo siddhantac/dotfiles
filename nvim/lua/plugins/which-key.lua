@@ -27,6 +27,13 @@ require ('which-key').register(
           r = { "<cmd>source ~/.config/nvim/init.lua<CR>", "Reload config" },
       },
 
+      g = {
+          name = "Git",
+          a = {"<cmd>Git add -A<CR>", "Add"},
+          c = {"<cmd>Git commit<CR>", "Commit"},
+          p = {"<cmd>Dispatch git push<CR>", "Push"}
+      },
+
       e = { "<cmd>NvimTreeFindFileToggle<CR>", "File Explorer" },
       w = {"<cmd>w<CR>", "Save"},
       s = {"<cmd>Telescope live_grep<CR>", "Search (live_grep)"}
