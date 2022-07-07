@@ -40,7 +40,8 @@ require ('which-key').register(
           name = "Git",
           a = {"<cmd>Git add -A<CR>", "Add"},
           c = {"<cmd>Git commit<CR>", "Commit"},
-          p = {"<cmd>Dispatch git push<CR>", "Push"}
+          p = {"<cmd>Dispatch git push<CR>", "Push"},
+          s = {"<cmd>!git status --short<CR>", "Status"}
       },
 
       e = { "<cmd>NvimTreeFindFileToggle<CR>", "File Explorer" },
