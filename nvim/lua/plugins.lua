@@ -18,6 +18,10 @@ require('packer').startup({function()
     use 'jiangmiao/auto-pairs'
     use 'rcarriga/nvim-notify'
 
+    -- the commands are not very useful
+    -- but the syntax highlighting is good
+    use 'ledger/vim-ledger'
+
     use {
         "akinsho/toggleterm.nvim",
         tag = 'v1.*'
