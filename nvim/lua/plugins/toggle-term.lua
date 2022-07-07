@@ -3,8 +3,8 @@ require("toggleterm").setup{
     terminal_mapping = true,
     direction = 'float',
     float_opts = {
-        border = 'curved',
-        width = 175,
-        height = 30
+        border = 'curved'
+        --[[ width = 175,
+        height = 30 ]]
     }
 }

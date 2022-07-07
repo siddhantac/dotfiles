@@ -33,6 +33,7 @@ vim.opt.timeoutlen = 500 -- controls how long to wait before showing which-key m
 vim.opt.hidden = true
 
 vim.cmd('colorscheme nord')
+vim.notify = require("notify")
 
 -- vim.opt.laststatus = 2
 -- vim.opt.hlsearch = true
