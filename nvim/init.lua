@@ -1,7 +1,3 @@
-require('autocmds') -- autocmds must come before options so that Nord bg color is set properly
-require('options')
-require('mappings')
-
 require('plugins')
 require('plugins.lualine')
 require('plugins.comment')
@@ -16,3 +12,8 @@ require('plugins.alpha')
 require('plugins.session-manager')
 require('plugins.toggle-term')
 -- require('plugins.luasnip')
+
+require('autocmds') -- autocmds must come before options so that Nord bg color is set properly
+require('options')
+require('mappings')
+
