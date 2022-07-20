@@ -44,6 +44,14 @@ require ('which-key').register(
           s = {"<cmd>!git status --short<CR>", "Status"}
       },
 
+      d = {
+          name = "Diagnostics",
+          n = {"<cmd>lua vim.diagnostic.goto_next()<CR>", "Next"},
+          p = {"<cmd>lua vim.diagnostic.goto_prev()<CR>", "Prev"},
+          d = {"<cmd>Telescope diagnostics<CR>", "Open in Telescope"},
+          l = {"<cmd>lua vim.diagnostic.setloclist()<CR>", "Open in location list"},
+      },
+
       e = { "<cmd>NvimTreeFindFileToggle<CR>", "File Explorer" },
       w = {"<cmd>w<CR>", "Save"},
       s = {"<cmd>Telescope live_grep<CR>", "Search (live_grep)"}
