@@ -38,9 +38,11 @@ require ('which-key').register(
 
       g = {
           name = "Git",
-          a = {"<cmd>Git add -A<CR>", "Add"},
+          -- a = {"<cmd>Git add -A<CR>", "Add"},
           c = {"<cmd>Git commit<CR>", "Commit"},
+          a = {"<cmd>Git add -A<CR>Git commit<CR>", "Add and commit"},
           p = {"<cmd>Dispatch git push<CR>", "Push"},
+          n = {"<cmd>Dispatch git push --no-verify<CR>", "Push --no-verify"},
           s = {"<cmd>!git status --short<CR>", "Status"}
       },
 
