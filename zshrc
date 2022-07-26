@@ -1,9 +1,10 @@
-export DOTFILES=$HOME/workspace/dotfiles
+export WORKSPACE=$HOME/workspace
+export DOTFILES=$WORKSPACE/dotfiles
 export PATH=$PATH:/usr/local/bin:$HOME/go/bin:$HOME/workspace/bin:/opt/homebrew/bin
 export GOPATH=$HOME/go
 export ZSH="$HOME/.oh-my-zsh"
 export TERM=screen-256color
-export LEDGER_FILE=$HOME/workspace/accounts/finances.journal
+export LEDGER_FILE=$WORKSPACE/accounts/finances.journal
 
 source $DOTFILES/antigen.zsh
 antigen use oh-my-zsh
