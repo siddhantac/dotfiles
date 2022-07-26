@@ -80,6 +80,7 @@ alias ec='$EDITOR $HOME/.zshrc'
 
 alias d='docker'
 alias dps='docker ps'
+alias dim='docker images'
 
 # docker-compose
 alias dc='docker-compose'

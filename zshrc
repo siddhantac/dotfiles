@@ -4,6 +4,7 @@ export PATH=$PATH:/usr/local/bin:$HOME/go/bin:$HOME/workspace/bin:/opt/homebrew/
 export GOPATH=$HOME/go
 export ZSH="$HOME/.oh-my-zsh"
 export TERM=screen-256color
+export XDG_CONFIG_HOME=$HOME/.config
 export LEDGER_FILE=$WORKSPACE/accounts/finances.journal
 
 source $DOTFILES/antigen.zsh
@@ -42,3 +43,5 @@ else
   export EDITOR='vim'
 fi
 export PATH="$PATH:$HOME/.spicetify"
+
+source $HOME/.zshrc_custom
