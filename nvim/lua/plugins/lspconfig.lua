@@ -42,6 +42,7 @@ require ('which-key').register(
           R = {'<cmd>Telescope lsp_references<CR>', "References in Telescope"},
           s = {'<cmd>Telescope lsp_document_symbols<CR>', "Document symbols"},
           S = {'<cmd>Telescope lsp_workspace_symbols<CR>', "Workspace symbols"},
+          l = {'<cmd>LspInfo<CR>', "LSP Info"},
       }
     },
     { prefix = "<leader>" }
