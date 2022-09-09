@@ -35,6 +35,7 @@ vim.opt.hidden = true
 vim.cmd('colorscheme nord')
 vim.notify = require("notify")
 
+vim.opt.foldmethod='indent'
 -- vim.opt.laststatus = 2
 -- vim.opt.hlsearch = true
 -- vim.opt.list = true
