@@ -12,6 +12,7 @@ require('packer').startup({function()
     -- tools and utilities
     use 'wbthomason/packer.nvim'
     use 'tpope/vim-fugitive'
+    use 'tpope/vim-rhubarb'
     use 'numToStr/Comment.nvim'
     use "folke/which-key.nvim"
     use 'tpope/vim-surround'

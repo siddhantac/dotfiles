@@ -43,7 +43,8 @@ require ('which-key').register(
           a = {"<cmd>Git add -A|Git commit<CR>", "Add and commit"},
           p = {"<cmd>Dispatch git push<CR>", "Push"},
           n = {"<cmd>Dispatch git push --no-verify<CR>", "Push --no-verify"},
-          s = {"<cmd>!git status --short<CR>", "Status"}
+          s = {"<cmd>!git status --short<CR>", "Status"},
+          o = {"<cmd>GBrowse<CR>", "Open in GitHub (browser)"} -- uses tpope/vim-rhubarb
       },
 
       d = {
