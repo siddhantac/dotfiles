@@ -65,3 +65,17 @@ au.group('go_lsp', {
         end
     }
 })
+
+-- highlight word under cursor (highlight colors defined in options.lua)
+au.group('auto_highlight', {
+    {
+        'CursorHold',
+        '*',
+        vim.lsp.buf.document_highlight,
+    },
+    {
+        'CursorMoved',
+        '*',
+        vim.lsp.buf.clear_references,
+    },
+})

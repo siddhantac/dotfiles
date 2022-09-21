@@ -40,3 +40,9 @@ vim.opt.foldlevel = 99
 -- vim.opt.laststatus = 2
 -- vim.opt.hlsearch = true
 -- vim.opt.list = true
+
+-- required to highlight the word under cursor (see in autocmds.lua)
+vim.cmd([[hi LspReferenceRead cterm=bold ctermbg=red guibg=#5E81AC]])
+vim.cmd([[hi LspReferenceText cterm=bold ctermbg=red guibg=#5E81AC]])
+vim.cmd([[hi LspReferenceWrite cterm=bold ctermbg=red guibg=#5E81AC]])
+
