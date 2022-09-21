@@ -67,6 +67,11 @@ au.group('go_lsp', {
 })
 
 -- highlight word under cursor (highlight colors defined in options.lua)
+--   this works only on the nightly build published on 20 Sept
+--     NVIM v0.8.0-dev-1120-ga0e6e767a
+--     Build type: RelWithDebInfo
+--     LuaJIT 2.1.0-beta3
+
 au.group('auto_highlight', {
     {
         'CursorHold',
