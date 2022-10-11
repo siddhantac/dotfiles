@@ -31,6 +31,7 @@ vim.opt.lazyredraw = true
 vim.opt.syntax = "on"
 vim.opt.timeoutlen = 500 -- controls how long to wait before showing which-key menu
 vim.opt.hidden = true
+vim.opt.autoread = true
 
 vim.cmd('colorscheme nord')
 vim.notify = require("notify")
