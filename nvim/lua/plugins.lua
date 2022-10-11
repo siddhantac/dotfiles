@@ -16,6 +16,7 @@ require('packer').startup({function()
     use 'numToStr/Comment.nvim'
     use "folke/which-key.nvim"
     use 'tpope/vim-surround'
+    use 'tpope/vim-unimpaired'
     use 'jiangmiao/auto-pairs'
     use 'rcarriga/nvim-notify'
 
