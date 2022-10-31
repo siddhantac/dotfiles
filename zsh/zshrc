@@ -27,7 +27,7 @@ antigen list | grep $THEME; if [ $? -ne 0 ]; then antigen theme $THEME; fi
 antigen apply
 
 # load aliases
-[[ -s "$DOTFILES/aliases" ]] && source "$DOTFILES/aliases"
+[[ -s "$DOTFILES/zsh/aliases" ]] && source "$DOTFILES/zsh/aliases"
 [[ -s ".aliases.local" ]] && source ".aliases.local"
 
 [[ -s ~/.fzf.zsh ]] && source ~/.fzf.zsh
