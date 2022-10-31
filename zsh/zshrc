@@ -7,7 +7,7 @@ export TERM=screen-256color
 export XDG_CONFIG_HOME=$HOME/.config
 export LEDGER_FILE=$WORKSPACE/accounts/finances.journal
 
-source $DOTFILES/antigen.zsh
+source $DOTFILES/zsh/antigen.zsh
 antigen use oh-my-zsh
 
 antigen bundle z
