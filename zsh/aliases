@@ -1,4 +1,3 @@
-
 # list files and dirs
 alias ls='exa --icons'
 alias ll='ls -lh'
@@ -27,7 +26,6 @@ alias gbr='git branch'
 alias gco='git checkout'
 alias gdiff='git diff'
 alias gpull='git pull'
-alias glg='git log --pretty=oneline --decorate --date=short --graph --abbrev-commit'
 alias gpu='git push origin $(git rev-parse --abbrev-ref HEAD)'
 alias gpun='git push origin $(git rev-parse --abbrev-ref HEAD) --no-verify'
 alias gpuu='git push origin --set-upstream $(git rev-parse --abbrev-ref HEAD)'
@@ -35,6 +33,13 @@ alias gpl='git pull --all -p'
 alias gmg='git merge'
 alias gmc='git merge --continue'
 alias gma='git merge --abort'
+
+# glg: run git log with custom commands
+#   why is this not a simple alias?
+#     so that I could avoid typing `-` before the number (no. of commits I want to see)
+glg() {
+    git log --pretty=oneline --decorate --date=short --graph --abbrev-commit $1
+}
 
 # gcap: commit all and push
 gcap() {
