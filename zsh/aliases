@@ -34,13 +34,7 @@ alias gmg='git merge'
 alias gmc='git merge --continue'
 alias gma='git merge --abort'
 alias gadd='git add -A'
-
-# gl: run git log with custom commands
-#   why is this not a simple alias?
-#     so that I could avoid typing `-` before the number (no. of commits I want to see)
-kalu() {
-    git log --pretty=oneline --decorate --date=short --graph --abbrev-commit -$1
-}
+alias glg='git log --pretty=oneline --decorate --date=short --graph --abbrev-commit -n $1'
 
 # gcap: commit all and push
 gcap() {
