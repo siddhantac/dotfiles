@@ -1,8 +1,17 @@
 -- luasnip setup
-local luasnip = require 'luasnip'
+local ok, luasnip = pcall(require, 'luasnip')
+if not ok then
+    return
+end
+
+require("luasnip.loaders.from_vscode").lazy_load()
 
 -- nvim-cmp setup
-local cmp = require 'cmp'
+local cmp_ok, cmp = pcall(require, 'cmp')
+if not cmp_ok then
+    return
+end
+
 cmp.setup {
   snippet = {
     expand = function(args)
