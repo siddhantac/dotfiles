@@ -68,16 +68,22 @@ require('packer').startup({function()
       requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
 
+    -- snippets
+    use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
+    use  'L3MON4D3/LuaSnip'
+    use 'rafamadriz/friendly-snippets'
+
     -- lsp
     use {
-        'williamboman/nvim-lsp-installer',
+        'williamboman/mason.nvim',
+        'williamboman/mason-lspconfig.nvim',
         'neovim/nvim-lspconfig', -- Configurations for Nvim LSP
     }
     use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
     use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
-    use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
-    use  'L3MON4D3/LuaSnip'
-    use 'rafamadriz/friendly-snippets'
+    use({ "glepnir/lspsaga.nvim", branch = "main" }) -- enhanced lsp uis
+    use("onsails/lspkind.nvim") -- vs-code like icons for autocompletion
+
     --
     use {
       'nvim-telescope/telescope.nvim',
