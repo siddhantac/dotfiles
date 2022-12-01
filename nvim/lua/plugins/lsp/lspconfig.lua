@@ -37,7 +37,7 @@ end
             n = {"<cmd>Lspsaga rename<CR>", "Rename"},
             f = {"<cmd>Lspsaga lsp_finder<CR>", "Finder"},
             a = {"<cmd>Lspsaga code_action<CR>", "Code action"},
-            o = {"<cmd>LSoutlineToggle", "Show outline"},
+            o = {"<cmd>LSoutlineToggle<CR>", "Show outline"},
         }
       },
       { prefix = "<leader>" }
