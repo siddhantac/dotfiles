@@ -29,6 +29,7 @@ require ('which-key').register(
           f = {"<cmd>Telescope buffers<CR>", "Find"},
           c = {"<cmd>close<CR>", "Close"},
           d = {"<cmd>bd<CR>", "Delete"},
+          m = {"<cmd>MaximizerToggle<CR>", "Maximize (toggle)"},
       },
 
       c = {

@@ -41,6 +41,7 @@ require('packer').startup({function()
     use 'tpope/vim-unimpaired'
     use 'jiangmiao/auto-pairs'
     use 'rcarriga/nvim-notify'
+    use 'szw/vim-maximizer'
 
     -- the commands are not very useful
     -- but the syntax highlighting is good

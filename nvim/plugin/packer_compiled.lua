@@ -214,6 +214,11 @@ _G.packer_plugins = {
     path = "/Users/s.c/.local/share/nvim/site/pack/packer/start/vim-ledger",
     url = "https://github.com/ledger/vim-ledger"
   },
+  ["vim-maximizer"] = {
+    loaded = true,
+    path = "/Users/s.c/.local/share/nvim/site/pack/packer/start/vim-maximizer",
+    url = "https://github.com/szw/vim-maximizer"
+  },
   ["vim-rhubarb"] = {
     loaded = true,
     path = "/Users/s.c/.local/share/nvim/site/pack/packer/start/vim-rhubarb",
