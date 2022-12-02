@@ -41,11 +41,15 @@ require ('which-key').register(
           g = {"<cmd>Git<CR>", "Open vim-fugitive"},
           c = {"<cmd>Git commit<CR>", "Commit"},
           a = {"<cmd>Git add -A|Git commit<CR>", "Add and commit"},
+
+          l = {"<cmd>Dispatch git pull<CR>", "Pull"},
+          y = {"<cmd>!git pull --all -p<CR>", "Sync"},
+
           p = {"<cmd>Dispatch git push<CR>", "Push"},
-          n = {"<cmd>Dispatch git push --no-verify<CR>", "Push --no-verify"},
+          n = {"<cmd>Dispatch git push --no-verify<CR>", "Push without verify"},
+
           s = {"<cmd>!git status --short<CR>", "Status"},
           o = {"<cmd>GBrowse<CR>", "Open in GitHub (browser)"}, -- uses tpope/vim-rhubarb
-          y = {"<cmd>!git pull --all -p<CR>", "Sync"},
       },
 
       d = {
