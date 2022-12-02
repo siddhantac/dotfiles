@@ -55,8 +55,8 @@ require ('which-key').register(
       d = {
           name = "Diagnostics",
           -- n = {"<cmd>lua vim.diagnostic.goto_next()<CR>", "Next"},
-          -- d = {"<cmd>Telescope diagnostics<CR>", "Open in Telescope"},
           -- p = {"<cmd>lua vim.diagnostic.goto_prev()<CR>", "Prev"},
+          f = {"<cmd>Telescope diagnostics<CR>", "Open in Telescope"},
           L = {"<cmd>lua vim.diagnostic.setloclist()<CR>", "Open in location list"},
 
           n = {"<cmd>Lspsaga diagnostic_jump_next<CR>", "Next"},
