@@ -14,6 +14,10 @@ saga.init_lsp_saga({
   -- use enter to open file with definition preview
   definition_action_keys = {
     edit = "<CR>",
+    vsplit = '<C-v>',
+    split = '<C-h>',
+    tabe = '<C-t>',
+    quit = 'q',
   },
 })
 
