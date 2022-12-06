@@ -20,12 +20,12 @@ end
     {
         l = {
             name = "LSP",
-            i = {vim.lsp.buf.implementation, "Implementation"},
             -- s = {vim.lsp.buf.signature_help, "Signature help"},
+            -- n = {vim.lsp.buf.rename, "Rename"},
+            i = {vim.lsp.buf.implementation, "Implementation"},
             h = {vim.lsp.buf.hover, "Hover"},
             y = {vim.lsp.buf.type_definition, "Go to type def"},
-            -- d = {vim.lsp.buf.definition, "Go to def"},
-            -- n = {vim.lsp.buf.rename, "Rename"},
+            D = {vim.lsp.buf.definition, "Go to def"},
             r = {vim.lsp.buf.references, "References in loc list"},
             R = {'<cmd>Telescope lsp_references<CR>', "References in Telescope"},
             s = {'<cmd>Telescope lsp_document_symbols<CR>', "Document symbols"},
@@ -33,7 +33,7 @@ end
             l = {'<cmd>LspInfo<CR>', "LSP Info"},
 
 
-            d = {"<cmd>Lspsaga peek_definition<CR>", "Go to def"},
+            d = {"<cmd>Lspsaga peek_definition<CR>", "Peek definition"},
             n = {"<cmd>Lspsaga rename<CR>", "Rename"},
             f = {"<cmd>Lspsaga lsp_finder<CR>", "Finder"},
             a = {"<cmd>Lspsaga code_action<CR>", "Code action"},
