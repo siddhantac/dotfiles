@@ -19,8 +19,11 @@ require ('which-key').register(
 
       f = {
             name = "Files",
-            f = { "<cmd>Telescope find_files<cr>", "Find File" },
+            f = { "<cmd>Telescope find_files<cr>", "Find files" },
+            F = { "<cmd>Telescope find_files layout_strategy=vertical<cr>", "Find files (vert)" },
             d = { "<cmd>Telescope find_files search_dirs=%:p:h<CR>", "Find Files in same dir", noremap=false },
+            g = { "<cmd>Telescope git_branches<cr>", "Git branches" },
+            t = { "<cmd>Telescope treesitter<cr>", "treesitter" },
           },
 
       b = {

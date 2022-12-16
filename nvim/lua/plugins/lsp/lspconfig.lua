@@ -23,6 +23,7 @@ end
             -- s = {vim.lsp.buf.signature_help, "Signature help"},
             -- n = {vim.lsp.buf.rename, "Rename"},
             i = {vim.lsp.buf.implementation, "Implementation"},
+            I = {"<cmd>Telescope lsp_implementations<cr>", "Implementation"},
             h = {vim.lsp.buf.hover, "Hover"},
             y = {vim.lsp.buf.type_definition, "Go to type def"},
             D = {vim.lsp.buf.definition, "Go to def"},

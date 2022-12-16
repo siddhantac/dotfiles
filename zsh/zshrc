@@ -23,6 +23,7 @@ antigen bundle zsh-users/zsh-autosuggestions
 # workaround for https://github.com/zsh-users/antigen/issues/675
 THEME=agnoster
 antigen list | grep $THEME; if [ $? -ne 0 ]; then antigen theme $THEME; fi
+# antigen theme agnoster
 
 antigen apply
 

@@ -1,6 +1,7 @@
 require('plugins')
 require('plugins.lualine')
 require('plugins.comment')
+require('plugins.telescope')
 require('plugins.treesitter')
 require('plugins.treesitter-textobjects')
 require('plugins.nvim-tree')
