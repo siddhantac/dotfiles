@@ -83,4 +83,5 @@ lspconfig["sumneko_lua"].setup({
 
 lspconfig["yamlls"].setup {}
 lspconfig["pyright"].setup {}
+lspconfig["tsserver"].setup {}
 
