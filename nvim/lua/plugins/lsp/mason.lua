@@ -18,7 +18,7 @@ mason_lspconfig.setup({
   ensure_installed = {
     "tsserver",
     "html",
-    "sumneko_lua",
+    "lua_ls",
     "gopls",
     "vimls",
     "terraformls",
