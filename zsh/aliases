@@ -62,9 +62,6 @@ gsync() {
     # git checkout $branch
 }
 
-# use grc colorizer
-alias go='grc go'
-
 # suffix aliases (just typing the json filename in terminal will open it in vim)
 alias -s json=vim
 
