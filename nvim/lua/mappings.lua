@@ -9,3 +9,19 @@ vim.keymap.set('', '<s-LEFT>', ':vertical resize +5 <CR>')
 vim.keymap.set('', '<s-RIGHT>', ':vertical resize -5 <CR>')
 vim.keymap.set('', '<s-UP>', ':resize +5 <CR>')
 vim.keymap.set('', '<s-DOWN>', ':resize -5 <CR>')
+
+-- Keep cursor centered when moving by pages.
+vim.keymap.set('n', '<C-f>', '<C-f>zz')
+vim.keymap.set('n', '<C-d>', '<C-d>zz')
+
+-- When pasting, don't overwrite 
+-- the register with the deleted text.
+-- Sends the deleted text into the void register instead.
+vim.keymap.set("x", "<leader>p", "\"_dP")
+
+vim.keymap.set("n", "<C-n>", ":cnext<CR>zz")
+vim.keymap.set("n", "<C-p>", ":cprev<CR>zz")
+vim.keymap.set("n", "<C-c>", ":cclose<CR>")
+vim.keymap.set("n", "<leader>f", function()
+    vim.lsp.buf.format()
+end)
