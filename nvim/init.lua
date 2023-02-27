@@ -15,6 +15,7 @@ require('plugins.vim-test')
 require('plugins.alpha')
 require('plugins.session-manager')
 require('plugins.toggle-term')
+require('plugins.harpoon')
 -- require('plugins.luasnip')
 
 require('autocmds') -- autocmds must come before options so that Nord bg color is set properly

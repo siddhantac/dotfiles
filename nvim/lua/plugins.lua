@@ -30,7 +30,7 @@ vim.cmd([[
   augroup end
 ]])
 
-require('packer').startup({function()
+require('packer').startup({function(use)
     -- tools and utilities
     use 'wbthomason/packer.nvim'
     use 'tpope/vim-fugitive'
@@ -42,6 +42,7 @@ require('packer').startup({function()
     use 'jiangmiao/auto-pairs'
     use 'rcarriga/nvim-notify'
     use 'szw/vim-maximizer'
+    use 'ThePrimeagen/harpoon'
 
     -- the commands are not very useful
     -- but the syntax highlighting is good
@@ -64,6 +65,7 @@ require('packer').startup({function()
 
     -- appearance
     use 'shaunsingh/nord.nvim'
+    use 'rose-pine/neovim'
     use {
       'nvim-lualine/lualine.nvim',
       requires = { 'kyazdani42/nvim-web-devicons', opt = true }

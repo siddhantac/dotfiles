@@ -109,6 +109,11 @@ _G.packer_plugins = {
     path = "/Users/s.c/.local/share/nvim/site/pack/packer/start/friendly-snippets",
     url = "https://github.com/rafamadriz/friendly-snippets"
   },
+  harpoon = {
+    loaded = true,
+    path = "/Users/s.c/.local/share/nvim/site/pack/packer/start/harpoon",
+    url = "https://github.com/ThePrimeagen/harpoon"
+  },
   ["lspkind.nvim"] = {
     loaded = true,
     path = "/Users/s.c/.local/share/nvim/site/pack/packer/start/lspkind.nvim",
@@ -133,6 +138,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/s.c/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
+  },
+  neovim = {
+    loaded = true,
+    path = "/Users/s.c/.local/share/nvim/site/pack/packer/start/neovim",
+    url = "https://github.com/rose-pine/neovim"
   },
   ["neovim-session-manager"] = {
     loaded = true,
