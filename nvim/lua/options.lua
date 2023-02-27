@@ -33,13 +33,13 @@ vim.opt.timeoutlen = 500 -- controls how long to wait before showing which-key m
 vim.opt.hidden = true
 vim.opt.autoread = true
 
-vim.cmd('colorscheme nord')
+vim.cmd('colorscheme rose-pine')
 vim.notify = require("notify")
 
 vim.opt.foldmethod = 'indent'
 vim.opt.foldlevel = 99
+vim.opt.hlsearch = false
 -- vim.opt.laststatus = 2
--- vim.opt.hlsearch = true
 -- vim.opt.list = true
 
 -- required to highlight the word under cursor (see in autocmds.lua)
