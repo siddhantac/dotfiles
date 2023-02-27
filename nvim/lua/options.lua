@@ -32,6 +32,7 @@ vim.opt.syntax = "on"
 vim.opt.timeoutlen = 500 -- controls how long to wait before showing which-key menu
 vim.opt.hidden = true
 vim.opt.autoread = true
+vim.opt.swapfile = false
 
 vim.cmd('colorscheme rose-pine')
 vim.notify = require("notify")
