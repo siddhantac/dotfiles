@@ -55,7 +55,7 @@ au.group('go_lsp', {
     {
         'BufWritePre',
         '*.go',
-        vim.lsp.buf.formatting,
+        vim.lsp.buf.format,
     },
     {
         'BufWritePre',
