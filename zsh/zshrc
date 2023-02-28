@@ -13,7 +13,7 @@ export TERM=screen-256color
 export XDG_CONFIG_HOME=$HOME/.config
 export LEDGER_FILE=$WORKSPACE/accounts/finances.journal
 
-source_if_exists $DOTFILES/zsh/antigen.zsh
+source $DOTFILES/zsh/antigen.zsh
 antigen use oh-my-zsh
 
 antigen bundle z
@@ -34,9 +34,9 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen apply
 
 # load aliases
-source_if_exists "$DOTFILES/zsh/git.zsh"
 source_if_exists "$DOTFILES/zsh/aliases"
-source_if_exists "~/.aliases.local"
+source_if_exists "$DOTFILES/zsh/git.zsh"
+source_if_exists ".aliases.local"
 
 [[ -s ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
