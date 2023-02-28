@@ -1,3 +1,9 @@
+source_if_exists () {
+    if test -r "$1"; then
+        source "$1"
+    fi
+}
+
 export WORKSPACE=$HOME/workspace
 export DOTFILES=$WORKSPACE/dotfiles
 export PATH=$PATH:/usr/local/bin:$HOME/go/bin:$HOME/workspace/bin:/opt/homebrew/bin
@@ -7,7 +13,7 @@ export TERM=screen-256color
 export XDG_CONFIG_HOME=$HOME/.config
 export LEDGER_FILE=$WORKSPACE/accounts/finances.journal
 
-source $DOTFILES/zsh/antigen.zsh
+source_if_exists $DOTFILES/zsh/antigen.zsh
 antigen use oh-my-zsh
 
 antigen bundle z
@@ -28,9 +34,9 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen apply
 
 # load aliases
-[[ -s "$DOTFILES/zsh/aliases" ]] && source "$DOTFILES/zsh/aliases"
-[[ -s "$DOTFILES/zsh/git.zsh" ]] && source "$DOTFILES/zsh/git.zsh"
-[[ -s ".aliases.local" ]] && source ".aliases.local"
+source_if_exists "$DOTFILES/zsh/git.zsh"
+source_if_exists "$DOTFILES/zsh/aliases"
+source_if_exists "~/.aliases.local"
 
 [[ -s ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
