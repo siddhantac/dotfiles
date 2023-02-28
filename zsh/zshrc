@@ -29,6 +29,7 @@ antigen apply
 
 # load aliases
 [[ -s "$DOTFILES/zsh/aliases" ]] && source "$DOTFILES/zsh/aliases"
+[[ -s "$DOTFILES/zsh/git.zsh" ]] && source "$DOTFILES/zsh/git.zsh"
 [[ -s ".aliases.local" ]] && source ".aliases.local"
 
 [[ -s ~/.fzf.zsh ]] && source ~/.fzf.zsh
