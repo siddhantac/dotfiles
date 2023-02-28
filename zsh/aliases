@@ -16,24 +16,31 @@ alias count='find . -type f | wc -l'
 alias cpv='rsync -ah --progress'
 
 # git aliases
+alias ga='git add'
+alias gaa='git add -A'
 alias gs='git status --short'
 alias gst='git status'
-alias gci='git commit -m'
+alias gc='git commit'
+alias gcm='git commit -m'
 alias gca='git commit -a -m' 
-alias gcm='git commit --amend --no-edit' 
 alias gcmm='git commit --amend -m'
-alias gbr='git branch'
+alias gcmn='git commit --amend --no-edit' 
+alias gb='git branch'
+alias gbd='git branch -d'
+alias gbD='git branch -D'
 alias gco='git checkout'
-alias gdiff='git diff'
+alias gd='git diff'
+alias gds='git diff --staged'
 alias gpl='git pull'
 alias gpla='git pull --all -p'
-alias gpu='git push origin $(git rev-parse --abbrev-ref HEAD)'
-alias gpun='git push origin $(git rev-parse --abbrev-ref HEAD) --no-verify'
-alias gpuu='git push origin --set-upstream $(git rev-parse --abbrev-ref HEAD)'
+alias gp='git push origin $(git rev-parse --abbrev-ref HEAD)'
+alias gpn='git push origin $(git rev-parse --abbrev-ref HEAD) --no-verify'
+alias gpu='git push origin --set-upstream $(git rev-parse --abbrev-ref HEAD)'
 alias gmg='git merge'
 alias gmc='git merge --continue'
 alias gma='git merge --abort'
-alias gadd='git add -A'
+alias grc='git rebase --continue'
+alias gra='git rebase --abort'
 alias glg='git log --pretty=oneline --decorate --date=short --graph --abbrev-commit -n $1'
 
 # gcap: commit all and push
@@ -52,14 +59,11 @@ gmerge() {
 
 # gsync: pull in latest changes on master/main branch
 gsync() {
-    echo "checking out the main/master branch and pulling latest changes..."
+    echo 'checking out the {{ Color "212" "" "main/master" }} branch and pulling latest changes...' | gum format -t template
     git checkout master
     output=$?
     [ $output -ne 0 ] && git checkout main
     git pull --all -p
-    # switch back to original branch?
-    # branch=$(git rev-parse --abbrev-ref HEAD) && \
-    # git checkout $branch
 }
 
 # suffix aliases (just typing the json filename in terminal will open it in vim)
