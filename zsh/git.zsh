@@ -37,12 +37,12 @@ BRANCH_CONTENTS="%(contents:subject)"
 BRANCH_FORMAT="}$BRANCH_PREFIX}$BRANCH_REF}$BRANCH_HASH}$BRANCH_DATE}$BRANCH_AUTHOR}$BRANCH_CONTENTS"
 
 show_git_head() {
-    pretty_git_log -1
+    pretty_git_log 1
     git show -p --pretty="tformat:"
 }
 
 pretty_git_log() {
-    git log --since="6 months ago" --graph --pretty="tformat:${LOG_FORMAT}" $* | pretty_git_format | git_page_maybe
+    git log --since="6 months ago" --graph --pretty="tformat:${LOG_FORMAT}" -n $1 | pretty_git_format | git_page_maybe
 }
 
 pretty_git_log_all() {
