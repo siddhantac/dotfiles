@@ -22,10 +22,10 @@ brew "watch"
 brew "yarn"
 brew "zsh"
 brew "sd"
+brew "starship"
 
 cask "font-fira-code-nerd-font"
 cask "font-hack-nerd-font"
 cask "obsidian"
 cask "spotify"
 cask "mos" # mouse scroll reverser and smoothen. from https://mos.caldis.me/
-cask "lunar"
