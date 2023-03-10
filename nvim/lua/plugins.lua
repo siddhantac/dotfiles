@@ -58,11 +58,6 @@ require('packer').startup({function(use)
       requires = {'nvim-lua/plenary.nvim'}
     }
 
-    use {
-        'goolord/alpha-nvim',
-        requires = { 'kyazdani42/nvim-web-devicons' }
-    }
-
     -- appearance
     use 'shaunsingh/nord.nvim'
     use 'rose-pine/neovim'
@@ -84,7 +79,10 @@ require('packer').startup({function(use)
     }
     use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
     use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
-    use({ "glepnir/lspsaga.nvim", branch = "main" }) -- enhanced lsp uis
+    use({ "glepnir/lspsaga.nvim", 
+        branch = "main",
+        requires = { 'kyazdani42/nvim-web-devicons' }
+    }) -- enhanced lsp uis
     use("onsails/lspkind.nvim") -- vs-code like icons for autocompletion
 
     --
