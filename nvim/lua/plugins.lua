@@ -43,6 +43,7 @@ require('packer').startup({function(use)
     use 'rcarriga/nvim-notify'
     use 'szw/vim-maximizer'
     use 'ThePrimeagen/harpoon'
+    use { 'echasnovski/mini.nvim', branch = 'stable' }
 
     -- the commands are not very useful
     -- but the syntax highlighting is good

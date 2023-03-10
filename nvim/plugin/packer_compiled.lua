@@ -84,11 +84,6 @@ _G.packer_plugins = {
     path = "/Users/s.c/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
-  ["alpha-nvim"] = {
-    loaded = true,
-    path = "/Users/s.c/.local/share/nvim/site/pack/packer/start/alpha-nvim",
-    url = "https://github.com/goolord/alpha-nvim"
-  },
   ["auto-pairs"] = {
     loaded = true,
     path = "/Users/s.c/.local/share/nvim/site/pack/packer/start/auto-pairs",
@@ -139,6 +134,11 @@ _G.packer_plugins = {
     path = "/Users/s.c/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
   },
+  ["mini.nvim"] = {
+    loaded = true,
+    path = "/Users/s.c/.local/share/nvim/site/pack/packer/start/mini.nvim",
+    url = "https://github.com/echasnovski/mini.nvim"
+  },
   neovim = {
     loaded = true,
     path = "/Users/s.c/.local/share/nvim/site/pack/packer/start/neovim",
@@ -185,8 +185,9 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
   },
   ["nvim-web-devicons"] = {
-    loaded = true,
-    path = "/Users/s.c/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/s.c/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons",
     url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
   ["packer.nvim"] = {
