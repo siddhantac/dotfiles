@@ -29,10 +29,12 @@ au.group('NumberToggle', {
             vim.cmd('set relativenumber') 
         end
     },
-}) 
+})
 
-au.ColorScheme = { 'nord', 'highlight Normal guibg=#192029'}
-au.VimLeave = { '*', '<cmd>SessionManager save_session<cr>'}
+-- au.ColorScheme = { 'nord', 'highlight Normal guibg=#192029'}
+
+-- session
+au.VimLeave = { '*', MiniSessionWrite}
 
 -- following example solution from github issue:
 --   https://github.com/golang/tools/blob/master/gopls/doc/vim.md#neovim-imports
@@ -78,3 +80,5 @@ au.group('auto_highlight', {
         vim.lsp.buf.clear_references,
     },
 })
+
+

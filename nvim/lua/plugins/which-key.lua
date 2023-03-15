@@ -71,7 +71,13 @@ require ('which-key').register(
 
       e = { "<cmd>NvimTreeFindFileToggle<CR>", "File Explorer" },
       w = {"<cmd>w<CR>", "Save"},
-      s = {"<cmd>Telescope live_grep<CR>", "Search (live_grep)"}
+      s = {"<cmd>Telescope live_grep<CR>", "Search (live_grep)"},
+      n = {
+          name = "Sessions",
+          l = { "<cmd>lua MiniSessions.select()<CR>", "Load session" },
+          w = { "<cmd>lua MiniSessions.write('nil')<CR>", "Write session" },
+          d = { "<cmd>lua MiniSessions.select('delete')<CR>", "Delete session" },
+        },
     },
     { prefix = "<leader>" }
 )

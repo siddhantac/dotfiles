@@ -44,6 +44,7 @@ require('packer').startup({function(use)
     use 'szw/vim-maximizer'
     use 'ThePrimeagen/harpoon'
     use { 'echasnovski/mini.nvim', branch = 'stable' }
+    use 'kyazdani42/nvim-web-devicons'
 
     -- the commands are not very useful
     -- but the syntax highlighting is good
@@ -54,17 +55,13 @@ require('packer').startup({function(use)
         tag = '*'
     }
 
-    use {
-      'Shatur/neovim-session-manager',
-      requires = {'nvim-lua/plenary.nvim'}
-    }
-
     -- appearance
     use 'shaunsingh/nord.nvim'
     use 'rose-pine/neovim'
     use {
       'nvim-lualine/lualine.nvim',
-      requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+      requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+      ensure_dependencies = true,
     }
 
     -- snippets
@@ -82,7 +79,8 @@ require('packer').startup({function(use)
     use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
     use({ "glepnir/lspsaga.nvim", 
         branch = "main",
-        requires = { 'kyazdani42/nvim-web-devicons' }
+        requires = { 'kyazdani42/nvim-web-devicons' },
+        ensure_dependencies = true,
     }) -- enhanced lsp uis
     use("onsails/lspkind.nvim") -- vs-code like icons for autocompletion
 
@@ -105,6 +103,7 @@ require('packer').startup({function(use)
       'kyazdani42/nvim-tree.lua',
       requires = {
         'kyazdani42/nvim-web-devicons', -- optional, for file icons
+        ensure_dependencies = true,
       }
     }
 
