@@ -164,6 +164,11 @@ _G.packer_plugins = {
     path = "/Users/s.c/.local/share/nvim/site/pack/packer/start/nvim-notify",
     url = "https://github.com/rcarriga/nvim-notify"
   },
+  ["nvim-test"] = {
+    loaded = true,
+    path = "/Users/s.c/.local/share/nvim/site/pack/packer/start/nvim-test",
+    url = "https://github.com/klen/nvim-test"
+  },
   ["nvim-tree.lua"] = {
     loaded = true,
     path = "/Users/s.c/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
@@ -233,11 +238,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/s.c/.local/share/nvim/site/pack/packer/start/vim-surround",
     url = "https://github.com/tpope/vim-surround"
-  },
-  ["vim-test"] = {
-    loaded = true,
-    path = "/Users/s.c/.local/share/nvim/site/pack/packer/start/vim-test",
-    url = "https://github.com/vim-test/vim-test"
   },
   ["vim-unimpaired"] = {
     loaded = true,

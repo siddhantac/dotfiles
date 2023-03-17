@@ -90,8 +90,8 @@ require('packer').startup({function(use)
       requires = { {'nvim-lua/plenary.nvim'} }
     }
 
-    use 'vim-test/vim-test'
     use 'tpope/vim-dispatch'
+    use 'klen/nvim-test'
 
     use {
         'nvim-treesitter/nvim-treesitter',
