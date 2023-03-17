@@ -21,6 +21,7 @@ brew "tmux"
 brew "watch"
 brew "yarn"
 brew "zsh"
+brew "sd"
 
 cask "font-fira-code-nerd-font"
 cask "font-hack-nerd-font"
