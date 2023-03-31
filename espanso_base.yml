@@ -16,8 +16,8 @@ matches:
 
   # But matches can also be dynamic:
 
-  # Print the current date
-  - trigger: ":date"
+  # Print today's date
+  - trigger: ":td"
     replace: "{{mydate}}"
     vars:
       - name: mydate
@@ -25,20 +25,43 @@ matches:
         params:
           format: "%m/%d/%Y"
 
-  - regex: ":jd\\((?P<num>.*)\\)"
+# Jira
+# ---------------------------------------------------------
+
+  # jc = jira payment-core
+  - regex: ":jc\\((?P<num>.*)\\)"
     replace: "[PYMNTS-{{num}}](https://jira.deliveryhero.com/browse/PYMNTS-{{num}})"
 
-  - regex: ":jdd\\((?P<ticket>.*)\\)"
+  # jx = jira payment-experience
+  - regex: ":jx\\((?P<num>.*)\\)"
+    replace: "[PYMNTXP-{{num}}](https://jira.deliveryhero.com/browse/PYMNTXP-{{num}})"
+
+  # jj = jira (any project)
+  - regex: ":jj\\((?P<ticket>.*)\\)"
     replace: "[{{ticket}}](https://jira.deliveryhero.com/browse/{{ticket}})"
 
-  - regex: ":ghpr\\((?P<num>.*)\\)"
+  # jira = jira ticket URL (to paste into browser)
+  - regex: ":jira\\((?P<ticket>.*)\\)"
+    replace: "https://jira.deliveryhero.com/browse/{{ticket}}"
+
+# Github
+# ---------------------------------------------------------
+
+  # pr = github pull request URL (to paste into browser)
+  - regex: ":pr\\((?P<num>.*)\\)"
     replace: "https://github.com/deliveryhero/pd-pablo-payment-gateway/pull/{{num}}"
 
-  - regex: ":tkt\\((?P<num>.*)\\)"
-    replace: "https://jira.deliveryhero.com/browse/PYMNTS-{{num}}"
-
-  #- regex: ":prmd\\((?P<num>.*)\\)"
+  #- regex: ":pr\\((?P<num>.*)\\)"
   #  replace: "[PR#{{num}}](https://github.com/deliveryhero/pd-pablo-payment-gateway/pull/{{num}})"
+
+  # prmd = PR link in markdown with PR title as display text
+  - regex: ":prmd\\((?P<num>.*)\\)"
+    replace: "[{{display}}](https://github.com/deliveryhero/pd-pablo-payment-gateway/pull/{{num}})"
+    vars:
+      - name: display
+        type: shell
+        params:
+          cmd: ~/workspace/dotfiles/scripts/get_pr_title.sh {{num}}
 
   - trigger: ":lnk"
     replace: "[link]({{output}})"
@@ -55,11 +78,3 @@ matches:
         type: shell
         params:
           cmd: echo $(pbpaste)
-
-  - regex: ":prmd\\((?P<num>.*)\\)"
-    replace: "[{{display}}](https://github.com/deliveryhero/pd-pablo-payment-gateway/pull/{{num}})"
-    vars:
-      - name: display
-        type: shell
-        params:
-          cmd: ~/workspace/dotfiles/scripts/get_pr_title.sh {{num}}
