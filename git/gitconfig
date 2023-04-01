@@ -10,6 +10,10 @@
         excludesFile = ~/.gitignore
         pager =  "git-split-diffs --color | less -RFX"
 
+[user]
+    name = Siddhanta
+    email = siddhanta.c@gmail.com
+
 [pull]
 	rebase = true
 [push]
