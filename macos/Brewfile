@@ -23,6 +23,7 @@ brew "yarn"
 brew "zsh"
 brew "sd"
 brew "starship"
+brew "bat"
 
 cask "font-fira-code-nerd-font"
 cask "font-hack-nerd-font"
