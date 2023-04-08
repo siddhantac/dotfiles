@@ -24,6 +24,7 @@ brew "zsh"
 brew "sd"
 brew "starship"
 brew "bat"
+brew "the_silver_searcher"
 
 cask "font-fira-code-nerd-font"
 cask "font-hack-nerd-font"
