@@ -19,7 +19,7 @@ format = "[$symbol($version )]($style)"
 symbol = " "
 
 [directory]
-style = "blue"
+#style = "red"
 read_only = " "
 truncation_length = 1
 truncate_to_repo = false
