@@ -21,6 +21,7 @@ antigen bundle z
 antigen bundle git
 antigen bundle fzf
 antigen bundle docker
+antigen bundle jeffreytse/zsh-vi-mode
 antigen bundle zsh-users/zsh-syntax-highlighting 
 antigen bundle zsh-users/zsh-autosuggestions 
 
