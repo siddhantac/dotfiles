@@ -58,6 +58,7 @@ require('packer').startup({function(use)
     -- appearance
     use 'shaunsingh/nord.nvim'
     use 'rose-pine/neovim'
+    use { "catppuccin/nvim", as = "catppuccin" }
     use {
       'nvim-lualine/lualine.nvim',
       requires = { 'kyazdani42/nvim-web-devicons', opt = true },
