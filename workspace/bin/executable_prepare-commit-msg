@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# Appends the branch name to the commit message if it follows a certain pattern
+
+COMMIT_MSG_FILE=$1
+
+branch=$(git rev-parse --abbrev-ref HEAD)
+if [[ "$branch" =~ ^[PYMNTSWLT-][0-9]* ]]; then
+    msg=$(cat $COMMIT_MSG_FILE)
+    echo "$branch" > "$COMMIT_MSG_FILE"
+    echo "$msg" >> "$COMMIT_MSG_FILE"
+fi
