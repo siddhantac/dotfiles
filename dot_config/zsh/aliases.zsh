@@ -1,3 +1,5 @@
+alias today='date +%Y-%m-%d'
+
 # list files and dirs
 alias ls='exa --icons'
 alias ll='ls -lh'
