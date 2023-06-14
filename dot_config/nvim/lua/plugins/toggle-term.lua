@@ -1,5 +1,5 @@
 require("toggleterm").setup{
-    open_mapping = [[<c-\>]],
+    open_mapping = [[<c-g>]],
     terminal_mapping = true,
     direction = 'float',
     float_opts = {

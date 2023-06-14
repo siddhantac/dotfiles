@@ -49,7 +49,7 @@ require ('which-key').register(
           l = {"<cmd>Dispatch git pull<CR>", "Pull"},
           y = {"<cmd>!git pull --all -p<CR>", "Sync"},
 
-          p = {"<cmd>Dispatch git push<CR>", "Push"},
+          p = {"<cmd>Git push<CR>", "Push"},
           n = {"<cmd>Dispatch git push --no-verify<CR>", "Push without verify"},
 
           s = {"<cmd>!git status --short<CR>", "Status"},
