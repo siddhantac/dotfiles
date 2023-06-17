@@ -32,6 +32,7 @@ require ('which-key').register(
           f = {"<cmd>Telescope buffers<CR>", "Find"},
           c = {"<cmd>close<CR>", "Close"},
           d = {"<cmd>bd<CR>", "Delete"},
+          D = {"<cmd>bufdo bd<CR>", "Delete all"},
           m = {"<cmd>MaximizerToggle<CR>", "Maximize (toggle)"},
       },
 
@@ -42,18 +43,21 @@ require ('which-key').register(
 
       g = {
           name = "Git",
-          g = {"<cmd>Git<CR>", "Open vim-fugitive"},
-          c = {"<cmd>Git commit<CR>", "Commit"},
-          a = {"<cmd>Git add -A|Git commit<CR>", "Add and commit"},
+          g = {"<cmd>Git<CR>", "vim-fugitive"},
+          c = {"<cmd>Git commit<CR>", "commit"},
+          a = {"<cmd>Git add -A|Git commit<CR>", "add + commit"},
 
-          l = {"<cmd>Dispatch git pull<CR>", "Pull"},
-          y = {"<cmd>!git pull --all -p<CR>", "Sync"},
+          l = {"<cmd>Dispatch git pull<CR>", "pull"},
+          y = {"<cmd>!git pull --all -p<CR>", "sync"},
 
-          p = {"<cmd>Git push<CR>", "Push"},
-          n = {"<cmd>Dispatch git push --no-verify<CR>", "Push without verify"},
+          p = {"<cmd>Git push<CR>", "push"},
+          n = {"<cmd>Dispatch git push --no-verify<CR>", "push without verify"},
+          m = {"<cmd>Git push --no-verify<CR>", "push without verify2"},
 
-          s = {"<cmd>!git status --short<CR>", "Status"},
-          o = {"<cmd>GBrowse<CR>", "Open in GitHub (browser)"}, -- uses tpope/vim-rhubarb
+          s = {"<cmd>!git status --short<CR>", "status"},
+          o = {"<cmd>GBrowse<CR>", "open github (browser)"}, -- uses tpope/vim-rhubarb
+
+          x = {"<cmd>Git add -A|Git commit|Git push<CR>", "add + commit + push"},
       },
 
       d = {
