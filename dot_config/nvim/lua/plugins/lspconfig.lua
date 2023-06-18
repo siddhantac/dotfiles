@@ -1,21 +1,16 @@
 local spec = {
-        'williamboman/mason-lspconfig.nvim',
         'neovim/nvim-lspconfig', -- Configurations for Nvim LSP
-        name = 'mason.nvim',
+        name = "lspconfig",
+        event = { "BufReadPre", "BufNewFile" },
+        dependencies = {
+            'hrsh7th/cmp-nvim-lsp', -- LSP source for nvim-cmp
+        },
 }
 
 function spec:config()
-    -- -- import lspconfig plugin safely
-    local lspconfig_status, lspconfig = pcall(require, "lspconfig")
-    if not lspconfig_status then
-      return
-    end
+    lspconfig = require("lspconfig")
 
-    -- import cmp-nvim-lsp plugin safely
-    local cmp_nvim_lsp_status, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-    if not cmp_nvim_lsp_status then
-      return
-    end
+    cmp_nvim_lsp = require("cmp_nvim_lsp")
 
     -- lspconfig setup
     -- enable keybinds only for when lsp server available
