@@ -5,7 +5,7 @@ vim.g.mapleader = ' '
 vim.opt.encoding = "utf8"
 
 vim.opt.number = true
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 vim.opt.numberwidth = 5
 
 vim.opt.splitright = true
