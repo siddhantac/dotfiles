@@ -9,7 +9,6 @@ return {
     'rcarriga/nvim-notify',
     'jiangmiao/auto-pairs',
     'szw/vim-maximizer',
-    'numToStr/Comment.nvim',
 
     "onsails/lspkind.nvim", -- vs-code like icons for autocompletion
 }

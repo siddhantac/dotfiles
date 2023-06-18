@@ -3,12 +3,14 @@ local spec = {
     name = "nvim-test",
     dependencies = {
         "folke/which-key.nvim",
+        "nvim-treesitter/nvim-treesitter",
     },
+    cmd = {"TestNearest"},
 }
 
 function spec:config()
     require('nvim-test').setup({
-        term = "toggleterm",
+        term = "nvterm",
         termOpts = {
             direction = "horizontal",
         }
@@ -21,21 +23,6 @@ function spec:config()
             DH_SPEC_FILE = '/Users/s.c/workspace/deliveryhero/pd-pablo-payment-gateway/deployments/development/spec_local.yaml',
         },
     }
-
-    require ('which-key').register(
-      {
-          t = {
-              name = "Test",
-              n = {"<cmd>TestNearest<cr>", "run test nearest to cursor"},
-              f = {"<cmd>TestFile<cr>", "run test file"},
-              s = {"<cmd>TestSuite<cr>", "run entire test suite"},
-              t = {"<cmd>TestLast<cr>", "run the last test"},
-              -- e = { "<cmd>OpenGoTestFile<cr>", "open file"},
-              -- v = { "<cmd>OpenGoTestFileVSplit<cr>", "open file in vert split"},
-          }
-        },
-        { prefix = "<leader>" }
-    )
 end
 
 return spec
