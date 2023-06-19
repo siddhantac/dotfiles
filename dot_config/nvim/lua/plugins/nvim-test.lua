@@ -10,7 +10,7 @@ local spec = {
 
 function spec:config()
     require('nvim-test').setup({
-        term = "nvterm",
+        -- term = "nvterm",
         termOpts = {
             direction = "horizontal",
         }

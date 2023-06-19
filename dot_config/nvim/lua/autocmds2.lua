@@ -22,21 +22,56 @@ api.nvim_create_autocmd(
     { pattern = "*", command = "silent! wa" }
 )
 
-local relativenumber = api.nvim_create_augroup("NumberToggle", { clear = true })
+-- Show relative numbers only for the active buffer
+local linenumtoggle = api.nvim_create_augroup("LineNumberToggle", { clear = true })
 api.nvim_create_autocmd("BufLeave",
-    { pattern = '*',
-    callback = function()
+    {
+        pattern = '*',
+        callback = function()
             vim.cmd('set norelativenumber')
         end,
-        group = relativenumber,
+        group = linenumtoggle,
     }
 )
-
-api.nvim_create_autocmd('BufEnter',
-    {  pattern = '*',
+api.nvim_create_autocmd("BufEnter",
+    {
+        pattern = '*',
         callback = function()
             vim.cmd('set relativenumber')
         end,
-        group = relativenumber,
+        group = linenumtoggle,
     }
 )
+
+-- Auto highlight
+local autoHighlight = api.nvim_create_augroup("auto_highlight", { clear = true })
+api.nvim_create_autocmd("CursorHold", {
+    pattern = "*",
+    callback = vim.lsp.buf.document_highlight,
+    group = autoHighlight,
+})
+api.nvim_create_autocmd("CursorHold", {
+    pattern = "*",
+    callback = vim.lsp.buf.clear_references,
+    group = autoHighlight,
+})
+
+-- Organise imports
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = '*.go',
+  callback = function()
+    vim.lsp.buf.code_action({ context = { only = { 'source.organizeImports' } }, apply = true })
+  end
+})
+
+-- NOT WORKING
+-- session (need to install mini)
+-- au.VimLeave = { '*', MiniSessionWrite}
+
+-- Format code before bufwrite
+api.nvim_create_autocmd("BufWritePre", {
+    pattern = { "*.go", "*.json" },
+    callback = function()
+       vim.lsp.buf.format()
+    end,
+})

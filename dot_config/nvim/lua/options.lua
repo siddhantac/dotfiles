@@ -3,6 +3,7 @@ HOME = os.getenv("HOME")
 -- Custom settings
 vim.g.mapleader = ' '
 vim.opt.encoding = "utf8"
+vim.opt.updatetime = 500 -- affects CursorHold time (to highlight a text object)
 
 vim.opt.number = true
 vim.opt.relativenumber = true

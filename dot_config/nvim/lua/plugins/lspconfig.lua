@@ -57,9 +57,9 @@ function spec:config()
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end
 
-    lspconfig["gopls"].setup {
-    -- on_attach = my_custom_on_attach,
-    capabilities = capabilities,
+    lspconfig.gopls.setup {
+        -- on_attach = my_custom_on_attach,
+        capabilities = capabilities,
     }
 
     -- configure lua server (with special settings)
