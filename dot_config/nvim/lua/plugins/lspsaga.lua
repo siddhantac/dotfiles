@@ -1,6 +1,7 @@
 local spec = {
     "glepnir/lspsaga.nvim",
       name = 'lspsaga.nvim',
+      event = "LspAttach",
       dependencies = {
         'kyazdani42/nvim-web-devicons',
       },

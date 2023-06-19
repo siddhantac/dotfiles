@@ -11,7 +11,6 @@ function spec:config()
       defaults = {
         -- Default configuration for telescope goes here:
         -- config_key = value,layout_config = {
-        -- layout_strategy = 'vertical',
           -- other layout configuration here
         -- path_display = "shorten",
         mappings = {
@@ -33,10 +32,13 @@ function spec:config()
         -- }
         -- Now the picker_config_key will be applied every time you call this
         -- builtin picker
-        find_files = {
-            --   theme = "dropdown",
-            hidden = true,
-        },
+            lsp_references = {
+                theme = "dropdown",
+            },
+            find_files = {
+                theme = "dropdown",
+                hidden = true,
+            },
       },
       extensions = {
         -- Your extension configuration goes here:

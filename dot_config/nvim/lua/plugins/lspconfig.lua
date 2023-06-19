@@ -8,9 +8,8 @@ local spec = {
 }
 
 function spec:config()
-    lspconfig = require("lspconfig")
-
-    cmp_nvim_lsp = require("cmp_nvim_lsp")
+    local lspconfig = require("lspconfig")
+    local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
     -- lspconfig setup
     -- enable keybinds only for when lsp server available
@@ -28,6 +27,7 @@ function spec:config()
                 I = {"<cmd>Telescope lsp_implementations<cr>", "Implementation"},
                 h = {vim.lsp.buf.hover, "Hover"},
                 y = {vim.lsp.buf.type_definition, "Go to type def"},
+                x = {vim.lsp.buf.formatting, "Format"},
                 D = {vim.lsp.buf.definition, "Go to def"},
                 r = {vim.lsp.buf.references, "References in loc list"},
                 R = {'<cmd>Telescope lsp_references<CR>', "References in Telescope"},
@@ -40,7 +40,7 @@ function spec:config()
                 n = {"<cmd>Lspsaga rename<CR>", "Rename"},
                 f = {"<cmd>Lspsaga lsp_finder<CR>", "Finder"},
                 a = {"<cmd>Lspsaga code_action<CR>", "Code action"},
-                o = {"<cmd>LSoutlineToggle<CR>", "Show outline"},
+                o = {"<cmd>Lspsaga outline<CR>", "Show outline"},
             }
           },
           { prefix = "<leader>" }
@@ -51,7 +51,7 @@ function spec:config()
     local capabilities = cmp_nvim_lsp.default_capabilities()
     -- Change the Diagnostic symbols in the sign column (gutter)
     -- (not in youtube nvim video)
-    local signs = { Error = " ", Warn = " ", Hint = "ﴞ ", Info = " " }
+    local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
     for type, icon in pairs(signs) do
       local hl = "DiagnosticSign" .. type
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
@@ -83,9 +83,18 @@ function spec:config()
       },
     })
 
-    lspconfig["yamlls"].setup {}
-    lspconfig["pyright"].setup {}
-    lspconfig["tsserver"].setup {}
+    lspconfig.yamlls.setup {}
+    lspconfig.pyright.setup {}
+    lspconfig.tsserver.setup {}
+    lspconfig.jsonls.setup {
+      commands = {
+        Format = {
+          function()
+            vim.lsp.buf.range_formatting({},{0,0},{vim.fn.line("$"),0})
+          end
+        }
+      }
+}
 end
 
 return spec
