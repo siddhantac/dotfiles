@@ -32,6 +32,9 @@ function spec:config()
         -- }
         -- Now the picker_config_key will be applied every time you call this
         -- builtin picker
+            lsp_document_symbols = {
+                theme = "dropdown",
+            },
             lsp_references = {
                 theme = "dropdown",
             },
