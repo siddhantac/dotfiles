@@ -87,8 +87,8 @@ function spec:config()
                 f = { "<cmd>TestFile<cr>", "run test file" },
                 s = { "<cmd>TestSuite<cr>", "run entire test suite" },
                 t = { "<cmd>TestLast<cr>", "run the last test" },
-                -- e = { "<cmd>OpenGoTestFile<cr>", "open file"},
-                -- v = { "<cmd>OpenGoTestFileVSplit<cr>", "open file in vert split"},
+                e = { "<cmd>Other<cr>", "open test file"},
+                v = { "<cmd>OtherVSplit<cr>", "open test file in vert split"},
             },
 
             e = { "<cmd>NvimTreeFindFileToggle<CR>", "File Explorer" },
