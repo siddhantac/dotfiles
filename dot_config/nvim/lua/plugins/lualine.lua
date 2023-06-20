@@ -1,7 +1,7 @@
 local spec = {
     'nvim-lualine/lualine.nvim',
     name = "lualine.nvim",
-    dependencies = { 
+    dependencies = {
         'kyazdani42/nvim-web-devicons'
     },
 }
