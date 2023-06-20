@@ -70,8 +70,6 @@ function spec:config()
 
             d = {
                 name = "Diagnostics",
-                -- n = {"<cmd>lua vim.diagnostic.goto_next()<CR>", "Next"},
-                -- p = {"<cmd>lua vim.diagnostic.goto_prev()<CR>", "Prev"},
                 f = { "<cmd>Telescope diagnostics<CR>", "Open in Telescope" },
                 L = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Open in location list" },
 
