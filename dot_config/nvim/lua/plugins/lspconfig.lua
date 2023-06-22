@@ -27,7 +27,7 @@ function spec:config()
                 I = {"<cmd>Telescope lsp_implementations<cr>", "Implementation"},
                 h = {vim.lsp.buf.hover, "Hover"},
                 y = {vim.lsp.buf.type_definition, "Go to type def"},
-                x = {vim.lsp.buf.formatting, "Format"},
+                x = {vim.lsp.buf.format, "Format"},
                 D = {vim.lsp.buf.definition, "Go to def"},
                 r = {vim.lsp.buf.references, "References in loc list"},
                 R = {'<cmd>Telescope lsp_references<CR>', "References in Telescope"},
@@ -65,7 +65,7 @@ function spec:config()
     -- configure lua server (with special settings)
     lspconfig["lua_ls"].setup({
       capabilities = capabilities,
-      on_attach = on_attach,
+      -- on_attach = on_attach,
       settings = { -- custom settings for lua
         Lua = {
           -- make the language server recognize "vim" global
@@ -87,6 +87,7 @@ function spec:config()
     lspconfig.pyright.setup {}
     lspconfig.tsserver.setup {}
     lspconfig.jsonls.setup {
+      capabilities = capabilities,
       commands = {
         Format = {
           function()

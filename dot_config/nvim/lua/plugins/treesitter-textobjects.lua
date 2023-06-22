@@ -4,6 +4,7 @@ local spec = {
     dependencies = {
         'nvim-treesitter/nvim-treesitter',
     },
+    event = { "BufReadPre", "BufNewFile" },
 }
 
 function spec:config()

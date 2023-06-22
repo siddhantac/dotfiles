@@ -4,6 +4,7 @@ local spec = {
       dependencies = {
         'kyazdani42/nvim-web-devicons', -- file icons
       },
+        cmd = { "NvimTreeOpen", "NvimTreeToggle", "NvimTreeFindFileToggle" },
 }
 
 function spec:config()
