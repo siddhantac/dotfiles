@@ -26,6 +26,7 @@ return {
     },
     'christoomey/vim-tmux-navigator',
     "onsails/lspkind.nvim", -- vs-code like icons for autocompletion
+    'kyazdani42/nvim-web-devicons',
 
     -- 'tpope/vim-dispatch'
 }
