@@ -1,0 +1,115 @@
+-- local au = require('au')
+-- for more examples, see:
+--    https://gist.github.com/numToStr/1ab83dd2e919de9235f9f774ef8076da
+
+-- au.group('PackerGroup', {
+--     { 'BufWritePost', 'plugins.lua', 'source <afile> | PackerCompile' },
+-- })
+
+local api = vim.api
+
+-- Highlight on yank
+local yankGrp = api.nvim_create_augroup("YankHighlight", { clear = true })
+api.nvim_create_autocmd("TextYankPost", {
+  command = "silent! lua vim.highlight.on_yank()",
+  group = yankGrp,
+})
+
+-- Autosave only when there is something to save,
+-- always saving makes build watchers crazy
+api.nvim_create_autocmd(
+    "FocusLost",
+    { pattern = "*", command = "silent! wa" }
+)
+
+-- Show relative numbers only for the active buffer
+local linenumtoggle = api.nvim_create_augroup("LineNumberToggle", { clear = true })
+api.nvim_create_autocmd("BufLeave",
+    {
+        pattern = '*',
+        callback = function()
+            vim.cmd('set norelativenumber')
+        end,
+        group = linenumtoggle,
+    }
+)
+
+api.nvim_create_autocmd("BufEnter",
+    {
+        pattern = '*',
+        callback = function()
+            vim.cmd('set relativenumber')
+        end,
+        group = linenumtoggle,
+    }
+)
+
+-- Auto highlight
+-- local autoHighlight = api.nvim_create_augroup("auto_highlight", { clear = true })
+-- api.nvim_create_autocmd("CursorHold", {
+--     pattern = "*",
+--     callback = vim.lsp.buf.document_highlight,
+--     group = autoHighlight,
+-- })
+-- api.nvim_create_autocmd("CursorHold", {
+--     pattern = "*",
+--     callback = vim.lsp.buf.clear_references,
+--     group = autoHighlight,
+-- })
+
+-- Organise imports
+--     works, but the cursor flickers and there are 
+--     many error notifications that 'code action is not available'
+--     see the stuff below instead.
+-- vim.api.nvim_create_autocmd('BufWritePre', {
+--   pattern = '*.go',
+--   callback = function()
+--         vim.lsp.buf.code_action({
+--             context = {
+--                 only = {
+--                     'source.organizeImports'
+--                 }
+--             },
+--             apply = true,
+--         })
+--   end
+-- })
+
+-- following example solution from github issue:
+--   https://github.com/golang/tools/blob/master/gopls/doc/vim.md#neovim-imports
+function goimports(wait_ms)
+    local params = vim.lsp.util.make_range_params()
+    params.context = {only = {"source.organizeImports"}}
+    local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, wait_ms)
+    for _, res in pairs(result or {}) do
+      for _, r in pairs(res.result or {}) do
+        if r.edit then
+          vim.lsp.util.apply_workspace_edit(r.edit, "UTF-8")
+        else
+          vim.lsp.buf.execute_command(r.command)
+        end
+      end
+    end
+  end
+
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = '*.go',
+  callback = function()
+        vim.lsp.buf.format()
+        goimports(1000)
+  end
+})
+
+-- NOT WORKING
+-- session (need to install mini)
+-- au.VimLeave = { '*', MiniSessionWrite}
+
+-- Format code before bufwrite
+api.nvim_create_autocmd("BufWritePre", {
+    pattern = { "*.go" },
+    callback = function()
+       vim.lsp.buf.format()
+    end,
+})
+
+
