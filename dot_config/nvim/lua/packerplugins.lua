@@ -42,7 +42,7 @@ require('packer').startup({function(use)
     use 'jiangmiao/auto-pairs'
     use 'rcarriga/nvim-notify'
     use 'szw/vim-maximizer'
-    use 'ThePrimeagen/harpoon'
+    -- use 'ThePrimeagen/harpoon'
     use { 'echasnovski/mini.nvim', branch = 'stable' }
     use 'kyazdani42/nvim-web-devicons'
 
