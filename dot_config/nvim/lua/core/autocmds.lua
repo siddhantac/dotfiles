@@ -45,17 +45,17 @@ api.nvim_create_autocmd("BufEnter",
 )
 
 -- Auto highlight
-local autoHighlight = api.nvim_create_augroup("auto_highlight", { clear = true })
-api.nvim_create_autocmd("CursorHold", {
-    pattern = "*",
-    callback = vim.lsp.buf.document_highlight,
-    group = autoHighlight,
-})
-api.nvim_create_autocmd("CursorHold", {
-    pattern = "*",
-    callback = vim.lsp.buf.clear_references,
-    group = autoHighlight,
-})
+-- local autoHighlight = api.nvim_create_augroup("auto_highlight", { clear = true })
+-- api.nvim_create_autocmd("CursorHold", {
+--     pattern = "*",
+--     callback = vim.lsp.buf.document_highlight,
+--     group = autoHighlight,
+-- })
+-- api.nvim_create_autocmd("CursorHold", {
+--     pattern = "*",
+--     callback = vim.lsp.buf.clear_references,
+--     group = autoHighlight,
+-- })
 
 -- Organise imports
 --     works, but the cursor flickers and there are 
