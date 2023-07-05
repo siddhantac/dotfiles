@@ -32,6 +32,6 @@ return {
         'nvim-telescope/telescope-fzf-native.nvim',
         build = 'make',
     },
-
+    { 'echasnovski/mini.nvim', version = '*' },
     -- 'tpope/vim-dispatch'
 }

@@ -89,4 +89,11 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 
 -- NOT WORKING
 -- session (need to install mini)
--- au.VimLeave = { '*', MiniSessionWrite}
+vim.api.nvim_create_autocmd("VimLeave",
+    {
+    pattern = "*",
+    callback = function ()
+        MiniSessionWrite()
+    end,
+    }
+)
