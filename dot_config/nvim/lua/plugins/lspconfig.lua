@@ -60,29 +60,20 @@ function spec:config()
     local function no_hl_on_attach(client, bufnr)
         -- Find the clients capabilities
         local cap = client.resolved_capabilities
-        vim.notify("on_attach called")
-
-        local x = ""
-        vim.notify("debug1")
 
         -- Only highlight if compatible with the language
         if cap.document_highlight then
-            x = "setting up highlights"
+            vim.notify("setting up highlights")
             vim.cmd('augroup LspHighlight')
             vim.cmd('autocmd!')
             vim.cmd('autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()')
             vim.cmd('autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()')
             vim.cmd('augroup END')
-        else
-            x = "sorry no highlights"
         end
-
-        vim.notify(x)
-        vim.notify("debug2")
     end
 
     lspconfig.gopls.setup {
-        -- on_attach = my_custom_on_attach,
+        on_attach = no_hl_on_attach,
         capabilities = capabilities,
     }
 
@@ -99,13 +90,6 @@ function spec:config()
                 telemetry = {
                     enable = false,
                 },
-                --     workspace = {
-                --       -- make language server aware of runtime files
-                --       library = {
-                --         [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                --         [vim.fn.stdpath("config") .. "/lua"] = true,
-                --       },
-                --     },
             },
         },
     })

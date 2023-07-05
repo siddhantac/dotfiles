@@ -44,19 +44,6 @@ api.nvim_create_autocmd("BufEnter",
     }
 )
 
--- Auto highlight
--- local autoHighlight = api.nvim_create_augroup("auto_highlight", { clear = true })
--- api.nvim_create_autocmd("CursorHold", {
---     pattern = "*",
---     callback = vim.lsp.buf.document_highlight,
---     group = autoHighlight,
--- })
--- api.nvim_create_autocmd("CursorHold", {
---     pattern = "*",
---     callback = vim.lsp.buf.clear_references,
---     group = autoHighlight,
--- })
-
 -- Organise imports
 --     works, but the cursor flickers and there are 
 --     many error notifications that 'code action is not available'
@@ -77,7 +64,7 @@ api.nvim_create_autocmd("BufEnter",
 
 -- following example solution from github issue:
 --   https://github.com/golang/tools/blob/master/gopls/doc/vim.md#neovim-imports
-function goimports(wait_ms)
+local function goimports(wait_ms)
     local params = vim.lsp.util.make_range_params()
     params.context = {only = {"source.organizeImports"}}
     local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, wait_ms)
@@ -103,13 +90,3 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 -- NOT WORKING
 -- session (need to install mini)
 -- au.VimLeave = { '*', MiniSessionWrite}
-
--- Format code before bufwrite
-api.nvim_create_autocmd("BufWritePre", {
-    pattern = { "*.go" },
-    callback = function()
-       vim.lsp.buf.format()
-    end,
-})
-
-
