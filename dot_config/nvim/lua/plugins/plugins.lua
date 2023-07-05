@@ -28,5 +28,10 @@ return {
     "onsails/lspkind.nvim", -- vs-code like icons for autocompletion
     'kyazdani42/nvim-web-devicons',
 
+    {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        build = 'make',
+    },
+
     -- 'tpope/vim-dispatch'
 }
