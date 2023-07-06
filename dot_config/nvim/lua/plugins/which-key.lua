@@ -58,7 +58,18 @@ function spec:config()
                 l = { "<cmd>Dispatch git pull<CR>", "pull" },
                 y = { "<cmd>!git pull --all -p<CR>", "sync" },
 
-                p = { "<cmd>Git push<CR>", "push" },
+                p = {
+                    function()
+                        vim.notify("pushing...", "info", {
+                            render = "compact",
+                            title = "fugitive",
+                            timeout = 150,
+                            on_close = function()
+                                vim.cmd("Git push")
+                            end
+                        })
+                    end,
+                    "push" },
                 n = { "<cmd>Dispatch git push --no-verify<CR>", "push without verify" },
                 m = { "<cmd>Git push --no-verify<CR>", "push without verify2" },
 
@@ -85,8 +96,8 @@ function spec:config()
                 f = { "<cmd>TestFile<cr>", "run test file" },
                 s = { "<cmd>TestSuite<cr>", "run entire test suite" },
                 t = { "<cmd>TestLast<cr>", "run the last test" },
-                e = { "<cmd>Other<cr>", "open test file"},
-                v = { "<cmd>OtherVSplit<cr>", "open test file in vert split"},
+                e = { "<cmd>Other<cr>", "open test file" },
+                v = { "<cmd>OtherVSplit<cr>", "open test file in vert split" },
             },
 
             e = { "<cmd>NvimTreeFindFileToggle<CR>", "File Explorer" },

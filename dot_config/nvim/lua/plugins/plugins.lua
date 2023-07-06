@@ -15,7 +15,14 @@ return {
     },
     -- 'tpope/vim-unimpaired'
 
-    'rcarriga/nvim-notify',
+    {
+        'rcarriga/nvim-notify',
+        config = function ()
+            require("notify").setup({
+                stages = "fade",
+            })
+        end,
+    },
     {
         'jiangmiao/auto-pairs',
         event = {"InsertEnter"},
