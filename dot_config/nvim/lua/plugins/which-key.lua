@@ -70,8 +70,8 @@ function spec:config()
                         })
                     end,
                     "push" },
-                n = { "<cmd>Dispatch git push --no-verify<CR>", "push without verify" },
-                m = { "<cmd>Git push --no-verify<CR>", "push without verify2" },
+                n = { "<cmd>Dispatch git push --no-verify<CR>", "push --no-verify" },
+                m = { "<cmd>Git push --no-verify<CR>", "push --no-verify (2)" },
 
                 s = { "<cmd>!git status --short<CR>", "status" },
                 o = { "<cmd>GBrowse<CR>", "open github (browser)" }, -- uses tpope/vim-rhubarb
