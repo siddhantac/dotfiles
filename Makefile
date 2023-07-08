@@ -11,6 +11,7 @@ build:
 	[ -f ~/.gitconfig ] || ln -s $(PWD)/gitconfig ~/.gitconfig
 	[ -f ~/.zshrc ] || ln -s $(PWD)/zshrc ~/.zshrc
 	[ -d ~/.config/zsh ] || ln -s $(PWD)/zsh ~/.config/
+	[ -d ~/.config/kitty ] || ln -s $(PWD)/kitty ~/.config/
 
 tmux:
 	ln -s $(PWD)/tmux ~/.config/
@@ -21,5 +22,6 @@ clean:
 	rm -f ~/.gitconfig
 	rm -f ~/.zshrc
 	rm -f ~/.config/zsh
+	rm -f ~/.config/kitty
 
 .PHONY: all build clean
