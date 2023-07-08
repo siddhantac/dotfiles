@@ -5,9 +5,10 @@ build:
 
 	# `-f` checks if file exists
 	# `-d` checks if dir exists
-	#
+
 	[ -f ~/.tmux.conf ] || ln -s $(PWD)/tmux.conf ~/.tmux.conf
-	[ -f ~/.config/tmux ] || ln -s $(PWD)/tmux ~/.config/
+	[ -d ~/.config/tmux ] || ln -s $(PWD)/tmux ~/.config/
+	[ -f ~/.gitconfig ] || ln -s $(PWD)/gitconfig ~/.gitconfig
 
 tmux:
 	ln -s $(PWD)/tmux ~/.config/
@@ -15,5 +16,6 @@ tmux:
 clean:
 	rm -f ~/.tmux.conf
 	rm -f ~/.config/tmux
+	rm -f ~/.gitconfig
 
 .PHONY: all build clean
