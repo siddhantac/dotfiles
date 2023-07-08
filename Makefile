@@ -13,6 +13,7 @@ build:
 	[ -d ~/.config/zsh ] || ln -s $(PWD)/zsh ~/.config/
 	[ -d ~/.config/kitty ] || ln -s $(PWD)/kitty ~/.config/
 	[ -d ~/.config/nvim ] || ln -s $(PWD)/nvim ~/.config/
+	[ -f ~/.config/starship.toml ] || ln -s $(PWD)/starship.toml ~/.config/
 
 tmux:
 	ln -s $(PWD)/tmux ~/.config/
@@ -25,5 +26,6 @@ clean:
 	rm -f ~/.config/zsh
 	rm -f ~/.config/kitty
 	rm -f ~/.config/nvim
+	rm -f ~/.config/starship.toml
 
 .PHONY: all build clean
