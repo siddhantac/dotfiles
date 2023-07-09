@@ -1,0 +1,88 @@
+# espanso match file
+
+# For a complete introduction, visit the official docs at: https://espanso.org/docs/
+
+# You can use this file to define the base matches (aka snippets)
+# that will be available in every application when using espanso.
+
+# Matches are substitution rules: when you type the "trigger" string
+# it gets replaced by the "replace" string.
+matches:
+  # Simple text replacement
+  - trigger: ":espanso"
+    replace: "Hi there!"
+
+  # NOTE: espanso uses YAML to define matches, so pay attention to the indentation!
+
+  # But matches can also be dynamic:
+
+  # Print today's date
+  - trigger: ":td"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%Y-%m-%d"
+
+# Jira
+# ---------------------------------------------------------
+
+  # jw = jira wallet
+  - regex: ":jw\\((?P<num>.*)\\)"
+    replace: "[WLT-{{num}}](https://jira.deliveryhero.com/browse/WLT-{{num}})"
+
+  # jc = jira payment-core
+  - regex: ":jc\\((?P<num>.*)\\)"
+    replace: "[PYMNTS-{{num}}](https://jira.deliveryhero.com/browse/PYMNTS-{{num}})"
+
+  # jx = jira payment-experience
+  - regex: ":jx\\((?P<num>.*)\\)"
+    replace: "[PYMNTXP-{{num}}](https://jira.deliveryhero.com/browse/PYMNTXP-{{num}})"
+
+  # jj = jira (any project)
+  - regex: ":jj\\((?P<ticket>.*)\\)"
+    replace: "[{{ticket}}](https://jira.deliveryhero.com/browse/{{ticket}})"
+
+  # jira = jira ticket URL (to paste into browser)
+  - regex: ":jira\\((?P<ticket>.*)\\)"
+    replace: "https://jira.deliveryhero.com/browse/{{ticket}}"
+
+  # wlt = wallet tickets
+  - regex: ":wlt\\((?P<num>.*)\\)"
+    replace: "https://jira.deliveryhero.com/browse/WLT-{{num}}"
+
+# Github
+# ---------------------------------------------------------
+
+  # pr = github pull request URL (to paste into browser)
+  - regex: ":pr\\((?P<num>.*)\\)"
+    replace: "https://github.com/deliveryhero/pd-pablo-payment-gateway/pull/{{num}}"
+
+  #- regex: ":pr\\((?P<num>.*)\\)"
+  #  replace: "[PR#{{num}}](https://github.com/deliveryhero/pd-pablo-payment-gateway/pull/{{num}})"
+
+  # prmd = PR link in markdown with PR title as display text
+  - regex: ":prmd\\((?P<num>.*)\\)"
+    replace: "[{{display}}](https://github.com/deliveryhero/pd-pablo-payment-gateway/pull/{{num}})"
+    vars:
+      - name: display
+        type: shell
+        params:
+          cmd: ~/workspace/dotfiles/scripts/get_pr_title.sh {{num}}
+
+  - trigger: ":lnk"
+    replace: "[link]({{output}})"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: echo $(pbpaste)
+
+  - trigger: ":slk"
+    replace: "[slack]({{output}})"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: echo $(pbpaste)
