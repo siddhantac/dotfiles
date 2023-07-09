@@ -14,8 +14,8 @@ build:
 	[ -d ~/.config/nvim ] || ln -s $(PWD)/nvim ~/.config/
 	[ -f ~/.config/starship.toml ] || ln -s $(PWD)/starship.toml ~/.config/
 
-tmux:
-	ln -s $(PWD)/tmux ~/.config/
+personal:
+	[ -f ~/.config/zsh/aliases.local ] || ln -s $(PWD)/zsh/aliases.serenity ~/.config/zsh/aliases.local
 
 clean:
 	rm -f ~/.config/tmux
