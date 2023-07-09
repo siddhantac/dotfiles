@@ -13,6 +13,7 @@ build:
 	[ -d ~/.config/kitty ] || ln -s $(PWD)/kitty ~/.config/
 	[ -d ~/.config/nvim ] || ln -s $(PWD)/nvim ~/.config/
 	[ -f ~/.config/starship.toml ] || ln -s $(PWD)/starship.toml ~/.config/
+	[ -f ~/Library/Application\ Support/espanso/match/base.yml ] || ln -s $(PWD)/espanso_base.yml ~/Library/Application\ Support/espanso/match/base.yml
 
 personal:
 	[ -f ~/.config/zsh/aliases.local ] || ln -s $(PWD)/zsh/aliases.serenity ~/.config/zsh/aliases.local
@@ -25,5 +26,6 @@ clean:
 	rm -f ~/.config/kitty
 	rm -f ~/.config/nvim
 	rm -f ~/.config/starship.toml
+	rm -f ~/Library/Application\ Support/espanso/match/base.yml
 
 .PHONY: all build clean
