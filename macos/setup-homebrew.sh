@@ -19,7 +19,7 @@ fi
 brew update
 brew upgrade
 brew install mas
-brew bundle install --file=macos/Brewfile
+brew bundle install --file=Brewfile
 brew cleanup
 
 echo "All packages installed."
