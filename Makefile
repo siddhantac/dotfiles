@@ -7,6 +7,7 @@ build:
 	# `-d` checks if dir exists
 
 	[ -d ~/.config/tmux ] || ln -s $(PWD)/tmux ~/.config/
+	[ -f ~/.tmux.conf ] || ln -s $(PWD)/tmux.conf ~/.tmux.conf
 	[ -f ~/.gitconfig ] || ln -s $(PWD)/gitconfig ~/.gitconfig
 	[ -f ~/.zshrc ] || ln -s $(PWD)/zshrc ~/.zshrc
 	[ -d ~/.config/zsh ] || ln -s $(PWD)/zsh ~/.config/
@@ -17,6 +18,9 @@ build:
 
 personal:
 	[ -f ~/.config/zsh/aliases.local ] || ln -s $(PWD)/zsh/aliases.serenity ~/.config/zsh/aliases.local
+
+tpm:
+	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 clean:
 	rm -f ~/.config/tmux
