@@ -28,7 +28,6 @@ return {
     },
     {
         'jiangmiao/auto-pairs',
-        event = {"InsertEnter"},
     },
     {
         'szw/vim-maximizer',
