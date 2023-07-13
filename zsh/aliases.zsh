@@ -31,7 +31,9 @@ alias gb='git branch'
 alias gbl=pretty_git_branch
 alias gbd='git branch -d'
 alias gbD='git branch -D'
-alias gco='git checkout'
+# alias gco='git checkout'
+alias co='git branch | cut -c 3- | gum filter | xargs git checkout' # prettier branch checkout
+alias nb='git checkout -b'                                          # new branch
 alias gd='git diff'
 alias gds='git diff --staged'
 alias gpl='git pull'
@@ -62,11 +64,15 @@ gmerge() {
 
 # gsync: pull in latest changes on master/main branch
 gsync() {
-    echo 'checking out the {{ Color "212" "" "main/master" }} branch and pulling latest changes...' | gum format -t template
+    branch=$(git rev-parse --abbrev-ref HEAD) && \
+    echo 'saved branch: {{ Color "212" "" "'$branch'" }}' | gum format -t template
+    echo 'checking out: {{ Color "212" "" "main/master" }} branch and pulling latest changes...' | gum format -t template
     git checkout master
     output=$?
     [ $output -ne 0 ] && git checkout main
     git pull --all -p
+    echo 'checking out: {{ Color "212" "" "'$branch'" }}' | gum format -t template
+    git checkout $branch
 }
 
 # suffix aliases (just typing the json filename in terminal will open it in vim)
