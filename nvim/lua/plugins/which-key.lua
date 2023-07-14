@@ -63,7 +63,7 @@ function spec:config()
                         vim.notify("pushing...", "info", {
                             render = "compact",
                             title = "fugitive",
-                            timeout = 150,
+                            timeout = 500,
                             on_close = function()
                                 vim.cmd("Git push")
                             end
