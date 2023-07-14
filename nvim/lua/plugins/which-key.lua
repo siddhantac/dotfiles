@@ -53,7 +53,7 @@ function spec:config()
                 c = { "<cmd>Git commit<CR>", "commit" },
                 a = { "<cmd>Git add -A|Git commit<CR>", "add + commit" },
 
-                l = { "<cmd>Dispatch git pull<CR>", "pull" },
+                l = { "<cmd>Git pull<CR>", "pull" },
                 y = { "<cmd>!git pull --all -p<CR>", "sync" },
 
                 p = {
