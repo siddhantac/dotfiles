@@ -1,9 +1,9 @@
 local spec = {
-    'neovim/nvim-lspconfig',     -- Configurations for Nvim LSP
+    'neovim/nvim-lspconfig', -- Configurations for Nvim LSP
     name = "lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-        'hrsh7th/cmp-nvim-lsp',     -- LSP source for nvim-cmp
+        'hrsh7th/cmp-nvim-lsp', -- LSP source for nvim-cmp
     },
 }
 
@@ -56,17 +56,18 @@ function spec:config()
     end
 
     local function no_hl_on_attach(client, bufnr)
-        -- Find the clients capabilities
-        local cap = client.resolved_capabilities
-
         -- Only highlight if compatible with the language
-        if cap.document_highlight then
-            vim.notify("setting up highlights")
+        if client.server_capabilities.documentHighlightProvider then
             vim.cmd('augroup LspHighlight')
             vim.cmd('autocmd!')
             vim.cmd('autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()')
             vim.cmd('autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()')
             vim.cmd('augroup END')
+        else
+            vim.notify("highlights not available", "warn", {
+                title = "lsp",
+                render = "compact",
+            })
         end
     end
 
