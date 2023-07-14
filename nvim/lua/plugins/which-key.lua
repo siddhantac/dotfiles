@@ -16,15 +16,6 @@ function spec:config()
 
     whichkey.register(
         {
-            p = {
-                name = "Packer",
-                s = { "<cmd>PackerSync<cr>", "Sync" },
-                c = { "<cmd>PackerClean<cr>", "Clean" },
-                u = { "<cmd>PackerUpdate<cr>", "Update" },
-                t = { "<cmd>PackerStatus<cr>", "Status" },
-                i = { "<cmd>PackerInstall<cr>", "Install" },
-            },
-
             f = {
                 name = "Files",
                 f = { "<cmd>Telescope find_files<cr>", "Find files" },
