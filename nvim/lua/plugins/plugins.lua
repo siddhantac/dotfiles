@@ -10,7 +10,7 @@ return {
             'tpope/vim-fugitive',
         },
         lazy = true,
-        cmd = {"GBrowse"},
+        cmd = {"GBrowse", "Git", "G"},
     },
     {
         'tpope/vim-surround',
