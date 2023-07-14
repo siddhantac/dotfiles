@@ -86,3 +86,10 @@ matches:
         type: shell
         params:
           cmd: echo $(pbpaste)
+
+# General
+# ---------------------------------------------------------
+
+  # foodpanda email
+  - trigger: ":em"
+    replace: "siddhanta.c@foodpanda.com"
