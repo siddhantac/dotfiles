@@ -14,8 +14,15 @@ function spec:config()
         { prefix = "," }
     )
 
+    local nvterm = require("nvterm.terminal")
     whichkey.register(
         {
+            r = {
+                name = "Terminal",
+                f = { function() nvterm.toggle("float") end, "float" },
+                h = { function() nvterm.toggle("horizontal") end, "horizontal" },
+                v = { function() nvterm.toggle("vertical") end, "vertical" },
+            },
             f = {
                 name = "Files",
                 f = { "<cmd>Telescope find_files<cr>", "Find files" },
