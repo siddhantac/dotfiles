@@ -2,16 +2,8 @@ local spec = {
     "folke/which-key.nvim",
     name = "which-key.nvim",
 }
-local quickNotify = function(msg, cmd)
-    vim.notify(msg, "info", {
-        render = "compact",
-        title = "fugitive",
-        timeout = 500,
-        on_close = function()
-            vim.cmd(cmd)
-        end
-    })
-end
+
+local notify = require("core.quick-notify")
 
 function spec:config()
     local whichkey = require('which-key')
@@ -65,10 +57,10 @@ function spec:config()
                 c = { "<cmd>Git commit<CR>", "commit" },
                 a = { "<cmd>Git add -A|Git commit<CR>", "add + commit" },
 
-                l = { function() quickNotify("pulling...", "Git pull") end, "pull" },
+                l = { function() notify("pulling...", "Git pull") end, "pull" },
                 y = { "<cmd>!git pull --all -p<CR>", "sync" },
 
-                p = { function() quickNotify("pushing...", "Git push") end, "push" },
+                p = { function() notify("pushing...", "Git push") end, "push" },
                 n = { "<cmd>Dispatch git push --no-verify<CR>", "push --no-verify" },
                 m = { "<cmd>Git push --no-verify<CR>", "push --no-verify (2)" },
 
