@@ -21,26 +21,24 @@ function spec:config()
         {
             l = {
                 name = "LSP",
-                -- s = {vim.lsp.buf.signature_help, "Signature help"},
-                -- n = {vim.lsp.buf.rename, "Rename"},
-                i = { vim.lsp.buf.implementation, "Implementation" },
-                I = { "<cmd>Telescope lsp_implementations<cr>", "Implementation" },
+
                 h = { vim.lsp.buf.hover, "Hover" },
-                y = { vim.lsp.buf.type_definition, "Go to type def" },
                 x = { vim.lsp.buf.format, "Format" },
-                D = { vim.lsp.buf.definition, "Go to def" },
-                r = { vim.lsp.buf.references, "References in loc list" },
-                R = { '<cmd>Telescope lsp_references<CR>', "References in Telescope" },
+
+                m = { "<cmd>Telescope lsp_implementations<cr>", "Implementation" },
+                r = { '<cmd>Telescope lsp_references<CR>', "Refs in Telescope" },
                 s = { '<cmd>Telescope lsp_document_symbols<CR>', "Document symbols" },
                 S = { '<cmd>Telescope lsp_workspace_symbols<CR>', "Workspace symbols" },
                 l = { '<cmd>LspInfo<CR>', "LSP Info" },
 
-
-                d = { "<cmd>Lspsaga peek_definition<CR>", "Peek definition" },
+                d = { "<cmd>Lspsaga peek_definition<CR>", "Peek def" },
+                y = { "<cmd>Lspsaga peek_type_definition<CR>", "Peek type def" },
                 n = { "<cmd>Lspsaga rename<CR>", "Rename" },
                 f = { "<cmd>Lspsaga lsp_finder<CR>", "Finder" },
                 a = { "<cmd>Lspsaga code_action<CR>", "Code action" },
                 o = { "<cmd>Lspsaga outline<CR>", "Show outline" },
+                i = { "<cmd>Lspsaga incoming_calls<CR>", "Incoming calls" },
+                u = { "<cmd>Lspsaga outgoing_calls<CR>", "Outgoing calls" },
             }
         },
         { prefix = "<leader>" }
