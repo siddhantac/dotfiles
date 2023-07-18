@@ -35,10 +35,6 @@ vim.opt.hidden = true
 vim.opt.autoread = true
 vim.opt.swapfile = false
 
--- vim.cmd('colorscheme rose-pine')
-vim.cmd.colorscheme "catppuccin-mocha"
-vim.notify = require("notify")
-
 vim.opt.foldmethod = 'indent'
 vim.opt.foldlevel = 99
 vim.opt.hlsearch = false

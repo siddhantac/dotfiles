@@ -1,7 +1,8 @@
 require("core.options")
 require("core.mappings")
--- require("au")
-
+require("core.autocmds")
 require("core.lazy")
 
-require("core.autocmds") -- autocmds must come before options so that Nord bg color is set properly
+-- plugin specific options
+vim.cmd.colorscheme "catppuccin-mocha"
+vim.notify = require("notify")

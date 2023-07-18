@@ -27,7 +27,6 @@ function spec:config()
         "terraformls",
         "pyright",
         "dockerls",
-        "clangd",
         "jsonls",
       },
       -- auto-install configured servers (with lspconfig)
