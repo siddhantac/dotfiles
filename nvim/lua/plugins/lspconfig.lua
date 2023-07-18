@@ -55,7 +55,7 @@ function spec:config()
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end
 
-    local function no_hl_on_attach(client, bufnr)
+    local function on_attach(client, bufnr)
         -- Only highlight if compatible with the language
         if client.server_capabilities.documentHighlightProvider then
             vim.cmd('augroup LspHighlight')
@@ -72,14 +72,14 @@ function spec:config()
     end
 
     lspconfig.gopls.setup {
-        on_attach = no_hl_on_attach,
+        on_attach = on_attach,
         capabilities = capabilities,
     }
 
     -- configure lua server (with special settings)
     lspconfig["lua_ls"].setup({
         capabilities = capabilities,
-        on_attach = no_hl_on_attach,
+        on_attach = on_attach,
         settings = { -- custom settings for lua
             Lua = {
                 -- make the language server recognize "vim" global
@@ -94,13 +94,13 @@ function spec:config()
     })
 
     lspconfig.yamlls.setup({
-        on_attach = no_hl_on_attach
+        on_attach = on_attach
     })
     lspconfig.pyright.setup {}
     lspconfig.tsserver.setup {}
     lspconfig.jsonls.setup {
         capabilities = capabilities,
-        on_attach = no_hl_on_attach,
+        on_attach = on_attach,
         commands = {
             Format = {
                 function()
