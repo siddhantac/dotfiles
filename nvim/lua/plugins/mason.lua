@@ -8,7 +8,6 @@ local spec = {
     cmd = {
         "Mason", "MasonInstall", "MasonInstallAll", "MasonUninstall", "MasonUninstallAll", "MasonLog"
     },
-    event = { "VeryLazy" },
 }
 
 function spec:config()

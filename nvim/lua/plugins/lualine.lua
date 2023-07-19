@@ -1,16 +1,13 @@
-local spec = {
+return {
     'nvim-lualine/lualine.nvim',
     name = "lualine.nvim",
     dependencies = {
-        'kyazdani42/nvim-web-devicons'
+        'nvim-tree/nvim-web-devicons'
     },
+    config = function()
+        local lualine = require('lualine')
+        lualine.setup {
+            options = { theme = 'catppuccin' },
+        }
+    end
 }
-
-function spec:config()
-    local lualine = require('lualine')
-    lualine.setup {
-      options = { theme  = 'catppuccin' },
-    }
-end
-
-return spec

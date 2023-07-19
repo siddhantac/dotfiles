@@ -23,10 +23,13 @@ api.nvim_create_autocmd(
 )
 
 -- Show relative numbers only for the active buffer
+--  don't run the autocmd for telescopeprompt, 
+--  prevents the annoying 0 from showing next to the cursor in the prompt
+local ignoreFiletype = { 'TelescopePrompt' }
 local linenumtoggle = api.nvim_create_augroup("LineNumberToggle", { clear = true })
 api.nvim_create_autocmd("BufLeave",
     {
-        pattern = '*',
+        pattern = '* if index(ignoreFiletype, &ft) < 0',
         callback = function()
             vim.cmd('set norelativenumber')
         end,
@@ -36,7 +39,7 @@ api.nvim_create_autocmd("BufLeave",
 
 api.nvim_create_autocmd("BufEnter",
     {
-        pattern = '*',
+        pattern = '* if index(ignoreFiletype, &ft) < 0',
         callback = function()
             vim.cmd('set relativenumber')
         end,
@@ -86,14 +89,3 @@ vim.api.nvim_create_autocmd('BufWritePre', {
         goimports(1000)
   end
 })
-
--- NOT WORKING
--- session (need to install mini)
-vim.api.nvim_create_autocmd("VimLeave",
-    {
-    pattern = "*",
-    callback = function ()
-        MiniSessionWrite()
-    end,
-    }
-)

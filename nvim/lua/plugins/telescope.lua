@@ -7,10 +7,13 @@ local spec = {
 }
 
 function spec:config()
-    local actions = require "telescope.actions"
+    local actions  = require "telescope.actions"
+    local get_icon = require("utils").get_icon
 
     require('telescope').setup {
         defaults = {
+            prompt_prefix = get_icon("Search"),
+            selection_caret = get_icon("Selected"),
             path_display = { "truncate" },
             sorting_strategy = "ascending",
             layout_config = {
@@ -33,6 +36,9 @@ function spec:config()
             },
         },
         extensions = {
+            ["ui-select"] = {
+                require("telescope.themes").get_dropdown {}
+            },
             fzf = {
                 fuzzy = true,                   -- false will only do exact matching
                 override_generic_sorter = true, -- override the generic sorter
@@ -44,6 +50,7 @@ function spec:config()
     }
 
     require('telescope').load_extension('fzf')
+    require('telescope').load_extension('ui-select')
 end
 
 return spec

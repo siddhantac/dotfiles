@@ -40,13 +40,3 @@ vim.opt.foldlevel = 99
 vim.opt.hlsearch = false
 -- vim.opt.laststatus = 2
 -- vim.opt.list = true
-
--- required to highlight the word under cursor (see in autocmds.lua)
-vim.cmd([[hi LspReferenceRead cterm=bold ctermbg=red guibg=#5E81AC]])
-vim.cmd([[hi LspReferenceText cterm=bold ctermbg=red guibg=#5E81AC]])
-vim.cmd([[hi LspReferenceWrite cterm=bold ctermbg=red guibg=#5E81AC]])
-
--- disable netrw as advised by nvim-tree docs
--- https://github.com/nvim-tree/nvim-tree.lua#setup
--- vim.g.loaded_netrw = 1
--- vim.g.loaded_netrwPlugin = 1

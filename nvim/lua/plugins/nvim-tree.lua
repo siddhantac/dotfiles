@@ -1,8 +1,8 @@
 local spec = {
-      'kyazdani42/nvim-tree.lua',
+      'nvim-tree/nvim-tree.lua',
       name = 'nvim-tree',
       dependencies = {
-        'kyazdani42/nvim-web-devicons', -- file icons
+        'nvim-tree/nvim-web-devicons', -- file icon
       },
         cmd = { "NvimTreeOpen", "NvimTreeToggle", "NvimTreeFindFileToggle" },
 }

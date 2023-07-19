@@ -27,18 +27,27 @@ function spec:config()
 
                 m = { "<cmd>Telescope lsp_implementations<cr>", "Implementation" },
                 r = { '<cmd>Telescope lsp_references<CR>', "Refs in Telescope" },
-                s = { '<cmd>Telescope lsp_document_symbols<CR>', "Document symbols" },
+                s = {
+                    function()
+                        local aerial_avail, _ = pcall(require, "aerial")
+                        if aerial_avail then
+                            require("telescope").extensions.aerial.aerial()
+                        else
+                            require("telescope.builtin").lsp_document_symbols()
+                        end
+                    end, "Document symbols" },
+
                 S = { '<cmd>Telescope lsp_workspace_symbols<CR>', "Workspace symbols" },
                 l = { '<cmd>LspInfo<CR>', "LSP Info" },
 
                 d = { "<cmd>Lspsaga peek_definition<CR>", "Peek def" },
                 y = { "<cmd>Lspsaga peek_type_definition<CR>", "Peek type def" },
                 n = { "<cmd>Lspsaga rename<CR>", "Rename" },
-                f = { "<cmd>Lspsaga lsp_finder<CR>", "Finder" },
+                f = { "<cmd>Lspsaga finder<CR>", "Finder" },
                 a = { "<cmd>Lspsaga code_action<CR>", "Code action" },
-                o = { "<cmd>Lspsaga outline<CR>", "Show outline" },
                 i = { "<cmd>Lspsaga incoming_calls<CR>", "Incoming calls" },
                 u = { "<cmd>Lspsaga outgoing_calls<CR>", "Outgoing calls" },
+                o = { "<cmd>AerialToggle<CR>", "Show outline" },
             }
         },
         { prefix = "<leader>" }

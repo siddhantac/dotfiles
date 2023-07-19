@@ -1,8 +1,12 @@
 return {
     {
+        'lewis6991/gitsigns.nvim',
+        config = function()
+            require("gitsigns").setup()
+        end
+    },
+    {
         'tpope/vim-fugitive',
-        lazy = true,
-        cmd = {"Git"},
     },
     {
         'tpope/vim-rhubarb',
@@ -10,17 +14,17 @@ return {
             'tpope/vim-fugitive',
         },
         lazy = true,
-        cmd = {"GBrowse", "Git", "G"},
+        cmd = { "GBrowse", "Git", "G" },
     },
     {
         'tpope/vim-surround',
-        event = {"InsertEnter"},
+        event = { "InsertEnter" },
     },
     -- 'tpope/vim-unimpaired'
 
     {
         'rcarriga/nvim-notify',
-        config = function ()
+        config = function()
             require("notify").setup({
                 stages = "static",
             })
@@ -31,16 +35,20 @@ return {
     },
     {
         'szw/vim-maximizer',
-        cmd = {"MaximizerToggle"},
+        cmd = { "MaximizerToggle" },
     },
     'christoomey/vim-tmux-navigator',
-    "onsails/lspkind.nvim", -- vs-code like icons for autocompletion
-    'kyazdani42/nvim-web-devicons',
+    {
+        "onsails/lspkind.nvim",
+        event = "LspAttach",
+    }, -- vs-code like icons for autocompletion
+    'nvim-tree/nvim-web-devicons',
 
     {
         'nvim-telescope/telescope-fzf-native.nvim',
         build = 'make',
     },
-    { 'echasnovski/mini.nvim', version = '*' },
+    { 'nvim-telescope/telescope-ui-select.nvim' },
+    { 'echasnovski/mini.nvim',                  version = '*' },
     -- 'tpope/vim-dispatch'
 }

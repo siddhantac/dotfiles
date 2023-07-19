@@ -3,7 +3,7 @@ local spec = {
     name = 'lspsaga.nvim',
     event = "LspAttach",
     dependencies = {
-        'kyazdani42/nvim-web-devicons',
+        'nvim-tree/nvim-web-devicons',
     },
     config = function()
         -- import lspsaga safely
