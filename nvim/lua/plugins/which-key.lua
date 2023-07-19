@@ -8,6 +8,8 @@ local get_icon = require("utils").get_icon
 
 function spec:config()
     local whichkey = require('which-key')
+    local nvterm = require("nvterm.terminal")
+    local telescope = require("telescope")
 
     whichkey.register(
         {
@@ -17,7 +19,38 @@ function spec:config()
         { prefix = "," }
     )
 
-    local nvterm = require("nvterm.terminal")
+    -- find with telescope
+    whichkey.register({
+        ["<leader>f"] = { name = "Find", desc = get_icon("Search") .. "Find" },
+        ["<leader>ff"] = { function() telescope.find_files() end, "Find files" },
+        ["<leader>f<CR>"] = { function() telescope.builtin.resume() end, "Resume previous search" },
+        ["<leader>f'"] = { function() telescope.builtin.marks() end, "Find marks" },
+        ["<leader>f/"] = { function() telescope.builtin.current_buffer_fuzzy_find()() end, "Find words in current buffer" },
+        ["<leader>fb"] = { function() telescope.builtin.buffers() end, "Find buffers" },
+        ["<leader>fc"] = { function() telescope.builtin.grep_string() end, "Find word under cursor" },
+        ["<leader>fC"] = { function() telescope.builtin.commands() end, "Find commands" },
+        ["<leader>fF"] = {
+            function() telescope.builtin.find_files { hidden = true, no_ignore = true } end,
+            "Find all files",
+        },
+        ["<leader>fh"] = { function() telescope.builtin.help_tags() end, "Find help" },
+        ["<leader>fk"] = { function() telescope.builtin.keymaps() end, "Find keymaps" },
+        ["<leader>fm"] = { function() telescope.builtin.man_pages() end, "Find man" },
+        ["<leader>fn"] = { function() telescope.extensions.notify.notify() end, "Find notifications" },
+        ["<leader>fo"] = { function() telescope.builtin.oldfiles() end, "Find history" },
+        ["<leader>fr"] = { function() telescope.builtin.registers() end, "Find registers" },
+        ["<leader>ft"] = { function() telescope.builtin.colorscheme { enable_preview = true } end, "Find themes" },
+        ["<leader>fw"] = { function() telescope.builtin.live_grep() end, "Find words" },
+        ["<leader>fW"] = {
+            function()
+                telescope.builtin.live_grep {
+                    additional_args = function(args) return vim.list_extend(args, { "--hidden", "--no-ignore" }) end,
+                }
+            end,
+            "Find words in all files",
+        }
+    })
+
     whichkey.register(
         {
             r = {
@@ -25,16 +58,6 @@ function spec:config()
                 f = { function() nvterm.toggle("float") end, "float" },
                 h = { function() nvterm.toggle("horizontal") end, "horizontal" },
                 v = { function() nvterm.toggle("vertical") end, "vertical" },
-            },
-            f = {
-                desc = get_icon("Search") .. "Find",
-                -- desc = require("icons.nerd_font").Search .. " Find",
-                name = "Files",
-                f = { "<cmd>Telescope find_files<cr>", "Find files" },
-                F = { "<cmd>Telescope find_files layout_strategy=vertical<cr>", "Find files (vert)" },
-                d = { "<cmd>Telescope find_files search_dirs=%:p:h<CR>", "Find Files in same dir", noremap = false },
-                g = { "<cmd>Telescope git_branches<cr>", "Git branches" },
-                t = { "<cmd>Telescope treesitter<cr>", "treesitter" },
             },
 
             b = {
@@ -107,7 +130,8 @@ function spec:config()
 
     whichkey.setup({
         icons = {
-            group = vim.g.icons_enabled and "" or "+",
+            -- group = vim.g.icons_enabled and "" or "+",
+            group = "",
             separator = "",
         },
         disable = { filetypes = { "TelescopePrompt" } },
