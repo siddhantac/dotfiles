@@ -34,7 +34,7 @@ function spec:config()
                 d = { "<cmd>Lspsaga peek_definition<CR>", "Peek def" },
                 y = { "<cmd>Lspsaga peek_type_definition<CR>", "Peek type def" },
                 n = { "<cmd>Lspsaga rename<CR>", "Rename" },
-                f = { "<cmd>Lspsaga lsp_finder<CR>", "Finder" },
+                f = { "<cmd>Lspsaga finder<CR>", "Finder" },
                 a = { "<cmd>Lspsaga code_action<CR>", "Code action" },
                 o = { "<cmd>Lspsaga outline<CR>", "Show outline" },
                 i = { "<cmd>Lspsaga incoming_calls<CR>", "Incoming calls" },
