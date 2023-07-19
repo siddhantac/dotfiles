@@ -10,6 +10,7 @@ function spec:config()
     local whichkey = require('which-key')
     local nvterm = require("nvterm.terminal")
     local telescope = require("telescope")
+    local tscopebuiltin = require("telescope.builtin")
 
     whichkey.register(
         {
@@ -23,32 +24,55 @@ function spec:config()
     whichkey.register({
         ["<leader>f"] = { name = "Find", desc = get_icon("Search") .. "Find" },
         ["<leader>ff"] = { function() telescope.find_files() end, "Find files" },
-        ["<leader>f<CR>"] = { function() telescope.builtin.resume() end, "Resume previous search" },
-        ["<leader>f'"] = { function() telescope.builtin.marks() end, "Find marks" },
-        ["<leader>f/"] = { function() telescope.builtin.current_buffer_fuzzy_find()() end, "Find words in current buffer" },
-        ["<leader>fb"] = { function() telescope.builtin.buffers() end, "Find buffers" },
-        ["<leader>fc"] = { function() telescope.builtin.grep_string() end, "Find word under cursor" },
-        ["<leader>fC"] = { function() telescope.builtin.commands() end, "Find commands" },
+        ["<leader>f<CR>"] = { function() tscopebuiltin.resume() end, "Resume previous search" },
+        ["<leader>f'"] = { function() tscopebuiltin.marks() end, "Find marks" },
+        ["<leader>f/"] = { function() tscopebuiltin.current_buffer_fuzzy_find()() end, "Find words in current buffer" },
+        ["<leader>fb"] = { function() tscopebuiltin.buffers() end, "Find buffers" },
+        ["<leader>fc"] = { function() tscopebuiltin.grep_string() end, "Find word under cursor" },
+        ["<leader>fC"] = { function() tscopebuiltin.commands() end, "Find commands" },
         ["<leader>fF"] = {
-            function() telescope.builtin.find_files { hidden = true, no_ignore = true } end,
+            function() tscopebuiltin.find_files { hidden = true, no_ignore = true } end,
             "Find all files",
         },
-        ["<leader>fh"] = { function() telescope.builtin.help_tags() end, "Find help" },
-        ["<leader>fk"] = { function() telescope.builtin.keymaps() end, "Find keymaps" },
-        ["<leader>fm"] = { function() telescope.builtin.man_pages() end, "Find man" },
+        ["<leader>fh"] = { function() tscopebuiltin.help_tags() end, "Find help" },
+        ["<leader>fk"] = { function() tscopebuiltin.keymaps() end, "Find keymaps" },
+        ["<leader>fm"] = { function() tscopebuiltin.man_pages() end, "Find man" },
         ["<leader>fn"] = { function() telescope.extensions.notify.notify() end, "Find notifications" },
-        ["<leader>fo"] = { function() telescope.builtin.oldfiles() end, "Find history" },
-        ["<leader>fr"] = { function() telescope.builtin.registers() end, "Find registers" },
-        ["<leader>ft"] = { function() telescope.builtin.colorscheme { enable_preview = true } end, "Find themes" },
-        ["<leader>fw"] = { function() telescope.builtin.live_grep() end, "Find words" },
+        ["<leader>fo"] = { function() tscopebuiltin.oldfiles() end, "Find history" },
+        ["<leader>fr"] = { function() tscopebuiltin.registers() end, "Find registers" },
+        ["<leader>ft"] = { function() tscopebuiltin.colorscheme { enable_preview = true } end, "Find themes" },
+        ["<leader>fw"] = { function() tscopebuiltin.live_grep() end, "Find words" },
         ["<leader>fW"] = {
             function()
-                telescope.builtin.live_grep {
+                tscopebuiltin.live_grep {
                     additional_args = function(args) return vim.list_extend(args, { "--hidden", "--no-ignore" }) end,
                 }
             end,
             "Find words in all files",
-        }
+        },
+
+        -- Git stuff
+        ["<leader>g"] = { name = "Git", desc = get_icon("Git") .. "Git" },
+        ["<leader>gb"] = { function() tscopebuiltin.git_branches { use_file_path = true } end, "Git branches" },
+        -- c = { "<cmd>Git commit<CR>", "commit" },
+        ["<leader>gc"] = {
+            function() tscopebuiltin.git_commits { use_file_path = true } end,
+            "Git commits (repository)",
+        },
+        ["<leader>gC"] = {
+            function() tscopebuiltin.git_bcommits { use_file_path = true } end,
+            "Git commits (current file)",
+        },
+        ["<leader>gs"] = {
+            function() tscopebuiltin.git_status { use_file_path = true } end,
+            "Git status"
+        },
+        ["<leader>go"] = { "<cmd>GBrowse<CR>", "Open github (browser)" },
+        ["<leader>gg"] = { "<cmd>Git<CR>", "fugitive" },
+        ["<leader>ga"] = { "<cmd>Git add -A|Git commit<CR>", "Add & Commit" },
+        ["<leader>gl"] = { function() notify("pulling...", "Git pull") end, "Pull" },
+        ["<leader>gp"] = { function() notify("pushing...", "Git push") end, "Push" },
+        -- y = { "<cmd>!git pull --all -p<CR>", "sync" },
     })
 
     whichkey.register(
@@ -73,25 +97,6 @@ function spec:config()
             c = {
                 name = "Config",
                 r = { "<cmd>source ~/.config/nvim/init.lua<CR>", "Reload config" },
-            },
-
-            g = {
-                name = "Git",
-                g = { "<cmd>Git<CR>", "vim-fugitive" },
-                c = { "<cmd>Git commit<CR>", "commit" },
-                a = { "<cmd>Git add -A|Git commit<CR>", "add + commit" },
-
-                l = { function() notify("pulling...", "Git pull") end, "pull" },
-                y = { "<cmd>!git pull --all -p<CR>", "sync" },
-
-                p = { function() notify("pushing...", "Git push") end, "push" },
-                n = { "<cmd>Dispatch git push --no-verify<CR>", "push --no-verify" },
-                m = { "<cmd>Git push --no-verify<CR>", "push --no-verify (2)" },
-
-                s = { "<cmd>!git status --short<CR>", "status" },
-                o = { "<cmd>GBrowse<CR>", "open github (browser)" }, -- uses tpope/vim-rhubarb
-
-                x = { "<cmd>Git add -A|Git commit|Git push<CR>", "add + commit + push" },
             },
 
             d = {
