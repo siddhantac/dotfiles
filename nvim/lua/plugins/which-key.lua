@@ -4,6 +4,7 @@ local spec = {
 }
 
 local notify = require("core.quick-notify")
+local get_icon = require("utils").get_icon
 
 function spec:config()
     local whichkey = require('which-key')
@@ -16,8 +17,6 @@ function spec:config()
         { prefix = "," }
     )
 
-
-
     local nvterm = require("nvterm.terminal")
     whichkey.register(
         {
@@ -28,6 +27,8 @@ function spec:config()
                 v = { function() nvterm.toggle("vertical") end, "vertical" },
             },
             f = {
+                desc = get_icon("Search") .. "Find",
+                -- desc = require("icons.nerd_font").Search .. " Find",
                 name = "Files",
                 f = { "<cmd>Telescope find_files<cr>", "Find files" },
                 F = { "<cmd>Telescope find_files layout_strategy=vertical<cr>", "Find files (vert)" },
@@ -103,6 +104,14 @@ function spec:config()
         },
         { prefix = "<leader>" }
     )
+
+    whichkey.setup({
+        icons = {
+            group = vim.g.icons_enabled and "" or "+",
+            separator = "",
+        },
+        disable = { filetypes = { "TelescopePrompt" } },
+    })
 end
 
 return spec
