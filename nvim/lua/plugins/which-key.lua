@@ -28,7 +28,7 @@ function spec:config()
     -- find with telescope
     whichkey.register({
         ["<leader>f"] = { name = "Find", desc = get_icon("Search") .. "Find" },
-        ["<leader>ff"] = { function() telescope.find_files() end, "Find files" },
+        ["<leader>ff"] = { function() tscopebuiltin.find_files() end, "Find files" },
         ["<leader>f<CR>"] = { function() tscopebuiltin.resume() end, "Resume previous search" },
         ["<leader>f'"] = { function() tscopebuiltin.marks() end, "Find marks" },
         ["<leader>f/"] = { function() tscopebuiltin.current_buffer_fuzzy_find()() end, "Find words in current buffer" },
