@@ -1,16 +1,21 @@
-local spec = {
+local spec          = {
     "folke/which-key.nvim",
     name = "which-key.nvim",
 }
 
-local notify = require("core.quick-notify")
-local get_icon = require("utils").get_icon
+local notify        = require("core.quick-notify")
+local get_icon      = require("utils").get_icon
+local telescope     = require("telescope")
+local tscopebuiltin = require("telescope.builtin")
+local Terminal      = require('toggleterm.terminal').Terminal
+local lazygit       = Terminal:new({ cmd = "lazygit", hidden = true, direction = "float" })
+
+function _lazygit_toggle()
+    lazygit:toggle()
+end
 
 function spec:config()
     local whichkey = require('which-key')
-    local nvterm = require("nvterm.terminal")
-    local telescope = require("telescope")
-    local tscopebuiltin = require("telescope.builtin")
 
     whichkey.register(
         {
@@ -73,17 +78,19 @@ function spec:config()
         ["<leader>gl"] = { function() notify("pulling...", "Git pull") end, "Pull" },
         ["<leader>gp"] = { function() notify("pushing...", "Git push") end, "Push" },
         -- y = { "<cmd>!git pull --all -p<CR>", "sync" },
+
+        -- Terminal
+        ["<leader>t"] = { name = "Terminal", desc = get_icon("Terminal") .. "Terminal" },
+        ["<leader>tf"] = { "<cmd>ToggleTerm direction=float<cr>", "ToggleTerm float" },
+        ["<leader>th"] = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "ToggleTerm horizontal split" },
+        ["<leader>tv"] = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "ToggleTerm vertical split" },
+
+        ["<leader>gG"] = { "<cmd>lua _lazygit_toggle()<CR>", "Lazygit" },
+
     })
 
     whichkey.register(
         {
-            r = {
-                name = "Terminal",
-                f = { function() nvterm.toggle("float") end, "float" },
-                h = { function() nvterm.toggle("horizontal") end, "horizontal" },
-                v = { function() nvterm.toggle("vertical") end, "vertical" },
-            },
-
             b = {
                 name = "Buffers",
                 b = { "<cmd>b#<CR>", "Swap" },
@@ -110,7 +117,7 @@ function spec:config()
                 D = { "<cmd>Lspsaga show_cursor_diagnostics<CR>", "Show cursor diagnostic" },
             },
 
-            t = {
+            s = {
                 name = "Test",
                 n = { "<cmd>TestNearest<cr>", "run test nearest to cursor" },
                 f = { "<cmd>TestFile<cr>", "run test file" },
@@ -122,7 +129,6 @@ function spec:config()
 
             e = { "<cmd>NvimTreeFindFileToggle<CR>", "File Explorer" },
             w = { "<cmd>w<CR>", "Save" },
-            s = { "<cmd>Telescope live_grep<CR>", "Search (live_grep)" },
             n = {
                 name = "Sessions",
                 l = { "<cmd>lua MiniSessions.select()<CR>", "Load session" },
