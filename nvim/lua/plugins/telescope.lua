@@ -7,10 +7,13 @@ local spec = {
 }
 
 function spec:config()
-    local actions = require "telescope.actions"
+    local actions  = require "telescope.actions"
+    local get_icon = require("utils").get_icon
 
     require('telescope').setup {
         defaults = {
+            prompt_prefix = get_icon("Search"),
+            selection_caret = get_icon("Selected"),
             path_display = { "truncate" },
             sorting_strategy = "ascending",
             layout_config = {
@@ -20,6 +23,7 @@ function spec:config()
                 height = 0.80,
                 preview_cutoff = 120,
             },
+            layout_strategy = nil,
             mappings = {
                 i = {
                     ["<C-n>"] = actions.cycle_history_next,
