@@ -1,8 +1,6 @@
 return {
     {
         'tpope/vim-fugitive',
-        lazy = true,
-        cmd = {"Git"},
     },
     {
         'tpope/vim-rhubarb',
