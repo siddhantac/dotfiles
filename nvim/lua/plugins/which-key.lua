@@ -92,15 +92,13 @@ function spec:config()
         ["<leader>gS"] = { function() gitsigns.stage_buffer() end, "Stage Git buffer" },
         ["<leader>gu"] = { function() gitsigns.undo_stage_hunk() end, "Unstage Git hunk" },
         ["<leader>gd"] = { function() gitsigns.diffthis() end, "View Git diff" },
-
+        ["<leader>gG"] = { "<cmd>lua _lazygit_toggle()<CR>", "Lazygit" },
 
         -- Terminal
         ["<leader>t"] = { name = "Terminal", desc = get_icon("Terminal") .. "Terminal" },
         ["<leader>tf"] = { "<cmd>ToggleTerm direction=float<cr>", "ToggleTerm float" },
         ["<leader>th"] = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "ToggleTerm horizontal split" },
         ["<leader>tv"] = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "ToggleTerm vertical split" },
-
-        ["<leader>gG"] = { "<cmd>lua _lazygit_toggle()<CR>", "Lazygit" },
 
         -- Test
         ["<leader>s"] = { name = "Test", desc = get_icon("Debugger") .. "Test" },
@@ -111,20 +109,18 @@ function spec:config()
         ["<leader>ss"] = { function() require("neotest").summary.toggle() end, "Summary panel" },
         ["<leader>se"] = { "<cmd>Other<cr>", "open test file" },
         ["<leader>sv"] = { "<cmd>OtherVSplit<cr>", "open test file in vert split" },
+
+        ["<leader>b"] = { name = "Buffers", desc = get_icon("Tab") .. "Buffers" },
+        ["<leader>bb"] = { "<cmd>b#<CR>", "Swap" },
+        ["<leader>bf"] = { "<cmd>Telescope buffers<CR>", "Find" },
+        ["<leader>bc"] = { "<cmd>close<CR>", "Close" },
+        ["<leader>bd"] = { "<cmd>bd<CR>", "Delete" },
+        ["<leader>bD"] = { "<cmd>bufdo bd<CR>", "Delete all" },
+        ["<leader>bm"] = { "<cmd>MaximizerToggle<CR>", "Maximize (toggle)" },
     })
 
     whichkey.register(
         {
-            b = {
-                name = "Buffers",
-                b = { "<cmd>b#<CR>", "Swap" },
-                f = { "<cmd>Telescope buffers<CR>", "Find" },
-                c = { "<cmd>close<CR>", "Close" },
-                d = { "<cmd>bd<CR>", "Delete" },
-                D = { "<cmd>bufdo bd<CR>", "Delete all" },
-                m = { "<cmd>MaximizerToggle<CR>", "Maximize (toggle)" },
-            },
-
             c = {
                 name = "Config",
                 r = { "<cmd>source ~/.config/nvim/init.lua<CR>", "Reload config" },
