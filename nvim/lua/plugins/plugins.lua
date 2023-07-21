@@ -1,7 +1,7 @@
 return {
     {
         'lewis6991/gitsigns.nvim',
-        config = function ()
+        config = function()
             require("gitsigns").setup()
         end
     },
@@ -14,17 +14,17 @@ return {
             'tpope/vim-fugitive',
         },
         lazy = true,
-        cmd = {"GBrowse", "Git", "G"},
+        cmd = { "GBrowse", "Git", "G" },
     },
     {
         'tpope/vim-surround',
-        event = {"InsertEnter"},
+        event = { "InsertEnter" },
     },
     -- 'tpope/vim-unimpaired'
 
     {
         'rcarriga/nvim-notify',
-        config = function ()
+        config = function()
             require("notify").setup({
                 stages = "static",
             })
@@ -35,7 +35,7 @@ return {
     },
     {
         'szw/vim-maximizer',
-        cmd = {"MaximizerToggle"},
+        cmd = { "MaximizerToggle" },
     },
     'christoomey/vim-tmux-navigator',
     "onsails/lspkind.nvim", -- vs-code like icons for autocompletion

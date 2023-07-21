@@ -102,6 +102,15 @@ function spec:config()
 
         ["<leader>gG"] = { "<cmd>lua _lazygit_toggle()<CR>", "Lazygit" },
 
+        -- Test
+        ["<leader>s"] = { name = "Test", desc = get_icon("Debugger") .. "Test" },
+        ["<leader>sr"] = { function() require("neotest").run.run() end, "Run nearest" },
+        ["<leader>sl"] = { function() require("neotest").run.run_last() end, "Run last" },
+        ["<leader>sf"] = { function() require("neotest").run.run(vim.fn.expand("%")) end, "Run file" },
+        ["<leader>so"] = { function() require("neotest").output_panel.toggle() end, "Output panel" },
+        ["<leader>ss"] = { function() require("neotest").summary.toggle() end, "Summary panel" },
+        ["<leader>se"] = { "<cmd>Other<cr>", "open test file" },
+        ["<leader>sv"] = { "<cmd>OtherVSplit<cr>", "open test file in vert split" },
     })
 
     whichkey.register(
@@ -130,16 +139,6 @@ function spec:config()
                 p = { "<cmd>Lspsaga diagnostic_jump_prev<CR>", "Prev" },
                 d = { "<cmd>Lspsaga show_line_diagnostics<CR>", "Show line diagnostic" },
                 D = { "<cmd>Lspsaga show_cursor_diagnostics<CR>", "Show cursor diagnostic" },
-            },
-
-            s = {
-                name = "Test",
-                n = { "<cmd>TestNearest<cr>", "run test nearest to cursor" },
-                f = { "<cmd>TestFile<cr>", "run test file" },
-                s = { "<cmd>TestSuite<cr>", "run entire test suite" },
-                t = { "<cmd>TestLast<cr>", "run the last test" },
-                e = { "<cmd>Other<cr>", "open test file" },
-                v = { "<cmd>OtherVSplit<cr>", "open test file in vert split" },
             },
 
             e = { "<cmd>NvimTreeFindFileToggle<CR>", "File Explorer" },
