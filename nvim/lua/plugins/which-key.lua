@@ -9,6 +9,7 @@ local telescope     = require("telescope")
 local tscopebuiltin = require("telescope.builtin")
 local Terminal      = require('toggleterm.terminal').Terminal
 local lazygit       = Terminal:new({ cmd = "lazygit", hidden = true, direction = "float" })
+local gitsigns      = require("gitsigns")
 
 function _lazygit_toggle()
     lazygit:toggle()
@@ -25,8 +26,8 @@ function spec:config()
         { prefix = "," }
     )
 
-    -- find with telescope
     whichkey.register({
+        -- find with telescope
         ["<leader>f"] = { name = "Find", desc = get_icon("Search") .. "Find" },
         ["<leader>ff"] = { function() tscopebuiltin.find_files() end, "Find files" },
         ["<leader>f<CR>"] = { function() tscopebuiltin.resume() end, "Resume previous search" },
@@ -68,7 +69,7 @@ function spec:config()
             function() tscopebuiltin.git_bcommits { use_file_path = true } end,
             "Git commits (current file)",
         },
-        ["<leader>gs"] = {
+        ["<leader>gt"] = {
             function() tscopebuiltin.git_status { use_file_path = true } end,
             "Git status"
         },
@@ -78,6 +79,20 @@ function spec:config()
         ["<leader>gl"] = { function() notify("pulling...", "Git pull") end, "Pull" },
         ["<leader>gp"] = { function() notify("pushing...", "Git push") end, "Push" },
         -- y = { "<cmd>!git pull --all -p<CR>", "sync" },
+
+        -- Gitsigns
+        ["]g"] = { function() gitsigns.next_hunk() end, "Next Git hunk" },
+        ["[g"] = { function() gitsigns.prev_hunk() end, "Previous Git hunk" },
+        -- ["<leader>gl"] = { function() gitsigns.blame_line() end, "View Git blame" },
+        -- ["<leader>gL"] = { function() gitsigns.blame_line { full = true } end, "View full Git blame" },
+        ["<leader>gh"] = { function() gitsigns.preview_hunk() end, "Preview Git hunk" },
+        -- ["<leader>gh"] = { function() gitsigns.reset_hunk() end, "Reset Git hunk" },
+        -- ["<leader>gr"] = { function() gitsigns.reset_buffer() end, "Reset Git buffer" },
+        ["<leader>gs"] = { function() gitsigns.stage_hunk() end, "Stage Git hunk" },
+        ["<leader>gS"] = { function() gitsigns.stage_buffer() end, "Stage Git buffer" },
+        ["<leader>gu"] = { function() gitsigns.undo_stage_hunk() end, "Unstage Git hunk" },
+        ["<leader>gd"] = { function() gitsigns.diffthis() end, "View Git diff" },
+
 
         -- Terminal
         ["<leader>t"] = { name = "Terminal", desc = get_icon("Terminal") .. "Terminal" },
