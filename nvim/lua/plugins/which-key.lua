@@ -111,6 +111,8 @@ function spec:config()
         ["<leader>sv"] = { "<cmd>OtherVSplit<cr>", "open test file in vert split" },
 
         ["<leader>b"] = { name = "Buffers", desc = get_icon("Tab") .. "Buffers" },
+        ["]b"] = { "<cmd>bnext<CR>", "Next buffer" },
+        ["[b"] = { "<cmd>bprev<CR>", "Prev buffer" },
         ["<leader>bb"] = { "<cmd>b#<CR>", "Swap" },
         ["<leader>bf"] = { "<cmd>Telescope buffers<CR>", "Find" },
         ["<leader>bc"] = { "<cmd>close<CR>", "Close" },
