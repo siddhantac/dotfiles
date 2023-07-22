@@ -40,8 +40,3 @@ vim.opt.foldlevel = 99
 vim.opt.hlsearch = false
 -- vim.opt.laststatus = 2
 -- vim.opt.list = true
-
--- disable netrw as advised by nvim-tree docs
--- https://github.com/nvim-tree/nvim-tree.lua#setup
--- vim.g.loaded_netrw = 1
--- vim.g.loaded_netrwPlugin = 1
