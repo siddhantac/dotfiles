@@ -38,7 +38,10 @@ return {
         cmd = { "MaximizerToggle" },
     },
     'christoomey/vim-tmux-navigator',
-    "onsails/lspkind.nvim", -- vs-code like icons for autocompletion
+    {
+        "onsails/lspkind.nvim",
+        event = "LspAttach",
+    }, -- vs-code like icons for autocompletion
     'kyazdani42/nvim-web-devicons',
 
     {

@@ -1,6 +1,7 @@
 local spec = {
     "nvim-neotest/neotest",
     name = "neotest",
+    event = "BufEnter *_test.go",
     dependencies = {
         "nvim-neotest/neotest-go",
         "nvim-lua/plenary.nvim",
