@@ -23,7 +23,6 @@ function spec:config()
                 height = 0.80,
                 preview_cutoff = 120,
             },
-            layout_strategy = nil,
             mappings = {
                 i = {
                     ["<C-n>"] = actions.cycle_history_next,
