@@ -1,4 +1,5 @@
 return {
+    { 'stevearc/resession.nvim', opts = {} },
     {
         'lewis6991/gitsigns.nvim',
         config = function()
