@@ -89,14 +89,3 @@ vim.api.nvim_create_autocmd('BufWritePre', {
         goimports(1000)
   end
 })
-
--- NOT WORKING
--- session (need to install mini)
-vim.api.nvim_create_autocmd("VimLeave",
-    {
-    pattern = "*",
-    callback = function ()
-        MiniSessionWrite()
-    end,
-    }
-)

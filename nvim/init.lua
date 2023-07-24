@@ -1,7 +1,7 @@
 require("core.options")
 require("core.mappings")
-require("core.autocmds")
 require("core.lazy")
+require("core.autocmds")
 
 -- plugin specific options
 vim.cmd.colorscheme "catppuccin-mocha"
