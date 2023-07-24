@@ -67,7 +67,14 @@ function spec:config()
         ["<leader>gg"]    = { "<cmd>Git<CR>", "fugitive" },
         ["<leader>ga"]    = { "<cmd>Git add -A|Git commit<CR>", "Add & Commit" },
         ["<leader>gl"]    = { function() notify("pulling...", "Git pull") end, "Pull" },
-        ["<leader>gp"]    = { function() notify("pushing...", "Git push") end, "Push" },
+        ["<leader>gp"]    = { function()
+            local result = vim.fn.system("git push")
+            if vim.v.shell_error == 0 then
+                vim.notify("Pushed successfully", "info", {title = "Git", render = "compact"})
+            else
+                vim.notify("Push failed" .. result, "error", {title = "Git"})
+            end
+        end, "Push" },
         -- y = { "<cmd>!git pull --all -p<CR>", "sync" },
 
         -- Gitsigns
