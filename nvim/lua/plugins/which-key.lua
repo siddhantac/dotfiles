@@ -14,14 +14,6 @@ local gitsigns      = require("gitsigns")
 function spec:config()
     local whichkey = require('which-key')
 
-    whichkey.register(
-        {
-            e = { ":e <C-R>=expand('%:p:h') . '/' <CR>", "Edit file in same dir" },
-            v = { ":vsplit <C-R>=expand('%:p:h') . '/' <CR>", "Vsplit file in same dir" }
-        },
-        { prefix = "," }
-    )
-
     whichkey.register({
         -- find with telescope
         ["<leader>f"] = { name = "Find", desc = get_icon("Search") .. "Find" },
