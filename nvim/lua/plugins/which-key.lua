@@ -10,6 +10,7 @@ local tscopebuiltin = require("telescope.builtin")
 local Terminal      = require('toggleterm.terminal').Terminal
 local lazygit       = Terminal:new({ cmd = "lazygit", hidden = true, direction = "float" })
 local gitsigns      = require("gitsigns")
+local lazy          = require("lazy")
 
 function spec:config()
     local whichkey = require('which-key')
@@ -80,7 +81,7 @@ function spec:config()
         ["<leader>gS"] = { function() gitsigns.stage_buffer() end, "Stage Git buffer" },
         ["<leader>gu"] = { function() gitsigns.undo_stage_hunk() end, "Unstage Git hunk" },
         ["<leader>gd"] = { function() gitsigns.diffthis() end, "View Git diff" },
-        ["<leader>gG"] = { function () lazygit:toggle() end, "Lazygit" },
+        ["<leader>gG"] = { function() lazygit:toggle() end, "Lazygit" },
 
         -- Terminal
         ["<leader>t"] = { name = "Terminal", desc = get_icon("Terminal") .. "Terminal" },
@@ -98,6 +99,7 @@ function spec:config()
         ["<leader>se"] = { "<cmd>Other<cr>", "open test file" },
         ["<leader>sv"] = { "<cmd>OtherVSplit<cr>", "open test file in vert split" },
 
+        -- Buffers
         ["<leader>b"] = { name = "Buffers", desc = get_icon("Tab") .. "Buffers" },
         ["]b"] = { "<cmd>bnext<CR>", "Next buffer" },
         ["[b"] = { "<cmd>bprev<CR>", "Prev buffer" },
@@ -107,15 +109,14 @@ function spec:config()
         ["<leader>bd"] = { "<cmd>bd<CR>", "Delete" },
         ["<leader>bD"] = { "<cmd>bufdo bd<CR>", "Delete all" },
         ["<leader>bm"] = { "<cmd>MaximizerToggle<CR>", "Maximize (toggle)" },
+
+        -- Plugins
+        ["<leader>u"] = { name = "Plugins", desc = get_icon("Package") .. "Plugins" },
+        ["<leader>uu"] = { function() lazy.home() end, "Plugins Status" },
     })
 
     whichkey.register(
         {
-            c = {
-                name = "Config",
-                r = { "<cmd>source ~/.config/nvim/init.lua<CR>", "Reload config" },
-            },
-
             d = {
                 name = "Diagnostics",
                 f = { "<cmd>Telescope diagnostics<CR>", "Open in Telescope" },
