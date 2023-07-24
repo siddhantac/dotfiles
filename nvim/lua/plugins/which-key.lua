@@ -11,33 +11,34 @@ local Terminal      = require('toggleterm.terminal').Terminal
 local lazygit       = Terminal:new({ cmd = "lazygit", hidden = true, direction = "float" })
 local gitsigns      = require("gitsigns")
 local lazy          = require("lazy")
+local resession     = require("resession")
 
 function spec:config()
     local whichkey = require('which-key')
 
     whichkey.register({
         -- find with telescope
-        ["<leader>f"] = { name = "Find", desc = get_icon("Search") .. "Find" },
-        ["<leader>ff"] = { function() tscopebuiltin.find_files() end, "Find files" },
+        ["<leader>f"]     = { name = "Find", desc = get_icon("Search") .. "Find" },
+        ["<leader>ff"]    = { function() tscopebuiltin.find_files() end, "Find files" },
         ["<leader>f<CR>"] = { function() tscopebuiltin.resume() end, "Resume previous search" },
-        ["<leader>f'"] = { function() tscopebuiltin.marks() end, "Find marks" },
-        ["<leader>f/"] = { function() tscopebuiltin.current_buffer_fuzzy_find()() end, "Find words in current buffer" },
-        ["<leader>fb"] = { function() tscopebuiltin.buffers() end, "Find buffers" },
-        ["<leader>fc"] = { function() tscopebuiltin.grep_string() end, "Find word under cursor" },
-        ["<leader>fC"] = { function() tscopebuiltin.commands() end, "Find commands" },
-        ["<leader>fF"] = {
+        ["<leader>f'"]    = { function() tscopebuiltin.marks() end, "Find marks" },
+        ["<leader>f/"]    = { function() tscopebuiltin.current_buffer_fuzzy_find()() end, "Find words in current buffer" },
+        ["<leader>fb"]    = { function() tscopebuiltin.buffers() end, "Find buffers" },
+        ["<leader>fc"]    = { function() tscopebuiltin.grep_string() end, "Find word under cursor" },
+        ["<leader>fC"]    = { function() tscopebuiltin.commands() end, "Find commands" },
+        ["<leader>fF"]    = {
             function() tscopebuiltin.find_files { hidden = true, no_ignore = true } end,
             "Find all files",
         },
-        ["<leader>fh"] = { function() tscopebuiltin.help_tags() end, "Find help" },
-        ["<leader>fk"] = { function() tscopebuiltin.keymaps() end, "Find keymaps" },
-        ["<leader>fm"] = { function() tscopebuiltin.man_pages() end, "Find man" },
-        ["<leader>fn"] = { function() telescope.extensions.notify.notify() end, "Find notifications" },
-        ["<leader>fo"] = { function() tscopebuiltin.oldfiles() end, "Find history" },
-        ["<leader>fr"] = { function() tscopebuiltin.registers() end, "Find registers" },
-        ["<leader>ft"] = { function() tscopebuiltin.colorscheme { enable_preview = true } end, "Find themes" },
-        ["<leader>fw"] = { function() tscopebuiltin.live_grep() end, "Find words" },
-        ["<leader>fW"] = {
+        ["<leader>fh"]    = { function() tscopebuiltin.help_tags() end, "Find help" },
+        ["<leader>fk"]    = { function() tscopebuiltin.keymaps() end, "Find keymaps" },
+        ["<leader>fm"]    = { function() tscopebuiltin.man_pages() end, "Find man" },
+        ["<leader>fn"]    = { function() telescope.extensions.notify.notify() end, "Find notifications" },
+        ["<leader>fo"]    = { function() tscopebuiltin.oldfiles() end, "Find history" },
+        ["<leader>fr"]    = { function() tscopebuiltin.registers() end, "Find registers" },
+        ["<leader>ft"]    = { function() tscopebuiltin.colorscheme { enable_preview = true } end, "Find themes" },
+        ["<leader>fw"]    = { function() tscopebuiltin.live_grep() end, "Find words" },
+        ["<leader>fW"]    = {
             function()
                 tscopebuiltin.live_grep {
                     additional_args = function(args) return vim.list_extend(args, { "--hidden", "--no-ignore" }) end,
@@ -47,72 +48,78 @@ function spec:config()
         },
 
         -- Git stuff
-        ["<leader>g"] = { name = "Git", desc = get_icon("Git") .. "Git" },
-        ["<leader>gb"] = { function() tscopebuiltin.git_branches { use_file_path = true } end, "Git branches" },
+        ["<leader>g"]     = { name = "Git", desc = get_icon("Git") .. "Git" },
+        ["<leader>gb"]    = { function() tscopebuiltin.git_branches { use_file_path = true } end, "Git branches" },
         -- c = { "<cmd>Git commit<CR>", "commit" },
-        ["<leader>gc"] = {
+        ["<leader>gc"]    = {
             function() tscopebuiltin.git_commits { use_file_path = true } end,
             "Git commits (repository)",
         },
-        ["<leader>gC"] = {
+        ["<leader>gC"]    = {
             function() tscopebuiltin.git_bcommits { use_file_path = true } end,
             "Git commits (current file)",
         },
-        ["<leader>gt"] = {
+        ["<leader>gt"]    = {
             function() tscopebuiltin.git_status { use_file_path = true } end,
             "Git status"
         },
-        ["<leader>go"] = { "<cmd>GBrowse<CR>", "Open github (browser)" },
-        ["<leader>gg"] = { "<cmd>Git<CR>", "fugitive" },
-        ["<leader>ga"] = { "<cmd>Git add -A|Git commit<CR>", "Add & Commit" },
-        ["<leader>gl"] = { function() notify("pulling...", "Git pull") end, "Pull" },
-        ["<leader>gp"] = { function() notify("pushing...", "Git push") end, "Push" },
+        ["<leader>go"]    = { "<cmd>GBrowse<CR>", "Open github (browser)" },
+        ["<leader>gg"]    = { "<cmd>Git<CR>", "fugitive" },
+        ["<leader>ga"]    = { "<cmd>Git add -A|Git commit<CR>", "Add & Commit" },
+        ["<leader>gl"]    = { function() notify("pulling...", "Git pull") end, "Pull" },
+        ["<leader>gp"]    = { function() notify("pushing...", "Git push") end, "Push" },
         -- y = { "<cmd>!git pull --all -p<CR>", "sync" },
 
         -- Gitsigns
-        ["]g"] = { function() gitsigns.next_hunk() end, "Next Git hunk" },
-        ["[g"] = { function() gitsigns.prev_hunk() end, "Previous Git hunk" },
+        ["]g"]            = { function() gitsigns.next_hunk() end, "Next Git hunk" },
+        ["[g"]            = { function() gitsigns.prev_hunk() end, "Previous Git hunk" },
         -- ["<leader>gl"] = { function() gitsigns.blame_line() end, "View Git blame" },
         -- ["<leader>gL"] = { function() gitsigns.blame_line { full = true } end, "View full Git blame" },
-        ["<leader>gh"] = { function() gitsigns.preview_hunk() end, "Preview Git hunk" },
+        ["<leader>gh"]    = { function() gitsigns.preview_hunk() end, "Preview Git hunk" },
         -- ["<leader>gh"] = { function() gitsigns.reset_hunk() end, "Reset Git hunk" },
         -- ["<leader>gr"] = { function() gitsigns.reset_buffer() end, "Reset Git buffer" },
-        ["<leader>gs"] = { function() gitsigns.stage_hunk() end, "Stage Git hunk" },
-        ["<leader>gS"] = { function() gitsigns.stage_buffer() end, "Stage Git buffer" },
-        ["<leader>gu"] = { function() gitsigns.undo_stage_hunk() end, "Unstage Git hunk" },
-        ["<leader>gd"] = { function() gitsigns.diffthis() end, "View Git diff" },
-        ["<leader>gG"] = { function() lazygit:toggle() end, "Lazygit" },
+        ["<leader>gs"]    = { function() gitsigns.stage_hunk() end, "Stage Git hunk" },
+        ["<leader>gS"]    = { function() gitsigns.stage_buffer() end, "Stage Git buffer" },
+        ["<leader>gu"]    = { function() gitsigns.undo_stage_hunk() end, "Unstage Git hunk" },
+        ["<leader>gd"]    = { function() gitsigns.diffthis() end, "View Git diff" },
+        ["<leader>gG"]    = { function() lazygit:toggle() end, "Lazygit" },
 
         -- Terminal
-        ["<leader>t"] = { name = "Terminal", desc = get_icon("Terminal") .. "Terminal" },
-        ["<leader>tf"] = { "<cmd>ToggleTerm direction=float<cr>", "ToggleTerm float" },
-        ["<leader>th"] = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "ToggleTerm horizontal split" },
-        ["<leader>tv"] = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "ToggleTerm vertical split" },
+        ["<leader>r"]     = { name = "Terminal", desc = get_icon("Terminal") .. "Terminal" },
+        ["<leader>rf"]    = { "<cmd>ToggleTerm direction=float<cr>", "ToggleTerm float" },
+        ["<leader>rh"]    = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "ToggleTerm horizontal split" },
+        ["<leader>rv"]    = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "ToggleTerm vertical split" },
 
         -- Test
-        ["<leader>s"] = { name = "Test", desc = get_icon("Debugger") .. "Test" },
-        ["<leader>sr"] = { function() require("neotest").run.run() end, "Run nearest" },
-        ["<leader>sl"] = { function() require("neotest").run.run_last() end, "Run last" },
-        ["<leader>sf"] = { function() require("neotest").run.run(vim.fn.expand("%")) end, "Run file" },
-        ["<leader>so"] = { function() require("neotest").output_panel.toggle() end, "Output panel" },
-        ["<leader>ss"] = { function() require("neotest").summary.toggle() end, "Summary panel" },
-        ["<leader>se"] = { "<cmd>Other<cr>", "open test file" },
-        ["<leader>sv"] = { "<cmd>OtherVSplit<cr>", "open test file in vert split" },
+        ["<leader>t"]     = { name = "Test", desc = get_icon("Debugger") .. "Test" },
+        ["<leader>tr"]    = { function() require("neotest").run.run() end, "Run nearest" },
+        ["<leader>tl"]    = { function() require("neotest").run.run_last() end, "Run last" },
+        ["<leader>tf"]    = { function() require("neotest").run.run(vim.fn.expand("%")) end, "Run file" },
+        ["<leader>to"]    = { function() require("neotest").output_panel.toggle() end, "Output panel" },
+        ["<leader>ts"]    = { function() require("neotest").summary.toggle() end, "Summary panel" },
+        ["<leader>te"]    = { "<cmd>Other<cr>", "open test file" },
+        ["<leader>tv"]    = { "<cmd>OtherVSplit<cr>", "open test file in vert split" },
 
         -- Buffers
-        ["<leader>b"] = { name = "Buffers", desc = get_icon("Tab") .. "Buffers" },
-        ["]b"] = { "<cmd>bnext<CR>", "Next buffer" },
-        ["[b"] = { "<cmd>bprev<CR>", "Prev buffer" },
-        ["<leader>bb"] = { "<cmd>b#<CR>", "Swap" },
-        ["<leader>bf"] = { "<cmd>Telescope buffers<CR>", "Find" },
-        ["<leader>bc"] = { "<cmd>close<CR>", "Close" },
-        ["<leader>bd"] = { "<cmd>bd<CR>", "Delete" },
-        ["<leader>bD"] = { "<cmd>bufdo bd<CR>", "Delete all" },
-        ["<leader>bm"] = { "<cmd>MaximizerToggle<CR>", "Maximize (toggle)" },
+        ["<leader>b"]     = { name = "Buffers", desc = get_icon("Tab") .. "Buffers" },
+        ["]b"]            = { "<cmd>bnext<CR>", "Next buffer" },
+        ["[b"]            = { "<cmd>bprev<CR>", "Prev buffer" },
+        ["<leader>bb"]    = { "<cmd>b#<CR>", "Swap" },
+        ["<leader>bf"]    = { "<cmd>Telescope buffers<CR>", "Find" },
+        ["<leader>bc"]    = { "<cmd>close<CR>", "Close" },
+        ["<leader>bd"]    = { "<cmd>bd<CR>", "Delete" },
+        ["<leader>bD"]    = { "<cmd>bufdo bd<CR>", "Delete all" },
+        ["<leader>bm"]    = { "<cmd>MaximizerToggle<CR>", "Maximize (toggle)" },
 
         -- Plugins
-        ["<leader>u"] = { name = "Plugins", desc = get_icon("Package") .. "Plugins" },
-        ["<leader>uu"] = { function() lazy.home() end, "Plugins Status" },
+        ["<leader>u"]     = { name = "Plugins", desc = get_icon("Package") .. "Plugins" },
+        ["<leader>uu"]    = { function() lazy.home() end, "Plugins Status" },
+
+        -- Sessions
+        ["<leader>s"]     = { name = "Sessions", desc = get_icon("Session") .. "Sessions" },
+        ["<leader>ss"]    = { resession.save, "Save" },
+        ["<leader>sl"]    = { resession.load, "Load" },
+        ["<leader>sd"]    = { resession.delete, "Delete" },
     })
 
     whichkey.register(
