@@ -11,10 +11,6 @@ local Terminal      = require('toggleterm.terminal').Terminal
 local lazygit       = Terminal:new({ cmd = "lazygit", hidden = true, direction = "float" })
 local gitsigns      = require("gitsigns")
 
-function _lazygit_toggle()
-    lazygit:toggle()
-end
-
 function spec:config()
     local whichkey = require('which-key')
 
@@ -92,7 +88,7 @@ function spec:config()
         ["<leader>gS"] = { function() gitsigns.stage_buffer() end, "Stage Git buffer" },
         ["<leader>gu"] = { function() gitsigns.undo_stage_hunk() end, "Unstage Git hunk" },
         ["<leader>gd"] = { function() gitsigns.diffthis() end, "View Git diff" },
-        ["<leader>gG"] = { "<cmd>lua _lazygit_toggle()<CR>", "Lazygit" },
+        ["<leader>gG"] = { function () lazygit:toggle() end, "Lazygit" },
 
         -- Terminal
         ["<leader>t"] = { name = "Terminal", desc = get_icon("Terminal") .. "Terminal" },
