@@ -45,9 +45,9 @@ function spec:config()
                 n = { "<cmd>Lspsaga rename<CR>", "Rename" },
                 f = { "<cmd>Lspsaga finder<CR>", "Finder" },
                 a = { "<cmd>Lspsaga code_action<CR>", "Code action" },
-                o = { "<cmd>Lspsaga outline<CR>", "Show outline" },
                 i = { "<cmd>Lspsaga incoming_calls<CR>", "Incoming calls" },
                 u = { "<cmd>Lspsaga outgoing_calls<CR>", "Outgoing calls" },
+                o = { "<cmd>AerialToggle<CR>", "Show outline" },
             }
         },
         { prefix = "<leader>" }
