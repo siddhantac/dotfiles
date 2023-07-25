@@ -12,28 +12,28 @@ local gitsigns      = require("gitsigns")
 local lazy          = require("lazy")
 local resession     = require("resession")
 
-local gitpush      = function()
+local gitpush       = function()
     local orig = vim.notify("Pushing...", "info", {
         title = "Git", render = "compact" })
 
     local result = vim.fn.system("git push")
     if vim.v.shell_error == 0 then
-        vim.notify("Pushing... success!", "info", {replace = orig})
+        vim.notify("Pushing... success!", "info", { replace = orig })
     else
-        vim.notify("Pushing... failed!" .. result, "error", {replace = orig})
+        vim.notify("Pushing... failed!" .. result, "error", { replace = orig })
         vim.notify(result, "error", { title = "Git" })
     end
 end
 
-local gitpull      = function()
+local gitpull       = function()
     local orig = vim.notify("Pulling...", "info", {
         title = "Git", render = "compact" })
 
     local result = vim.fn.system("git pull")
     if vim.v.shell_error == 0 then
-        vim.notify("Pulling... success!", "info", {replace = orig})
+        vim.notify("Pulling... success!", "info", { replace = orig })
     else
-        vim.notify("Pulling... failed!" .. result, "error", {replace = orig})
+        vim.notify("Pulling... failed!" .. result, "error", { replace = orig })
         vim.notify(result, "error", { title = "Git" })
     end
 end
@@ -145,21 +145,21 @@ function spec:config()
         ["<leader>ss"]    = { resession.save, "Save" },
         ["<leader>sl"]    = { resession.load, "Load" },
         ["<leader>sd"]    = { resession.delete, "Delete" },
+
+        -- Diagnostics
+        ["<leader>d"]     = { name = "Diagnostics", desc = get_icon("Diagnostic") .. "Diagnostics" },
+        ["<leader>dd"]    = { function() tscopebuiltin.diagnostics() end, "Search diagnostics" },
+        ["<leader>dh"]    = { function() vim.diagnostic.open_float() end, "Hover diagnostics" },
+        ["]d"]            = { function() vim.diagnostic.goto_next() end, "Next diagnostic" },
+        ["[d"]            = { function() vim.diagnostic.goto_prev() end, "Prev diagnostic" },
+        -- n = { "<cmd>Lspsaga diagnostic_jump_next<CR>", "Next" },
+        -- p = { "<cmd>Lspsaga diagnostic_jump_prev<CR>", "Prev" },
+        -- d = { "<cmd>Lspsaga show_line_diagnostics<CR>", "Show line diagnostic" },
+        -- D = { "<cmd>Lspsaga show_cursor_diagnostics<CR>", "Show cursor diagnostic" },
     })
 
     whichkey.register(
         {
-            d = {
-                name = "Diagnostics",
-                f = { "<cmd>Telescope diagnostics<CR>", "Open in Telescope" },
-                L = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Open in location list" },
-
-                n = { "<cmd>Lspsaga diagnostic_jump_next<CR>", "Next" },
-                p = { "<cmd>Lspsaga diagnostic_jump_prev<CR>", "Prev" },
-                d = { "<cmd>Lspsaga show_line_diagnostics<CR>", "Show line diagnostic" },
-                D = { "<cmd>Lspsaga show_cursor_diagnostics<CR>", "Show cursor diagnostic" },
-            },
-
             e = { "<cmd>NvimTreeFindFileToggle<CR>", "File Explorer" },
             w = { "<cmd>w<CR>", "Save" },
         },
