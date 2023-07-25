@@ -8,6 +8,7 @@
   "cmp-nvim-lsp": { "branch": "main", "commit": "44b16d11215dce86f253ce0c30949813c0a90765" },
   "gitsigns.nvim": { "branch": "main", "commit": "adcf2c7f2f495f5df148683764bf7cba6a70f34c" },
   "harpoon.nvim": { "branch": "master", "commit": "21f4c47c6803d64ddb934a5b314dcb1b8e7365dc" },
+  "indent-blankline.nvim": { "branch": "master", "commit": "4541d690816cb99a7fc248f1486aa87f3abce91c" },
   "lazy.nvim": { "branch": "main", "commit": "3ad55ae678876516156cca2f361c51f7952a924b" },
   "lspconfig": { "branch": "master", "commit": "6f426c34c8e21af2f934e56be9d1198a507ecc9f" },
   "lspkind.nvim": { "branch": "master", "commit": "57610d5ab560c073c465d6faf0c19f200cb67e6e" },
