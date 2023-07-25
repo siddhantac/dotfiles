@@ -156,6 +156,10 @@ function spec:config()
         -- p = { "<cmd>Lspsaga diagnostic_jump_prev<CR>", "Prev" },
         -- d = { "<cmd>Lspsaga show_line_diagnostics<CR>", "Show line diagnostic" },
         -- D = { "<cmd>Lspsaga show_cursor_diagnostics<CR>", "Show cursor diagnostic" },
+
+        -- LSP
+        ["<leader>l"] = { name = "LSP", desc = get_icon("ActiveLSP") .. "LSP" },
+        ["<leader>ll"] = {"<cmd>LspInfo<CR>", "LSP Info"},
     })
 
     whichkey.register(
