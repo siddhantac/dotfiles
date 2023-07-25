@@ -10,7 +10,7 @@ local spec = {
 function spec:config()
     local lspconfig = require("lspconfig")
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
-    local on_attach = require("plugins.config.lsp")
+    local on_attach = require("plugins.lsp.config")
 
     local capabilities = cmp_nvim_lsp.default_capabilities()
 
