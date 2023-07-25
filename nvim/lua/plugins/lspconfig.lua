@@ -10,7 +10,7 @@ local spec = {
 function spec:config()
     local lspconfig = require("lspconfig")
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
-    require("plugins.config.lsp")
+    local on_attach = require("plugins.config.lsp")
 
     local capabilities = cmp_nvim_lsp.default_capabilities()
 
@@ -22,25 +22,9 @@ function spec:config()
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end
 
-    local function on_attach(client, bufnr)
-        -- Only highlight if compatible with the language
-        if client.server_capabilities.documentHighlightProvider then
-            vim.cmd('augroup LspHighlight')
-            vim.cmd('autocmd!')
-            vim.cmd('autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()')
-            vim.cmd('autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()')
-            vim.cmd('augroup END')
-        else
-            vim.notify("highlights not available", "warn", {
-                title = "lsp",
-                render = "compact",
-            })
-        end
-    end
-
     lspconfig.gopls.setup {
         on_attach = on_attach,
-        capabilities = capabilities,
+        -- capabilities = capabilities,
     }
 
     -- configure lua server (with special settings)
