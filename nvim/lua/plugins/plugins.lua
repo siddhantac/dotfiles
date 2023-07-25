@@ -42,13 +42,13 @@ return {
         "onsails/lspkind.nvim",
         event = "LspAttach",
     }, -- vs-code like icons for autocompletion
-    'kyazdani42/nvim-web-devicons',
+    'nvim-tree/nvim-web-devicons',
 
     {
         'nvim-telescope/telescope-fzf-native.nvim',
         build = 'make',
     },
-    {'nvim-telescope/telescope-ui-select.nvim' },
-    { 'echasnovski/mini.nvim', version = '*' },
+    { 'nvim-telescope/telescope-ui-select.nvim' },
+    { 'echasnovski/mini.nvim',                  version = '*' },
     -- 'tpope/vim-dispatch'
 }
