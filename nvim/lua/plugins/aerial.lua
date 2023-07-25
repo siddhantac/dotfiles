@@ -7,6 +7,8 @@ return {
         "nvim-tree/nvim-web-devicons"
     },
     config = function()
-        require("aerial").setup()
+        require("aerial").setup({
+            backends = { "treesitter", "lsp", "markdown", "man" },
+        })
     end
 }

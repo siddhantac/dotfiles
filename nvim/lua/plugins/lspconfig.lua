@@ -27,7 +27,16 @@ function spec:config()
 
                 m = { "<cmd>Telescope lsp_implementations<cr>", "Implementation" },
                 r = { '<cmd>Telescope lsp_references<CR>', "Refs in Telescope" },
-                s = { '<cmd>Telescope lsp_document_symbols<CR>', "Document symbols" },
+                s = {
+                    function()
+                        local aerial_avail, _ = pcall(require, "aerial")
+                        if aerial_avail then
+                            require("telescope").extensions.aerial.aerial()
+                        else
+                            require("telescope.builtin").lsp_document_symbols()
+                        end
+                    end, "Document symbols" },
+
                 S = { '<cmd>Telescope lsp_workspace_symbols<CR>', "Workspace symbols" },
                 l = { '<cmd>LspInfo<CR>', "LSP Info" },
 
