@@ -3,7 +3,6 @@ local spec          = {
     name = "which-key.nvim",
 }
 
-local notify        = require("core.quick-notify")
 local get_icon      = require("utils").get_icon
 local telescope     = require("telescope")
 local tscopebuiltin = require("telescope.builtin")
@@ -12,6 +11,32 @@ local lazygit       = Terminal:new({ cmd = "lazygit", hidden = true, direction =
 local gitsigns      = require("gitsigns")
 local lazy          = require("lazy")
 local resession     = require("resession")
+
+local gitpush      = function()
+    local orig = vim.notify("Pushing...", "info", {
+        title = "Git", render = "compact" })
+
+    local result = vim.fn.system("git push")
+    if vim.v.shell_error == 0 then
+        vim.notify("Pushing... success!", "info", {replace = orig})
+    else
+        vim.notify("Pushing... failed!" .. result, "error", {replace = orig})
+        vim.notify(result, "error", { title = "Git" })
+    end
+end
+
+local gitpull      = function()
+    local orig = vim.notify("Pulling...", "info", {
+        title = "Git", render = "compact" })
+
+    local result = vim.fn.system("git pull")
+    if vim.v.shell_error == 0 then
+        vim.notify("Pulling... success!", "info", {replace = orig})
+    else
+        vim.notify("Pulling... failed!" .. result, "error", {replace = orig})
+        vim.notify(result, "error", { title = "Git" })
+    end
+end
 
 function spec:config()
     local whichkey = require('which-key')
@@ -66,15 +91,8 @@ function spec:config()
         ["<leader>go"]    = { "<cmd>GBrowse<CR>", "Open github (browser)" },
         ["<leader>gg"]    = { "<cmd>Git<CR>", "fugitive" },
         ["<leader>ga"]    = { "<cmd>Git add -A|Git commit<CR>", "Add & Commit" },
-        ["<leader>gl"]    = { function() notify("pulling...", "Git pull") end, "Pull" },
-        ["<leader>gp"]    = { function()
-            local result = vim.fn.system("git push")
-            if vim.v.shell_error == 0 then
-                vim.notify("Pushed successfully", "info", {title = "Git", render = "compact"})
-            else
-                vim.notify("Push failed" .. result, "error", {title = "Git"})
-            end
-        end, "Push" },
+        ["<leader>gl"]    = { gitpull, "Pull" },
+        ["<leader>gp"]    = { gitpush, "Push" },
         -- y = { "<cmd>!git pull --all -p<CR>", "sync" },
 
         -- Gitsigns
