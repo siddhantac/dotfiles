@@ -1,5 +1,6 @@
 return function(client, bufnr)
     require('which-key').register({
+        ["gd"] = { vim.lsp.buf.goto_definition(), "Go to def"},
         ["<leader>lf"] = { vim.lsp.buf.format, "Format" },
         ["<leader>lh"] = { vim.lsp.buf.hover, "Hover" },
         ["<leader>lm"] = { "<cmd>Telescope lsp_implementations<cr>", "Implementation" },
