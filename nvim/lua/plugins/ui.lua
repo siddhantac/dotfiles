@@ -51,10 +51,13 @@ return {
         dependencies = {
             'nvim-tree/nvim-web-devicons'
         },
-        config = function()
-            local lualine = require('lualine')
-            lualine.setup {
-                options = { theme = 'catppuccin' },
-            }
-        end
-    } }
+        opts = {
+            options = {
+                theme = 'catppuccin',
+                disabled_filetypes = {
+                    'aerial',
+                },
+            },
+        },
+    },
+}
