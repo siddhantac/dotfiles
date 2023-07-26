@@ -85,7 +85,6 @@ local function goimports(wait_ms)
 vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = '*.go',
   callback = function()
-        vim.lsp.buf.format()
         goimports(1000)
   end
 })
