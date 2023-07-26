@@ -26,11 +26,21 @@ return function(client, bufnr)
 
     -- Only highlight if compatible with the language
     if client.server_capabilities.documentHighlightProvider then
-        vim.cmd('augroup LspHighlight')
-        vim.cmd('autocmd!')
-        vim.cmd('autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()')
-        vim.cmd('autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()')
-        vim.cmd('augroup END')
+        local lsp_highlight = vim.api.nvim_create_augroup("LspHighlight", {clear = true})
+        vim.api.nvim_create_autocmd("CursorHold", {
+            group = lsp_highlight,
+            buffer = bufnr,
+            callback = function()
+                vim.lsp.buf.document_highlight()
+            end
+        })
+        vim.api.nvim_create_autocmd("CursorMoved", {
+            buffer = bufnr,
+            group = lsp_highlight,
+            callback = function()
+                vim.lsp.buf.clear_references()
+            end
+        })
     else
         local ok, notify = pcall(require, "notify")
         if ok then vim.notify = notify end
