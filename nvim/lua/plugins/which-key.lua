@@ -11,7 +11,7 @@ local lazygit       = Terminal:new({ cmd = "lazygit", hidden = true, direction =
 local gitsigns      = require("gitsigns")
 local lazy          = require("lazy")
 -- local resession     = require("resession")
-local sessions = require("mini.sessions")
+local sessions      = require("mini.sessions")
 
 local gitpush       = function()
     local orig = vim.notify("Pushing...", "info", {
@@ -62,7 +62,8 @@ function spec:config()
         ["<leader>fn"]    = { function() telescope.extensions.notify.notify() end, "Find notifications" },
         ["<leader>fo"]    = { function() tscopebuiltin.oldfiles() end, "Find history" },
         ["<leader>fr"]    = { function() tscopebuiltin.registers() end, "Find registers" },
-        ["<leader>ft"]    = { function() tscopebuiltin.colorscheme { enable_preview = true } end, "Find themes" },
+        ["<leader>fs"]    = { function() tscopebuiltin.colorscheme { enable_preview = true } end, "Find themes" },
+        ["<leader>ft"]    = { "<cmd>TodoTelescope<CR>", "Find todos" },
         ["<leader>fw"]    = { function() tscopebuiltin.live_grep() end, "Find words" },
         ["<leader>fW"]    = {
             function()
@@ -143,9 +144,9 @@ function spec:config()
 
         -- Sessions
         ["<leader>s"]     = { name = "Sessions", desc = get_icon("Session") .. "Sessions" },
-        ["<leader>ss"]    = { function () sessions.select("write") end, "Save" },
-        ["<leader>sl"]    = { function () sessions.select("read") end, "Load" },
-        ["<leader>sd"]    = { function () sessions.select("delete") end, "Delete" },
+        ["<leader>ss"]    = { function() sessions.select("write") end, "Save" },
+        ["<leader>sl"]    = { function() sessions.select("read") end, "Load" },
+        ["<leader>sd"]    = { function() sessions.select("delete") end, "Delete" },
 
         -- Diagnostics
         ["<leader>d"]     = { name = "Diagnostics", desc = get_icon("Diagnostic") .. "Diagnostics" },
@@ -159,14 +160,14 @@ function spec:config()
         -- D = { "<cmd>Lspsaga show_cursor_diagnostics<CR>", "Show cursor diagnostic" },
 
         -- LSP
-        ["<leader>l"] = { name = "LSP", desc = get_icon("ActiveLSP") .. "LSP" },
-        ["<leader>ll"] = {"<cmd>LspInfo<CR>", "LSP Info"},
-        ["gd"] = { vim.lsp.buf.goto_definition, "Go to def"},
-        ["<leader>lf"] = { vim.lsp.buf.format, "Format" },
-        ["<leader>lh"] = { vim.lsp.buf.hover, "Hover" },
-        ["<leader>lm"] = { "<cmd>Telescope lsp_implementations<cr>", "Implementation" },
-        ["<leader>lr"] = { '<cmd>Telescope lsp_references<CR>', "Refs in Telescope" },
-        ["<leader>ls"] = {
+        ["<leader>l"]     = { name = "LSP", desc = get_icon("ActiveLSP") .. "LSP" },
+        ["<leader>ll"]    = { "<cmd>LspInfo<CR>", "LSP Info" },
+        ["gd"]            = { vim.lsp.buf.goto_definition, "Go to def" },
+        ["<leader>lf"]    = { vim.lsp.buf.format, "Format" },
+        ["<leader>lh"]    = { vim.lsp.buf.hover, "Hover" },
+        ["<leader>lm"]    = { "<cmd>Telescope lsp_implementations<cr>", "Implementation" },
+        ["<leader>lr"]    = { '<cmd>Telescope lsp_references<CR>', "Refs in Telescope" },
+        ["<leader>ls"]    = {
             function()
                 local aerial_avail, _ = pcall(require, "aerial")
                 if aerial_avail then
@@ -175,14 +176,14 @@ function spec:config()
                     require("telescope.builtin").lsp_document_symbols()
                 end
             end, "Document symbols" },
-        ["<leader>ld"] = { "<cmd>Lspsaga peek_definition<CR>", "Peek def" },
-        ["<leader>ly"] = { "<cmd>Lspsaga peek_type_definition<CR>", "Peek type def" },
-        ["<leader>ln"] = { "<cmd>Lspsaga rename<CR>", "Rename" },
-        ["<leader>lx"] = { "<cmd>Lspsaga finder<CR>", "Finder" },
-        ["<leader>la"] = { "<cmd>Lspsaga code_action<CR>", "Code action" },
-        ["<leader>li"] = { "<cmd>Lspsaga incoming_calls<CR>", "Incoming calls" },
-        ["<leader>lu"] = { "<cmd>Lspsaga outgoing_calls<CR>", "Outgoing calls" },
-        ["<leader>lo"] = { "<cmd>AerialToggle<CR>", "Show outline" },
+        ["<leader>ld"]    = { "<cmd>Lspsaga peek_definition<CR>", "Peek def" },
+        ["<leader>ly"]    = { "<cmd>Lspsaga peek_type_definition<CR>", "Peek type def" },
+        ["<leader>ln"]    = { "<cmd>Lspsaga rename<CR>", "Rename" },
+        ["<leader>lx"]    = { "<cmd>Lspsaga finder<CR>", "Finder" },
+        ["<leader>la"]    = { "<cmd>Lspsaga code_action<CR>", "Code action" },
+        ["<leader>li"]    = { "<cmd>Lspsaga incoming_calls<CR>", "Incoming calls" },
+        ["<leader>lu"]    = { "<cmd>Lspsaga outgoing_calls<CR>", "Outgoing calls" },
+        ["<leader>lo"]    = { "<cmd>AerialToggle<CR>", "Show outline" },
         -- S = { '<cmd>Telescope lsp_workspace_symbols<CR>', "Workspace symbols" },
     })
 
