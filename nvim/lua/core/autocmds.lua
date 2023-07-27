@@ -90,6 +90,10 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 })
 
 -- save a session before exiting 
+-- note: even though mini.sessions has a feature to autowrite a session
+--        on exit, it was hard to come up with a way to automatically 'create' 
+--        a session in the first place. The below takes care of everything 
+--        in 6 lines.
 vim.api.nvim_create_autocmd('VimLeavePre', {
     pattern = '*',
     callback = function ()
