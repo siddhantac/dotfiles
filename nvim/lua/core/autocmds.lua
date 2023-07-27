@@ -88,3 +88,12 @@ vim.api.nvim_create_autocmd('BufWritePre', {
         goimports(1000)
   end
 })
+
+-- save a session before exiting 
+vim.api.nvim_create_autocmd('VimLeavePre', {
+    pattern = '*',
+    callback = function ()
+        local dirname = vim.fn.fnamemodify(vim.fn.getcwd(), ":t") -- returns directory name
+        require('mini.sessions').write(dirname)
+    end
+})

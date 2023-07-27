@@ -10,7 +10,8 @@ local Terminal      = require('toggleterm.terminal').Terminal
 local lazygit       = Terminal:new({ cmd = "lazygit", hidden = true, direction = "float" })
 local gitsigns      = require("gitsigns")
 local lazy          = require("lazy")
-local resession     = require("resession")
+-- local resession     = require("resession")
+local sessions = require("mini.sessions")
 
 local gitpush       = function()
     local orig = vim.notify("Pushing...", "info", {
@@ -142,9 +143,9 @@ function spec:config()
 
         -- Sessions
         ["<leader>s"]     = { name = "Sessions", desc = get_icon("Session") .. "Sessions" },
-        ["<leader>ss"]    = { resession.save, "Save" },
-        ["<leader>sl"]    = { resession.load, "Load" },
-        ["<leader>sd"]    = { resession.delete, "Delete" },
+        ["<leader>ss"]    = { function () sessions.select("write") end, "Save" },
+        ["<leader>sl"]    = { function () sessions.select("read") end, "Load" },
+        ["<leader>sd"]    = { function () sessions.select("delete") end, "Delete" },
 
         -- Diagnostics
         ["<leader>d"]     = { name = "Diagnostics", desc = get_icon("Diagnostic") .. "Diagnostics" },
