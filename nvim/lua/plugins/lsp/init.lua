@@ -4,11 +4,6 @@ return {
         event = "LspAttach",
     }, -- vs-code like icons for autocompletion
     {
-        'numToStr/Comment.nvim',
-        event = { "BufRead" },
-        opts = {},
-    },
-    {
         'stevearc/aerial.nvim',
         opts = {
             attach_mode = "global",
