@@ -78,13 +78,10 @@ function spec:config()
         ["<leader>g"]     = { name = "Git", desc = get_icon("Git") .. "Git" },
         ["<leader>gb"]    = { function() tscopebuiltin.git_branches { use_file_path = true } end, "Git branches" },
         -- c = { "<cmd>Git commit<CR>", "commit" },
-        ["<leader>gc"]    = {
-            function() tscopebuiltin.git_commits { use_file_path = true } end,
-            "Git commits (repository)",
-        },
+        ["<leader>gc"]    = { "<cmd>Git commit<CR>", "Commit" },
         ["<leader>gC"]    = {
-            function() tscopebuiltin.git_bcommits { use_file_path = true } end,
-            "Git commits (current file)",
+            function() tscopebuiltin.git_commits { use_file_path = true } end,
+            "Git commits",
         },
         ["<leader>gt"]    = {
             function() tscopebuiltin.git_status { use_file_path = true } end,
