@@ -35,7 +35,7 @@ local gitpush       = function()
     }):start()
 end
 
-local gitpush       = function()
+local gitpull       = function()
     local spinner = require("utils.spinner")
     spinner.start(1, "Pulling", "Git")
 
