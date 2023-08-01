@@ -31,7 +31,7 @@ local gitpush       = function()
                 vim.notify(j:result(), "error", { title = "Git" })
             else
                 spinner.stop(1, "Pushing...success")
-                print(j:result())
+                print(res)
             end
         end,
     }):start()
