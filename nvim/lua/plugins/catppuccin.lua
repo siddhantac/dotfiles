@@ -14,8 +14,8 @@ local telescopeBorderless = function(flavor)
         TelescopeResultsBorder = { bg = cp.mantle, fg = cp.mantle },
         TelescopeResultsTitle = { fg = cp.mantle },
 
-        TelescopePreviewNormal = { bg = cp.mantle },
-        TelescopePreviewBorder = { bg = cp.mantle, fg = cp.mantle },
+        TelescopePreviewNormal = { bg = cp.crust },
+        TelescopePreviewBorder = { bg = cp.crust, fg = cp.crust },
         TelescopePreviewTitle = { bg = cp.green, fg = cp.mantle },
     }
 end
