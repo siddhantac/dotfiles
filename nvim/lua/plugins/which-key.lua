@@ -14,29 +14,45 @@ local lazy          = require("lazy")
 local sessions      = require("mini.sessions")
 
 local gitpush       = function()
-    local orig = vim.notify("Pushing...", "info", {
-        title = "Git", render = "compact" })
+    local spinner = require("utils.spinner")
+    spinner.start(1, "Pushing", "Git")
 
-    local result = vim.fn.system("git push")
-    if vim.v.shell_error == 0 then
-        vim.notify("Pushing... success!", "info", { replace = orig })
-    else
-        vim.notify("Pushing... failed!" .. result, "error", { replace = orig })
-        vim.notify(result, "error", { title = "Git" })
-    end
+    -- taken from here
+    -- https://www.reddit.com/r/neovim/comments/pa4yle/comment/ha2h1nh/?utm_source=share&utm_medium=web2x&context=3
+    local job = require('plenary.job')
+    job:new({
+        command = 'git',
+        args = { 'push' },
+        on_exit = function(j, exit_code)
+            local res = table.concat(j:result(), "\n")
+
+            if exit_code ~= 0 then
+                spinner.stop(1, "Pushing...failed")
+                vim.notify(res, "error", { title = "Git" })
+            end
+            spinner.stop(1, "Pushing...success")
+        end,
+    }):start()
 end
 
-local gitpull       = function()
-    local orig = vim.notify("Pulling...", "info", {
-        title = "Git", render = "compact" })
+local gitpush       = function()
+    local spinner = require("utils.spinner")
+    spinner.start(1, "Pulling", "Git")
 
-    local result = vim.fn.system("git pull")
-    if vim.v.shell_error == 0 then
-        vim.notify("Pulling... success!", "info", { replace = orig })
-    else
-        vim.notify("Pulling... failed!" .. result, "error", { replace = orig })
-        vim.notify(result, "error", { title = "Git" })
-    end
+    local job = require('plenary.job')
+    job:new({
+        command = 'git',
+        args = { 'pull' },
+        on_exit = function(j, exit_code)
+            local res = table.concat(j:result(), "\n")
+
+            if exit_code ~= 0 then
+                spinner.stop(1, "Pulling...failed")
+                vim.notify(res, "error", { title = "Git" })
+            end
+            spinner.stop(1, "Pulling...success")
+        end,
+    }):start()
 end
 
 function spec:config()
