@@ -29,8 +29,9 @@ local gitpush       = function()
             if exit_code ~= 0 then
                 spinner.stop(1, "Pushing...failed")
                 vim.notify(res, "error", { title = "Git" })
+            else
+                spinner.stop(1, "Pushing...success")
             end
-            spinner.stop(1, "Pushing...success")
         end,
     }):start()
 end
@@ -49,8 +50,9 @@ local gitpull       = function()
             if exit_code ~= 0 then
                 spinner.stop(1, "Pulling...failed")
                 vim.notify(res, "error", { title = "Git" })
+            else
+                spinner.stop(1, "Pulling...success")
             end
-            spinner.stop(1, "Pulling...success")
         end,
     }):start()
 end
