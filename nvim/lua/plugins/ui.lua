@@ -94,12 +94,12 @@ return {
 
             local theme = {
                 normal = {
-                    a = { fg = colors.white, bg = colors.black }, -- mode
+                    a = { fg = colors.black, bg = colors.green }, -- mode
                     b = { fg = colors.white, bg = colors.black }, -- branch, filename etc.
                     c = { fg = colors.black, bg = colors.grey },  -- the long middle section
                     z = { fg = colors.white, bg = colors.black },
                 },
-                insert = { a = { fg = colors.black, bg = colors.light_green } },
+                insert = { a = { fg = colors.black, bg = colors.red } },
                 visual = { a = { fg = colors.black, bg = colors.orange } },
                 replace = { a = { fg = colors.black, bg = colors.green } },
             }
