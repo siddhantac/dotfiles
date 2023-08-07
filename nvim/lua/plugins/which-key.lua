@@ -15,7 +15,8 @@ local sessions      = require("mini.sessions")
 
 local gitpush       = function()
     local spinner = require("utils.spinner")
-    spinner.start(1, "Pushing", "Git")
+    local title = "Git"
+    spinner.start(1, "Pushing", title)
 
     -- taken from here
     -- https://www.reddit.com/r/neovim/comments/pa4yle/comment/ha2h1nh/?utm_source=share&utm_medium=web2x&context=3
@@ -27,10 +28,10 @@ local gitpush       = function()
             local res = table.concat(j:result(), "\n")
 
             if exit_code ~= 0 then
-                spinner.stop(1, "Pushing...failed")
-                vim.notify(j:result(), "error", { title = "Git" })
+                spinner.stop(1, "Pushing...failed", title)
+                vim.notify(j:result(), "error", { title = title })
             else
-                spinner.stop(1, "Pushing...success")
+                spinner.stop(1, "Pushing...success", title)
                 print(res)
             end
         end,
