@@ -184,6 +184,7 @@ function spec:config()
         ["<leader>lh"]    = { vim.lsp.buf.hover, "Hover" },
         ["<leader>lm"]    = { "<cmd>Telescope lsp_implementations<cr>", "Implementation" },
         ["<leader>lr"]    = { '<cmd>Telescope lsp_references<CR>', "Refs in Telescope" },
+        ["<leader>lR"]    = { vim.lsp.buf.references, "Refs in Telescope" },
         ["<leader>ls"]    = {
             function()
                 local aerial_avail, _ = pcall(require, "aerial")

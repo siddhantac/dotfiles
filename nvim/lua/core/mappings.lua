@@ -19,9 +19,6 @@ vim.keymap.set('n', '<C-d>', '<C-d>zz')
 -- Sends the deleted text into the void register instead.
 vim.keymap.set("x", "<leader>p", "\"_dP")
 
-vim.keymap.set("n", "<C-n>", ":cnext<CR>zz")
-vim.keymap.set("n", "<C-p>", ":cprev<CR>zz")
+vim.keymap.set("n", "]c", ":cnext<CR>zz")
+vim.keymap.set("n", "[c", ":cprev<CR>zz")
 vim.keymap.set("n", "<C-c>", ":cclose<CR>")
-vim.keymap.set("n", "<leader>f", function()
-    vim.lsp.buf.format()
-end)
