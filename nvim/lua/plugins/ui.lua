@@ -94,7 +94,7 @@ return {
 
             local theme = {
                 normal = {
-                    a = { fg = colors.black, bg = colors.green }, -- mode
+                    a = { fg = colors.green, bg = colors.black }, -- mode
                     b = { fg = colors.white, bg = colors.black }, -- branch, filename etc.
                     c = { fg = colors.black, bg = colors.grey },  -- the long middle section
                     z = { fg = colors.white, bg = colors.black },
