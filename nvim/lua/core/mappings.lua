@@ -22,3 +22,6 @@ vim.keymap.set("x", "<leader>p", "\"_dP")
 vim.keymap.set("n", "]c", ":cnext<CR>zz")
 vim.keymap.set("n", "[c", ":cprev<CR>zz")
 vim.keymap.set("n", "<C-c>", ":cclose<CR>")
+
+vim.keymap.set("n", "]t", ":tabnext<CR>")
+vim.keymap.set("n", "[t", ":tabprev<CR>")
