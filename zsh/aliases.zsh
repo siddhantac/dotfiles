@@ -64,15 +64,15 @@ gmerge() {
 
 # gsync: pull in latest changes on master/main branch
 gsync() {
-    branch=$(git rev-parse --abbrev-ref HEAD) && \
-    echo 'saved branch: {{ Color "212" "" "'$branch'" }}' | gum format -t template
+    # branch=$(git rev-parse --abbrev-ref HEAD) && \
+    # echo 'saved branch: {{ Color "212" "" "'$branch'" }}' | gum format -t template
     echo 'checking out: {{ Color "212" "" "main/master" }} branch and pulling latest changes...' | gum format -t template
     git checkout master
     output=$?
     [ $output -ne 0 ] && git checkout main
     git pull --all -p
-    echo 'checking out: {{ Color "212" "" "'$branch'" }}' | gum format -t template
-    git checkout $branch
+    # echo 'checking out: {{ Color "212" "" "'$branch'" }}' | gum format -t template
+    # git checkout $branch
 }
 
 # suffix aliases (just typing the json filename in terminal will open it in vim)
