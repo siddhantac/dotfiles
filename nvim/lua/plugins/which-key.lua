@@ -28,11 +28,11 @@ local gitpush       = function()
             local res = table.concat(j:result(), "\n")
 
             if exit_code ~= 0 then
-                spinner.stop(1, "Pushing...failed", title)
-                vim.notify(j:result(), "error", { title = title })
+                spinner.stop(1, "Failed to push", title)
+                vim.notify(res, "error", { title = title })
             else
-                spinner.stop(1, "Pushing...success", title)
-                print(res)
+                spinner.stop(1, "Pushed", title)
+                vim.notify(res, "info")
             end
         end,
     }):start()
@@ -50,10 +50,10 @@ local gitpull       = function()
             local res = table.concat(j:result(), "\n")
 
             if exit_code ~= 0 then
-                spinner.stop(1, "Pulling...failed")
+                spinner.stop(1, "Failed to pull")
                 vim.notify(res, "error", { title = "Git" })
             else
-                spinner.stop(1, "Pulling...success")
+                spinner.stop(1, "Pulled")
             end
         end,
     }):start()
