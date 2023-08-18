@@ -4,7 +4,7 @@ return {
         event = "LspAttach",
     }, -- vs-code like icons for autocompletion
     {
-        'stevearc/aerial.nvim',
+        'stevearc/aerial.nvim', -- code outline
         opts = {
             attach_mode = "global",
             backends = { "lsp", "treesitter", "markdown", "man" },

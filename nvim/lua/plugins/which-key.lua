@@ -141,6 +141,7 @@ function spec:config()
         ["<leader>tf"]    = { function() require("neotest").run.run(vim.fn.expand("%")) end, "Run file" },
         ["<leader>to"]    = { function() require("neotest").output_panel.toggle() end, "Output panel" },
         ["<leader>ts"]    = { function() require("neotest").summary.toggle() end, "Summary panel" },
+        ["<leader>tw"]    = { function() require("neotest").watch.toggle() end, "Toggle watch" },
         ["<leader>te"]    = { "<cmd>Other<cr>", "open test file" },
         ["<leader>tv"]    = { "<cmd>OtherVSplit<cr>", "open test file in vert split" },
 

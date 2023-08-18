@@ -17,7 +17,20 @@ return {
                 command_palette = true,       -- position the cmdline and popupmenu together
                 long_message_to_split = true, -- long messages will be sent to a split
                 inc_rename = false,           -- enables an input dialog for inc-rename.nvim
-                lsp_doc_border = false,       -- add a border to hover docs and signature help
+                lsp_doc_border = true,        -- add a border to hover docs and signature help
+            },
+
+            -- hide `written` messages
+            -- https://github.com/folke/noice.nvim/wiki/Configuration-Recipes#hide-written-messages
+            routes = {
+                {
+                    filter = {
+                        event = "msg_show",
+                        kind = "",
+                        find = "written",
+                    },
+                    opts = { skip = true },
+                },
             },
         },
         dependencies = {
