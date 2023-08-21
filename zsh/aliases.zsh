@@ -72,11 +72,11 @@ gsync() {
 }
 
 # gsr: gsync() + git rebase
-gsr() {
+sr() {
     branch=$(git rev-parse --abbrev-ref HEAD) && \
     echo 'saved branch: {{ Color "212" "" "'$branch'" }}' | gum format -t template
 
-    gsync()
+    gsync
 
     echo 'checking out: {{ Color "212" "" "'$branch'" }}' | gum format -t template
     git checkout $branch
