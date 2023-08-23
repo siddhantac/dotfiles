@@ -64,6 +64,7 @@ function spec:config()
 
     whichkey.register({
         -- find with telescope
+        ["ff"]            = { function() tscopebuiltin.find_files() end, "Find files" },
         ["<leader>f"]     = { name = "Find", desc = get_icon("Search") .. "Find" },
         ["<leader>ff"]    = { function() tscopebuiltin.find_files() end, "Find files" },
         ["<leader>f<CR>"] = { function() tscopebuiltin.resume() end, "Resume previous search" },
