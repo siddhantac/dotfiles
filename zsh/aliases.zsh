@@ -80,6 +80,7 @@ sr() {
 
     echo 'checking out: {{ Color "212" "" "'$branch'" }}' | gum format -t template
     git checkout $branch
+    git rebase master
 }
 
 # suffix aliases (just typing the json filename in terminal will open it in vim)
