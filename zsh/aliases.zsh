@@ -44,6 +44,7 @@ alias gpu='git push origin --set-upstream $(git rev-parse --abbrev-ref HEAD)'
 alias gmg='git merge'
 alias gmc='git merge --continue'
 alias gma='git merge --abort'
+alias gr='git rebase'
 alias grc='git add -A && git rebase --continue'
 alias gra='git rebase --abort'
 alias gl=pretty_git_log
