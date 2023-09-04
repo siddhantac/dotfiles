@@ -64,7 +64,7 @@ matches:
 
   # prmd = PR link in markdown with PR title as display text
   - regex: ":prmd\\((?P<num>.*)\\)"
-    replace: "[{{display}}](https://github.com/deliveryhero/pd-pablo-payment-gateway/pull/{{num}})"
+    replace: "[{{display}}](https://github.com/deliveryhero/pd-pablo-payment-gateway/pull/{{num}}) "
     vars:
       - name: display
         type: shell
