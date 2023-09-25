@@ -14,7 +14,7 @@ vim.keymap.set('', '<s-DOWN>', ':resize -5 <CR>')
 vim.keymap.set('n', '<C-f>', '<C-f>zz')
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 
--- When pasting, don't overwrite 
+-- When pasting, don't overwrite
 -- the register with the deleted text.
 -- Sends the deleted text into the void register instead.
 vim.keymap.set("x", "<leader>p", "\"_dP")
@@ -25,3 +25,6 @@ vim.keymap.set("n", "<C-c>", ":cclose<CR>")
 
 vim.keymap.set("n", "]t", ":tabnext<CR>")
 vim.keymap.set("n", "[t", ":tabprev<CR>")
+
+vim.keymap.set("i", "jj", "<Esc>")
+vim.keymap.set("i", "kk", "<Esc>")
