@@ -1,11 +1,19 @@
 return {
     {
+        'ldelossa/gh.nvim',
+        dependencies = { 'ldelossa/litee.nvim' },
+        config = function()
+            require('litee.lib').setup()
+            require('litee.gh').setup()
+        end,
+    },
+    {
         "NeogitOrg/neogit",
         dependencies = {
-            "nvim-lua/plenary.nvim", -- required
+            "nvim-lua/plenary.nvim",         -- required
             "nvim-telescope/telescope.nvim", -- optional
-            "sindrets/diffview.nvim", -- optional
-            "ibhagwan/fzf-lua",      -- optional
+            "sindrets/diffview.nvim",        -- optional
+            "ibhagwan/fzf-lua",              -- optional
         },
         config = true
     },
