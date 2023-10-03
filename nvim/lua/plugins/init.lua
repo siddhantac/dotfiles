@@ -76,4 +76,10 @@ require("lazy").setup({
             require "plugins.octo".setup()
         end,
     },
+
+    {
+        "ThePrimeagen/harpoon",
+        name = "harpoon.nvim",
+        event = { "BufRead" },
+    }
 })
