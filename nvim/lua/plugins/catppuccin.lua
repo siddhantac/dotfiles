@@ -20,28 +20,29 @@ local telescopeBorderless = function(flavor)
     }
 end
 
-return {
-    "catppuccin/nvim",
-    priority = 1,
-    config = function()
-        require("catppuccin").setup({
-            integrations = {
-                telescope = { enabled = true },
-                harpoon = true,
-                lsp_saga = true,
-                mini = true,
-                neotest = true,
-                notify = true,
-                nvimtree = true,
-                which_key = true,
-                -- gitsigns = true,
-            },
-            highlight_overrides = {
-                latte = telescopeBorderless('latte'),
-                frappe = telescopeBorderless('frappe'),
-                macchiato = telescopeBorderless('macchiato'),
-                mocha = telescopeBorderless('mocha'),
-            }
-        })
-    end
-}
+local M = {}
+M.setup = function()
+    require("catppuccin").setup({
+        integrations = {
+            telescope = { enabled = true },
+            harpoon = true,
+            lsp_saga = true,
+            mini = true,
+            neotest = true,
+            notify = true,
+            nvimtree = true,
+            which_key = true,
+            -- gitsigns = true,
+        },
+        highlight_overrides = {
+            latte = telescopeBorderless('latte'),
+            frappe = telescopeBorderless('frappe'),
+            macchiato = telescopeBorderless('macchiato'),
+            mocha = telescopeBorderless('mocha'),
+        }
+    })
+
+    vim.cmd.colorscheme "catppuccin-mocha"
+end
+
+return M
