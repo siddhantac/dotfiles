@@ -160,4 +160,21 @@ require("lazy").setup({
         end,
     },
 
+    -- UI
+    { 'nvim-tree/nvim-web-devicons' },
+    { "lukas-reineke/indent-blankline.nvim" },
+    {
+        'szw/vim-maximizer',
+        cmd = { "MaximizerToggle" },
+    },
+    {
+        'nvim-lualine/lualine.nvim',
+        name = "lualine.nvim",
+        dependencies = {
+            'nvim-tree/nvim-web-devicons'
+        },
+        config = function()
+            require("plugins.lualine").setup()
+        end,
+    },
 })
