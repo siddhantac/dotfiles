@@ -1,13 +1,5 @@
-local spec = {
-    'neovim/nvim-lspconfig', -- Configurations for Nvim LSP
-    name = "lspconfig",
-    event = { "BufReadPre", "BufNewFile" },
-    dependencies = {
-        'hrsh7th/cmp-nvim-lsp', -- LSP source for nvim-cmp
-    },
-}
-
-function spec:config()
+local M = {}
+M.setup = function()
     local lspconfig = require("lspconfig")
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
     local on_attach = require("plugins.lsp.config")
@@ -62,4 +54,4 @@ function spec:config()
     }
 end
 
-return spec
+return M

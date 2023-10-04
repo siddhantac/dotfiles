@@ -183,4 +183,19 @@ require("lazy").setup({
         cmd = { "ToggleTerm", "TermExec" },
         opts = require("plugins.toggleterm").opts,
     },
+
+    -- LSP
+    {
+        'neovim/nvim-lspconfig', -- Configurations for Nvim LSP
+        name = "lspconfig",
+        event = { "BufReadPre", "BufNewFile" },
+        dependencies = {
+            'hrsh7th/cmp-nvim-lsp', -- LSP source for nvim-cmp
+        },
+        config = function()
+            require("plugins.lspconfig").setup()
+        end,
+    }
+
+
 })
