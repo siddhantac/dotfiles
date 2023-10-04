@@ -94,5 +94,10 @@ require("lazy").setup({
                 }
             })
         end,
-    }
+    },
+    {
+        "nvim-neotest/neotest-go",
+        ft = "*_test.go",
+        config = require("plugins.neotest-go").config(),
+    },
 })
