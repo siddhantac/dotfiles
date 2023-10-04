@@ -195,7 +195,15 @@ require("lazy").setup({
         config = function()
             require("plugins.lspconfig").setup()
         end,
-    }
-
+    },
+    {
+        "glepnir/lspsaga.nvim",
+        name = 'lspsaga.nvim',
+        event = "LspAttach",
+        dependencies = {
+            'nvim-tree/nvim-web-devicons',
+        },
+        opts = require("plugins.toggleterm").opts,
+    },
 
 })
