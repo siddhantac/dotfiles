@@ -83,6 +83,7 @@ require("lazy").setup({
         event = { "BufRead" },
     },
 
+    -- Golang plugins
     {
         'rgroli/other.nvim',
         lazy = true,
@@ -98,6 +99,22 @@ require("lazy").setup({
     {
         "nvim-neotest/neotest-go",
         ft = "*_test.go",
-        config = require("plugins.neotest-go").config(),
+        config = function()
+            require("plugins.neotest_go").setup()
+        end
+    },
+    {
+        "nvim-neotest/neotest",
+        name = "neotest",
+        event = "BufEnter *_test.go",
+        dependencies = {
+            "nvim-neotest/neotest-go",
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
+            "antoinemadec/FixCursorHold.nvim",
+        },
+        config = function()
+            require("plugins.neotest").setup()
+        end,
     },
 })
