@@ -33,8 +33,8 @@ vim.opt.rtp:prepend(lazypath)
 local modules = {
     "core.options",
     "core.mappings",
-    "core.lazy",
     "core.autocmds",
+    "plugins",
 }
 
 for _, module in ipairs(modules) do
@@ -43,7 +43,3 @@ for _, module in ipairs(modules) do
         error('Error loading ' .. module .. '\n\n' .. err)
     end
 end
-
--- plugin specific options
-vim.cmd.colorscheme "catppuccin-mocha"
-vim.notify = require("notify")

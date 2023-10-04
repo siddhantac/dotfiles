@@ -1,8 +1,4 @@
-local spec          = {
-    "folke/which-key.nvim",
-    name = "which-key.nvim",
-}
-
+local M             = {}
 local get_icon      = require("utils").get_icon
 local telescope     = require("telescope")
 local tscopebuiltin = require("telescope.builtin")
@@ -60,7 +56,7 @@ local gitpull       = function()
     }):start()
 end
 
-function spec:config()
+M.setup             = function()
     local whichkey = require('which-key')
 
     whichkey.register({
@@ -245,4 +241,4 @@ function spec:config()
     })
 end
 
-return spec
+return M

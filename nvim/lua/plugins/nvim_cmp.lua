@@ -1,15 +1,5 @@
-local spec = {
-    "hrsh7th/nvim-cmp",
-    event = { "InsertEnter" },
-    dependencies = {
-        "nvim-lua/plenary.nvim",
-        "L3MON4D3/LuaSnip",
-        "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-buffer",
-    },
-}
-
-function spec:config()
+local M = {}
+M.setup = function()
     local luasnip = require('luasnip')
     local cmp = require('cmp')
 
@@ -71,4 +61,4 @@ function spec:config()
     -- end
 end
 
-return spec
+return M
