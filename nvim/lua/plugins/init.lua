@@ -206,4 +206,13 @@ require("lazy").setup({
         opts = require("plugins.toggleterm").opts,
     },
 
+
+    {
+        "folke/which-key.nvim",
+        name = "which-key.nvim",
+        config = function()
+            require("plugins.which-key").setup()
+        end,
+    },
+
 })
