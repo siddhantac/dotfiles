@@ -117,4 +117,20 @@ require("lazy").setup({
             require("plugins.neotest").setup()
         end,
     },
+
+
+    -- auto completion
+    {
+        "hrsh7th/nvim-cmp",
+        event = { "InsertEnter" },
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "L3MON4D3/LuaSnip",
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-buffer",
+        },
+        config = function()
+            require("plugins.nvim_cmp").setup()
+        end,
+    }
 })
