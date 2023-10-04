@@ -225,4 +225,26 @@ require("lazy").setup({
             require("plugins.mini").config()
         end,
     },
+
+    {
+        'nvim-treesitter/nvim-treesitter',
+        name = 'treesitter',
+        cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
+        build = ":TSUpdate",
+        event = { "BufReadPre", "BufNewFile" },
+        config = function()
+            require("plugins.treesitter").config()
+        end,
+    },
+    {
+        'nvim-treesitter/nvim-treesitter-textobjects',
+        name = 'treesitter-textobjects',
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter',
+        },
+        event = { "BufReadPre", "BufNewFile" },
+        config = function()
+            require("plugins.treesitter_textobjects").config()
+        end,
+    },
 })
