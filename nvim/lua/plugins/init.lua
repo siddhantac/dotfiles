@@ -177,6 +177,15 @@ require("lazy").setup({
             require("plugins.lualine").setup()
         end,
     },
+    {
+        "echasnovski/mini.indentscope",
+        version = false, -- wait till new 0.7.0 release to put it back on semver
+        event = { "BufReadPre", "BufNewFile" },
+        init = function()
+            require("plugins.ui").init()
+        end,
+        opts = require("plugins.ui").opts,
+    },
 
     {
         "akinsho/toggleterm.nvim",
