@@ -215,4 +215,14 @@ require("lazy").setup({
         end,
     },
 
+    {
+        "echasnovski/mini.nvim",
+        event = "VimEnter",
+        opts = function()
+            require("plugins.mini").opts()
+        end,
+        config = function()
+            require("plugins.mini").config()
+        end,
+    },
 })
