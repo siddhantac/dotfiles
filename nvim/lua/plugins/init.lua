@@ -1,13 +1,5 @@
 require("lazy").setup({
     {
-        "catppuccin/nvim",
-        priority = 1000,
-        config = function()
-            require("plugins.catppuccin").setup()
-        end,
-    },
-
-    {
         'rcarriga/nvim-notify',
         config = function()
             require("notify").setup({
@@ -161,6 +153,13 @@ require("lazy").setup({
     },
 
     -- UI
+    {
+        "catppuccin/nvim",
+        priority = 1000,
+        config = function()
+            require("plugins.catppuccin").setup()
+        end,
+    },
     { 'nvim-tree/nvim-web-devicons' },
     { "lukas-reineke/indent-blankline.nvim" },
     {
