@@ -66,9 +66,9 @@ gmerge() {
 # gsync: pull in latest changes on master/main branch
 gsync() {
     echo 'checking out: {{ Color "212" "" "main/master" }} branch and pulling latest changes...' | gum format -t template
-    git checkout master
+    git checkout main
     output=$?
-    [ $output -ne 0 ] && git checkout main
+    [ $output -ne 0 ] && git checkout master
     git pull --all -p
 }
 
