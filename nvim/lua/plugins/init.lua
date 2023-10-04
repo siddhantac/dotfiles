@@ -177,4 +177,10 @@ require("lazy").setup({
             require("plugins.lualine").setup()
         end,
     },
+
+    {
+        "akinsho/toggleterm.nvim",
+        cmd = { "ToggleTerm", "TermExec" },
+        opts = require("plugins.toggleterm").opts,
+    },
 })
