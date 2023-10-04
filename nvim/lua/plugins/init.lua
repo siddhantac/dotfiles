@@ -81,5 +81,18 @@ require("lazy").setup({
         "ThePrimeagen/harpoon",
         name = "harpoon.nvim",
         event = { "BufRead" },
+    },
+
+    {
+        'rgroli/other.nvim',
+        lazy = true,
+        cmd = { "Other", "OtherSplit", "OtherVSplit", "OtherClear" },
+        config = function()
+            require("other-nvim").setup({
+                mappings = {
+                    "golang",
+                }
+            })
+        end,
     }
 })
