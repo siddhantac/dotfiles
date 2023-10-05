@@ -1,30 +1,68 @@
--- Easier Navigation
-vim.keymap.set('n', '<C-H>', '<C-W><C-H>')
-vim.keymap.set('n', '<C-J>', '<C-W><C-J>')
-vim.keymap.set('n', '<C-K>', '<C-W><C-K>')
-vim.keymap.set('n', '<C-L>', '<C-W><C-L>')
+--[[
+╭────────────────────────────────────────────────────────────────────────────╮
+│  Str  │  Help page   │  Affected modes                           │  VimL   │
+│────────────────────────────────────────────────────────────────────────────│
+│  ''   │  mapmode-nvo │  Normal, Visual, Select, Operator-pending │  :map   │
+│  'n'  │  mapmode-n   │  Normal                                   │  :nmap  │
+│  'v'  │  mapmode-v   │  Visual and Select                        │  :vmap  │
+│  's'  │  mapmode-s   │  Select                                   │  :smap  │
+│  'x'  │  mapmode-x   │  Visual                                   │  :xmap  │
+│  'o'  │  mapmode-o   │  Operator-pending                         │  :omap  │
+│  '!'  │  mapmode-ic  │  Insert and Command-line                  │  :map!  │
+│  'i'  │  mapmode-i   │  Insert                                   │  :imap  │
+│  'l'  │  mapmode-l   │  Insert, Command-line, Lang-Arg           │  :lmap  │
+│  'c'  │  mapmode-c   │  Command-line                             │  :cmap  │
+│  't'  │  mapmode-t   │  Terminal                                 │  :tmap  │
+╰────────────────────────────────────────────────────────────────────────────╯
+--]]
+
+local map = function(tbl)
+    vim.keymap.set(tbl[1], tbl[2], tbl[3], tbl[4])
+end
+
+---@diagnostic disable-next-line: unused-local, unused-function
+local imap = function(tbl)
+    vim.keymap.set('i', tbl[1], tbl[2], tbl[3])
+end
+
+local nmap = function(tbl)
+    vim.keymap.set('n', tbl[1], tbl[2], tbl[3])
+end
+
+local vmap = function(tbl)
+    vim.keymap.set('v', tbl[1], tbl[2], tbl[3])
+end
+
+local tmap = function(tbl)
+    vim.keymap.set('t', tbl[1], tbl[2], tbl[3])
+end
+
+nmap({ '<C-H>', '<C-W><C-H>' })
+nmap({ '<C-J>', '<C-W><C-J>' })
+nmap({ '<C-K>', '<C-W><C-K>' })
+nmap({ '<C-L>', '<C-W><C-L>' })
 
 -- Easier resize
-vim.keymap.set('', '<s-LEFT>', ':vertical resize +5 <CR>')
-vim.keymap.set('', '<s-RIGHT>', ':vertical resize -5 <CR>')
-vim.keymap.set('', '<s-UP>', ':resize +5 <CR>')
-vim.keymap.set('', '<s-DOWN>', ':resize -5 <CR>')
+map({ '', '<s-LEFT>', ':vertical resize +5 <CR>' })
+map({ '', '<s-RIGHT>', ':vertical resize -5 <CR>' })
+map({ '', '<s-UP>', ':resize +5 <CR>' })
+map({ '', '<s-DOWN>', ':resize -5 <CR>' })
 
 -- Keep cursor centered when moving by pages.
-vim.keymap.set('n', '<C-f>', '<C-f>zz')
-vim.keymap.set('n', '<C-d>', '<C-d>zz')
+nmap({ '<C-f>', '<C-f>zz' })
+nmap({ '<C-d>', '<C-d>zz' })
 
 -- When pasting, don't overwrite
 -- the register with the deleted text.
 -- Sends the deleted text into the void register instead.
-vim.keymap.set("x", "<leader>p", "\"_dP")
+map({ "x", "<leader>p", "\"_dP" })
 
-vim.keymap.set("n", "]c", ":cnext<CR>zz")
-vim.keymap.set("n", "[c", ":cprev<CR>zz")
-vim.keymap.set("n", "<C-c>", ":cclose<CR>")
+nmap({ "]c", ":cnext<CR>zz" })
+nmap({ "[c", ":cprev<CR>zz" })
+nmap({ "<C-c>", ":cclose<CR>" })
 
-vim.keymap.set("n", "]t", ":tabnext<CR>")
-vim.keymap.set("n", "[t", ":tabprev<CR>")
+nmap({ "]t", ":tabnext<CR>" })
+nmap({ "[t", ":tabprev<CR>" })
 
-vim.keymap.set("i", "jj", "<Esc>")
-vim.keymap.set("i", "kk", "<Esc>")
+imap({ "jj", "<Esc>" })
+imap({ "kk", "<Esc>" })
