@@ -207,9 +207,9 @@ M.setup             = function()
             function()
                 local aerial_avail, _ = pcall(require, "aerial")
                 if aerial_avail then
-                    require("telescope").extensions.aerial.aerial()
+                    telescope.extensions.aerial.aerial()
                 else
-                    require("telescope.builtin").lsp_document_symbols()
+                    tscopebuiltin.lsp_document_symbols()
                 end
             end, "Document symbols" },
         ["<leader>ld"]    = { "<cmd>Lspsaga peek_definition<CR>", "Peek def" },
