@@ -181,9 +181,9 @@ require("lazy").setup({
         version = false, -- wait till new 0.7.0 release to put it back on semver
         event = { "BufReadPre", "BufNewFile" },
         init = function()
-            require("plugins.ui").init()
+            require("plugins.mini_indentscope").init()
         end,
-        opts = require("plugins.ui").opts,
+        opts = require("plugins.mini_indentscope").opts,
     },
 
     {
