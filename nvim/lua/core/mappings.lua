@@ -66,3 +66,14 @@ nmap({ "[t", ":tabprev<CR>" })
 
 imap({ "jj", "<Esc>" })
 imap({ "kk", "<Esc>" })
+
+
+-- Buffers
+nmap({ "]b", "<cmd>bnext<CR>", { desc = "Next buffer" } })
+nmap({ "[b", "<cmd>bprev<CR>", { desc = "Prev buffer" } })
+nmap({ "<leader>bb", "<cmd>b#<CR>", { desc = "Swap" } })
+nmap({ "<leader>bf", "<cmd>Telescope buffers<CR>", { desc = "Find" } })
+nmap({ "<leader>bc", "<cmd>close<CR>", { desc = "Close" } })
+nmap({ "<leader>bd", "<cmd>bd<CR>", { desc = "Delete" } })
+nmap({ "<leader>bD", "<cmd>bufdo bd<CR>", { desc = "Delete all" } })
+nmap({ "<leader>bm", "<cmd>MaximizerToggle<CR>", { desc = "Maximize (toggle)" } })

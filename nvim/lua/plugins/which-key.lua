@@ -162,14 +162,6 @@ M.setup             = function()
 
         -- Buffers
         ["<leader>b"]     = { name = "Buffers", desc = get_icon("Tab") .. "Buffers" },
-        ["]b"]            = { "<cmd>bnext<CR>", "Next buffer" },
-        ["[b"]            = { "<cmd>bprev<CR>", "Prev buffer" },
-        ["<leader>bb"]    = { "<cmd>b#<CR>", "Swap" },
-        ["<leader>bf"]    = { "<cmd>Telescope buffers<CR>", "Find" },
-        ["<leader>bc"]    = { "<cmd>close<CR>", "Close" },
-        ["<leader>bd"]    = { "<cmd>bd<CR>", "Delete" },
-        ["<leader>bD"]    = { "<cmd>bufdo bd<CR>", "Delete all" },
-        ["<leader>bm"]    = { "<cmd>MaximizerToggle<CR>", "Maximize (toggle)" },
 
         -- Plugins
         ["<leader>u"]     = { name = "Plugins", desc = get_icon("Package") .. "Plugins" },
