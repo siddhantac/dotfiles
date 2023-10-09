@@ -102,22 +102,24 @@ function M.telescope_mappings()
     nmap({ "<leader>fF", function() tscopebuiltin.find_files({ hidden = true, no_ignore = true }) end,
         { desc = "Find all files" } })
     nmap({ "<leader>fh", function() tscopebuiltin.help_tags() end, { desc = "Find help" } })
-    nmap { "<leader>fk", function() tscopebuiltin.keymaps() end, { desc = "Find keymaps" } }
-    nmap { "<leader>fm", function() tscopebuiltin.man_pages() end, { desc = "Find man" } }
-    nmap { "<leader>fn", function() telescope.extensions.notify.notify() end, { desc = "Find notifications" } }
-    nmap { "<leader>fo", function() tscopebuiltin.oldfiles() end, { desc = "Find history" } }
-    nmap { "<leader>fr", function() tscopebuiltin.registers() end, { desc = "Find registers" } }
-    nmap { "<leader>fs", function() tscopebuiltin.colorscheme { enable_preview = true } end, { desc = "Find themes" } }
-    nmap { "<leader>ft", "<cmd>TodoTelescope<CR>", { desc = "Find todos" } }
-    nmap { "<leader>fw", function() tscopebuiltin.live_grep() end, { desc = "Find words" } }
-    nmap { "<leader>fW",
+    nmap({ "<leader>fk", function() tscopebuiltin.keymaps() end, { desc = "Find keymaps" } })
+    nmap({ "<leader>fm", function() tscopebuiltin.man_pages() end, { desc = "Find man" } })
+    nmap({ "<leader>fn", function() telescope.extensions.notify.notify() end, { desc = "Find notifications" } })
+    nmap({ "<leader>fo", function() tscopebuiltin.oldfiles() end, { desc = "Find history" } })
+    nmap({ "<leader>fr", function() tscopebuiltin.registers() end, { desc = "Find registers" } })
+    nmap({ "<leader>fs", function() tscopebuiltin.colorscheme { enable_preview = true } end, { desc = "Find themes" } })
+    nmap({ "<leader>ft", "<cmd>TodoTelescope<CR>", { desc = "Find todos" } })
+    nmap({ "<leader>fw", function() tscopebuiltin.live_grep() end, { desc = "Find words" } })
+    nmap({ "<leader>fW",
         function()
             tscopebuiltin.live_grep {
                 additional_args = function(args) return vim.list_extend(args, { "--hidden", "--no-ignore" }) end,
             }
         end,
-        { desc = "Find words in all files" },
-    }
+        { desc = "Find words in all files" }
+    })
+
+    nmap({ "<leader>dd", function() tscopebuiltin.diagnostics() end, { desc = "Search diagnostics" } })
 end
 
 function M.gitsigns_mappings()

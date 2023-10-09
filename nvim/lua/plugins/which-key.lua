@@ -121,14 +121,13 @@ M.setup             = function()
         ["<leader>uu"] = { function() lazy.home() end, "Plugins Status" },
 
         -- Sessions
-        ["<leader>s"]  = { name = "Sessions", desc = get_icon("Session") .. "Sessions" },
-        ["<leader>ss"] = { function() sessions.select("write") end, "Save" },
-        ["<leader>sl"] = { function() sessions.select("read") end, "Load" },
-        ["<leader>sd"] = { function() sessions.select("delete") end, "Delete" },
+        -- ["<leader>s"]  = { name = "Sessions", desc = get_icon("Session") .. "Sessions" },
+        -- ["<leader>ss"] = { function() sessions.select("write") end, "Save" },
+        -- ["<leader>sl"] = { function() sessions.select("read") end, "Load" },
+        -- ["<leader>sd"] = { function() sessions.select("delete") end, "Delete" },
 
         -- Diagnostics
         ["<leader>d"]  = { name = "Diagnostics", desc = get_icon("Diagnostic") .. "Diagnostics" },
-        ["<leader>dd"] = { function() tscopebuiltin.diagnostics() end, "Search diagnostics" },
         ["<leader>dh"] = { function() vim.diagnostic.open_float() end, "Hover diagnostics" },
         ["]d"]         = { function() vim.diagnostic.goto_next() end, "Next diagnostic" },
         ["[d"]         = { function() vim.diagnostic.goto_prev() end, "Prev diagnostic" },
