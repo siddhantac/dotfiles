@@ -63,34 +63,6 @@ M.setup             = function()
         -- find with telescope
         ["ff"]            = { function() tscopebuiltin.find_files() end, "Find files" },
         ["<leader>f"]     = { name = "Find", desc = get_icon("Search") .. "Find" },
-        ["<leader>ff"]    = { function() tscopebuiltin.find_files() end, "Find files" },
-        ["<leader>f<CR>"] = { function() tscopebuiltin.resume() end, "Resume previous search" },
-        ["<leader>f'"]    = { function() tscopebuiltin.marks() end, "Find marks" },
-        ["<leader>f/"]    = { function() tscopebuiltin.current_buffer_fuzzy_find()() end, "Find words in current buffer" },
-        ["<leader>fb"]    = { function() tscopebuiltin.buffers() end, "Find buffers" },
-        ["<leader>fc"]    = { function() tscopebuiltin.grep_string() end, "Find word under cursor" },
-        ["<leader>fC"]    = { function() tscopebuiltin.commands() end, "Find commands" },
-        ["<leader>fF"]    = {
-            function() tscopebuiltin.find_files { hidden = true, no_ignore = true } end,
-            "Find all files",
-        },
-        ["<leader>fh"]    = { function() tscopebuiltin.help_tags() end, "Find help" },
-        ["<leader>fk"]    = { function() tscopebuiltin.keymaps() end, "Find keymaps" },
-        ["<leader>fm"]    = { function() tscopebuiltin.man_pages() end, "Find man" },
-        ["<leader>fn"]    = { function() telescope.extensions.notify.notify() end, "Find notifications" },
-        ["<leader>fo"]    = { function() tscopebuiltin.oldfiles() end, "Find history" },
-        ["<leader>fr"]    = { function() tscopebuiltin.registers() end, "Find registers" },
-        ["<leader>fs"]    = { function() tscopebuiltin.colorscheme { enable_preview = true } end, "Find themes" },
-        ["<leader>ft"]    = { "<cmd>TodoTelescope<CR>", "Find todos" },
-        ["<leader>fw"]    = { function() tscopebuiltin.live_grep() end, "Find words" },
-        ["<leader>fW"]    = {
-            function()
-                tscopebuiltin.live_grep {
-                    additional_args = function(args) return vim.list_extend(args, { "--hidden", "--no-ignore" }) end,
-                }
-            end,
-            "Find words in all files",
-        },
 
         -- Git stuff
         ["<leader>g"]     = { name = "Git", desc = get_icon("Git") .. "Git" },

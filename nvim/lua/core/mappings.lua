@@ -77,3 +77,47 @@ nmap({ "<leader>bc", "<cmd>close<CR>", { desc = "Close" } })
 nmap({ "<leader>bd", "<cmd>bd<CR>", { desc = "Delete" } })
 nmap({ "<leader>bD", "<cmd>bufdo bd<CR>", { desc = "Delete all" } })
 nmap({ "<leader>bm", "<cmd>MaximizerToggle<CR>", { desc = "Maximize (toggle)" } })
+
+local M = {}
+function M.telescope_mappings()
+    local ok, telescope = pcall(require("telescope"))
+    if not ok then
+        vim.notify("failed to load telescope", "error")
+    end
+
+    local ok, tscopebuiltin = pcall(require("telescope.builtin"))
+
+    if ok then
+        nmap({ "<leader>ff", function() tscopebuiltin.find_files() end, { desc = "Find files" } })
+        nmap({ "<leader>f<CR>", function() tscopebuiltin.resume() end, { desc = "Resume previous search" } })
+        nmap({ "<leader>f'", function() tscopebuiltin.marks() end, { desc = "Find marks" } })
+        nmap({ "<leader>f/", function() tscopebuiltin.current_buffer_fuzzy_find()() end,
+            { desc = "Find words in current buffer" } })
+        nmap({ "<nmap{eader>fb", function() tscopebuiltin.buffers() end, { desc = "Find buffers" } })
+        nmap({ "<leader>fc", function() tscopebuiltin.grep_string() end, { desc = "Find word under cursor" } })
+        nmap({ "<leader>fC", function() tscopebuiltin.commands() end, { desc = "Find commands" } })
+        nmap({ "<leader>fF", function() tscopebuiltin.find_files({ hidden = true, no_ignore = true }) end,
+            { desc = "Find all files" } })
+        nmap({ "<leader>fh", function() tscopebuiltin.help_tags() end, { desc = "Find help" } })
+        nmap { "<leader>fk", function() tscopebuiltin.keymaps() end, { desc = "Find keymaps" } }
+        nmap { "<leader>fm", function() tscopebuiltin.man_pages() end, { desc = "Find man" } }
+        nmap { "<leader>fn", function() telescope.extensions.notify.notify() end, { desc = "Find notifications" } }
+        nmap { "<leader>fo", function() tscopebuiltin.oldfiles() end, { desc = "Find history" } }
+        nmap { "<leader>fr", function() tscopebuiltin.registers() end, { desc = "Find registers" } }
+        nmap { "<leader>fs", function() tscopebuiltin.colorscheme { enable_preview = true } end, { desc = "Find themes" } }
+        nmap { "<leader>ft", "<cmd>TodoTelescope<CR>", { desc = "Find todos" } }
+        nmap { "<leader>fw", function() tscopebuiltin.live_grep() end, { desc = "Find words" } }
+        nmap { "<leader>fW",
+            function()
+                tscopebuiltin.live_grep {
+                    additional_args = function(args) return vim.list_extend(args, { "--hidden", "--no-ignore" }) end,
+                }
+            end,
+            { desc = "Find words in all files" },
+        }
+    else
+        vim.notify("failed to load telescope mappings", "error")
+    end
+end
+
+return M
