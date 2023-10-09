@@ -1,3 +1,5 @@
+local core_mappings = require("core.mappings")
+
 require("lazy").setup({
     {
         'rcarriga/nvim-notify',
@@ -56,7 +58,8 @@ require("lazy").setup({
         'lewis6991/gitsigns.nvim',
         config = function()
             require("gitsigns").setup()
-        end
+        end,
+        keys = core_mappings.gitsigns_mappings,
     },
     {
         'pwntester/octo.nvim',
@@ -152,6 +155,7 @@ require("lazy").setup({
         config = function()
             require("plugins.telescope").setup()
         end,
+        keys = core_mappings.telescope_mappings,
     },
 
     -- UI
