@@ -140,4 +140,19 @@ function M.gitsigns_mappings()
     nmap({ "<leader>gd", function() gitsigns.diffthis() end, { desc = "View Git diff" } })
 end
 
+function M.neotest_mappigns()
+    local ok, neotest = pcall(require, "neotest")
+    if not ok then
+        vim.notify("failed to load neotest", "warn")
+        return
+    end
+
+    nmap({ "<leader>tr", function() neotest.run.run() end, { desc = "Run nearest" } })
+    nmap({ "<leader>tl", function() neotest.run.run_last() end, { desc = "Run last" } })
+    nmap({ "<leader>tf", function() neotest.run.run(vim.fn.expand("%")) end, { desc = "Run file" } })
+    nmap({ "<leader>to", function() neotest.output_panel.toggle() end, { desc = "Output panel" } })
+    nmap({ "<leader>ts", function() neotest.summary.toggle() end, { desc = "Summary panel" } })
+    nmap({ "<leader>tw", function() neotest.watch.toggle() end, { desc = "Toggle watch" } })
+end
+
 return M

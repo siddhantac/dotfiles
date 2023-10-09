@@ -98,7 +98,8 @@ require("lazy").setup({
         ft = "*_test.go",
         config = function()
             require("plugins.neotest_go").setup()
-        end
+        end,
+        keys = core_mappings.neotest_mappigns,
     },
     {
         "nvim-neotest/neotest",
