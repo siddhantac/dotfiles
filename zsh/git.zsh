@@ -42,7 +42,13 @@ show_git_head() {
 }
 
 pretty_git_log() {
-    git log --since="6 months ago" --graph --pretty="tformat:${LOG_FORMAT}" -n $1 | pretty_git_format | git_page_maybe
+    num=$1
+    if [ -z "$num" ]
+    then
+        num=5
+        echo "defaulting to last 5 commits"
+    fi
+    git log --since="6 months ago" --graph --pretty="tformat:${LOG_FORMAT}" -n $num | pretty_git_format | git_page_maybe
 }
 
 pretty_git_log_all() {
