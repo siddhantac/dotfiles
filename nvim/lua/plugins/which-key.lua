@@ -19,24 +19,6 @@ M.setup             = function()
         ["<leader>go"] = { "<cmd>GBrowse<CR>", "Open github (browser)" },
         ["<leader>ga"] = { "<cmd>Git add -A|Git commit<CR>", "Add & Commit" },
 
-        -- ["<leader>gb"]    = { function() tscopebuiltin.git_branches { use_file_path = true } end, "Git branches" },
-        -- -- c = { "<cmd>Git commit<CR>", "commit" },
-        -- ["<leader>gc"]    = { "<cmd>Git commit<CR>", "Commit" },
-        -- ["<leader>gC"]    = {
-        --     function() tscopebuiltin.git_commits { use_file_path = true } end,
-        --     "Git commits",
-        -- },
-        -- ["<leader>gt"]    = {
-        --     function() tscopebuiltin.git_status { use_file_path = true } end,
-        --     "Git status"
-        -- },
-        -- ["<leader>go"]    = { "<cmd>GBrowse<CR>", "Open github (browser)" },
-        -- ["<leader>gg"]    = { "<cmd>Git<CR>", "fugitive" },
-        -- ["<leader>ga"]    = { "<cmd>Git add -A|Git commit<CR>", "Add & Commit" },
-        -- ["<leader>gl"]    = { gitpull, "Pull" },
-        -- ["<leader>gp"]    = { gitpush, "Push" },
-        -- y = { "<cmd>!git pull --all -p<CR>", "sync" },
-
         -- Terminal
         ["<leader>r"]  = { name = "Terminal", desc = get_icon("Terminal") .. "Terminal" },
 
@@ -58,11 +40,6 @@ M.setup             = function()
 
         -- Diagnostics
         ["<leader>d"]  = { name = "Diagnostics", desc = get_icon("Diagnostic") .. "Diagnostics" },
-        -- n = { "<cmd>Lspsaga diagnostic_jump_next<CR>", "Next" },
-        -- p = { "<cmd>Lspsaga diagnostic_jump_prev<CR>", "Prev" },
-        -- d = { "<cmd>Lspsaga show_line_diagnostics<CR>", "Show line diagnostic" },
-        -- D = { "<cmd>Lspsaga show_cursor_diagnostics<CR>", "Show cursor diagnostic" },
-
         -- LSP
         ["<leader>l"]  = { name = "LSP", desc = get_icon("ActiveLSP") .. "LSP" },
         ["<leader>ll"] = { "<cmd>LspInfo<CR>", "LSP Info" },
