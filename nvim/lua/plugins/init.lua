@@ -35,6 +35,7 @@ require("lazy").setup({
     },
     {
         "NeogitOrg/neogit",
+        event = { "BufEnter", "BufReadPre", "BufNewFile" },
         dependencies = {
             "nvim-lua/plenary.nvim",         -- required
             "nvim-telescope/telescope.nvim", -- optional
