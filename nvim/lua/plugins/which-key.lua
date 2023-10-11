@@ -108,9 +108,6 @@ M.setup             = function()
 
         -- Diagnostics
         ["<leader>d"]  = { name = "Diagnostics", desc = get_icon("Diagnostic") .. "Diagnostics" },
-        ["<leader>dh"] = { function() vim.diagnostic.open_float() end, "Hover diagnostics" },
-        ["]d"]         = { function() vim.diagnostic.goto_next() end, "Next diagnostic" },
-        ["[d"]         = { function() vim.diagnostic.goto_prev() end, "Prev diagnostic" },
         -- n = { "<cmd>Lspsaga diagnostic_jump_next<CR>", "Next" },
         -- p = { "<cmd>Lspsaga diagnostic_jump_prev<CR>", "Prev" },
         -- d = { "<cmd>Lspsaga show_line_diagnostics<CR>", "Show line diagnostic" },

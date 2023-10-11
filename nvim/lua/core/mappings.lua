@@ -79,6 +79,11 @@ nmap({ "<leader>bd", "<cmd>bd<CR>", { desc = "Delete" } })
 nmap({ "<leader>bD", "<cmd>bufdo bd<CR>", { desc = "Delete all" } })
 nmap({ "<leader>bm", "<cmd>MaximizerToggle<CR>", { desc = "Maximize (toggle)" } })
 
+-- Diagnostics
+nmap({ "<leader>dh", function() vim.diagnostic.open_float() end, { desc = "Hover diagnostics" } })
+nmap({ "]d", function() vim.diagnostic.goto_next() end, { desc = "Next diagnostic" } })
+nmap({ "[d", function() vim.diagnostic.goto_prev() end, { desc = "Prev diagnostic" } })
+
 local M = {}
 
 function M.telescope_mappings()
