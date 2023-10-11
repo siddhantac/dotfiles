@@ -7,52 +7,6 @@ local lazy          = require("lazy")
 -- local resession     = require("resession")
 local sessions      = require("mini.sessions")
 
-local gitpush       = function()
-    local spinner = require("utils.spinner")
-    local title = "Git"
-    spinner.start(1, "Pushing", title)
-
-    -- taken from here
-    -- https://www.reddit.com/r/neovim/comments/pa4yle/comment/ha2h1nh/?utm_source=share&utm_medium=web2x&context=3
-    local job = require('plenary.job')
-    job:new({
-        command = 'git',
-        args = { 'push' },
-        on_exit = function(j, exit_code)
-            local res = table.concat(j:result(), "\n")
-
-            if exit_code ~= 0 then
-                spinner.stop(1, "Failed to push", title)
-                vim.notify(res, "error", { title = title })
-            else
-                spinner.stop(1, "Pushed", title)
-                vim.notify(res, "info")
-            end
-        end,
-    }):start()
-end
-
-local gitpull       = function()
-    local spinner = require("utils.spinner")
-    spinner.start(1, "Pulling", "Git")
-
-    local job = require('plenary.job')
-    job:new({
-        command = 'git',
-        args = { 'pull' },
-        on_exit = function(j, exit_code)
-            local res = table.concat(j:result(), "\n")
-
-            if exit_code ~= 0 then
-                spinner.stop(1, "Failed to pull")
-                vim.notify(res, "error", { title = "Git" })
-            else
-                spinner.stop(1, "Pulled")
-            end
-        end,
-    }):start()
-end
-
 M.setup             = function()
     local whichkey = require('which-key')
 
@@ -64,10 +18,7 @@ M.setup             = function()
         ["<leader>g"]  = { name = "Git", desc = get_icon("Git") .. "Git" },
         ["<leader>go"] = { "<cmd>GBrowse<CR>", "Open github (browser)" },
         ["<leader>ga"] = { "<cmd>Git add -A|Git commit<CR>", "Add & Commit" },
-        ["<leader>gl"] = { gitpull, "Pull" },
-        ["<leader>gp"] = { gitpush, "Push" },
 
-        -- ["<leader>g"]     = { name = "Git", desc = get_icon("Git") .. "Git" },
         -- ["<leader>gb"]    = { function() tscopebuiltin.git_branches { use_file_path = true } end, "Git branches" },
         -- -- c = { "<cmd>Git commit<CR>", "commit" },
         -- ["<leader>gc"]    = { "<cmd>Git commit<CR>", "Commit" },

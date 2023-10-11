@@ -84,6 +84,11 @@ nmap({ "<leader>dh", function() vim.diagnostic.open_float() end, { desc = "Hover
 nmap({ "]d", function() vim.diagnostic.goto_next() end, { desc = "Next diagnostic" } })
 nmap({ "[d", function() vim.diagnostic.goto_prev() end, { desc = "Prev diagnostic" } })
 
+-- Git
+local utils = require("utils")
+nmap({ "<leader>gl", utils.gitpull, { desc = "Pull" } })
+nmap({ "<leader>gp", utils.gitpush, { desc = "Push" } })
+
 local M = {}
 
 function M.telescope_mappings()
