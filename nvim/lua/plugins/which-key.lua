@@ -58,7 +58,6 @@ M.setup             = function()
 
     whichkey.register({
         -- find with telescope
-        ["ff"]         = { function() tscopebuiltin.find_files() end, "Find files" },
         ["<leader>f"]  = { name = "Find", desc = get_icon("Search") .. "Find" },
 
         -- Git stuff
@@ -93,8 +92,6 @@ M.setup             = function()
 
         -- Test
         ["<leader>t"]  = { name = "Test", desc = get_icon("Debugger") .. "Test" },
-        ["<leader>te"] = { "<cmd>Other<cr>", "open test file" },
-        ["<leader>tv"] = { "<cmd>OtherVSplit<cr>", "open test file in vert split" },
 
         -- Buffers
         ["<leader>b"]  = { name = "Buffers", desc = get_icon("Tab") .. "Buffers" },

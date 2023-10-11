@@ -184,15 +184,26 @@ function M.nvimtree_mappings()
 end
 
 function M.terminal_mappings()
-    -- local ok, toggleterm = pcall(require, "toggleterm")
-    -- if not ok then
-    --     vim.notify("failed to load toggleterm", "warn")
-    --     return
-    -- end
+    local ok, toggleterm = pcall(require, "toggleterm")
+    if not ok then
+        vim.notify("failed to load toggleterm", "warn")
+        return
+    end
 
     nmap({ "<leader>rf", "<cmd>ToggleTerm direction=float<cr>", { desc = "ToggleTerm float" } })
     nmap({ "<leader>rh", "<cmd>ToggleTerm size=10 direction=horizontal<cr>", { desc = "ToggleTerm horizontal split" } })
     nmap({ "<leader>rv", "<cmd>ToggleTerm size=80 direction=vertical<cr>", { desc = "ToggleTerm vertical split" } })
+end
+
+function M.other_mappings()
+    local ok, other = pcall(require, "other-nvim")
+    if not ok then
+        vim.notify("failed to load other.nvim", "warn")
+        return
+    end
+
+    nmap({ "<leader>te", "<cmd>Other<cr>", { desc = "open test file" } })
+    nmap({ "<leader>tv", "<cmd>OtherVSplit<cr>", { desc = "open test file in vert split" } })
 end
 
 return M

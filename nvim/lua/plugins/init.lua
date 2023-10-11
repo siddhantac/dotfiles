@@ -93,6 +93,7 @@ require("lazy").setup({
                 }
             })
         end,
+        keys = core_mappings.other_mappings,
     },
     {
         "nvim-neotest/neotest-go",
