@@ -120,6 +120,10 @@ function M.telescope_mappings()
     })
 
     nmap({ "<leader>dd", function() tscopebuiltin.diagnostics() end, { desc = "Search diagnostics" } })
+
+    nmap({ "<leader>gb", function() tscopebuiltin.git_branches { use_file_path = true } end, { desc = "Git branches" } })
+    nmap({ "<leader>gC", function() tscopebuiltin.git_commits { use_file_path = true } end, { desc = "Git commits", } })
+    nmap({ "<leader>gt", function() tscopebuiltin.git_status { use_file_path = true } end, { desc = "Git status" } })
 end
 
 function M.gitsigns_mappings()

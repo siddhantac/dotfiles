@@ -66,16 +66,6 @@ M.setup             = function()
 
         -- Git stuff
         ["<leader>g"]  = { name = "Git", desc = get_icon("Git") .. "Git" },
-        ["<leader>gb"] = { function() tscopebuiltin.git_branches { use_file_path = true } end, "Git branches" },
-        -- c = { "<cmd>Git commit<CR>", "commit" },
-        ["<leader>gC"] = {
-            function() tscopebuiltin.git_commits { use_file_path = true } end,
-            "Git commits",
-        },
-        ["<leader>gt"] = {
-            function() tscopebuiltin.git_status { use_file_path = true } end,
-            "Git status"
-        },
         ["<leader>go"] = { "<cmd>GBrowse<CR>", "Open github (browser)" },
         ["<leader>ga"] = { "<cmd>Git add -A|Git commit<CR>", "Add & Commit" },
         ["<leader>gl"] = { gitpull, "Pull" },
