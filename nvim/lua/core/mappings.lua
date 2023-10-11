@@ -157,4 +157,15 @@ function M.neotest_mappigns()
     nmap({ "<leader>tw", function() neotest.watch.toggle() end, { desc = "Toggle watch" } })
 end
 
+function M.neogit_mappings()
+    local ok, neogit = pcall(require, "neogit")
+    if not ok then
+        vim.notify("failed to load neogit", "warn")
+        return
+    end
+
+    nmap({ "<leader>gc", function() neogit.open({ "commit" }) end, { desc = "Commit" } })
+    nmap({ "<leader>gg", function() neogit.open() end, { desc = "neogit" } })
+end
+
 return M

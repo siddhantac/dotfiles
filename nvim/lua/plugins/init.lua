@@ -45,7 +45,8 @@ require("lazy").setup({
             "sindrets/diffview.nvim",        -- optional
             "ibhagwan/fzf-lua",              -- optional
         },
-        config = true
+        config = true,
+        keys = core_mappings.neogit_mappings,
     },
     {
         -- works better than tpope/vim-rhubarb

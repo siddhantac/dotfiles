@@ -68,7 +68,6 @@ M.setup             = function()
         ["<leader>g"]  = { name = "Git", desc = get_icon("Git") .. "Git" },
         ["<leader>gb"] = { function() tscopebuiltin.git_branches { use_file_path = true } end, "Git branches" },
         -- c = { "<cmd>Git commit<CR>", "commit" },
-        ["<leader>gc"] = { function() neogit.open({ "commit" }) end, "Commit" },
         ["<leader>gC"] = {
             function() tscopebuiltin.git_commits { use_file_path = true } end,
             "Git commits",
@@ -78,7 +77,6 @@ M.setup             = function()
             "Git status"
         },
         ["<leader>go"] = { "<cmd>GBrowse<CR>", "Open github (browser)" },
-        ["<leader>gg"] = { function() neogit.open() end, "neogit" },
         ["<leader>ga"] = { "<cmd>Git add -A|Git commit<CR>", "Add & Commit" },
         ["<leader>gl"] = { gitpull, "Pull" },
         ["<leader>gp"] = { gitpush, "Push" },
