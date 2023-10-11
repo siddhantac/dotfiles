@@ -3,12 +3,9 @@ local get_icon      = require("utils").get_icon
 local telescope     = require("telescope")
 local tscopebuiltin = require("telescope.builtin")
 local Terminal      = require('toggleterm.terminal').Terminal
-local lazygit       = Terminal:new({ cmd = "lazygit", hidden = true, direction = "float" })
-local gitsigns      = require("gitsigns")
 local lazy          = require("lazy")
 -- local resession     = require("resession")
 local sessions      = require("mini.sessions")
-local neogit        = require("neogit")
 
 local gitpush       = function()
     local spinner = require("utils.spinner")
@@ -93,9 +90,6 @@ M.setup             = function()
 
         -- Terminal
         ["<leader>r"]  = { name = "Terminal", desc = get_icon("Terminal") .. "Terminal" },
-        ["<leader>rf"] = { "<cmd>ToggleTerm direction=float<cr>", "ToggleTerm float" },
-        ["<leader>rh"] = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "ToggleTerm horizontal split" },
-        ["<leader>rv"] = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "ToggleTerm vertical split" },
 
         -- Test
         ["<leader>t"]  = { name = "Test", desc = get_icon("Debugger") .. "Test" },

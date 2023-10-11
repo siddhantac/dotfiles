@@ -199,6 +199,7 @@ require("lazy").setup({
         "akinsho/toggleterm.nvim",
         cmd = { "ToggleTerm", "TermExec" },
         opts = require("plugins.toggleterm").opts,
+        keys = core_mappings.terminal_mappings,
     },
 
     -- LSP

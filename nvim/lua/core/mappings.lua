@@ -183,4 +183,16 @@ function M.nvimtree_mappings()
     nmap({ "<leader>e", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "File Explorer" } })
 end
 
+function M.terminal_mappings()
+    -- local ok, toggleterm = pcall(require, "toggleterm")
+    -- if not ok then
+    --     vim.notify("failed to load toggleterm", "warn")
+    --     return
+    -- end
+
+    nmap({ "<leader>rf", "<cmd>ToggleTerm direction=float<cr>", { desc = "ToggleTerm float" } })
+    nmap({ "<leader>rh", "<cmd>ToggleTerm size=10 direction=horizontal<cr>", { desc = "ToggleTerm horizontal split" } })
+    nmap({ "<leader>rv", "<cmd>ToggleTerm size=80 direction=vertical<cr>", { desc = "ToggleTerm vertical split" } })
+end
+
 return M
