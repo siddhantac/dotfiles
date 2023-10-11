@@ -100,7 +100,7 @@ require("lazy").setup({
         config = function()
             require("plugins.neotest_go").setup()
         end,
-        keys = core_mappings.neotest_mappigns,
+        keys = core_mappings.neotest_mappings,
     },
     {
         "nvim-neotest/neotest",
@@ -143,6 +143,7 @@ require("lazy").setup({
     --     config = function()
     --         require("plugins.nvim_tree").setup()
     --     end,
+    --     keys = core_mappings.nvimtree_mappings,
     -- },
 
     -- Telescope

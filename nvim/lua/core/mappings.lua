@@ -67,6 +67,7 @@ nmap({ "[t", ":tabprev<CR>" })
 imap({ "jj", "<Esc>" })
 imap({ "kk", "<Esc>" })
 
+nmap({ "<leader>w", ":w<CR>" })
 
 -- Buffers
 nmap({ "]b", "<cmd>bnext<CR>", { desc = "Next buffer" } })
@@ -146,7 +147,7 @@ function M.gitsigns_mappings()
     nmap({ "<leader>gd", function() gitsigns.diffthis() end, { desc = "View Git diff" } })
 end
 
-function M.neotest_mappigns()
+function M.neotest_mappings()
     local ok, neotest = pcall(require, "neotest")
     if not ok then
         vim.notify("failed to load neotest", "warn")
@@ -170,6 +171,16 @@ function M.neogit_mappings()
 
     nmap({ "<leader>gc", function() neogit.open({ "commit" }) end, { desc = "Commit" } })
     nmap({ "<leader>gg", function() neogit.open() end, { desc = "neogit" } })
+end
+
+function M.nvimtree_mappings()
+    local ok, nvimtree = pcall(require, "nvim-tree")
+    if not ok then
+        vim.notify("failed to load nvimtree", "warn")
+        return
+    end
+
+    nmap({ "<leader>e", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "File Explorer" } })
 end
 
 return M

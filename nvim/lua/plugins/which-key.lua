@@ -70,6 +70,7 @@ M.setup             = function()
         ["<leader>ga"] = { "<cmd>Git add -A|Git commit<CR>", "Add & Commit" },
         ["<leader>gl"] = { gitpull, "Pull" },
         ["<leader>gp"] = { gitpush, "Push" },
+
         -- nmap({ "<leader>gG", function() lazygit:toggle() end, { desc = "Lazygit" } })
         -- ["<leader>g"]     = { name = "Git", desc = get_icon("Git") .. "Git" },
         -- ["<leader>gb"]    = { function() tscopebuiltin.git_branches { use_file_path = true } end, "Git branches" },
