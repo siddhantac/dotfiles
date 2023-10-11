@@ -61,3 +61,5 @@ source $HOME/.zshrc_custom
 # vim controls
 #   https://dougblack.io/words/zsh-vi-mode.html
 bindkey -v
+
+[ -s "/Users/s.c/.scm_breeze/scm_breeze.sh" ] && source "/Users/s.c/.scm_breeze/scm_breeze.sh"
