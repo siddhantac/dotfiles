@@ -30,19 +30,19 @@ matches:
 
   # jw = jira wallet
   - regex: ":jw\\((?P<num>.*)\\)"
-    replace: "[WLT-{{num}}](https://jira.deliveryhero.com/browse/WLT-{{num}})"
+    replace: "[WLT-{{num}}](https://jira.deliveryhero.com/browse/WLT-{{num}}) "
 
   # jc = jira payment-core
   - regex: ":jc\\((?P<num>.*)\\)"
-    replace: "[PYMNTS-{{num}}](https://jira.deliveryhero.com/browse/PYMNTS-{{num}})"
+    replace: "[PYMNTS-{{num}}](https://jira.deliveryhero.com/browse/PYMNTS-{{num}}) "
 
   # jx = jira payment-experience
   - regex: ":jx\\((?P<num>.*)\\)"
-    replace: "[PYMNTXP-{{num}}](https://jira.deliveryhero.com/browse/PYMNTXP-{{num}})"
+    replace: "[PYMNTXP-{{num}}](https://jira.deliveryhero.com/browse/PYMNTXP-{{num}}) "
 
   # jj = jira (any project)
   - regex: ":jj\\((?P<ticket>.*)\\)"
-    replace: "[{{ticket}}](https://jira.deliveryhero.com/browse/{{ticket}})"
+    replace: "[{{ticket}}](https://jira.deliveryhero.com/browse/{{ticket}}) "
 
   # jira = jira ticket URL (to paste into browser)
   - regex: ":jira\\((?P<ticket>.*)\\)"
@@ -80,7 +80,7 @@ matches:
           cmd: echo $(pbpaste)
 
   - trigger: ":slk"
-    replace: "[slack]({{output}})"
+    replace: "[slack]({{output}}) "
     vars:
       - name: output
         type: shell
