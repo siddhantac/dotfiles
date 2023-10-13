@@ -4,6 +4,7 @@ require("lazy").setup({
         config = function()
             require("notify").setup({
                 stages = "static",
+                top_down = false,
             })
 
             vim.notify = require("notify")
