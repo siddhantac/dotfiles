@@ -12,6 +12,8 @@ $cmd_duration $jobs $time\
 $line_break\
 $character"""
 
+command_timeout = 1000
+
 [nodejs]
 format = "[$symbol($version )]($style)"
 
@@ -65,4 +67,3 @@ symbol = " "
 disabled = false
 style = "bold white"
 format = "[$time]($style)"
-
