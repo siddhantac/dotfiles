@@ -35,8 +35,6 @@ antigen bundle zsh-users/zsh-autosuggestions
 
 antigen apply
 
-[ -s "/Users/s.c/.scm_breeze/scm_breeze.sh" ] && source "/Users/s.c/.scm_breeze/scm_breeze.sh"
-
 # load aliases
 source_if_exists "$DOTFILES/zsh/aliases.zsh"
 source_if_exists "$DOTFILES/zsh/git.zsh"
