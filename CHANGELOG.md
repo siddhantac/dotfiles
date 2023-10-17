@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.3.0](https://github.com/siddhantac/dotfiles/compare/v1.2.0...v1.3.0) (2023-10-17)
+
+
+### Features
+
+* **nvim:** experiment with mini.files ([f1231bf](https://github.com/siddhantac/dotfiles/commit/f1231bf3183ab3ef50d93877c56444d570363d25))
+* **zsh:** new aliases ([4a3d705](https://github.com/siddhantac/dotfiles/commit/4a3d70507e27299fa13dabb148af6244dc445914))
+* **zsh:** remove scm_breeze (messing with git log) ([3affcef](https://github.com/siddhantac/dotfiles/commit/3affcef0204d478d9f9960255c2a1c0112bd045d))
+
+
+### Bug Fixes
+
+* **starship:** increase timeout for git commands ([afd272a](https://github.com/siddhantac/dotfiles/commit/afd272a5d30815bc96a3917eb84cf66338d621a0))
+
 ## [1.2.0](https://github.com/siddhantac/dotfiles/compare/v1.1.0...v1.2.0) (2023-10-13)
 
 
