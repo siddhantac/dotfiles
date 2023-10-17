@@ -225,7 +225,8 @@ M.setup             = function()
 
     whichkey.register(
         {
-            e = { "<cmd>NvimTreeFindFileToggle<CR>", "File Explorer" },
+            -- e = { "<cmd>NvimTreeFindFileToggle<CR>", "File Explorer" },
+            e = { function() MiniFiles.open(vim.api.nvim_buf_get_name(0)) end, "File explorer" },
             w = { "<cmd>w<CR>", "Save" },
         },
         { prefix = "<leader>" }

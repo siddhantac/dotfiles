@@ -5,6 +5,7 @@ M.opts = function()
     require('mini.comment').setup()
     require('mini.surround').setup()
     require('mini.sessions').setup()
+    require('mini.files').setup()
 
     local pad = string.rep(" ", 22)
     local new_section = function(name, action, section)

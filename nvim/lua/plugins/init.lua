@@ -128,17 +128,17 @@ require("lazy").setup({
         end,
     },
 
-    {
-        'nvim-tree/nvim-tree.lua',
-        name = 'nvim-tree',
-        dependencies = {
-            'nvim-tree/nvim-web-devicons', -- file icon
-        },
-        cmd = { "NvimTreeOpen", "NvimTreeToggle", "NvimTreeFindFileToggle" },
-        config = function()
-            require("plugins.nvim_tree").setup()
-        end,
-    },
+    -- {
+    --     'nvim-tree/nvim-tree.lua',
+    --     name = 'nvim-tree',
+    --     dependencies = {
+    --         'nvim-tree/nvim-web-devicons', -- file icon
+    --     },
+    --     cmd = { "NvimTreeOpen", "NvimTreeToggle", "NvimTreeFindFileToggle" },
+    --     config = function()
+    --         require("plugins.nvim_tree").setup()
+    --     end,
+    -- },
 
     -- Telescope
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
@@ -238,4 +238,14 @@ require("lazy").setup({
             require("plugins.treesitter_textobjects").config()
         end,
     },
+
+    -- {
+    --     'stevearc/oil.nvim',
+    --     opts = {},
+    --     -- Optional dependencies
+    --     dependencies = { "nvim-tree/nvim-web-devicons" },
+    --     config = function()
+    --         require("oil").setup()
+    --     end
+    -- }
 })
