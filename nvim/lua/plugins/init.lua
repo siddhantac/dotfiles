@@ -1,3 +1,5 @@
+local core_mappings = require("core.mappings")
+
 require("lazy").setup({
     {
         'rcarriga/nvim-notify',
@@ -43,7 +45,8 @@ require("lazy").setup({
             "sindrets/diffview.nvim",        -- optional
             "ibhagwan/fzf-lua",              -- optional
         },
-        config = true
+        config = true,
+        keys = core_mappings.neogit_mappings,
     },
     {
         -- works better than tpope/vim-rhubarb
@@ -56,7 +59,8 @@ require("lazy").setup({
         'lewis6991/gitsigns.nvim',
         config = function()
             require("gitsigns").setup()
-        end
+        end,
+        keys = core_mappings.gitsigns_mappings,
     },
     {
         'pwntester/octo.nvim',
@@ -89,13 +93,15 @@ require("lazy").setup({
                 }
             })
         end,
+        keys = core_mappings.other_mappings,
     },
     {
         "nvim-neotest/neotest-go",
         ft = "*_test.go",
         config = function()
             require("plugins.neotest_go").setup()
-        end
+        end,
+        keys = core_mappings.neotest_mappings,
     },
     {
         "nvim-neotest/neotest",
@@ -138,6 +144,7 @@ require("lazy").setup({
     --     config = function()
     --         require("plugins.nvim_tree").setup()
     --     end,
+    --     keys = core_mappings.nvimtree_mappings,
     -- },
 
     -- Telescope
@@ -152,6 +159,7 @@ require("lazy").setup({
         config = function()
             require("plugins.telescope").setup()
         end,
+        keys = core_mappings.telescope_mappings,
     },
 
     -- UI
@@ -192,6 +200,7 @@ require("lazy").setup({
         "akinsho/toggleterm.nvim",
         cmd = { "ToggleTerm", "TermExec" },
         opts = require("plugins.toggleterm").opts,
+        keys = core_mappings.terminal_mappings,
     },
 
     -- LSP
