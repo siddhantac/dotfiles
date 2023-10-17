@@ -17,10 +17,13 @@ alias count='find . -type f | wc -l'
 # copy with progress bar
 alias cpv='rsync -ah --progress'
 
+alias hl='hledger'
+alias v='nvim'
+
 # git aliases
 alias ga='git add'
 alias gaa='git add -A'
-# alias gs='git status --short'
+alias gs='git status --short'
 alias gst='git status'
 alias gc='git commit -m'
 alias gca='git commit -a -m'              # [g]it [c]ommit -[a] -m
