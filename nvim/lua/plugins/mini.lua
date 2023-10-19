@@ -1,5 +1,5 @@
 local M = {}
-M.opts = function()
+M.setup = function()
     -- most of this is taken from the Lazy distro https://www.lazyvim.org/extras/ui/mini-starter
 
     require('mini.comment').setup()
@@ -14,11 +14,11 @@ M.opts = function()
     end
 
     local starter = require("mini.starter")
-
-    --stylua: ignore
-    local config = {
+    starter.setup({
         evaluate_single = true,
-        header = "Welcome back, Sid",
+        -- header = "Welcome back, Sid",
+        header =
+        "                                                    \n ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ \n ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ \n ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ \n ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ \n ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ \n ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ \n ",
         items = {
             starter.sections.sessions(),
             new_section("Find file", "Telescope find_files", "Telescope"),
@@ -36,11 +36,8 @@ M.opts = function()
         --     starter.gen_hook.adding_bullet(pad .. "░ ", false),
         --     starter.gen_hook.aligning("center", "center"),
         -- },
-    }
-    return config
-end
+    })
 
-M.config = function(_, config)
     -- close Lazy and re-open when starter is ready
     if vim.o.filetype == "lazy" then
         vim.cmd.close()
@@ -51,9 +48,6 @@ M.config = function(_, config)
             end,
         })
     end
-
-    local starter = require("mini.starter")
-    starter.setup(config)
 
     vim.api.nvim_create_autocmd("User", {
         pattern = "LazyVimStarted",
