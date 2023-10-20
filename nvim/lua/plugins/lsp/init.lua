@@ -25,6 +25,7 @@ return {
     },                          -- vs-code like icons for autocompletion
     {
         'stevearc/aerial.nvim', -- code outline
+        event = { "BufReadPre", "BufNewFile" },
         -- Optional dependencies
         dependencies = {
             "nvim-treesitter/nvim-treesitter",

@@ -20,6 +20,7 @@ require("lazy").setup({
         "folke/todo-comments.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
         opts = {},
+        event = { "BufReadPre", "BufNewFile" },
     },
     {
         'windwp/nvim-autopairs',
@@ -31,6 +32,7 @@ require("lazy").setup({
     {
         'ldelossa/gh.nvim',
         dependencies = { 'ldelossa/litee.nvim' },
+        event = { "BufReadPre", "BufNewFile" },
         config = function()
             require('litee.lib').setup()
             require('litee.gh').setup()
@@ -38,7 +40,7 @@ require("lazy").setup({
     },
     {
         "NeogitOrg/neogit",
-        event = { "BufEnter", "BufReadPre", "BufNewFile" },
+        event = { "BufReadPre", "BufNewFile" },
         dependencies = {
             "nvim-lua/plenary.nvim",         -- required
             "nvim-telescope/telescope.nvim", -- optional
@@ -171,7 +173,6 @@ require("lazy").setup({
         end,
     },
     { 'nvim-tree/nvim-web-devicons' },
-    { "lukas-reineke/indent-blankline.nvim" },
     {
         'szw/vim-maximizer',
         cmd = { "MaximizerToggle" },
