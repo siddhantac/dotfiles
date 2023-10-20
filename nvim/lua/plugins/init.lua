@@ -55,8 +55,13 @@ require("lazy").setup({
         'ruifm/gitlinker.nvim',
         dependencies = 'nvim-lua/plenary.nvim',
         opts = {},
+        mappings = core_mappings.gitlinker_mappings,
+        event = { "BufReadPre", "BufNewFile" },
     },
-    { 'tpope/vim-fugitive' },
+    {
+        'tpope/vim-fugitive',
+        event = { "BufReadPre", "BufNewFile" },
+    },
     {
         'lewis6991/gitsigns.nvim',
         config = function()
