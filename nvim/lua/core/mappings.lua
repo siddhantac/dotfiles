@@ -216,4 +216,21 @@ function M.other_mappings()
     nmap({ "<leader>tv", "<cmd>OtherVSplit<cr>", { desc = "open test file in vert split" } })
 end
 
+function M.gitlinker_mappings()
+    local ok, gitlinker = pcall(require, "gitlinker")
+    if not ok then
+        vim.notify("failed to load gitlinker", "warn")
+        return
+    end
+    local actions = gitlinker.actions
+
+    nmap({ "<leader>gy", gitlinker.get_buf_range_url("n"), { desc = "copy Github url" } })
+    vmap({ "<leader>gy", gitlinker.get_buf_range_url("v"), { desc = "copy Github url" } })
+
+    nmap({ "<leader>gb", gitlinker.get_buf_range_url("n", { action_callback = actions.open_in_browser }),
+        { desc = "copy Github url" } })
+    vmap({ "<leader>gb", gitlinker.get_buf_range_url("v", { action_callback = actions.open_in_browser }),
+        { desc = "copy Github url" } })
+end
+
 return M
