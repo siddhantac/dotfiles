@@ -3,10 +3,7 @@ all: build
 install-kitty:
 	curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
 
-install-scmbreeze:
-	git clone https://github.com/scmbreeze/scm_breeze.git ~/.scm_breeze
-
-install: install-kitty install-scmbreeze
+install: install-kitty
 
 build:
 	mkdir -p ~/.config
