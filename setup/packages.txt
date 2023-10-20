@@ -1,0 +1,17 @@
+espanso
+curl
+exa
+fzf
+gh
+glow
+gum
+hledger
+jq
+ripgrep
+nvim
+sd
+starship
+tmux
+yq
+zsh
+vhs

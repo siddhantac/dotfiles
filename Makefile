@@ -1,9 +1,11 @@
-all: build
+common:
+	./setup/setup_common.sh
 
-install-kitty:
-	curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+ubuntu: common build
+	./setup/setup_ubuntu.sh
 
-install: install-kitty
+macos: common build
+	./setup/setup-homebrew.sh
 
 build:
 	mkdir -p ~/.config
@@ -24,9 +26,6 @@ build:
 personal:
 	[ -f ~/.config/zsh/aliases.local ] || ln -s $(PWD)/zsh/aliases.serenity ~/.config/zsh/aliases.local
 
-tpm:
-	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
 clean:
 	rm -f ~/.config/tmux
 	rm -f ~/.gitconfig
@@ -37,4 +36,4 @@ clean:
 	rm -f ~/.config/starship.toml
 	rm -f ~/Library/Application\ Support/espanso/match/base.yml
 
-.PHONY: all build clean
+.PHONY: all build clean common ubuntu macos personal
