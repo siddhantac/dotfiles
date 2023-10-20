@@ -20,6 +20,9 @@ alias cpv='rsync -ah --progress'
 alias hl='hledger'
 alias v='nvim'
 
+# tmux aliases
+alias tns='tmux new -s $(echo $(pwd) | xargs basename)'   # [t]mux [n]ew-[s]ession
+
 # git aliases
 alias ga='git add'
 alias gaa='git add -A'
