@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.4.0](https://github.com/siddhantac/dotfiles/compare/v1.3.0...v1.4.0) (2023-10-20)
+
+
+### Features
+
+* **nvim:** add keybinds to open files in split ([abea114](https://github.com/siddhantac/dotfiles/commit/abea1149fbc4d0e5e9f60f66e88139bd31f147a4))
+* **nvim:** add lazy loading for plugins (load time 260ms -&gt; 90ms) ([cf6b889](https://github.com/siddhantac/dotfiles/commit/cf6b8898967413d21d584f1b5474171994edcc46))
+* **nvim:** add mappings for gitlinker ([03f5e86](https://github.com/siddhantac/dotfiles/commit/03f5e861b419192072e7a4bff6206cbb69ae56f7))
+* **nvim:** replace custom lsp function with mini.cursorword ([4ddf818](https://github.com/siddhantac/dotfiles/commit/4ddf8181626baaad055d5b87c877a43a025e0de7))
+* **nvim:** update mini.nvim config ([888da93](https://github.com/siddhantac/dotfiles/commit/888da93af9027893b3a875fabfd687d3b8debe43))
+* **tmux:** improved keybinds to navigate windows and panes ([26ea7b9](https://github.com/siddhantac/dotfiles/commit/26ea7b99b30db5f1199776cf214bc27dc21f9809))
+* **zsh:** aliase to start tmux session with dirname ([14dfde0](https://github.com/siddhantac/dotfiles/commit/14dfde079abddf4688d0e805ec61480f7ff558dc))
+
 ## [1.3.0](https://github.com/siddhantac/dotfiles/compare/v1.2.0...v1.3.0) (2023-10-17)
 
 
