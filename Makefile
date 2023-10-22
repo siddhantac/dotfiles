@@ -21,7 +21,7 @@ build:
 	[ -d ~/.config/kitty ] || ln -s $(PWD)/kitty ~/.config/
 	[ -d ~/.config/nvim ] || ln -s $(PWD)/nvim ~/.config/
 	[ -f ~/.config/starship.toml ] || ln -s $(PWD)/starship.toml ~/.config/
-	[ -f ~/Library/Application\ Support/espanso/match/base.yml ] || ln -s $(PWD)/espanso_base.yml ~/Library/Application\ Support/espanso/match/base.yml
+	# [ -f ~/Library/Application\ Support/espanso/match/base.yml ] || ln -s $(PWD)/espanso_base.yml ~/Library/Application\ Support/espanso/match/base.yml
 
 personal:
 	[ -f ~/.config/zsh/aliases.local ] || ln -s $(PWD)/zsh/aliases.serenity ~/.config/zsh/aliases.local
