@@ -6,7 +6,7 @@ source_if_exists () {
 
 export WORKSPACE=$HOME/workspace
 export DOTFILES=$WORKSPACE/dotfiles
-export PATH=$HOME/.local/share/nvim/mason/bin:/usr/local/bin:$HOME/go/bin:$HOME/workspace/bin:/opt/homebrew/bin:$PATH
+export PATH=$HOME/.local/share/nvim/mason/bin:/usr/local/bin:$HOME/go/bin:$HOME/workspace/bin:/opt/homebrew/bin:$HOME/.tmux/plugins/tmuxifier/bin:$PATH
 export GOPATH=$HOME/go
 # export ZSH="$HOME/.oh-my-zsh"
 export TERM=screen-256color
@@ -61,3 +61,5 @@ source $HOME/.zshrc_custom
 # vim controls
 #   https://dougblack.io/words/zsh-vi-mode.html
 bindkey -v
+
+eval "$(tmuxifier init -)"
