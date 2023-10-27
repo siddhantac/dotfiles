@@ -16,3 +16,7 @@ Run the script to install `homebrew` and all brew packages:
 ```shell
 ./workspace/macos/setup-homebrew.sh
 ```
+
+## Plugins etc.
+
+After running the scripts, open TMUX and install plugins using `Ctrl+A+I`.
