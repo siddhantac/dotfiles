@@ -19,7 +19,7 @@ brew "qemu"
 brew "lima"
 brew "colima"
 brew "curl"
-brew "exa"
+brew "eza"
 brew "fzf"
 brew "gh"
 brew "openssl@3", link: false
