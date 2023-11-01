@@ -8,11 +8,11 @@ if initialize_session "pd-pablo"; then
 
   # Create a new window inline within session layout definition.
   new_window "code"
+  run_cmd "nvim"
   new_window "shell"
   select_window 2
   run_cmd "git status"
   select_window 1
-  run_cmd "nvim"
 
   # Load a defined window layout.
   #load_window "example"
