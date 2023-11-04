@@ -28,12 +28,12 @@ tpm:
 	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 clean:
-	rm -f ~/.config/tmux
+	rm -rf ~/.config/tmux
 	rm -f ~/.gitconfig
 	rm -f ~/.zshrc
-	rm -f ~/.config/zsh
-	rm -f ~/.config/kitty
-	rm -f ~/.config/nvim
+	rm -rf ~/.config/zsh
+	rm -rf ~/.config/kitty
+	rm -rf ~/.config/nvim
 	rm -f ~/.config/starship.toml
 	rm -f ~/Library/Application\ Support/espanso/match/base.yml
 
