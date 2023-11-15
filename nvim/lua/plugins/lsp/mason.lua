@@ -1,7 +1,7 @@
 local M = {}
-M.config = function()
+M.setup = function()
     local mason = require("mason")
-    mason.setup()         -- enable mason
+    mason.setup() -- enable mason
 
     local mason_lspconfig = require("mason-lspconfig")
     mason_lspconfig.setup({
@@ -18,7 +18,7 @@ M.config = function()
             "jsonls",
         },
         -- auto-install configured servers (with lspconfig)
-        automatic_installation = true,         -- not the same as ensure_installed
+        automatic_installation = true, -- not the same as ensure_installed
     })
 end
 return M
