@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.5.0](https://github.com/siddhantac/dotfiles/compare/v1.4.0...v1.5.0) (2023-11-15)
+
+
+### Features
+
+* **tmux:** add tmuxifier to automate window and session mgmt ([9eadec2](https://github.com/siddhantac/dotfiles/commit/9eadec2a6b322724b4c88cea6214f27e87975c2d))
+* **zsh:** add go bin path to PATH ([210eb98](https://github.com/siddhantac/dotfiles/commit/210eb986a022bdc76a93aecc44a03b261a1c3dcd))
+* **zsh:** replace exa with eza ([dee164d](https://github.com/siddhantac/dotfiles/commit/dee164ddfa1194f46792624c8ab758d369fd3038))
+
+
+### Bug Fixes
+
+* **make:** use flag for dir in rm ([1eac6b1](https://github.com/siddhantac/dotfiles/commit/1eac6b1a6d3e71c37858c403ec26c9360a7ed25d))
+* **nvim:** add markdown treesitter parser for lspsaga ([d83efed](https://github.com/siddhantac/dotfiles/commit/d83efed6d797bd8911b8b38e8457b4216258a25a))
+* **tmux:** update layout ([200ea33](https://github.com/siddhantac/dotfiles/commit/200ea33e896549725d10c67a723ba20e57ebfc06))
+
 ## [1.4.0](https://github.com/siddhantac/dotfiles/compare/v1.3.0...v1.4.0) (2023-10-20)
 
 
