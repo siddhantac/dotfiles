@@ -4,7 +4,13 @@
   "aerial.nvim": { "branch": "master", "commit": "fb1f08c9f90e8b0c04b2f2c5d95d06288a14c5b2" },
   "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
   "cmp-nvim-lsp": { "branch": "main", "commit": "44b16d11215dce86f253ce0c30949813c0a90765" },
+<<<<<<< HEAD
   "copilot": { "branch": "release", "commit": "309b3c803d1862d5e84c7c9c5749ae04010123b8" },
+||||||| parent of 1e99b71 (added some more completion engines)
+=======
+  "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },
+  "cmp_luasnip": { "branch": "master", "commit": "05a9ab28b53f71d1aece421ef32fee2cb857a843" },
+>>>>>>> 1e99b71 (added some more completion engines)
   "diffview.nvim": { "branch": "main", "commit": "d38c1b5266850f77f75e006bcc26213684e1e141" },
   "fzf-lua": { "branch": "main", "commit": "85bfacfebe9b10980bd7f0ed4f292fe344877231" },
   "gh.nvim": { "branch": "main", "commit": "a25fc74b907e3ff5dd632dc5006ccf3e60a1ccfd" },
