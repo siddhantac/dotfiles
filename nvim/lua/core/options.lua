@@ -40,3 +40,5 @@ vim.opt.foldlevel = 99
 vim.opt.hlsearch = false
 -- vim.opt.laststatus = 2
 -- vim.opt.list = true
+
+vim.g.copilot_assume_mapped = true
