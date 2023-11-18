@@ -192,15 +192,15 @@ require("lazy").setup({
             require("plugins.lualine").setup()
         end,
     },
-    {
-        "echasnovski/mini.indentscope",
-        version = false, -- wait till new 0.7.0 release to put it back on semver
-        event = { "BufReadPre", "BufNewFile" },
-        init = function()
-            require("plugins.mini_indentscope").init()
-        end,
-        opts = require("plugins.mini_indentscope").opts,
-    },
+    -- {
+    --     "echasnovski/mini.indentscope",
+    --     version = false, -- wait till new 0.7.0 release to put it back on semver
+    --     event = { "BufReadPre", "BufNewFile" },
+    --     init = function()
+    --         require("plugins.mini_indentscope").init()
+    --     end,
+    --     opts = require("plugins.mini_indentscope").opts,
+    -- },
 
     {
         "akinsho/toggleterm.nvim",

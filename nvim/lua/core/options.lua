@@ -42,3 +42,6 @@ vim.opt.hlsearch = false
 -- vim.opt.list = true
 
 vim.g.copilot_assume_mapped = true
+
+vim.opt.list = true
+vim.opt.listchars = { leadmultispace = "│   ", tab = "│ ", }
