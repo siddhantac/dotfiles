@@ -248,4 +248,8 @@ require("lazy").setup({
             require("plugins.treesitter_textobjects").config()
         end,
     },
+    {
+        "github/copilot.vim",
+        name = "copilot",
+    },
 })
