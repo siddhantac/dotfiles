@@ -1,3 +1,5 @@
+local core_mappings = require("core.mappings")
+
 return {
     {
         'neovim/nvim-lspconfig', -- Configurations for Nvim LSP
@@ -18,6 +20,7 @@ return {
             'nvim-tree/nvim-web-devicons',
         },
         opts = require("plugins.lsp.lspsaga").opts,
+        keys = core_mappings.lspsaga_mappings,
     },
     {
         "onsails/lspkind.nvim",

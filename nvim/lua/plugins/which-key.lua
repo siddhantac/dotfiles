@@ -60,13 +60,7 @@ M.setup             = function()
                     tscopebuiltin.lsp_document_symbols()
                 end
             end, "Document symbols" },
-        ["<leader>ld"] = { "<cmd>Lspsaga peek_definition<CR>", "Peek def" },
-        ["<leader>ly"] = { "<cmd>Lspsaga peek_type_definition<CR>", "Peek type def" },
-        ["<leader>ln"] = { "<cmd>Lspsaga rename<CR>", "Rename" },
-        ["<leader>lx"] = { "<cmd>Lspsaga finder<CR>", "Finder" },
-        ["<leader>la"] = { "<cmd>Lspsaga code_action<CR>", "Code action" },
-        ["<leader>li"] = { "<cmd>Lspsaga incoming_calls<CR>", "Incoming calls" },
-        ["<leader>lu"] = { "<cmd>Lspsaga outgoing_calls<CR>", "Outgoing calls" },
+
         ["<leader>lo"] = { "<cmd>AerialToggle<CR>", "Show outline" },
         -- S = { '<cmd>Telescope lsp_workspace_symbols<CR>', "Workspace symbols" },
     })

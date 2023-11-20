@@ -233,4 +233,14 @@ function M.gitlinker_mappings()
         { desc = "copy Github url" } })
 end
 
+function M.lspsaga_mappings()
+    nmap({ "<leader>ld", "<cmd>Lspsaga peek_definition<CR>", { desc = "Peek def" } })
+    nmap({ "<leader>ly", "<cmd>Lspsaga peek_type_definition<CR>", { desc = "Peek type def" } })
+    nmap({ "<leader>ln", "<cmd>Lspsaga rename<CR>", { desc = "Rename" } })
+    nmap({ "<leader>lx", "<cmd>Lspsaga finder<CR>", { desc = "Finder" } })
+    nmap({ "<leader>la", "<cmd>Lspsaga code_action<CR>", { desc = "Code action" } })
+    nmap({ "<leader>li", "<cmd>Lspsaga incoming_calls<CR>", { desc = "Incoming calls" } })
+    nmap({ "<leader>lu", "<cmd>Lspsaga outgoing_calls<CR>", { desc = "Outgoing calls" } })
+end
+
 return M

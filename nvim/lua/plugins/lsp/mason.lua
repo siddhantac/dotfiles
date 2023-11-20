@@ -29,6 +29,7 @@ M.setup = function()
             "jsonls",
         },
         -- auto-install configured servers (with lspconfig)
+        -- if they are not already installed
         automatic_installation = true, -- not the same as ensure_installed
     })
 end
