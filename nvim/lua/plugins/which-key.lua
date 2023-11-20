@@ -40,24 +40,14 @@ M.setup             = function()
 
         -- Diagnostics
         ["<leader>d"]  = { name = "Diagnostics", desc = get_icon("Diagnostic") .. "Diagnostics" },
+
         -- LSP
         ["<leader>l"]  = { name = "LSP", desc = get_icon("ActiveLSP") .. "LSP" },
         ["<leader>ll"] = { "<cmd>LspInfo<CR>", "LSP Info" },
         ["gd"]         = { vim.lsp.buf.goto_definition, "Go to def" },
         ["<leader>lf"] = { vim.lsp.buf.format, "Format" },
         ["<leader>lh"] = { vim.lsp.buf.hover, "Hover" },
-        ["<leader>lR"] = { vim.lsp.buf.references, "Refs in Telescope" },
-        ["<leader>ls"] = {
-            function()
-                local aerial_avail, _ = pcall(require, "aerial")
-                if aerial_avail then
-                    telescope.extensions.aerial.aerial()
-                else
-                    tscopebuiltin.lsp_document_symbols()
-                end
-            end, "Document symbols" },
-
-        ["<leader>lo"] = { "<cmd>AerialToggle<CR>", "Show outline" },
+        ["<leader>lR"] = { vim.lsp.buf.references, "Refs in Quickfix" },
         -- S = { '<cmd>Telescope lsp_workspace_symbols<CR>', "Workspace symbols" },
     })
 

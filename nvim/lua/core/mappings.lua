@@ -141,6 +141,21 @@ function M.telescope_mappings()
         { desc = "Implementation" } })
     nmap({ "<leader>lr", '<cmd>Telescope lsp_references show_line=false default_text=!_test.go<CR>',
         { desc = "Refs in Telescope" } })
+
+    nmap({
+        "<leader>ls",
+        function()
+            local aerial_avail, _ = pcall(require, "aerial")
+            if aerial_avail then
+                telescope.extensions.aerial.aerial()
+            else
+                tscopebuiltin.lsp_document_symbols()
+            end
+        end,
+        desc = { "Document symbols" }
+    })
+
+    nmap({ "<leader>lo", "<cmd>AerialToggle<CR>", { desc = "Show outline" } })
 end
 
 function M.gitsigns_mappings()
