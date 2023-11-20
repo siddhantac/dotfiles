@@ -224,12 +224,14 @@ function M.gitlinker_mappings()
     end
     local actions = gitlinker.actions
 
-    nmap({ "<leader>gy", gitlinker.get_buf_range_url("n"), { desc = "copy Github url" } })
-    vmap({ "<leader>gy", gitlinker.get_buf_range_url("v"), { desc = "copy Github url" } })
+    nmap({ "<leader>gy", '<cmd>lua require"gitlinker".get_buf_range_url("n")<cr>', { desc = "copy Github url" } })
+    vmap({ "<leader>gy", '<cmd>lua require"gitlinker".get_buf_range_url("v")<cr>', { desc = "copy Github url" } })
 
-    nmap({ "<leader>gb", gitlinker.get_buf_range_url("n", { action_callback = actions.open_in_browser }),
+    nmap({ "<leader>gb",
+        '<cmd>lua require"gitlinker".get_buf_range_url("n", { action_callback = actions.open_in_browser })<cr>',
         { desc = "copy Github url" } })
-    vmap({ "<leader>gb", gitlinker.get_buf_range_url("v", { action_callback = actions.open_in_browser }),
+    vmap({ "<leader>gb",
+        '<cmd>lua require"gitlinker".get_buf_range_url("v", { action_callback = actions.open_in_browser })<cr>',
         { desc = "copy Github url" } })
 end
 

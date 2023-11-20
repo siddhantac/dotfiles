@@ -55,7 +55,7 @@ require("lazy").setup({
         'ruifm/gitlinker.nvim',
         dependencies = 'nvim-lua/plenary.nvim',
         opts = {},
-        mappings = core_mappings.gitlinker_mappings,
+        keys = core_mappings.gitlinker_mappings,
         event = { "BufReadPre", "BufNewFile" },
     },
     {
