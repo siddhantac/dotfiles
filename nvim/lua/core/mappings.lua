@@ -83,6 +83,13 @@ nmap({ "<leader>dh", function() vim.diagnostic.open_float() end, { desc = "Hover
 nmap({ "]d", function() vim.diagnostic.goto_next() end, { desc = "Next diagnostic" } })
 nmap({ "[d", function() vim.diagnostic.goto_prev() end, { desc = "Prev diagnostic" } })
 
+-- LSP
+nmap({ "<leader>ll", "<cmd>LspInfo<CR>", { desc = "LSP Info" } })
+nmap({ "<leader>lf", vim.lsp.buf.format, { desc = "Format" } })
+nmap({ "<leader>lh", vim.lsp.buf.hover, { desc = "Hover" } })
+nmap({ "<leader>lR", vim.lsp.buf.references, { desc = "Refs in Quickfix" } })
+-- nmap({ "gd", vim.lsp.buf.goto_definition, { desc = "Go to def" } })
+
 -- Git
 local utils = require("utils")
 nmap({ "<leader>gl", utils.gitpull, { desc = "Pull" } })

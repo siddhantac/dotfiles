@@ -16,7 +16,6 @@ M.setup             = function()
 
         -- Git stuff
         ["<leader>g"]  = { name = "Git", desc = get_icon("Git") .. "Git" },
-        ["<leader>go"] = { "<cmd>GBrowse<CR>", "Open github (browser)" },
         ["<leader>ga"] = { "<cmd>Git add -A|Git commit<CR>", "Add & Commit" },
 
         -- Terminal
@@ -43,11 +42,6 @@ M.setup             = function()
 
         -- LSP
         ["<leader>l"]  = { name = "LSP", desc = get_icon("ActiveLSP") .. "LSP" },
-        ["<leader>ll"] = { "<cmd>LspInfo<CR>", "LSP Info" },
-        ["gd"]         = { vim.lsp.buf.goto_definition, "Go to def" },
-        ["<leader>lf"] = { vim.lsp.buf.format, "Format" },
-        ["<leader>lh"] = { vim.lsp.buf.hover, "Hover" },
-        ["<leader>lR"] = { vim.lsp.buf.references, "Refs in Quickfix" },
         -- S = { '<cmd>Telescope lsp_workspace_symbols<CR>', "Workspace symbols" },
     })
 
