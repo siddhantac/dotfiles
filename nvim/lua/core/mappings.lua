@@ -161,6 +161,7 @@ function M.telescope_mappings()
         end,
         desc = { "Document symbols" }
     })
+    -- S = { '<cmd>Telescope lsp_workspace_symbols<CR>', "Workspace symbols" },
 
     nmap({ "<leader>lo", "<cmd>AerialToggle<CR>", { desc = "Show outline" } })
 end
