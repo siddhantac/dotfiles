@@ -15,7 +15,7 @@ return {
     {
         "glepnir/lspsaga.nvim",
         name = 'lspsaga.nvim',
-        event = "LspAttach",
+        event = { "BufReadPre", "BufNewFile" },
         dependencies = {
             'nvim-tree/nvim-web-devicons',
         },
@@ -24,7 +24,7 @@ return {
     },
     {
         "onsails/lspkind.nvim",
-        event = "LspAttach",
+        event = { "BufReadPre", "BufNewFile" },
     },                          -- vs-code like icons for autocompletion
     {
         'stevearc/aerial.nvim', -- code outline
