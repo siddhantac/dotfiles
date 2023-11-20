@@ -46,10 +46,6 @@ M.setup             = function()
         ["gd"]         = { vim.lsp.buf.goto_definition, "Go to def" },
         ["<leader>lf"] = { vim.lsp.buf.format, "Format" },
         ["<leader>lh"] = { vim.lsp.buf.hover, "Hover" },
-        ["<leader>lm"] = { "<cmd>Telescope lsp_implementations show_line=false default_text=!mocks<cr>",
-            "Implementation" },
-        ["<leader>lr"] = { '<cmd>Telescope lsp_references show_line=false default_text=!_test.go<CR>',
-            "Refs in Telescope" },
         ["<leader>lR"] = { vim.lsp.buf.references, "Refs in Telescope" },
         ["<leader>ls"] = {
             function()

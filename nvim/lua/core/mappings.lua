@@ -73,7 +73,6 @@ nmap({ "<leader>w", ":w<CR>" })
 nmap({ "]b", "<cmd>bnext<CR>", { desc = "Next buffer" } })
 nmap({ "[b", "<cmd>bprev<CR>", { desc = "Prev buffer" } })
 nmap({ "<leader>bb", "<cmd>b#<CR>", { desc = "Swap" } })
-nmap({ "<leader>bf", "<cmd>Telescope buffers<CR>", { desc = "Find" } })
 nmap({ "<leader>bc", "<cmd>close<CR>", { desc = "Close" } })
 nmap({ "<leader>bd", "<cmd>bd<CR>", { desc = "Delete" } })
 nmap({ "<leader>bD", "<cmd>bufdo bd<CR>", { desc = "Delete all" } })
@@ -101,6 +100,8 @@ function M.telescope_mappings()
     if not ok then
         vim.notify("failed to load telescope builtin", "error")
     end
+
+    nmap({ "<leader>bf", "<cmd>Telescope buffers<CR>", { desc = "Find" } })
 
     nmap({ "<leader>ff", function() tscopebuiltin.find_files() end, { desc = "Find files" } })
     nmap({ "<leader>f<CR>", function() tscopebuiltin.resume() end, { desc = "Resume previous search" } })
@@ -135,6 +136,11 @@ function M.telescope_mappings()
     nmap({ "<leader>gb", function() tscopebuiltin.git_branches { use_file_path = true } end, { desc = "Git branches" } })
     nmap({ "<leader>gC", function() tscopebuiltin.git_commits { use_file_path = true } end, { desc = "Git commits", } })
     nmap({ "<leader>gt", function() tscopebuiltin.git_status { use_file_path = true } end, { desc = "Git status" } })
+
+    nmap({ "<leader>lm", "<cmd>Telescope lsp_implementations show_line=false default_text=!mocks<cr>",
+        { desc = "Implementation" } })
+    nmap({ "<leader>lr", '<cmd>Telescope lsp_references show_line=false default_text=!_test.go<CR>',
+        { desc = "Refs in Telescope" } })
 end
 
 function M.gitsigns_mappings()
