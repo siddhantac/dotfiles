@@ -252,6 +252,14 @@ require("lazy").setup({
         end,
     },
     {
+        'nvim-treesitter/nvim-treesitter-context',
+        event = 'BufReadPre',
+        keys = {
+            { '[x', function() require('treesitter-context').go_to_context() end },
+        },
+    },
+
+    {
         "github/copilot.vim",
         name = "copilot",
     },
