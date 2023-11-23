@@ -5,6 +5,9 @@ M.config = function()
         -- A list of parser names, or "all"
         ensure_installed = {
             "go",
+            "gomod",
+            "gowork",
+            "gosum",
             "markdown",
             "markdown_inline",
         },
