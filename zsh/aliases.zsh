@@ -22,6 +22,7 @@ alias v='nvim'
 
 # tmux aliases
 alias tns='tmux new -s $(echo $(pwd) | xargs basename)'   # [t]mux [n]ew-[s]ession
+alias tx=tmuxinator
 
 # git aliases
 alias ga='git add'
