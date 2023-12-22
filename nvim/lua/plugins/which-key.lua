@@ -24,6 +24,9 @@ M.setup        = function()
         -- find with telescope
         ["<leader>f"]  = { name = "Find", desc = get_icon("Search") .. "Find" },
 
+        -- harpoon
+        ["<leader>h"]  = { name = "Harpoon", desc = get_icon("GitRenamed") .. "Harpoon" },
+
         -- Sessions
         -- ["<leader>s"]  = { name = "Sessions", desc = get_icon("Session") .. "Sessions" },
         -- ["<leader>ss"] = { function() sessions.select("write") end, "Save" },

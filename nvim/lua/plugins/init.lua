@@ -86,6 +86,7 @@ require("lazy").setup({
         "ThePrimeagen/harpoon",
         name = "harpoon.nvim",
         event = { "BufRead" },
+        keys = core_mappings.harpoon,
     },
 
     -- Golang plugins

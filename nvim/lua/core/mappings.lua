@@ -274,4 +274,11 @@ function M.lspsaga_mappings()
     nmap({ "<leader>lu", "<cmd>Lspsaga outgoing_calls<CR>", { desc = "Outgoing calls" } })
 end
 
+function M.harpoon()
+    nmap({ "<leader>hh", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", { desc = "Harpoon menu" } })
+    nmap({ "<leader>ha", "<cmd>lua require('harpoon.mark').add_file()<CR>", { desc = "Add file" } })
+    nmap({ "<leader>h]", "<cmd>lua require('harpoon.ui').nav_next()<CR>", { desc = "Next" } })
+    nmap({ "<leader>h[", "<cmd>lua require('harpoon.ui').nav_prev()<CR>", { desc = "Prev" } })
+end
+
 return M
