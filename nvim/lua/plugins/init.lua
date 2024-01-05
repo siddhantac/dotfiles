@@ -260,8 +260,8 @@ require("lazy").setup({
         },
     },
 
-    {
-        "github/copilot.vim",
-        name = "copilot",
-    },
+    -- {
+    --     "github/copilot.vim",
+    --     name = "copilot",
+    -- },
 })
