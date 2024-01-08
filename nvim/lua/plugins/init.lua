@@ -264,4 +264,8 @@ require("lazy").setup({
     --     "github/copilot.vim",
     --     name = "copilot",
     -- },
+    {
+        'Exafunction/codeium.vim',
+        event = 'BufEnter'
+    },
 })
