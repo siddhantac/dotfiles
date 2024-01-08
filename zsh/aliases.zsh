@@ -56,6 +56,7 @@ alias grc='git add -A && git rebase --continue'
 alias gra='git rebase --abort'
 alias gl=pretty_git_log
 alias pr='gh pr create -a @me  -w'
+alias gclean='git fetch --prune && git gc'
 
 # gcap: commit all and push
 gcap() {
