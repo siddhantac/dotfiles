@@ -74,9 +74,22 @@ nmap({ "]b", "<cmd>bnext<CR>", { desc = "Next buffer" } })
 nmap({ "[b", "<cmd>bprev<CR>", { desc = "Prev buffer" } })
 nmap({ "<leader>bb", "<cmd>b#<CR>", { desc = "Swap" } })
 nmap({ "<leader>bc", "<cmd>close<CR>", { desc = "Close" } })
-nmap({ "<leader>bd", "<cmd>bd<CR>", { desc = "Delete" } })
 nmap({ "<leader>bD", "<cmd>bufdo bd<CR>", { desc = "Delete all" } })
 nmap({ "<leader>bm", "<cmd>MaximizerToggle<CR>", { desc = "Maximize (toggle)" } })
+nmap({ "<leader>bd", function()
+    local bd = require("mini.bufremove").delete
+    if vim.bo.modified then
+        local choice = vim.fn.confirm(("Save changes to %q?"):format(vim.fn.bufname()), "&Yes\n&No\n&Cancel")
+        if choice == 1 then -- Yes
+            vim.cmd.write()
+            bd(0)
+        elseif choice == 2 then -- No
+            bd(0, true)
+        end
+    else
+        bd(0)
+    end
+end, { desc = "Delete" } })
 
 -- Diagnostics
 nmap({ "<leader>dh", function() vim.diagnostic.open_float() end, { desc = "Hover diagnostics" } })
