@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.6.0](https://github.com/siddhantac/dotfiles/compare/v1.5.0...v1.6.0) (2024-01-23)
+
+
+### Features
+
+* **nvim:** add copilot ([9df443a](https://github.com/siddhantac/dotfiles/commit/9df443ac89f61f1a4f2d78d6cc3576103184b1cf))
+* **nvim:** add copilot ([b8504b2](https://github.com/siddhantac/dotfiles/commit/b8504b21406e458828ebda6d8069be44b9ddc053))
+* **nvim:** add go.mod and other files to treesitter ([2de54fb](https://github.com/siddhantac/dotfiles/commit/2de54fb2b41edfd5917d2d77eb42a3769cd0dbb9))
+* **nvim:** add treesitter-context plugin ([148f305](https://github.com/siddhantac/dotfiles/commit/148f3050b127ad2f118344629d9b547033bc790d))
+* **nvim:** fix keybinds to navigate completion menu ([74366bb](https://github.com/siddhantac/dotfiles/commit/74366bb35e2b6c1e385090bbc0051df2fda25847))
+* **nvim:** lazy will check for updates automatically ([51d7363](https://github.com/siddhantac/dotfiles/commit/51d7363ea11718c65228b60dfd7f1c521512cbd6))
+* **tmux:** add tmuxinator ([1bc7a16](https://github.com/siddhantac/dotfiles/commit/1bc7a16e6ea1c3e34fed9206d99c59118da08412))
+
+
+### Bug Fixes
+
+* **nvim:** update settings so that copilot works properly ([99e83ec](https://github.com/siddhantac/dotfiles/commit/99e83ecbc6b4ad35cb568200a8d6e6a99ba354fd))
+
 ## [1.5.0](https://github.com/siddhantac/dotfiles/compare/v1.4.0...v1.5.0) (2023-11-15)
 
 
