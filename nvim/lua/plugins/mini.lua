@@ -8,7 +8,7 @@ M.setup = function()
     require('mini.files').setup()
     require('mini.cursorword').setup()
 
-    local pad = string.rep(" ", 22)
+    -- local pad = string.rep(" ", 22)
     local new_section = function(name, action, section)
         return { name = name, action = action, section = section }
     end
