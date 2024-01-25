@@ -47,12 +47,6 @@ if [[ -f ~/dh/bin/kube-env ]]; then
 	eval "$(~/dh/bin/kube-env)"
 fi
 
-#if [[ -n $SSH_CONNECTION ]]; then
-#  export EDITOR='vim'
-#else
-#  export EDITOR='vim'
-#fi
-export PATH="$PATH:$HOME/.spicetify"
 
 eval "$(starship init zsh)"
 
@@ -61,5 +55,3 @@ source $HOME/.zshrc_custom
 # vim controls
 #   https://dougblack.io/words/zsh-vi-mode.html
 bindkey -v
-
-eval "$(tmuxifier init -)"
