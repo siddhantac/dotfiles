@@ -21,7 +21,6 @@ antigen bundle z
 antigen bundle git
 antigen bundle fzf
 antigen bundle docker
-antigen bundle jeffreytse/zsh-vi-mode
 antigen bundle zsh-users/zsh-syntax-highlighting 
 antigen bundle zsh-users/zsh-autosuggestions 
 
@@ -39,13 +38,12 @@ antigen apply
 source_if_exists "$DOTFILES/zsh/aliases.zsh"
 source_if_exists "$DOTFILES/zsh/git.zsh"
 source_if_exists "$HOME/.aliases.local"
-
-[[ -s ~/.fzf.zsh ]] && source ~/.fzf.zsh
+source_if_exists "$HOME/.fzf.zsh"
 
 # see https://github.com/deliveryhero/kube-env
-if [[ -f ~/dh/bin/kube-env ]]; then
-	eval "$(~/dh/bin/kube-env)"
-fi
+# if [[ -f ~/dh/bin/kube-env ]]; then
+# 	eval "$(~/dh/bin/kube-env)"
+# fi
 
 
 eval "$(starship init zsh)"
