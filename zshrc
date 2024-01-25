@@ -15,7 +15,7 @@ export LEDGER_FILE=$WORKSPACE/accounts/finances.journal
 export EDITOR=nvim
 
 source $DOTFILES/zsh/antigen.zsh
-antigen use oh-my-zsh
+# antigen use oh-my-zsh
 
 antigen bundle z
 antigen bundle fzf
