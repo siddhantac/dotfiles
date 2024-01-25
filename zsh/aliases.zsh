@@ -25,6 +25,7 @@ alias tns='tmux new -s $(echo $(pwd) | xargs basename)'   # [t]mux [n]ew-[s]essi
 alias tx=tmuxinator
 
 # git aliases
+alias g='git'
 alias ga='git add'
 alias gaa='git add -A'
 alias gs='git status --short'
