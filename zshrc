@@ -44,6 +44,7 @@ source_if_exists "$HOME/.fzf.zsh"
 
 
 eval "$(starship init zsh)"
+eval "$(atuin init zsh)"
 
 source $HOME/.zshrc_custom
 
