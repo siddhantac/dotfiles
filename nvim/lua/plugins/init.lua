@@ -296,4 +296,6 @@ require("lazy").setup({
             "rcarriga/nvim-notify",
         }
     },
+
+    { 'kevinhwang91/nvim-bqf' },
 })

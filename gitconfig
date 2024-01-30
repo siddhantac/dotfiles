@@ -12,7 +12,7 @@
 
 [user]
     name = Siddhanta
-    email = siddhanta.c@gmail.com
+	email = 66236925+siddhantac@users.noreply.github.com
 
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
@@ -56,3 +56,8 @@
 
 [diff]
     colorMoved = default
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
