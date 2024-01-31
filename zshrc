@@ -1,3 +1,6 @@
+typeset -U PATH
+autoload colors; colors;
+
 source_if_exists () {
     if test -r "$1"; then
         source "$1"
@@ -59,10 +62,58 @@ source_if_exists "$HOME/.fzf.zsh"
 # fi
 
 
-eval "$(starship init zsh)"
+# eval "$(starship init zsh)"
 
 source $HOME/.zshrc_custom
 
 # vim controls
 #   https://dougblack.io/words/zsh-vi-mode.html
 bindkey -v
+
+# Stolen from Thorsten Ball
+#   https://github.com/mrnugget/dotfiles/blob/7f7b53b81ca3cba4b752f0a8d40461b12a9a6441/zshrc#L266-L308
+#########
+# PROMPT
+#########
+
+setopt prompt_subst
+
+git_prompt_info() {
+  local dirstatus=""
+  local dirty="%{$fg_bold[red]%} 󰅖%{$reset_color%}"
+
+  if [[ ! -z $(git status --porcelain 2> /dev/null | tail -n1) ]]; then
+    dirstatus=$dirty
+  fi
+
+  ref=$(git symbolic-ref HEAD 2> /dev/null) || \
+  ref=$(git rev-parse --short HEAD 2> /dev/null) || return
+    echo " %F{magenta}%f %F{green}${ref#refs/heads/}%f$dirstatus"
+  # echo " %{$fg_bold[magenta]%} ${ref#refs/heads/}$dirstatus%{$reset_color%}"
+}
+
+# local dir_info_color="$fg_bold[black]"
+
+# This just sets the color to "bold".
+# Future me. Try this to see what's correct:
+#   $ print -P '%fg_bold[black] black'
+#   $ print -P '%B%F{black} black'
+#   $ print -P '%B black'
+local dir_info_color="%B"
+
+# local dir_info_color_file="${HOME}/.zsh.d/dir_info_color"
+# if [ -r ${dir_info_color_file} ]; then
+#   source ${dir_info_color_file}
+# fi
+
+local dir_info_color="$fg_bold[cyan]"
+local dir_info="%{$dir_info_color%}%(5~|%-1~/.../%2~|%4~)%{$reset_color%}"
+local promptnormal="󰁕 %{$reset_color%}"
+local promptjobs="%{$fg_bold[red]%}φ %{$reset_color%}"
+
+PROMPT='${dir_info}$(git_prompt_info) %(1j.$promptjobs.$promptnormal)'
+
+simple_prompt() {
+  local prompt_color="%B"
+  export PROMPT="%{$prompt_color%}$promptnormal"
+}
