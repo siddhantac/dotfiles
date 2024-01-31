@@ -177,6 +177,7 @@ function M.telescope_mappings()
     -- S = { '<cmd>Telescope lsp_workspace_symbols<CR>', "Workspace symbols" },
 
     nmap({ "<leader>lo", "<cmd>AerialToggle<CR>", { desc = "Show outline" } })
+    nmap({ "<leader>j", function() tscopebuiltin.jumplist { show_line = false } end, { desc = "Jumplist" } })
 end
 
 function M.gitsigns_mappings()
@@ -293,24 +294,5 @@ function M.harpoon()
     nmap({ "<leader>h]", "<cmd>lua require('harpoon.ui').nav_next()<CR>", { desc = "Next" } })
     nmap({ "<leader>h[", "<cmd>lua require('harpoon.ui').nav_prev()<CR>", { desc = "Prev" } })
 end
-
-function M.jumplist()
-    local jumplist, _ = unpack(vim.fn.getjumplist())
-    local qf_list = {}
-    for _, v in pairs(jumplist) do
-        if vim.fn.bufloaded(v.bufnr) == 1 then
-            table.insert(qf_list, {
-                bufnr = v.bufnr,
-                lnum = v.lnum,
-                col = v.col,
-                text = vim.api.nvim_buf_get_lines(v.bufnr, v.lnum - 1, v.lnum, false)[1],
-            })
-        end
-    end
-    vim.fn.setqflist(qf_list, " ")
-    vim.cmd("copen")
-end
-
-nmap({ "<leader>j", M.jumplist, { desc = "Jumplist" } })
 
 return M
