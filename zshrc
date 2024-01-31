@@ -14,6 +14,22 @@ export XDG_CONFIG_HOME=$HOME/.config
 export LEDGER_FILE=$WORKSPACE/accounts/finances.journal
 export EDITOR=nvim
 
+#############
+## HISTORY ##
+#############
+HISTFILE=$HOME/.zsh_history
+HISTSIZE=50000
+SAVEHIST=50000
+
+setopt EXTENDED_HISTORY
+setopt HIST_VERIFY
+setopt HIST_EXPIRE_DUPS_FIRST    # Expire duplicate entries first when trimming history.
+setopt HIST_IGNORE_DUPS          # Dont record an entry that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
+setopt HIST_FIND_NO_DUPS         # Do not display a line previously found.
+setopt HIST_IGNORE_SPACE         # Dont record an entry starting with a space.
+setopt HIST_SAVE_NO_DUPS         # Dont write duplicate entries in the history file.
+
 source $DOTFILES/zsh/antigen.zsh
 # antigen use oh-my-zsh
 
