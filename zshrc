@@ -78,19 +78,23 @@ bindkey -v
 
 setopt prompt_subst
 
-git_prompt_info() {
-  local dirstatus=""
-  local dirty="%{$fg_bold[red]%} 󰅖%{$reset_color%}"
+autoload -Uz vcs_info
+precmd() { vcs_info }
+zstyle ':vcs_info:git:*' formats '%b '
 
-  if [[ ! -z $(git status --porcelain 2> /dev/null | tail -n1) ]]; then
-    dirstatus=$dirty
-  fi
-
-  ref=$(git symbolic-ref HEAD 2> /dev/null) || \
-  ref=$(git rev-parse --short HEAD 2> /dev/null) || return
-    echo " %F{magenta}%f %F{green}${ref#refs/heads/}%f$dirstatus"
-  # echo " %{$fg_bold[magenta]%} ${ref#refs/heads/}$dirstatus%{$reset_color%}"
-}
+# git_prompt_info() {
+#   local dirstatus=""
+#   local dirty="%{$fg_bold[red]%} 󰅖%{$reset_color%}"
+#
+#   if [[ ! -z $(git status --porcelain 2> /dev/null | tail -n1) ]]; then
+#     dirstatus=$dirty
+#   fi
+#
+#   ref=$(git symbolic-ref HEAD 2> /dev/null) || \
+#   ref=$(git rev-parse --short HEAD 2> /dev/null) || return
+#     echo " %F{magenta}%f %F{green}${ref#refs/heads/}%f$dirstatus"
+#   # echo " %{$fg_bold[magenta]%} ${ref#refs/heads/}$dirstatus%{$reset_color%}"
+# }
 
 # local dir_info_color="$fg_bold[black]"
 
@@ -111,8 +115,8 @@ local dir_info="%{$dir_info_color%}%(5~|%-1~/.../%2~|%4~)%{$reset_color%}"
 local promptnormal="󰁕 %{$reset_color%}"
 local promptjobs="%{$fg_bold[red]%}φ %{$reset_color%}"
 
-PROMPT='${dir_info}$(git_prompt_info) %(1j.$promptjobs.$promptnormal)'
-
+# PROMPT='${dir_info}$(git_prompt_info) %(1j.$promptjobs.$promptnormal)'
+PROMPT='%B%F{cyan}%~%f%b %F{magenta}%f %F{green}${vcs_info_msg_0_}%f%(1j.$promptjobs.$promptnormal)'
 simple_prompt() {
   local prompt_color="%B"
   export PROMPT="%{$prompt_color%}$promptnormal"
