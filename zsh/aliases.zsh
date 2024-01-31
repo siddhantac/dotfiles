@@ -96,6 +96,15 @@ sr() {
     git rebase master
 }
 
+# [b]ranch [c]heck[o]ut
+bco() {
+  git branch --no-color --sort=-committerdate --format='%(refname:short)' | fzf --header 'git checkout' | xargs git checkout
+}
+# [p]ull request [c]heck[o]ut
+pco() {
+  gh pr list --author "@me" | fzf --header 'checkout PR' | awk '{print $(NF-5)}' | xargs git checkout
+}
+
 # suffix aliases (just typing the json filename in terminal will open it in vim)
 alias -s json=vim
 
