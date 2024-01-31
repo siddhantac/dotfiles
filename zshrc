@@ -70,54 +70,36 @@ source $HOME/.zshrc_custom
 #   https://dougblack.io/words/zsh-vi-mode.html
 bindkey -v
 
-# Stolen from Thorsten Ball
-#   https://github.com/mrnugget/dotfiles/blob/7f7b53b81ca3cba4b752f0a8d40461b12a9a6441/zshrc#L266-L308
 #########
 # PROMPT
 #########
+# References
+#   https://scriptingosx.com/2019/07/moving-to-zsh-06-customizing-the-zsh-prompt/
+#   https://salferrarello.com/zsh-git-status-prompt/
+# Formatting
+#   Bold: %b<text>%b
+#   Color: %F{<color>}<text>%f
+# Info
+#   Username: %n
+#   Hostname: %m
+#   Directory: %~ (~ replaces the home dir with ~), %2~ (2 levels of dirs)
+#   Git branch: %b
+#   Git unstaged changes: %u
+#   Git staged changes: %c
+#   Git action: %a (rebase, merger, cherry-pick etc.)
 
 setopt prompt_subst
 
 autoload -Uz vcs_info
 precmd() { vcs_info }
-zstyle ':vcs_info:git:*' formats '%b '
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' unstagedstr ' %F{red}✗%f'
+zstyle ':vcs_info:*' stagedstr ' %F{cyan}✓%f'
+zstyle ':vcs_info:git:*' formats       '%b%u%c '
+zstyle ':vcs_info:git:*' actionformats '(%b|%a%u%c)'
 
-# git_prompt_info() {
-#   local dirstatus=""
-#   local dirty="%{$fg_bold[red]%} 󰅖%{$reset_color%}"
-#
-#   if [[ ! -z $(git status --porcelain 2> /dev/null | tail -n1) ]]; then
-#     dirstatus=$dirty
-#   fi
-#
-#   ref=$(git symbolic-ref HEAD 2> /dev/null) || \
-#   ref=$(git rev-parse --short HEAD 2> /dev/null) || return
-#     echo " %F{magenta}%f %F{green}${ref#refs/heads/}%f$dirstatus"
-#   # echo " %{$fg_bold[magenta]%} ${ref#refs/heads/}$dirstatus%{$reset_color%}"
-# }
+PROMPT='%B%F{cyan}%~%f%b %F{magenta}%f %B%F{white}${vcs_info_msg_0_}%f%b'
 
-# local dir_info_color="$fg_bold[black]"
-
-# This just sets the color to "bold".
-# Future me. Try this to see what's correct:
-#   $ print -P '%fg_bold[black] black'
-#   $ print -P '%B%F{black} black'
-#   $ print -P '%B black'
-local dir_info_color="%B"
-
-# local dir_info_color_file="${HOME}/.zsh.d/dir_info_color"
-# if [ -r ${dir_info_color_file} ]; then
-#   source ${dir_info_color_file}
-# fi
-
-local dir_info_color="$fg_bold[cyan]"
-local dir_info="%{$dir_info_color%}%(5~|%-1~/.../%2~|%4~)%{$reset_color%}"
-local promptnormal="󰁕 %{$reset_color%}"
-local promptjobs="%{$fg_bold[red]%}φ %{$reset_color%}"
-
-# PROMPT='${dir_info}$(git_prompt_info) %(1j.$promptjobs.$promptnormal)'
-PROMPT='%B%F{cyan}%~%f%b %F{magenta}%f %F{green}${vcs_info_msg_0_}%f%(1j.$promptjobs.$promptnormal)'
 simple_prompt() {
-  local prompt_color="%B"
-  export PROMPT="%{$prompt_color%}$promptnormal"
+  export PROMPT="%B%F{cyan}%1~%f %b"
 }
