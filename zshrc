@@ -37,7 +37,6 @@ source $DOTFILES/zsh/antigen.zsh
 # antigen use oh-my-zsh
 
 antigen bundle z
-antigen bundle fzf
 antigen bundle zsh-users/zsh-autosuggestions 
 
 # antigen theme agnoster
@@ -49,6 +48,27 @@ antigen bundle zsh-users/zsh-autosuggestions
 # antigen theme agnoster
 
 antigen apply
+
+# fzf
+# (using -e is faster than using 'brew --prefix')
+# ----------------
+# fzf via Homebrew
+if [ -e /opt/homebrew/opt/fzf/shell/completion.zsh ]; then
+  source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
+  source /opt/homebrew/opt/fzf/shell/completion.zsh
+elif [ -e /usr/local/opt/fzf/shell/completion.zsh ]; then
+  source /usr/local/opt/fzf/shell/key-bindings.zsh
+  source /usr/local/opt/fzf/shell/completion.zsh
+else
+  # fzf via local installation
+  if [ -e ~/.fzf ]; then
+    source ~/.fzf/shell/key-bindings.zsh
+    source ~/.fzf/shell/completion.zsh
+    if [[ ! "$PATH" == *$HOME.fzf/bin* ]]; then
+      export PATH="$PATH:$HOME/.fzf/bin"
+    fi
+  fi
+fi
 
 # load aliases
 source_if_exists "$DOTFILES/zsh/aliases.zsh"
