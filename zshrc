@@ -107,10 +107,10 @@ precmd() { vcs_info }
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' unstagedstr ' %F{red}✗%f'
 zstyle ':vcs_info:*' stagedstr ' %F{cyan}✓%f'
-zstyle ':vcs_info:git:*' formats       '%b%u%c '
+zstyle ':vcs_info:git:*' formats       ' %F{magenta}%f %b%u%c'
 zstyle ':vcs_info:git:*' actionformats '(%b|%a%u%c)'
 
-PROMPT='%B%F{cyan}%~%f%b %F{magenta}%f %B%F{white}${vcs_info_msg_0_}%f%b'
+PROMPT='%B%F{cyan}%~%f%b%B%F{white}${vcs_info_msg_0_}%f%b ❯ '
 
 simple_prompt() {
   export PROMPT="%B%F{cyan}%1~%f %b"
