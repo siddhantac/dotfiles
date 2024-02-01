@@ -103,7 +103,7 @@ bindkey -v
 unpushed_changes() {
     result=$(git log @{u}..)
     if [ -n "$result" ]; then
-        echo "%F{yellow}↑%f"
+        echo " %F{yellow}↑%f"
     fi
 }
 
@@ -117,7 +117,7 @@ zstyle ':vcs_info:*' stagedstr ' %F{cyan}✓%f'
 zstyle ':vcs_info:git:*' formats       ' %F{magenta}%f %b%u%c'
 zstyle ':vcs_info:git:*' actionformats '(%b|%a%u%c)'
 
-PROMPT='%B%F{cyan}%~%f%b%B%F{white}${vcs_info_msg_0_} $(unpushed_changes)%f%b ❯ '
+PROMPT='%B%F{cyan}%~%f%b%B%F{white}${vcs_info_msg_0_}$(unpushed_changes)%f%b ❯ '
 
 simple_prompt() {
   export PROMPT="%B%F{cyan}%1~%f %b"
