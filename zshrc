@@ -11,7 +11,6 @@ export WORKSPACE=$HOME/workspace
 export DOTFILES=$WORKSPACE/dotfiles
 export PATH=/usr/local/go/bin:$HOME/.local/share/nvim/mason/bin:/usr/local/bin:$HOME/go/bin:$HOME/workspace/bin:/opt/homebrew/bin:$HOME/.tmux/plugins/tmuxifier/bin:$PATH
 export GOPATH=$HOME/go
-# export ZSH="$HOME/.oh-my-zsh"
 export TERM=screen-256color
 export XDG_CONFIG_HOME=$HOME/.config
 export LEDGER_FILE=$WORKSPACE/accounts/finances.journal
@@ -33,19 +32,9 @@ setopt HIST_FIND_NO_DUPS         # Do not display a line previously found.
 setopt HIST_IGNORE_SPACE         # Dont record an entry starting with a space.
 setopt HIST_SAVE_NO_DUPS         # Dont write duplicate entries in the history file.
 
+# antigen
 source $DOTFILES/zsh/antigen.zsh
-# antigen use oh-my-zsh
-
 antigen bundle z
-
-# antigen theme agnoster
-# antigen theme avit
-# antigen theme spaceship
-# workaround for https://github.com/zsh-users/antigen/issues/675
-# THEME=agnoster
-# antigen list | grep $THEME; if [ $? -ne 0 ]; then antigen theme $THEME; fi
-# antigen theme agnoster
-
 antigen apply
 
 # fzf
@@ -86,9 +75,6 @@ source_if_exists "$HOME/.fzf.zsh"
 # if [[ -f ~/dh/bin/kube-env ]]; then
 # 	eval "$(~/dh/bin/kube-env)"
 # fi
-
-
-# eval "$(starship init zsh)"
 
 source $HOME/.zshrc_custom
 
