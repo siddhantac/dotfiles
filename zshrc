@@ -37,7 +37,6 @@ source $DOTFILES/zsh/antigen.zsh
 # antigen use oh-my-zsh
 
 antigen bundle z
-antigen bundle zsh-users/zsh-autosuggestions 
 
 # antigen theme agnoster
 # antigen theme avit
@@ -69,6 +68,13 @@ else
     fi
   fi
 fi
+
+# zsh-autosuggestions
+if [ -e /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+  source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+elif [ -e /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+    source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi 
 
 # load aliases
 source_if_exists "$DOTFILES/zsh/aliases.zsh"
