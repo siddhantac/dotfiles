@@ -101,7 +101,7 @@ bindkey -v
 #   Git action: %a (rebase, merger, cherry-pick etc.)
 
 unpushed_changes() {
-    result=$(git log @{u}..)
+    result=$(git log @{u}..  2> /dev/null)
     if [ -n "$result" ]; then
         echo " %F{yellow}↑%f"
     fi
