@@ -19,6 +19,7 @@ alias cpv='rsync -ah --progress'
 
 alias hl='hledger'
 alias v='nvim'
+alias vf='nvim $(fzf)'
 
 # tmux aliases
 alias tns='tmux new -s $(echo $(pwd) | xargs basename)'   # [t]mux [n]ew-[s]ession
