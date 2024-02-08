@@ -4,13 +4,10 @@ alias today='date +%Y-%m-%d'
 alias ls='eza --icons'
 alias ll='ls -lh'
 alias la='ll -a'
+alias lz='la --sort size'     # sort files by file size
+alias lt='la --sort modified' # sort files by modification time
 
-# sort files by file size
-alias lz='la --sort size'
-
-# sort files by modification time
-alias lt='la --sort modified'
-
+alias cat='bat'
 # count files
 alias count='find . -type f | wc -l'
 
