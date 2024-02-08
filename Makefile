@@ -9,17 +9,15 @@ build:
 	mkdir -p ~/.config
 
 	# `-f` checks if file exists
-	# `-d` checks if dir exists
-
-	[ -d ~/.config/tmux ] || ln -s $(PWD)/tmux ~/.config/
-	[ -f ~/.tmux.conf ] || ln -s $(PWD)/tmux.conf ~/.tmux.conf
 	[ -f ~/.gitconfig ] || ln -s $(PWD)/gitconfig ~/.gitconfig
-	[ -f ~/.zshrc ] || ln -s $(PWD)/zshrc ~/.zshrc
+	[ -f ~/.zshrc ] || ln -s $(PWD)/zsh/zshrc ~/.zshrc
+	[ -f ~/Library/Application\ Support/espanso/match/base.yml ] || ln -s $(PWD)/espanso_base.yml ~/Library/Application\ Support/espanso/match/base.yml
+
+	# `-d` checks if dir exists
+	[ -d ~/.config/tmux ] || ln -s $(PWD)/tmux ~/.config/
 	[ -d ~/.config/zsh ] || ln -s $(PWD)/zsh ~/.config/
 	[ -d ~/.config/kitty ] || ln -s $(PWD)/kitty ~/.config/
 	[ -d ~/.config/nvim ] || ln -s $(PWD)/nvim ~/.config/
-	[ -f ~/.config/starship.toml ] || ln -s $(PWD)/starship.toml ~/.config/
-	[ -f ~/Library/Application\ Support/espanso/match/base.yml ] || ln -s $(PWD)/espanso_base.yml ~/Library/Application\ Support/espanso/match/base.yml
 
 personal:
 	[ -f ~/.config/zsh/aliases.local ] || ln -s $(PWD)/zsh/aliases.serenity ~/.config/zsh/aliases.local
