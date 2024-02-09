@@ -1,17 +1,7 @@
-all: build
+all: setup
 
-install-kitty:
-	curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
-
-install: install-kitty
-
-build:
+setup:
 	mkdir -p ~/.config
-
-	# `-f` checks if file exists
-	[ -f ~/.gitconfig ] || ln -s $(PWD)/gitconfig ~/.gitconfig
-	[ -f ~/.zshrc ] || ln -s $(PWD)/zsh/zshrc ~/.zshrc
-	[ -f ~/Library/Application\ Support/espanso/match/base.yml ] || ln -s $(PWD)/espanso_base.yml ~/Library/Application\ Support/espanso/match/base.yml
 
 	# `-d` checks if dir exists
 	[ -d ~/.config/tmux ] || ln -s $(PWD)/tmux ~/.config/
@@ -19,11 +9,23 @@ build:
 	[ -d ~/.config/kitty ] || ln -s $(PWD)/kitty ~/.config/
 	[ -d ~/.config/nvim ] || ln -s $(PWD)/nvim ~/.config/
 
+	# `-f` checks if file exists
+	[ -f ~/.gitconfig ] || ln -s $(PWD)/gitconfig ~/.gitconfig
+	[ -f ~/.zshrc ] || ln -s $(PWD)/zsh/zshrc ~/.zshrc
+
+extra:
+	[ -f ~/Library/Application\ Support/espanso/match/base.yml ] || ln -s $(PWD)/espanso_base.yml ~/Library/Application\ Support/espanso/match/base.yml
+
 personal:
 	[ -f ~/.config/zsh/aliases.local ] || ln -s $(PWD)/zsh/aliases.serenity ~/.config/zsh/aliases.local
 
+kitty:
+	curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+
 tpm:
-	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+	git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
+
+install: kitty tpm
 
 clean:
 	rm -rf ~/.config/tmux
@@ -35,4 +37,4 @@ clean:
 	rm -f ~/.config/starship.toml
 	rm -f ~/Library/Application\ Support/espanso/match/base.yml
 
-.PHONY: all build clean
+.PHONY: all build clean extra personal install kitty tpm
