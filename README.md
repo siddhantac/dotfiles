@@ -14,7 +14,9 @@ Home sweet home.
 Run the script to install `homebrew` and all brew packages:
 
 ```shell
-./workspace/macos/setup-homebrew.sh
+make brew
+make install
+make setup
 ```
 
 ## Plugins etc.

@@ -12,6 +12,7 @@ setup:
 	# `-f` checks if file exists
 	[ -f ~/.gitconfig ] || ln -s $(PWD)/gitconfig ~/.gitconfig
 	[ -f ~/.zshrc ] || ln -s $(PWD)/zsh/zshrc ~/.zshrc
+	[ -f ~/.tmux.conf ] || ln -s $(PWD)/tmux/tmux.conf ~/.tmux.conf
 
 extra:
 	[ -f ~/Library/Application\ Support/espanso/match/base.yml ] || ln -s $(PWD)/espanso_base.yml ~/Library/Application\ Support/espanso/match/base.yml
@@ -19,13 +20,14 @@ extra:
 personal:
 	[ -f ~/.config/zsh/aliases.local ] || ln -s $(PWD)/zsh/aliases.serenity ~/.config/zsh/aliases.local
 
-kitty:
+brew:
+	./macos/setup-homebrew.sh
+
+install:
 	curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
-
-tpm:
+	brew install tmux neovim hledger eza bat
 	git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
-
-install: kitty tpm
+	brew cleanup
 
 clean:
 	rm -rf ~/.config/tmux
