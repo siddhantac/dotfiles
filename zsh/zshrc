@@ -123,3 +123,4 @@ simple_prompt() {
   export PROMPT="%B%F{cyan}%1~%f %b"
 }
 
+eval "$(zoxide init zsh)"
