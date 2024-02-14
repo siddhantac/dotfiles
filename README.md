@@ -19,6 +19,14 @@ make install
 make setup
 ```
 
+### Troubleshoot
+
+**Check speed of shell startup**
+
+```shell
+for i in $(seq 1 10); do time $SHELL -i -c exit; done
+```
+
 ## Plugins etc.
 
 After running the scripts, open TMUX and install plugins using `Ctrl+A+I`.
