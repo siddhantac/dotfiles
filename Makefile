@@ -16,6 +16,9 @@ setup:
 
 extra:
 	[ -f ~/Library/Application\ Support/espanso/match/base.yml ] || ln -s $(PWD)/espanso_base.yml ~/Library/Application\ Support/espanso/match/base.yml
+	# install nerd fonts for nice icons
+	brew tap homebrew/cask-fonts
+	brew install font-hack-nerd-font
 
 personal:
 	[ -f ~/.config/zsh/aliases.local ] || ln -s $(PWD)/zsh/aliases.serenity ~/.config/zsh/aliases.local
