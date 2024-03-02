@@ -1,4 +1,4 @@
-all: setup
+all: brew install setup extra
 
 setup:
 	mkdir -p ~/.config
