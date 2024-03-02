@@ -13,3 +13,4 @@ brew install espanso
 
 brew install gh
 
+brew cleanup
