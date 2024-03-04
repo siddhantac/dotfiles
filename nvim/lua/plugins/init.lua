@@ -171,6 +171,7 @@ require("lazy").setup({
             require("plugins.telescope").setup()
         end,
         keys = core_mappings.telescope_mappings,
+        event = "VeryLazy",
     },
 
     -- UI
