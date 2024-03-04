@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e
-
 # install nerd fonts for nice icons
 brew tap homebrew/cask-fonts
 brew install font-hack-nerd-font
