@@ -1,4 +1,5 @@
 alias today='date +%Y-%m-%d'
+alias md="mkdir"
 
 # list files and dirs
 alias ls='eza --icons'
