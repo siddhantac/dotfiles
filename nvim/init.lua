@@ -34,6 +34,7 @@ local modules = {
     "core.options",
     "core.mappings",
     "core.autocmds",
+    "core.todo",
     "plugins",
 }
 
