@@ -4,10 +4,12 @@ M.config = function()
     require 'nvim-treesitter.configs'.setup {
         -- A list of parser names, or "all"
         ensure_installed = {
+            "csv",
             "go",
             "gomod",
             "gowork",
             "gosum",
+            "ledger",
             "lua",
             "markdown",
             "markdown_inline",
