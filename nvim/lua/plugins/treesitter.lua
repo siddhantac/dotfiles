@@ -8,6 +8,7 @@ M.config = function()
             "gomod",
             "gowork",
             "gosum",
+            "lua",
             "markdown",
             "markdown_inline",
         },
