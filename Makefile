@@ -25,7 +25,7 @@ brew:
 
 install:
 	curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
-	brew install tmux neovim hledger eza bat zoxide fzf
+	brew install tmux neovim hledger eza bat zoxide fzf git-delta
 	git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 	brew cleanup
 
