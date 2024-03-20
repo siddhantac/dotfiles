@@ -101,7 +101,7 @@ nmap({ "<leader>ll", "<cmd>LspInfo<CR>", { desc = "LSP Info" } })
 nmap({ "<leader>lf", vim.lsp.buf.format, { desc = "Format" } })
 nmap({ "<leader>lh", vim.lsp.buf.hover, { desc = "Hover" } })
 nmap({ "<leader>lR", vim.lsp.buf.references, { desc = "Refs in Quickfix" } })
--- nmap({ "gd", vim.lsp.buf.goto_definition, { desc = "Go to def" } })
+nmap({ "gd", vim.lsp.buf.definition, { desc = "Go to def" } })
 
 -- Git
 local utils = require("utils")
