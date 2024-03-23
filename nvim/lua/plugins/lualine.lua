@@ -49,6 +49,47 @@ M.setup = function()
     end
 
     require('lualine').setup {
+        -- winbar = {
+        --     lualine_a = {},
+        --     lualine_b = { 'filename' },
+        --     lualine_c = {},
+        --     lualine_x = {},
+        --     lualine_y = {},
+        --     lualine_z = {}
+        -- },
+        -- inactive_winbar = {
+        --     lualine_a = {},
+        --     lualine_b = { 'filename' },
+        --     lualine_c = {},
+        --     lualine_x = {},
+        --     lualine_y = {},
+        --     lualine_z = {}
+        -- },
+        tabline = {
+            lualine_a = {
+            },
+            lualine_b = {
+                {
+                    'tabs',
+                    tabs_color = {
+                        active = { fg = colors.white, bg = colors.black },
+                        inactive = { fg = colors.grey, bg = colors.black },
+                    },
+                },
+                {
+                    'windows',
+                    mode = 2,
+                    windows_color = {
+                        active = { fg = colors.white, bg = colors.black },
+                        inactive = { fg = colors.grey, bg = colors.black },
+                    },
+                },
+            },
+            lualine_c = {},
+            lualine_x = {},
+            lualine_y = {},
+            lualine_z = {},
+        },
         options = {
             globalstatus = true,
             theme = theme,
