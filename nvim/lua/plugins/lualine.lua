@@ -1,5 +1,7 @@
 local M = {}
 M.setup = function()
+    local get_icon = require("utils").get_icon
+
     local colors = {
         red = '#ca1243',
         grey = '#a0a1a7',
@@ -22,7 +24,6 @@ M.setup = function()
         replace = { a = { fg = colors.black, bg = colors.green } },
         command = { a = { fg = colors.black, bg = colors.grey } },
     }
-
 
     local function search_result()
         if vim.v.hlsearch == 0 then
@@ -47,6 +48,7 @@ M.setup = function()
 
     require('lualine').setup {
         options = {
+            globalstatus = true,
             theme = theme,
             component_separators = { left = '', right = '' },
             -- section_separators = { left = '', right = '' },
@@ -69,8 +71,14 @@ M.setup = function()
                     sections = { 'warn' },
                     diagnostics_color = { warn = { bg = colors.orange, fg = colors.white } },
                 },
-                { 'filename', file_status = false,        path = 1 },
-                { modified,   color = { bg = colors.red } },
+                {
+                    'filename',
+                    path = 1,
+                    symbols = {
+                        modified = '●',
+                        readonly = get_icon("FileReadOnly"),
+                    },
+                },
                 {
                     '%w',
                     cond = function()
