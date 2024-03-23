@@ -17,6 +17,8 @@ M.setup = function()
             a = { fg = colors.black, bg = colors.green }, -- mode
             b = { fg = colors.white, bg = colors.black }, -- branch, filename etc.
             c = { fg = colors.black, bg = colors.grey },  -- the long middle section
+            x = { fg = colors.white, bg = colors.black },
+            y = { fg = colors.white, bg = colors.black },
             z = { fg = colors.white, bg = colors.black },
         },
         insert = { a = { fg = colors.black, bg = colors.red } },
@@ -100,13 +102,23 @@ M.setup = function()
             },
             lualine_c = {},
             lualine_x = {},
-            lualine_y = { 'filetype' },
+            lualine_y = {
+                {
+                    'windows',
+                    mode = 2,
+                    windows_color = {
+                        active = { fg = colors.white, bg = colors.black },
+                        inactive = { fg = colors.grey, bg = colors.black },
+                    },
+                },
+                'filetype',
+            },
             lualine_z = { '%l:%c', '%p%%/%L' },
         },
-        inactive_sections = {
-            lualine_c = { '%f %y %m' },
-            lualine_x = {},
-        },
+        -- inactive_sections = {
+        --     lualine_c = { '%f %y %m' },
+        --     lualine_x = {},
+        -- },
     }
 end
 -- opts = {
