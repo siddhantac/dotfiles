@@ -103,18 +103,6 @@ M.setup = function()
                 'branch',
                 'diff',
                 {
-                    'diagnostics',
-                    source = { 'nvim' },
-                    sections = { 'error' },
-                    diagnostics_color = { error = { bg = colors.red, fg = colors.white } },
-                },
-                {
-                    'diagnostics',
-                    source = { 'nvim' },
-                    sections = { 'warn' },
-                    diagnostics_color = { warn = { bg = colors.orange, fg = colors.white } },
-                },
-                {
                     'filename',
                     path = 1,
                     symbols = {
@@ -141,7 +129,23 @@ M.setup = function()
                     end,
                 },
             },
-            lualine_c = {},
+            lualine_c = {
+                {
+                    'diagnostics',
+                    source = { 'nvim' },
+                    sections = { 'error' },
+                    diagnostics_color = { error = { bg = colors.red, fg = colors.white } },
+                    separator = { right = '' },
+                },
+                {
+                    'diagnostics',
+                    source = { 'nvim' },
+                    sections = { 'warn' },
+                    diagnostics_color = { warn = { bg = colors.orange, fg = colors.white } },
+                    separator = { right = '' },
+                },
+
+            },
             lualine_x = {},
             lualine_y = {
                 {
