@@ -7,26 +7,23 @@ Home sweet home.
     - [ ] Find a way to determine OS and ask user for confirmation
 - [ ] Create an install script for Ubuntu using apt-get
 
-# Setup
+# First time setup
 
-## Macos
-
-Run the script to install `homebrew` and all brew packages:
+- Macos
 
 ```shell
-make brew
-make install
 make setup
 ```
 
-### Troubleshoot
+## Plugins etc.
+
+- tmux: run tmux and install plugins using `Ctrl+<space>` + `Shift+I`
+- nvim: run nvim, Lazy will auto-install plugins
+
+# Troubleshoot
 
 **Check speed of shell startup**
 
 ```shell
 for i in $(seq 1 10); do time $SHELL -i -c exit; done
 ```
-
-## Plugins etc.
-
-After running the scripts, open TMUX and install plugins using `Ctrl+A+I`.
