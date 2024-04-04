@@ -269,13 +269,6 @@ function M.gitlinker_mappings()
 
     nmap({ "<leader>gy", '<cmd>lua require"gitlinker".get_buf_range_url("n")<cr>', { desc = "copy Github url" } })
     vmap({ "<leader>gy", '<cmd>lua require"gitlinker".get_buf_range_url("v")<cr>', { desc = "copy Github url" } })
-
-    nmap({ "<leader>gb",
-        '<cmd>lua require"gitlinker".get_buf_range_url("n", { action_callback = actions.open_in_browser })<cr>',
-        { desc = "copy Github url" } })
-    vmap({ "<leader>gb",
-        '<cmd>lua require"gitlinker".get_buf_range_url("v", { action_callback = actions.open_in_browser })<cr>',
-        { desc = "copy Github url" } })
 end
 
 function M.lspsaga_mappings()
