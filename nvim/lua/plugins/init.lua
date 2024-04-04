@@ -229,7 +229,10 @@ require("lazy").setup({
     {
         "echasnovski/mini.nvim",
         event = "VimEnter",
-        config = require("plugins.mini").setup
+        config = require("plugins.mini").setup,
+        dependencies = {
+            'mrquantumcodes/configpulse',
+        },
     },
 
     {

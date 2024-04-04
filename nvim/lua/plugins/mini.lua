@@ -14,11 +14,17 @@ M.setup = function()
     end
 
     local starter = require("mini.starter")
+
+    local time_since = function()
+        local cp = require('configpulse').get_time()
+        return cp['days'] .. " days, " .. cp['hours'] .. " hours, " .. cp['minutes'] .. " minutes since last change"
+    end
+
     starter.setup({
         evaluate_single = true,
         -- header = "Welcome back, Sid",
         header =
-        "                                                    \n ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ \n ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ \n ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ \n ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ \n ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ \n ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ \n ",
+        "                                                    \n ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ \n ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ \n ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ \n ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ \n ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ \n ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ \n Welcome back, Sid",
         items = {
             starter.sections.sessions(),
             new_section("Find file", "Telescope find_files", "Telescope"),
@@ -28,6 +34,7 @@ M.setup = function()
             new_section("New file", "ene | startinsert", "Built-in"),
             new_section("Quit", "qa", "Built-in"),
         },
+        footer = time_since,
         -- left-aligned is good.
         -- if you want to try center align, then the logic for sessions
         -- has to be extracted from mini.starter source code and pasted here.
