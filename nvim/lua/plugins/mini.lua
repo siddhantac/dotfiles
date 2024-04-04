@@ -17,7 +17,7 @@ M.setup = function()
 
     local time_since = function()
         local cp = require('configpulse').get_time()
-        return cp['days'] .. " days, " .. cp['hours'] .. " hours, " .. cp['minutes'] .. " minutes since last change"
+        return cp['days'] .. "d " .. cp['hours'] .. "h " .. cp['minutes'] .. "m since last change"
     end
 
     starter.setup({
