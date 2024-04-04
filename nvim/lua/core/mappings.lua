@@ -100,7 +100,7 @@ nmap({ "[d", function() vim.diagnostic.goto_prev() end, { desc = "Prev diagnosti
 nmap({ "<leader>ll", "<cmd>LspInfo<CR>", { desc = "LSP Info" } })
 nmap({ "<leader>lf", vim.lsp.buf.format, { desc = "Format" } })
 nmap({ "<leader>lh", vim.lsp.buf.hover, { desc = "Hover" } })
-nmap({ "<leader>lR", vim.lsp.buf.references, { desc = "Refs in Quickfix" } })
+nmap({ "<leader>lR", vim.lsp.buf.references, { desc = "Refs (quickfix)" } })
 nmap({ "gd", vim.lsp.buf.definition, { desc = "Go to def" } })
 
 -- Git
@@ -123,44 +123,44 @@ function M.telescope_mappings()
 
     nmap({ "<leader>bf", "<cmd>Telescope buffers<CR>", { desc = "Find" } })
 
-    nmap({ "<leader>ff", function() tscopebuiltin.find_files() end, { desc = "Find files" } })
+    nmap({ "<leader>ff", function() tscopebuiltin.find_files({ default_text = "!mocks " }) end, { desc = "Files" } })
     nmap({ "<leader>f<CR>", function() tscopebuiltin.resume() end, { desc = "Resume previous search" } })
-    nmap({ "<leader>f'", function() tscopebuiltin.marks() end, { desc = "Find marks" } })
+    nmap({ "<leader>f'", function() tscopebuiltin.marks() end, { desc = "Marks" } })
     nmap({ "<leader>f/", function() tscopebuiltin.current_buffer_fuzzy_find()() end,
         { desc = "Find words in current buffer" } })
-    nmap({ "<nmap{eader>fb", function() tscopebuiltin.buffers() end, { desc = "Find buffers" } })
-    nmap({ "<leader>fc", function() tscopebuiltin.grep_string() end, { desc = "Find word under cursor" } })
-    nmap({ "<leader>fC", function() tscopebuiltin.commands() end, { desc = "Find commands" } })
+    nmap({ "<leader>fb", function() tscopebuiltin.buffers() end, { desc = "Buffers" } })
+    nmap({ "<leader>fc", function() tscopebuiltin.grep_string() end, { desc = "Word under cursor" } })
+    nmap({ "<leader>fC", function() tscopebuiltin.commands() end, { desc = "Commands" } })
     nmap({ "<leader>fF", function() tscopebuiltin.find_files({ hidden = true, no_ignore = true }) end,
-        { desc = "Find all files" } })
-    nmap({ "<leader>fh", function() tscopebuiltin.help_tags() end, { desc = "Find help" } })
-    nmap({ "<leader>fk", function() tscopebuiltin.keymaps() end, { desc = "Find keymaps" } })
-    nmap({ "<leader>fm", function() tscopebuiltin.man_pages() end, { desc = "Find man" } })
-    nmap({ "<leader>fn", function() telescope.extensions.notify.notify() end, { desc = "Find notifications" } })
-    nmap({ "<leader>fo", function() tscopebuiltin.oldfiles() end, { desc = "Find history" } })
-    nmap({ "<leader>fr", function() tscopebuiltin.registers() end, { desc = "Find registers" } })
-    nmap({ "<leader>fs", function() tscopebuiltin.colorscheme { enable_preview = true } end, { desc = "Find themes" } })
-    nmap({ "<leader>ft", "<cmd>TodoTelescope<CR>", { desc = "Find todos" } })
-    nmap({ "<leader>fw", function() tscopebuiltin.live_grep() end, { desc = "Find words" } })
+        { desc = "All files" } })
+    nmap({ "<leader>fh", function() tscopebuiltin.help_tags() end, { desc = "Help" } })
+    nmap({ "<leader>fk", function() tscopebuiltin.keymaps() end, { desc = "Keymaps" } })
+    nmap({ "<leader>fm", function() tscopebuiltin.man_pages() end, { desc = "Man" } })
+    nmap({ "<leader>fn", function() telescope.extensions.notify.notify() end, { desc = "Notifications" } })
+    nmap({ "<leader>fo", function() tscopebuiltin.oldfiles() end, { desc = "History" } })
+    nmap({ "<leader>fr", function() tscopebuiltin.registers() end, { desc = "Registers" } })
+    nmap({ "<leader>fs", function() tscopebuiltin.colorscheme { enable_preview = true } end, { desc = "Themes" } })
+    nmap({ "<leader>ft", "<cmd>TodoTelescope<CR>", { desc = "Todos" } })
+    nmap({ "<leader>fw", function() tscopebuiltin.live_grep() end, { desc = "Words" } })
     nmap({ "<leader>fW",
         function()
             tscopebuiltin.live_grep {
                 additional_args = function(args) return vim.list_extend(args, { "--hidden", "--no-ignore" }) end,
             }
         end,
-        { desc = "Find words in all files" }
+        { desc = "Words in all files" }
     })
 
     nmap({ "<leader>dd", function() tscopebuiltin.diagnostics() end, { desc = "Search diagnostics" } })
 
-    nmap({ "<leader>gb", function() tscopebuiltin.git_branches { use_file_path = true } end, { desc = "Git branches" } })
-    nmap({ "<leader>gC", function() tscopebuiltin.git_commits { use_file_path = true } end, { desc = "Git commits", } })
-    nmap({ "<leader>gt", function() tscopebuiltin.git_status { use_file_path = true } end, { desc = "Git status" } })
+    nmap({ "<leader>gb", function() tscopebuiltin.git_branches { use_file_path = true } end, { desc = "Branches" } })
+    nmap({ "<leader>gC", function() tscopebuiltin.git_commits { use_file_path = true } end, { desc = "Commits", } })
+    nmap({ "<leader>gt", function() tscopebuiltin.git_status { use_file_path = true } end, { desc = "Status" } })
 
     nmap({ "<leader>lm", "<cmd>Telescope lsp_implementations show_line=false default_text=!mocks<cr>",
         { desc = "Implementation" } })
     nmap({ "<leader>lr", '<cmd>Telescope lsp_references show_line=false default_text=!_test.go<CR>',
-        { desc = "Refs in Telescope" } })
+        { desc = "Refs" } })
 
     nmap({
         "<leader>ls",
@@ -172,7 +172,7 @@ function M.telescope_mappings()
                 tscopebuiltin.lsp_document_symbols()
             end
         end,
-        desc = { "Document symbols" }
+        { desc = "Symbols" },
     })
     -- S = { '<cmd>Telescope lsp_workspace_symbols<CR>', "Workspace symbols" },
 
