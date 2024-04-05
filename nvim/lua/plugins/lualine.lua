@@ -48,26 +48,22 @@ M.setup = function()
         return ''
     end
 
+    local lsp_provider = function()
+        local names = {}
+        for i, server in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
+            table.insert(names, server.name)
+        end
+        if next(names) == nil then
+            return ""
+        else
+            return "  " .. table.concat(names, " ")
+        end
+    end
+
     require('lualine').setup {
-        -- winbar = {
-        --     lualine_a = {},
-        --     lualine_b = { 'filename' },
-        --     lualine_c = {},
-        --     lualine_x = {},
-        --     lualine_y = {},
-        --     lualine_z = {}
-        -- },
-        -- inactive_winbar = {
-        --     lualine_a = {},
-        --     lualine_b = { 'filename' },
-        --     lualine_c = {},
-        --     lualine_x = {},
-        --     lualine_y = {},
-        --     lualine_z = {}
-        -- },
+        extensions = { 'quickfix', 'lazy', 'mason' },
         tabline = {
-            lualine_a = {
-            },
+            lualine_a = {},
             lualine_b = {
                 {
                     'tabs',
@@ -157,6 +153,7 @@ M.setup = function()
                     },
                 },
                 'filetype',
+                lsp_provider,
             },
             lualine_z = { '%l:%c', '%p%%/%L' },
         },
