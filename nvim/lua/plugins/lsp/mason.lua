@@ -27,6 +27,7 @@ M.setup = function()
             "pyright",
             "dockerls",
             "jsonls",
+            "marksman",
         },
         -- auto-install configured servers (with lspconfig)
         -- if they are not already installed
