@@ -46,3 +46,5 @@ vim.opt.hlsearch = false
 
 vim.opt.list = true
 vim.opt.listchars = { leadmultispace = "│   ", tab = "│ ", }
+
+vim.opt.conceallevel = 2
