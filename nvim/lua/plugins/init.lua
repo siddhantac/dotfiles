@@ -135,6 +135,9 @@ require("lazy").setup({
     {
         "nvim-neotest/neotest-go",
         ft = "*_test.go",
+        dependencies = {
+            "nvim-neotest/neotest",
+        },
         config = function()
             require("plugins.neotest_go").setup()
         end,
@@ -145,7 +148,7 @@ require("lazy").setup({
         name = "neotest",
         event = "BufEnter *_test.go",
         dependencies = {
-            "nvim-neotest/neotest-go",
+            "nvim-neotest/nvim-nio",
             "nvim-lua/plenary.nvim",
             "nvim-treesitter/nvim-treesitter",
             "antoinemadec/FixCursorHold.nvim",
