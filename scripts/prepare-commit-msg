@@ -1,0 +1,14 @@
+#!/bin/sh
+
+branch=$(git rev-parse --abbrev-ref HEAD)
+prefix_pattern='[A-Z]*-[0-9]*'
+
+[[ $branch =~ $prefix_pattern ]] || exit 0
+
+commit_msg_filepath=$1
+commit_type=$2
+
+commit_msg=$(cat $commit_msg_filepath)
+echo "$branch: $commit_msg" > $commit_msg_filepath
+
+
