@@ -69,6 +69,9 @@ imap({ "kk", "<Esc>" })
 
 nmap({ "<leader>w", ":w<CR>" })
 
+-- Make Y behave like C and D
+nmap({ "Y", "y$" })
+
 -- Buffers
 nmap({ "]b", "<cmd>bnext<CR>", { desc = "Next buffer" } })
 nmap({ "[b", "<cmd>bprev<CR>", { desc = "Prev buffer" } })
