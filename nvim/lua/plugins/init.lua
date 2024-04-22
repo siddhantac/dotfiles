@@ -229,13 +229,20 @@ require("lazy").setup({
 
     -- UI
     {
-        "catppuccin/nvim",
-        priority = 1000,
+        "cocopon/iceberg.vim",
         config = function()
-            require("plugins.catppuccin").setup()
+            vim.cmd.colorscheme("iceberg")
         end,
+        priority = 1000
     },
-    { 'nvim-tree/nvim-web-devicons' },
+    -- {
+    --     "catppuccin/nvim",
+    --     priority = 1000,
+    --     config = function()
+    --         require("plugins.catppuccin").setup()
+    --     end,
+    -- },
+    -- { 'nvim-tree/nvim-web-devicons' },
     {
         'szw/vim-maximizer',
         cmd = { "MaximizerToggle" },
