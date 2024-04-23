@@ -15,7 +15,7 @@ vim.opt.splitbelow = true
 vim.opt.undofile = true -- maintain undo history between sessions
 vim.opt.undodir = HOME .. '/.lvim/undodir'
 
-vim.opt.scrolloff = 5
+vim.opt.scrolloff = 3
 vim.opt.sidescrolloff = 5
 
 vim.opt.expandtab = true
