@@ -144,14 +144,6 @@ M.setup = function()
             },
             lualine_x = {},
             lualine_y = {
-                {
-                    'windows',
-                    mode = 2,
-                    windows_color = {
-                        active = { fg = colors.white, bg = colors.black },
-                        inactive = { fg = colors.grey, bg = colors.black },
-                    },
-                },
                 'filetype',
                 lsp_provider,
             },
