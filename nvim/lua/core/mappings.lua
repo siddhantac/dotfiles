@@ -229,15 +229,15 @@ function M.neogit_mappings()
     nmap({ "<leader>gg", function() neogit.open() end, { desc = "neogit" } })
 end
 
-function M.nvimtree_mappings()
-    local ok, nvimtree = pcall(require, "nvim-tree")
-    if not ok then
-        vim.notify("failed to load nvimtree", "warn")
-        return
-    end
-
-    nmap({ "<leader>e", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "File Explorer" } })
-end
+-- function M.neotree_mappings()
+--     local ok, neotree = pcall(require, "neo-tree")
+--     if not ok then
+--         vim.notify("failed to load neotree", "warn")
+--         return
+--     end
+--
+--     nmap({ "<leader>e", "<cmd>Neotree source=filesystem reveal=true position=float<CR>", { desc = "File Explorer" } })
+-- end
 
 function M.terminal_mappings()
     local ok, toggleterm = pcall(require, "toggleterm")

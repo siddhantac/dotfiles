@@ -30,7 +30,6 @@ M.setup = function()
             mini = true,
             neotest = true,
             notify = true,
-            nvimtree = true,
             which_key = true,
             -- gitsigns = true,
         },

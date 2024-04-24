@@ -118,6 +118,7 @@ require("lazy").setup({
             require("gitsigns").setup()
         end,
         keys = core_mappings.gitsigns_mappings,
+        event = { "VeryLazy" },
     },
     {
         'pwntester/octo.nvim',
@@ -199,16 +200,16 @@ require("lazy").setup({
     },
 
     -- {
-    --     'nvim-tree/nvim-tree.lua',
-    --     name = 'nvim-tree',
+    --     "nvim-neo-tree/neo-tree.nvim",
+    --     branch = "v3.x",
     --     dependencies = {
-    --         'nvim-tree/nvim-web-devicons', -- file icon
+    --         "nvim-lua/plenary.nvim",
+    --         "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+    --         "MunifTanjim/nui.nvim",
+    --         -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
     --     },
-    --     cmd = { "NvimTreeOpen", "NvimTreeToggle", "NvimTreeFindFileToggle" },
-    --     config = function()
-    --         require("plugins.nvim_tree").setup()
-    --     end,
-    --     keys = core_mappings.nvimtree_mappings,
+    --     keys = core_mappings.neotree_mappings,
+    --     event = "VeryLazy",
     -- },
 
     -- Telescope
@@ -230,18 +231,19 @@ require("lazy").setup({
     -- UI
     {
         "cocopon/iceberg.vim",
-        config = function()
-            vim.cmd.colorscheme("iceberg")
-        end,
+        -- config = function()
+        --     vim.cmd.colorscheme("iceberg")
+        -- end,
         priority = 1000
     },
-    -- {
-    --     "catppuccin/nvim",
-    --     priority = 1000,
-    --     config = function()
-    --         require("plugins.catppuccin").setup()
-    --     end,
-    -- },
+    {
+        "catppuccin/nvim",
+        name = "catppuccin",
+        priority = 1000,
+        config = function()
+            require("plugins.catppuccin").setup()
+        end,
+    },
     -- { 'nvim-tree/nvim-web-devicons' },
     {
         'szw/vim-maximizer',
