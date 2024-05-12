@@ -1,17 +1,17 @@
 [[session]]
 name = "neovim config"
-path = "~/c/dotfiles/.config/tmux"
-startup_command = "nvim tmux.conf"
+path = "$WORKSPACE/dotfiles/nvim/"
+startup_command = "ls"
 
 [[session]]
 name = "tmux config"
-path = "~/c/dotfiles/.config/tmux"
+path = "$WORKSPACE/dotfiles/tmux/"
 startup_command = "nvim tmux.conf"
 
 [[session]]
 name = "dotfiles"
 path = "$WORKSPACE/dotfiles/"
-startup_command = "nvim"
+startup_command = "ls"
 
 [[session]]
 name = "Downloads 📥"
