@@ -48,7 +48,7 @@ core() {
     message "info" "installing core tools"
 
 	which kitty || curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
-	brew install tmux neovim hledger eza bat zoxide fzf git-delta sd
+	brew install tmux neovim hledger eza bat zoxide fzf git-delta sd joshmedeski/sesh/sesh
 	git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 	brew cleanup
 
@@ -65,6 +65,7 @@ setup_links() {
 	[ -d ~/.config/zsh ] || ln -s $(PWD)/zsh ~/.config/
 	[ -d ~/.config/kitty ] || ln -s $(PWD)/kitty ~/.config/
 	[ -d ~/.config/nvim ] || ln -s $(PWD)/nvim ~/.config/
+	[ -d ~/.config/sesh ] || ln -s $(PWD)/sesh ~/.config/
 
 	# `-f` checks if file exists
 	[ -f ~/.gitconfig ] || ln -s $(PWD)/gitconfig ~/.gitconfig
@@ -101,6 +102,7 @@ clean() {
 	rm -rf ~/.config/zsh
 	rm -rf ~/.config/kitty
 	rm -rf ~/.config/nvim
+	rm -rf ~/.config/sesh
 	rm -f ~/.config/starship.toml
 	rm -f ~/Library/Application\ Support/espanso/match/base.yml
 
