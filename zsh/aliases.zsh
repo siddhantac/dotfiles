@@ -56,6 +56,9 @@ alias gr='git rebase'
 alias grc='git add -A && git rebase --continue'
 alias gra='git rebase --abort'
 alias gl=pretty_git_log
+alias gw='git worktree'
+alias gwl='git worktree list'
+alias gwa='git worktree add'
 alias pr='gh pr create -a @me  -w'
 alias gclean='git fetch --prune && git gc'
 
