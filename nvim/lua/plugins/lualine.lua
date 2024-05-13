@@ -10,34 +10,51 @@ M.setup = function()
         light_green = '#83a598',
         orange = '#fe8019',
         green = '#8ec07c',
+        blue = '#7fb4ca',     -- springBlue
+        darkblue = '#223249', -- waveBlue
+        yellow = '#e0af68',   -- springYellow
+        pink = '#d27e99',     -- sakuraPink
     }
 
     local theme = {
         normal = {
-            a = { fg = colors.black, bg = colors.green }, -- mode
-            b = { fg = colors.white, bg = colors.black }, -- branch, filename etc.
-            c = { fg = colors.black, bg = colors.grey },  -- the long middle section
-            x = { fg = colors.white, bg = colors.black },
-            y = { fg = colors.white, bg = colors.black },
-            z = { fg = colors.white, bg = colors.black },
+            a = { bg = colors.darkblue },
+            b = { bg = colors.darkblue },
+            c = { bg = colors.darkblue },
+            x = { bg = colors.darkblue },
+            y = { bg = colors.darkblue },
+            z = { bg = colors.darkblue },
         },
-        insert = { a = { fg = colors.black, bg = colors.red } },
-        visual = { a = { fg = colors.black, bg = colors.orange } },
-        replace = { a = { fg = colors.black, bg = colors.green } },
-        command = { a = { fg = colors.black, bg = colors.grey } },
+        insert = { a = { bg = colors.darkblue } },
+        visual = { a = { bg = colors.darkblue } },
+        replace = { a = { bg = colors.darkblue } },
+        command = { a = { bg = colors.darkblue } },
     }
 
-    local function search_result()
-        if vim.v.hlsearch == 0 then
-            return ''
-        end
-        local last_search = vim.fn.getreg('/')
-        if not last_search or last_search == '' then
-            return ''
-        end
-        local searchcount = vim.fn.searchcount { maxcount = 9999 }
-        return last_search .. '(' .. searchcount.current .. '/' .. searchcount.total .. ')'
-    end
+    local color_mode = {
+        n = colors.blue,
+        i = colors.pink,
+        v = colors.green,
+        V = colors.green,
+        c = colors.yellow,
+    }
+    local mode = {
+        'mode',
+        color = function()
+            return { fg = color_mode[vim.fn.mode()] or colors.white }
+        end,
+    }
+
+    local bar = {
+        function()
+            return '▊'
+        end,
+        color = function()
+            return { fg = color_mode[vim.fn.mode()] or colors.white }
+        end,
+        padding = { left = 0, right = 0 },
+        component_separators = {}
+    }
 
     local function modified()
         if vim.bo.modified then
@@ -87,17 +104,23 @@ M.setup = function()
             lualine_z = {},
         },
         options = {
-            globalstatus = true,
+            -- separators:
+            --      
             theme = theme,
-            component_separators = { left = '', right = '' },
-            -- section_separators = { left = '', right = '' },
-            section_separators = { left = '', right = '' },
+            section_separators = { left = "", right = "" },
+            globalstatus = true,
+            component_separators = { left = "", right = "" }
         },
         sections = {
-            lualine_a = { 'mode' },
-            lualine_b = {
-                'branch',
-                'diff',
+            lualine_a = {},
+            lualine_b = {},
+            lualine_c = {
+                bar,
+                mode,
+                {
+                    'branch',
+                    color = { fg = colors.grey },
+                },
                 {
                     'filename',
                     path = 1,
@@ -105,6 +128,11 @@ M.setup = function()
                         modified = '●',
                         readonly = get_icon("FileReadOnly"),
                     },
+                },
+                {
+                    'diff',
+                    color = { bg = colors.black },
+                    separator = { left = "", right = "" },
                 },
                 {
                     '%w',
@@ -124,21 +152,29 @@ M.setup = function()
                         return vim.bo.buftype == 'quickfix'
                     end,
                 },
-            },
-            lualine_c = {
                 {
                     'diagnostics',
-                    source = { 'nvim' },
+                    source = { 'nvim_lsp', 'nvim_diagnostic', 'nvim_workspace_diagnostic' },
                     sections = { 'error' },
                     diagnostics_color = { error = { bg = colors.red, fg = colors.white } },
-                    separator = { right = '' },
+                    separator = { left = "", right = "" },
                 },
                 {
                     'diagnostics',
-                    source = { 'nvim' },
+                    source = { 'nvim_lsp', 'nvim_diagnostic', 'nvim_workspace_diagnostic' },
                     sections = { 'warn' },
-                    diagnostics_color = { warn = { bg = colors.orange, fg = colors.white } },
-                    separator = { right = '' },
+                    diagnostics_color = { warn = { bg = colors.yellow, fg = colors.white } },
+                    separator = { left = "", right = "" },
+                },
+                {
+                    'diagnostics',
+                    source = { 'nvim_lsp', 'nvim_diagnostic', 'nvim_workspace_diagnostic' },
+                    sections = { 'info', 'hint' },
+                    diagnostics_color = {
+                        hint = { bg = colors.blue, fg = colors.white },
+                        info = { bg = colors.grey, fg = colors.white },
+                    },
+                    separator = { left = "", right = "" },
                 },
 
             },
@@ -147,20 +183,11 @@ M.setup = function()
                 'filetype',
                 lsp_provider,
             },
-            lualine_z = { '%l:%c', '%p%%/%L' },
+            lualine_z = {
+                '%l/%L:%c',
+                bar,
+            },
         },
-        -- inactive_sections = {
-        --     lualine_c = { '%f %y %m' },
-        --     lualine_x = {},
-        -- },
     }
 end
--- opts = {
---     options = {
---         theme = 'catppuccin',
---         disabled_filetypes = {
---             'aerial',
---         },
---     },
--- },
 return M
