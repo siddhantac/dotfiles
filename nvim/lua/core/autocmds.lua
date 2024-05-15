@@ -21,6 +21,10 @@ api.nvim_create_autocmd(
     "FocusLost",
     { pattern = "*", command = "silent! wa" }
 )
+api.nvim_create_autocmd(
+    "InsertLeave",
+    { pattern = "*", command = "silent! wa" }
+)
 
 -- Show relative numbers only for the active buffer
 --  don't run the autocmd for telescopeprompt,
