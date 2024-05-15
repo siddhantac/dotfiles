@@ -55,8 +55,8 @@ require("lazy").setup({
         'rcarriga/nvim-notify',
         config = function()
             require("notify").setup({
-                stages = "static",
-                top_down = false,
+                stages = "fade",
+                top_down = true,
             })
 
             vim.notify = require("notify")
