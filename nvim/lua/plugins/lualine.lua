@@ -56,18 +56,9 @@ M.setup = function()
         component_separators = {}
     }
 
-    local function modified()
-        if vim.bo.modified then
-            return '+'
-        elseif vim.bo.modifiable == false or vim.bo.readonly == true then
-            return '-'
-        end
-        return ''
-    end
-
     local lsp_provider = function()
         local names = {}
-        for i, server in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
+        for _, server in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
             table.insert(names, server.name)
         end
         if next(names) == nil then
