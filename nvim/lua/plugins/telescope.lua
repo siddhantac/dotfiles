@@ -9,6 +9,9 @@ M.setup = function()
             selection_caret = get_icon("Selected"),
             path_display = { "filename_first" },
             sorting_strategy = "ascending",
+            preview = {
+                filesize_limit = 0.1, -- MB
+            },
             layout_config = {
                 horizontal = { prompt_position = "top", preview_width = 0.55 },
                 vertical = { mirror = false },

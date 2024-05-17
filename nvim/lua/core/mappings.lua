@@ -136,6 +136,8 @@ function M.telescope_mappings()
     nmap({ "<leader>fC", function() tscopebuiltin.commands() end, { desc = "Commands" } })
     nmap({ "<leader>fF", function() tscopebuiltin.find_files({ hidden = true, no_ignore = true }) end,
         { desc = "All files" } })
+    nmap({ '{<leader>f.', function() tscopebuiltin.find_files({ cwd = vim.fn.expand('%:p:h') }) end,
+        { desc = "Find files in dir" } }) -- find files in dir of the current file
     nmap({ "<leader>fh", function() tscopebuiltin.help_tags() end, { desc = "Help" } })
     nmap({ "<leader>fk", function() tscopebuiltin.keymaps() end, { desc = "Keymaps" } })
     nmap({ "<leader>fm", function() tscopebuiltin.man_pages() end, { desc = "Man" } })
