@@ -7,7 +7,7 @@ M.setup = function()
         defaults = {
             prompt_prefix = get_icon("Search"),
             selection_caret = get_icon("Selected"),
-            path_display = { "truncate" },
+            path_display = { "filename_first" },
             sorting_strategy = "ascending",
             layout_config = {
                 horizontal = { prompt_position = "top", preview_width = 0.55 },
