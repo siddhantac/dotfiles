@@ -96,13 +96,10 @@ end, { desc = "Delete" } })
 
 -- Diagnostics
 nmap({ "<leader>dh", function() vim.diagnostic.open_float() end, { desc = "Hover diagnostics" } })
-nmap({ "]d", function() vim.diagnostic.goto_next() end, { desc = "Next diagnostic" } })
-nmap({ "[d", function() vim.diagnostic.goto_prev() end, { desc = "Prev diagnostic" } })
 
 -- LSP
 nmap({ "<leader>ll", "<cmd>LspInfo<CR>", { desc = "LSP Info" } })
 nmap({ "<leader>lf", vim.lsp.buf.format, { desc = "Format" } })
-nmap({ "<leader>lh", vim.lsp.buf.hover, { desc = "Hover" } })
 nmap({ "<leader>lR", vim.lsp.buf.references, { desc = "Refs (quickfix)" } })
 nmap({ "gd", vim.lsp.buf.definition, { desc = "Go to def" } })
 
