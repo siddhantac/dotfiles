@@ -230,13 +230,6 @@ require("lazy").setup({
 
     -- UI
     {
-        "cocopon/iceberg.vim",
-        -- config = function()
-        --     vim.cmd.colorscheme("iceberg")
-        -- end,
-        priority = 1000
-    },
-    {
         "catppuccin/nvim",
         name = "catppuccin",
         priority = 1000,
