@@ -379,4 +379,31 @@ require("lazy").setup({
         'kevinhwang91/nvim-bqf',
         event = 'BufReadPre',
     },
+    {
+        'nvim-orgmode/orgmode',
+        event = 'VeryLazy',
+        ft = { 'org' },
+        dependencies = {
+            {
+                'akinsho/org-bullets.nvim',
+                config = function()
+                    require('org-bullets').setup()
+                end
+            }
+        },
+        config = function()
+            -- Setup orgmode
+            require('orgmode').setup({
+                org_agenda_files = '~/workspace/deliveryhero/todos/**/*',
+                org_default_notes_file = '~/workspace/deliveryhero/todos/refile.org',
+            })
+
+            -- NOTE: If you are using nvim-treesitter with `ensure_installed = "all"` option
+            -- add `org` to ignore_install
+            -- require('nvim-treesitter.configs').setup({
+            --   ensure_installed = 'all',
+            --   ignore_install = { 'org' },
+            -- })
+        end,
+    },
 })
