@@ -51,4 +51,10 @@ return {
             require("plugins.lsp.mason").setup()
         end
     },
+    {
+        "folke/trouble.nvim",
+        opts = {}, -- for default options, refer to the configuration section for custom setup.
+        cmd = "Trouble",
+        keys = core_mappings.trouble_mappings,
+    }
 }
