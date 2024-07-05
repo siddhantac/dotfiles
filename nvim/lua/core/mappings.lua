@@ -209,6 +209,10 @@ function M.neotest_mappings()
         return
     end
 
+    nmap({ "<leader>tt", function()
+        neotest.run.run()
+        neotest.summary.open()
+    end, { desc = "Test" } })
     nmap({ "<leader>tr", function() neotest.run.run() end, { desc = "Run nearest" } })
     nmap({ "<leader>tl", function() neotest.run.run_last() end, { desc = "Run last" } })
     nmap({ "<leader>tf", function() neotest.run.run(vim.fn.expand("%")) end, { desc = "Run file" } })
@@ -225,7 +229,7 @@ function M.neogit_mappings()
     end
 
     nmap({ "<leader>gc", function() neogit.open({ "commit" }) end, { desc = "Commit" } })
-    nmap({ "<leader>gg", function() neogit.open() end, { desc = "neogit" } })
+    nmap({ "<leader>gg", function() neogit.open({ kind = "split" }) end, { desc = "neogit" } })
 end
 
 -- function M.neotree_mappings()
