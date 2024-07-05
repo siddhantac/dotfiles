@@ -25,6 +25,8 @@ M.setup = function()
                     ["<C-p>"] = actions.cycle_history_prev,
                     ["<C-j>"] = actions.move_selection_next,
                     ["<C-k>"] = actions.move_selection_previous,
+                    ["<C-S-j>"] = actions.preview_scrolling_down,
+                    ["<C-S-k>"] = actions.preview_scrolling_up,
                     ['<c-d>'] = require('telescope.actions').delete_buffer,
                     -- ["<esc>"] = require('telescope.actions').close, -- replaced this with 'q' in normal mode
                 },
