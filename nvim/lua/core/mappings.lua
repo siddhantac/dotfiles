@@ -288,10 +288,25 @@ function M.lspsaga_mappings()
 end
 
 function M.harpoon()
-    nmap({ "<leader>hh", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", { desc = "Harpoon menu" } })
-    nmap({ "<leader>ha", "<cmd>lua require('harpoon.mark').add_file()<CR>", { desc = "Add file" } })
-    nmap({ "<leader>h]", "<cmd>lua require('harpoon.ui').nav_next()<CR>", { desc = "Next" } })
-    nmap({ "<leader>h[", "<cmd>lua require('harpoon.ui').nav_prev()<CR>", { desc = "Prev" } })
+    local ok, harpoon = pcall(require, "harpoon")
+    if not ok then
+        vim.notify("failed to load harpoon", "warn")
+        return
+    end
+
+    nmap({ "<leader>ha", function()
+        harpoon:list():add()
+        vim.notify("added")
+    end, { desc = "Add file" } })
+    nmap({ "<leader>hh", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "Menu" } })
+    nmap({ "<leader>h1", function() harpoon:list():select(1) end, { desc = "Select 1" } })
+    nmap({ "<leader>h2", function() harpoon:list():select(2) end, { desc = "Select 2" } })
+    nmap({ "<leader>h3", function() harpoon:list():select(3) end, { desc = "Select 3" } })
+    nmap({ "<leader>h4", function() harpoon:list():select(4) end, { desc = "Select 4" } })
+    nmap({ "<leader>hp", function() harpoon:list():prev() end, { desc = "Cycle prev" } })
+    nmap({ "<leader>hn", function() harpoon:list():next() end, { desc = "Cycle next" } })
+    nmap({ "[h", function() harpoon:list():prev() end, { desc = "Cycle prev" } })
+    nmap({ "]h", function() harpoon:list():next() end, { desc = "Cycle next" } })
 end
 
 function M.trouble_mappings()
