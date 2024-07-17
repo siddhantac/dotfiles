@@ -422,7 +422,6 @@ require("lazy").setup({
     },
     {
         'nvim-orgmode/orgmode',
-        event = 'VeryLazy',
         ft = { 'org' },
         dependencies = {
             {
