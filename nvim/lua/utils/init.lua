@@ -25,14 +25,15 @@ function M.gitpush()
         command = 'git',
         args = { 'push' },
         on_exit = function(j, exit_code)
-            local res = table.concat(j:result(), "\n")
+            local res1 = table.concat(j:result(), ":")
+            local res2 = table.concat(j:stderr_result(), ":")
+            local res = res1 .. " " .. res2
 
             if exit_code ~= 0 then
                 spinner.stop(1, "Failed to push", title)
                 vim.notify(res, "error", { title = title })
             else
-                spinner.stop(1, "Pushed", title)
-                vim.notify(res, "info")
+                spinner.stop(1, "Pushed:" .. res, title)
             end
         end,
     }):start()
