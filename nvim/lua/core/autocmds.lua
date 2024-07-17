@@ -25,7 +25,6 @@ api.nvim_create_autocmd(
 -- Show relative numbers only for the active buffer
 --  don't run the autocmd for telescopeprompt,
 --  prevents the annoying 0 from showing next to the cursor in the prompt
-local ignoreFiletype = { 'TelescopePrompt' }
 local linenumtoggle = api.nvim_create_augroup("LineNumberToggle", { clear = true })
 api.nvim_create_autocmd("BufLeave",
     {
@@ -99,5 +98,31 @@ vim.api.nvim_create_autocmd('VimLeavePre', {
     callback = function()
         local dirname = vim.fn.fnamemodify(vim.fn.getcwd(), ":t") -- returns directory name
         require('mini.sessions').write(dirname)
+    end
+})
+
+-- Report LSP progress
+-- ref: https://neovim.io/doc/user/lsp.html#LspProgress
+vim.api.nvim_create_autocmd('LspProgress', {
+    pattern = 'begin',
+    callback = function()
+        local status = vim.lsp.status()
+        local spinner = require("utils.spinner")
+
+        for _, server in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
+            spinner.start(1, status, server.name)
+        end
+    end
+})
+
+vim.api.nvim_create_autocmd('LspProgress', {
+    pattern = 'end',
+    callback = function()
+        local status = vim.lsp.status()
+        local spinner = require("utils.spinner")
+
+        for _, server in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
+            spinner.stop(1, status, server.name)
+        end
     end
 })
