@@ -254,16 +254,25 @@ require("lazy").setup({
         keys = core_mappings.telescope_mappings,
         event = "VeryLazy",
     },
-
+    --
     -- UI
     {
-        "catppuccin/nvim",
-        name = "catppuccin",
+        "vague2k/vague.nvim",
         priority = 1000,
         config = function()
-            require("plugins.catppuccin").setup()
-        end,
+            require("vague").setup({
+                -- optional configuration here
+            })
+        end
     },
+    -- {
+    --     "catppuccin/nvim",
+    --     name = "catppuccin",
+    --     priority = 1000,
+    --     config = function()
+    --         require("plugins.catppuccin").setup()
+    --     end,
+    -- },
     -- { 'nvim-tree/nvim-web-devicons' },
     {
         'szw/vim-maximizer',
