@@ -30,7 +30,7 @@ end
 local function run_spinner(client_id, type, message, title)
     local notif_data = client_notifs[client_id]
     if type == "begin" then
-        local notification = vim.notify(message, "info", {
+        local notification = vim.notify(message, vim.log.levels.INFO, {
             title = title,
             icon = spinner_frames[1],
             timeout = false,
@@ -43,7 +43,7 @@ local function run_spinner(client_id, type, message, title)
     elseif type == "end" then
         local new_notif = vim.notify(
             message,
-            "info",
+            vim.log.levels.INFO,
             {
                 title = title,
                 icon = "",
@@ -57,7 +57,7 @@ local function run_spinner(client_id, type, message, title)
     else
         local new_notif = vim.notify(
             message,
-            "info",
+            vim.log.levels.INFO,
             {
                 title = title,
                 replace = notif_data.notification,
