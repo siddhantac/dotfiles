@@ -49,7 +49,11 @@ M.setup = function()
 
     require('telescope').load_extension('fzf')
     require('telescope').load_extension('ui-select')
-    require('telescope').load_extension('noice')
+
+    local ok, noice = pcall(require, module)
+    if ok then
+        require('telescope').load_extension('noice')
+    end
 end
 
 return M
