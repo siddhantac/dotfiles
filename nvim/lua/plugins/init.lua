@@ -256,23 +256,23 @@ require("lazy").setup({
     },
     --
     -- UI
-    {
-        "vague2k/vague.nvim",
-        priority = 1000,
-        config = function()
-            require("vague").setup({
-                -- optional configuration here
-            })
-        end
-    },
     -- {
-    --     "catppuccin/nvim",
-    --     name = "catppuccin",
+    --     "vague2k/vague.nvim",
     --     priority = 1000,
     --     config = function()
-    --         require("plugins.catppuccin").setup()
-    --     end,
+    --         require("vague").setup({
+    --             -- optional configuration here
+    --         })
+    --     end
     -- },
+    {
+        "catppuccin/nvim",
+        name = "catppuccin",
+        priority = 1000,
+        config = function()
+            require("plugins.catppuccin").setup()
+        end,
+    },
     -- { 'nvim-tree/nvim-web-devicons' },
     {
         'szw/vim-maximizer',
