@@ -103,26 +103,33 @@ vim.api.nvim_create_autocmd('VimLeavePre', {
 
 -- Report LSP progress
 -- ref: https://neovim.io/doc/user/lsp.html#LspProgress
+-- ref: https://github.com/linrongbin16/lsp-progress.nvim/blob/d5f4d28efe75ce636bfbe271eb45f39689765aab/lua/lsp-progress.lua#L170
 vim.api.nvim_create_autocmd('LspProgress', {
     pattern = 'begin',
-    callback = function()
-        local status = vim.lsp.status()
+    callback = function(ev)
         local spinner = require("utils.spinner")
+        local client_id = ev.data.client_id
+        local client = vim.lsp.get_client_by_id(client_id)
+        local value = ev.data.params.value
+        local token = ev.data.params.token
 
-        for _, server in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
-            spinner.start(1, status, server.name)
-        end
+        local msg = value.message
+        local title = "[" .. client.name .. "] " .. value.title
+        spinner.start(token, msg, title)
     end
 })
 
 vim.api.nvim_create_autocmd('LspProgress', {
     pattern = 'end',
-    callback = function()
-        local status = vim.lsp.status()
+    callback = function(ev)
         local spinner = require("utils.spinner")
+        local client_id = ev.data.client_id
+        local client = vim.lsp.get_client_by_id(client_id)
+        local value = ev.data.params.value
+        local token = ev.data.params.token
 
-        for _, server in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
-            spinner.stop(1, status, server.name)
-        end
+        local msg = value.message
+        local title = "[" .. client.name .. "] " .. value.title
+        spinner.stop(token, msg, title)
     end
 })
