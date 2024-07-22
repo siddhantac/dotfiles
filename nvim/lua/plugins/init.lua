@@ -210,6 +210,16 @@ require("lazy").setup({
 
     -- auto completion
     {
+        "L3MON4D3/LuaSnip",
+        event = { "InsertEnter" },
+        dependencies = {
+            "rafamadriz/friendly-snippets",
+        },
+        config = function()
+            require("luasnip.loaders.from_vscode").lazy_load({ include = "go" })
+        end
+    },
+    {
         "hrsh7th/nvim-cmp",
         event = { "InsertEnter" },
         dependencies = {
