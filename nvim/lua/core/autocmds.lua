@@ -135,3 +135,10 @@ vim.api.nvim_create_autocmd('LspProgress', {
         spinner.stop(notif.token, notif.msg, notif.title)
     end
 })
+
+vim.api.nvim_create_autocmd('User', {
+    pattern = 'GitConflictDetected',
+    callback = function()
+        vim.notify('Conflict detected in ' .. vim.fn.expand('<afile>'))
+    end
+})
