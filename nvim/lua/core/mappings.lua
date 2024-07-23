@@ -1,3 +1,5 @@
+local get_icon = require("utils").get_icon
+
 --[[
 ╭────────────────────────────────────────────────────────────────────────────╮
 │  Str  │  Help page   │  Affected modes                           │  VimL   │
@@ -296,7 +298,7 @@ function M.harpoon()
 
     nmap({ "<leader>ha", function()
         harpoon:list():add()
-        vim.notify("added")
+        vim.notify(" " .. get_icon("Hook") .. "harpooned!", vim.log.levels.INFO, { title = "Harpoon" })
     end, { desc = "Add file" } })
     nmap({ "<leader>hh", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "Menu" } })
     nmap({ "<leader>h1", function() harpoon:list():select(1) end, { desc = "Select 1" } })
