@@ -211,15 +211,19 @@ function M.neotest_mappings()
         return
     end
 
+    -- shortcuts
     nmap({ "<leader>tt", function()
-        neotest.run.run()
         neotest.summary.open()
+        neotest.run.run()
     end, { desc = "Test" } })
+    nmap({ "<leader>tc", function() neotest.summary.close() end, { desc = "Close summary panel" } })
+
+    -- everything else
     nmap({ "<leader>tr", function() neotest.run.run() end, { desc = "Run nearest" } })
     nmap({ "<leader>tl", function() neotest.run.run_last() end, { desc = "Run last" } })
     nmap({ "<leader>tf", function() neotest.run.run(vim.fn.expand("%")) end, { desc = "Run file" } })
     nmap({ "<leader>to", function() neotest.output_panel.toggle() end, { desc = "Output panel" } })
-    nmap({ "<leader>ts", function() neotest.summary.toggle() end, { desc = "Summary panel" } })
+    nmap({ "<leader>ts", function() neotest.summary.toggle() end, { desc = "Summary panel (toggle)" } })
     nmap({ "<leader>tw", function() neotest.watch.toggle() end, { desc = "Toggle watch" } })
 end
 
