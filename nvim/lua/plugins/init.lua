@@ -170,7 +170,7 @@ require("lazy").setup({
             end
 
             vim.keymap.set("n", "<leader>ht", function() toggle_telescope(harpoon:list()) end,
-                { desc = "Open harpoon window" })
+                { desc = "Menu (telescope)" })
         end,
     },
 
