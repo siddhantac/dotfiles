@@ -107,6 +107,13 @@ clean() {
     message "success" "cleaned up"
 }
 
+karabiner() {
+    message "info" "setup custom capslock in karabiner"
+
+	[ -f ~/.config/karabiner/assets/complex_modifications/custom_capslock.json ] || ln -s $(PWD)/karabiner/custom_capslock.json ~/.config/karabiner/assets/complex_modifications/custom_capslock.json
+
+}
+
 case $1 in
 
     setup)
@@ -131,5 +138,8 @@ case $1 in
         ;;
     clean)
         clean || message "error" "failed to clean up"
+        ;;
+    karabiner)
+        karabiner || message "error" "failed to setup karabiner"
         ;;
 esac

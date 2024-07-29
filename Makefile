@@ -19,4 +19,7 @@ clean:
 personal:
 	[ -f ~/.config/zsh/aliases.local ] || ln -s $(PWD)/zsh/aliases.serenity ~/.config/zsh/aliases.local
 
-.PHONY: clean extras personal core homebrew links setup
+karabiner:
+	./setup.sh karabiner
+
+.PHONY: clean extras personal core homebrew links setup karabiner
