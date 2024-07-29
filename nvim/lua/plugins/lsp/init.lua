@@ -2,6 +2,16 @@ local core_mappings = require("core.mappings")
 
 return {
     {
+        "maxandron/goplements.nvim",
+        ft = "go",
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+            display_package = true,
+        },
+    },
+    {
         'neovim/nvim-lspconfig', -- Configurations for Nvim LSP
         name = "lspconfig",
         event = { "BufReadPre", "BufNewFile" },
@@ -31,7 +41,7 @@ return {
         event = { "BufReadPre", "BufNewFile" },
         -- Optional dependencies
         dependencies = {
-            "nvim-treesitter/nvim-treesitter",
+            -- "nvim-treesitter/nvim-treesitter",
             "nvim-tree/nvim-web-devicons"
         },
         opts = require("plugins.lsp.aerial").opts,
