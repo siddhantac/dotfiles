@@ -49,7 +49,7 @@ core() {
 
 	which kitty || curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
 	brew install tmux neovim hledger eza bat zoxide fzf git-delta sd
-	git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
+	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 	brew cleanup
 
     message "success" "core tools installed"
