@@ -54,25 +54,21 @@ map({ '', '<s-DOWN>', ':resize -5 <CR>' })
 nmap({ '<C-f>', '<C-f>zz' })
 nmap({ '<C-d>', '<C-d>zz' })
 
--- When pasting, don't overwrite
--- the register with the deleted text.
+-- When pasting, don't overwrite the register with the deleted text.
 -- Sends the deleted text into the void register instead.
-map({ "x", "<leader>p", "\"_dP" })
+map({ "x", "<leader>p", "\"_dP", { desc = "Paste (no overwrite)" } })
 
-nmap({ "]c", ":cnext<CR>zz" })
-nmap({ "[c", ":cprev<CR>zz" })
+nmap({ "]q", ":cnext<CR>zz", { desc = "Next quickfix item" } })
+nmap({ "[q", ":cprev<CR>zz", { desc = "Prev quickfix item" } })
 nmap({ "<C-c>", ":cclose<CR>" })
 
-nmap({ "]t", ":tabnext<CR>" })
-nmap({ "[t", ":tabprev<CR>" })
+nmap({ "]t", ":tabnext<CR>", { desc = "Next tab" } })
+nmap({ "[t", ":tabprev<CR>", { desc = "Prev tab" } })
 
 imap({ "jj", "<Esc>" })
 imap({ "kk", "<Esc>" })
 
 nmap({ "<leader>w", ":w<CR>" })
-
--- Make Y behave like C and D
-nmap({ "Y", "y$" })
 
 -- Buffers
 nmap({ "]b", "<cmd>bnext<CR>", { desc = "Next buffer" } })
@@ -100,9 +96,6 @@ end, { desc = "Delete" } })
 nmap({ "<leader>dh", function() vim.diagnostic.open_float() end, { desc = "Hover diagnostics" } })
 
 -- LSP
-nmap({ "<leader>ll", "<cmd>LspInfo<CR>", { desc = "LSP Info" } })
-nmap({ "<leader>lf", vim.lsp.buf.format, { desc = "Format" } })
-nmap({ "<leader>lR", vim.lsp.buf.references, { desc = "Refs (quickfix)" } })
 nmap({ "gd", vim.lsp.buf.definition, { desc = "Go to def" } })
 
 -- Git

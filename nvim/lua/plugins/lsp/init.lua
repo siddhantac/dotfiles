@@ -10,6 +10,9 @@ return {
             -- refer to the configuration section below
             display_package = true,
         },
+        keys = {
+            { "<leader>li", "<cmd>GoplementsToggle<cr>", desc = "Go impl hint toggle" },
+        },
     },
     {
         'neovim/nvim-lspconfig', -- Configurations for Nvim LSP
