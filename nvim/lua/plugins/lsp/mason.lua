@@ -28,6 +28,7 @@ M.setup = function()
             "dockerls",
             "jsonls",
             "marksman",
+            "yamlls",
         },
         -- auto-install configured servers (with lspconfig)
         -- if they are not already installed
