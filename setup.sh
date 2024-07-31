@@ -61,6 +61,7 @@ core() {
     brew install bat 
     brew install ripgrep
     brew install fd
+    brew install zsh-autosuggestions
 	brew cleanup
 
     # tpm
