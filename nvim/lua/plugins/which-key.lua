@@ -6,26 +6,31 @@ local lazy     = require("lazy")
 M.setup        = function()
     local whichkey = require('which-key')
 
-    whichkey.register({
+    whichkey.add({
         -- Sections
-        ["<leader>g"]  = { name = "Git", desc = get_icon("Git") .. "Git" },
-        ["<leader>r"]  = { name = "Terminal", desc = get_icon("Terminal") .. "Terminal" },
-        ["<leader>t"]  = { name = "Test", desc = get_icon("Debugger") .. "Test" },
-        ["<leader>b"]  = { name = "Buffers", desc = get_icon("Tab") .. "Buffers" },
-        ["<leader>d"]  = { name = "Diagnostics", desc = get_icon("Diagnostic") .. "Diagnostics" },
-        ["<leader>l"]  = { name = "LSP", desc = get_icon("ActiveLSP") .. "LSP" },
-        ["<leader>u"]  = { name = "Plugins", desc = get_icon("Package") .. "Plugins" },
+        { "<leader>g",  group = "Git",                    icon = get_icon("Git") },
+        { "<leader>r",  group = "Terminal",               icon = get_icon("Terminal") },
+        { "<leader>t",  group = "Test",                   icon = get_icon("Debugger") },
+        { "<leader>b",  group = "Buffers",                icon = get_icon("Tab") },
+        { "<leader>d",  group = "Diagnostics",            icon = get_icon("Diagnostic") },
+        { "<leader>l",  group = "LSP",                    icon = get_icon("ActiveLSP") },
+        { "<leader>u",  group = "Plugins",                icon = get_icon("Package") },
+        { "<leader>f",  group = "Find (telescope)",       icon = get_icon("Search") },
+        { "<leader>h",  group = "Harpoon",                icon = get_icon("Hook") },
 
-        ["<leader>ga"] = { "<cmd>Git add -A|Git commit<CR>", "Add & Commit" },
-
-        -- Plugins
-        ["<leader>uu"] = { function() lazy.home() end, "Plugins Status" },
-
-        -- find with telescope
-        ["<leader>f"]  = { name = "Find", desc = get_icon("Search") .. "Find" },
-
-        -- harpoon
-        ["<leader>h"]  = { name = "Harpoon", desc = get_icon("GitRenamed") .. "Harpoon" },
+        { "<leader>ga", "<cmd>Git add -A|Git commit<CR>", desc = "Add & Commit",        mode = "n" },
+        { "<leader>uu", function() lazy.home() end,       desc = "Plugins Status",      mode = "n" },
+        { "<leader>w",  "<cmd>w<CR>",                     desc = "Save" },
+        {
+            "<leader>e",
+            function()
+                local mf = require('mini.files').setup()
+                mf.open(vim.api.nvim_buf_get_name(0))
+            end,
+            desc = "File explorer",
+            mode = "n",
+            icon = get_icon("FolderClosed"),
+        },
 
         -- Sessions
         -- ["<leader>s"]  = { name = "Sessions", desc = get_icon("Session") .. "Sessions" },
@@ -33,15 +38,6 @@ M.setup        = function()
         -- ["<leader>sl"] = { function() sessions.select("read") end, "Load" },
         -- ["<leader>sd"] = { function() sessions.select("delete") end, "Delete" },
     })
-
-    whichkey.register(
-        {
-            -- e = { "<cmd>NvimTreeFindFileToggle<CR>", "File Explorer" },
-            e = { function() MiniFiles.open(vim.api.nvim_buf_get_name(0)) end, "File explorer" },
-            w = { "<cmd>w<CR>", "Save" },
-        },
-        { prefix = "<leader>" }
-    )
 
     whichkey.setup({
         icons = {
