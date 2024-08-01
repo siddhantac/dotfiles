@@ -70,6 +70,8 @@ imap({ "kk", "<Esc>" })
 
 nmap({ "<leader>w", ":w<CR>" })
 
+nmap({ "<leader>ul", ":Limelight!!<cr>", { desc = "Toggle limelight" } })
+
 -- Buffers
 nmap({ "]b", "<cmd>bnext<CR>", { desc = "Next buffer" } })
 nmap({ "[b", "<cmd>bprev<CR>", { desc = "Prev buffer" } })
