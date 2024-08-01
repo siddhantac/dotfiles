@@ -19,18 +19,9 @@ M.setup        = function()
         { "<leader>h",  group = "Harpoon",                icon = get_icon("Hook") },
 
         { "<leader>ga", "<cmd>Git add -A|Git commit<CR>", desc = "Add & Commit",        mode = "n" },
-        { "<leader>uu", function() lazy.home() end,       desc = "Plugins Status",      mode = "n" },
-        { "<leader>w",  "<cmd>w<CR>",                     desc = "Save" },
-        {
-            "<leader>e",
-            function()
-                local mf = require('mini.files').setup()
-                mf.open(vim.api.nvim_buf_get_name(0))
-            end,
-            desc = "File explorer",
-            mode = "n",
-            icon = get_icon("FolderClosed"),
-        },
+        { "<leader>z",  function() lazy.home() end,       desc = "Lazy",                mode = "n" },
+        { "<leader>w",  "<cmd>w<CR>",                     desc = "Save",                mode = "n", icon = get_icon("Save") },
+        { "<leader>e",  function() MiniFiles.open() end,  desc = "File explorer",       mode = "n", icon = get_icon("FolderClosed") },
 
         -- Sessions
         -- ["<leader>s"]  = { name = "Sessions", desc = get_icon("Session") .. "Sessions" },
