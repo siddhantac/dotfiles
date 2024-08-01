@@ -1,54 +1,68 @@
 local core_mappings = require("core.mappings")
 
 require("lazy").setup({
+    -- {
+    --     "epwalsh/obsidian.nvim",
+    --     version = "*", -- recommended, use latest release instead of latest commit
+    --     lazy = true,
+    --     ft = "markdown",
+    --     -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
+    --     -- event = {
+    --     --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
+    --     --   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md"
+    --     --   "BufReadPre path/to/my-vault/**.md",
+    --     --   "BufNewFile path/to/my-vault/**.md",
+    --     -- },
+    --     dependencies = {
+    --         -- Required.
+    --         "nvim-lua/plenary.nvim",
+    --
+    --         -- see below for full list of optional dependencies 👇
+    --     },
+    --     opts = {
+    --         workspaces = {
+    --             {
+    --                 name = "second-brain",
+    --                 path = "~/workspace/second-brain-nvim",
+    --             },
+    --         },
+    --         ui = {
+    --             checkboxes = {
+    --                 -- NOTE: the 'char' value has to be a single character, and the highlight groups are defined below.
+    --                 [" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
+    --                 ["x"] = { char = "", hl_group = "ObsidianDone" },
+    --                 [">"] = { char = "", hl_group = "ObsidianRightArrow" },
+    --                 ["~"] = { char = "󰰱", hl_group = "ObsidianTilde" },
+    --                 ["<"] = { char = "", hl_group = "ObsidianScheduled" },
+    --                 ["?"] = { char = "", hl_group = "ObsidianQuestion" },
+    --                 -- Replace the above with this if you don't have a patched font:
+    --                 -- [" "] = { char = "☐", hl_group = "ObsidianTodo" },
+    --                 -- ["x"] = { char = "✔", hl_group = "ObsidianDone" },
+    --
+    --                 -- You can also add more custom ones...
+    --             },
+    --         }
+    --     },
+    -- },
+
+    -- {
+    --     "iamcco/markdown-preview.nvim",
+    --     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    --     ft = { "markdown" },
+    --     build = function() vim.fn["mkdp#util#install"]() end,
+    -- },
+
     {
-        "epwalsh/obsidian.nvim",
-        version = "*", -- recommended, use latest release instead of latest commit
-        lazy = true,
+        "OXY2DEV/markview.nvim",
         ft = "markdown",
-        -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
-        -- event = {
-        --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
-        --   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md"
-        --   "BufReadPre path/to/my-vault/**.md",
-        --   "BufNewFile path/to/my-vault/**.md",
-        -- },
+
         dependencies = {
-            -- Required.
-            "nvim-lua/plenary.nvim",
+            -- You may not need this if you don't lazy load
+            -- Or if the parsers are in your $RUNTIMEPATH
+            "nvim-treesitter/nvim-treesitter",
 
-            -- see below for full list of optional dependencies 👇
+            "nvim-tree/nvim-web-devicons"
         },
-        opts = {
-            workspaces = {
-                {
-                    name = "second-brain",
-                    path = "~/workspace/second-brain-nvim",
-                },
-            },
-            ui = {
-                checkboxes = {
-                    -- NOTE: the 'char' value has to be a single character, and the highlight groups are defined below.
-                    [" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
-                    ["x"] = { char = "", hl_group = "ObsidianDone" },
-                    [">"] = { char = "", hl_group = "ObsidianRightArrow" },
-                    ["~"] = { char = "󰰱", hl_group = "ObsidianTilde" },
-                    ["<"] = { char = "", hl_group = "ObsidianScheduled" },
-                    ["?"] = { char = "", hl_group = "ObsidianQuestion" },
-                    -- Replace the above with this if you don't have a patched font:
-                    -- [" "] = { char = "☐", hl_group = "ObsidianTodo" },
-                    -- ["x"] = { char = "✔", hl_group = "ObsidianDone" },
-
-                    -- You can also add more custom ones...
-                },
-            }
-        },
-    },
-    {
-        "iamcco/markdown-preview.nvim",
-        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-        ft = { "markdown" },
-        build = function() vim.fn["mkdp#util#install"]() end,
     },
 
     {
