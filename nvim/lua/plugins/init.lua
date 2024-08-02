@@ -320,7 +320,7 @@ require("lazy").setup({
         end,
     },
     {
-        'junegunn/limelight.vim',
+        'folke/twilight.nvim',
     },
     -- {
     --     "echasnovski/mini.indentscope",
