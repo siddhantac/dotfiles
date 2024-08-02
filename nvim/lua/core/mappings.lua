@@ -28,7 +28,12 @@ local imap = function(tbl)
 end
 
 local nmap = function(tbl)
-    vim.keymap.set('n', tbl[1], tbl[2], tbl[3])
+    local ok, wk = pcall(require, "which-key")
+    if ok then
+        wk.add({ tbl[1], tbl[2], desc = tbl[3].desc, mode = "n", icon = tbl[3].icon })
+    else
+        vim.keymap.set('n', tbl[1], tbl[2], tbl[3])
+    end
 end
 
 local vmap = function(tbl)
@@ -175,8 +180,8 @@ function M.telescope_mappings()
     })
     -- S = { '<cmd>Telescope lsp_workspace_symbols<CR>', "Workspace symbols" },
 
-    nmap({ "<leader>lo", "<cmd>AerialToggle<CR>", { desc = "Show outline" } })
-    nmap({ "<leader>j", function() tscopebuiltin.jumplist { show_line = false } end, { desc = "Jumplist" } })
+    nmap({ "<leader>lo", "<cmd>AerialToggle<CR>", { desc = "Show outline", icon = get_icon("Package") } })
+    nmap({ "<leader>j", function() tscopebuiltin.jumplist { show_line = false } end, { desc = "Jumplist", icon = get_icon("Jump") } })
 end
 
 function M.gitsigns_mappings()
