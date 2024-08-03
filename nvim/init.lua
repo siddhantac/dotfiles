@@ -37,6 +37,7 @@ local modules = {
     "core.mappings",
     "core.autocmds",
     "plugins",
+    "core.colorscheme", -- must load colorscheme after plugins
 }
 
 for _, module in ipairs(modules) do

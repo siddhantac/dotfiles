@@ -297,6 +297,17 @@ require("lazy").setup({
     --     end
     -- },
     {
+        'aliqyan-21/darkvoid.nvim',
+        name = "darkvoid",
+        priority = 1000,
+        config = function()
+            require("darkvoid").setup({
+                glow = true,
+                show_end_of_buffer = true,
+            })
+        end
+    },
+    {
         "catppuccin/nvim",
         name = "catppuccin",
         priority = 1000,
