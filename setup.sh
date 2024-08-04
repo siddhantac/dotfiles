@@ -88,6 +88,7 @@ setup_links() {
 	[ -f ~/.gitconfig ] || ln -s $(PWD)/gitconfig ~/.gitconfig
 	[ -f ~/.zshrc ] || ln -s $(PWD)/zsh/zshrc ~/.zshrc
 	[ -f ~/.tmux.conf ] || ln -s $(PWD)/tmux/tmux.conf ~/.tmux.conf
+	[ -f ~/.config/karabiner/karabiner.json ] || ln -s $(PWD)/karabiner/karabiner.json ~/.config/karabiner/karabiner.json
 	[ -f ~/.config/karabiner/assets/complex_modifications/custom-capslock.json ] || ln -s $(PWD)/karabiner/custom-capslock.json ~/.config/karabiner/assets/complex_modifications/custom-capslock.json
 	[ -f ~/.config/karabiner/assets/complex_modifications/keychron-k6.json ] || ln -s $(PWD)/karabiner/keychron-k6.json ~/.config/karabiner/assets/complex_modifications/keychron-k6.json
 
