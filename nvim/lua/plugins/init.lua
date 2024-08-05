@@ -107,9 +107,9 @@ require("lazy").setup({
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
             "nvim-lua/plenary.nvim",         -- required
-            "nvim-telescope/telescope.nvim", -- optional
             "sindrets/diffview.nvim",        -- optional
-            "ibhagwan/fzf-lua",              -- optional
+            "nvim-telescope/telescope.nvim", -- optional
+            -- "ibhagwan/fzf-lua",              -- either this or Telescope, not both
         },
         config = true,
         keys = core_mappings.neogit_mappings,
