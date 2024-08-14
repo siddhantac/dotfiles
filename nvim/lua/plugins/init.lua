@@ -315,6 +315,9 @@ require("lazy").setup({
             require("plugins.catppuccin").setup()
         end,
     },
+    {
+        'yorickpeterse/nvim-grey',
+    },
     -- { 'nvim-tree/nvim-web-devicons' },
     {
         'szw/vim-maximizer',
