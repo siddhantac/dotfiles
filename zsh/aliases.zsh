@@ -60,6 +60,7 @@ alias gl=pretty_git_log
 alias gw='git worktree'
 alias gwl='git worktree list'
 alias gwa='git worktree add'
+alias gwr='git worktree remove'
 alias pr='gh pr create -a @me  -w'
 alias gclean='git fetch --prune && git gc'
 
@@ -86,6 +87,11 @@ gsync() {
     [ $output -ne 0 ] && git checkout master
     git pull --all -p
     gclean
+}
+
+gwab() {
+    git worktree add ../$1 -b $1
+    cd ../$1
 }
 
 # gsr: gsync() + git rebase
