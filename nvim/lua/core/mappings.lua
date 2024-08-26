@@ -123,6 +123,11 @@ function M.telescope_mappings()
         vim.notify("failed to load telescope builtin", "error")
     end
 
+    local ok, tscopeutils = pcall(require, "telescope.utils")
+    if not ok then
+        vim.notify("failed to load telescope builtin", "error")
+    end
+
     nmap({ "<leader>bf", "<cmd>Telescope buffers<CR>", { desc = "Find" } })
 
     nmap({ "<leader>ff", function() tscopebuiltin.find_files({ default_text = "!mocks " }) end, { desc = "Files" } })
@@ -135,8 +140,8 @@ function M.telescope_mappings()
     nmap({ "<leader>fC", function() tscopebuiltin.commands() end, { desc = "Commands" } })
     nmap({ "<leader>fF", function() tscopebuiltin.find_files({ hidden = true, no_ignore = true }) end,
         { desc = "All files" } })
-    nmap({ '{<leader>f.', function() tscopebuiltin.find_files({ cwd = vim.fn.expand('%:p:h') }) end,
-        { desc = "Find files in dir" } }) -- find files in dir of the current file
+    nmap({ "<leader>fd", function() tscopebuiltin.find_files({ cwd = tscopeutils.buffer_dir() }) end,
+        { desc = "Find files in buffer dir" } }) -- find files in dir of the current file
     nmap({ "<leader>fh", function() tscopebuiltin.help_tags() end, { desc = "Help" } })
     nmap({ "<leader>fk", function() tscopebuiltin.keymaps() end, { desc = "Keymaps" } })
     nmap({ "<leader>fm", function() tscopebuiltin.man_pages() end, { desc = "Man" } })
