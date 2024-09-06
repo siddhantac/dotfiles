@@ -318,6 +318,7 @@ require("lazy").setup({
     {
         'yorickpeterse/nvim-grey',
     },
+    { "fcancelinha/nordern.nvim", branch = "master", priority = 1000 },
     -- { 'nvim-tree/nvim-web-devicons' },
     {
         'szw/vim-maximizer',
