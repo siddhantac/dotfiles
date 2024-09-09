@@ -62,6 +62,7 @@ core() {
     brew install ripgrep
     brew install fd
     brew install zsh-autosuggestions
+    brew install zsh-syntax-highlighting
     brew install mos
 	brew cleanup
 

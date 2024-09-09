@@ -60,6 +60,8 @@ elif [ -e /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; the
     source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi 
 
+source_if_exists /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 # load aliases
 source_if_exists "$DOTFILES/zsh/aliases.zsh"
 source_if_exists "$DOTFILES/zsh/git.zsh"
