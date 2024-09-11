@@ -13,7 +13,7 @@ export PATH=/usr/local/go/bin:$HOME/.local/share/nvim/mason/bin:/usr/local/bin:$
 export GOPATH=$HOME/go
 export TERM=screen-256color
 export XDG_CONFIG_HOME=$HOME/.config
-export LEDGER_FILE=$WORKSPACE/accounts/finances.journal
+export LEDGER_FILE=$WORKSPACE/accounts/main/finances.journal
 export EDITOR=nvim
 
 #############
