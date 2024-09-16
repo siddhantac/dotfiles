@@ -70,6 +70,8 @@ source_if_exists "$HOME/.aliases.local"
 source_if_exists "$HOME/.fzf.zsh"
 source_if_exists "$HOME/.asdf/asdf.sh"
 
+bindkey -s '^p' 'find_files\n'
+
 # see https://github.com/deliveryhero/kube-env
 # if [[ -f ~/dh/bin/kube-env ]]; then
 # 	eval "$(~/dh/bin/kube-env)"

@@ -20,6 +20,11 @@ alias hl='hledger'
 alias v='nvim'
 alias vf='nvim $(fzf)'
 
+find_files() {
+	IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0 --prompt 'files:' --preview='eza --tree --level=1 $(dirname {})'))
+	[[ -n "$files" ]] && ${EDITOR} "${files[@]}"
+}
+
 # tmux aliases
 alias tns='tmux new -s $(echo $(pwd) | xargs basename)'   # [t]mux [n]ew-[s]ession
 alias tx=tmuxinator
