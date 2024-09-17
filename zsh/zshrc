@@ -71,6 +71,7 @@ source_if_exists "$HOME/.fzf.zsh"
 source_if_exists "$HOME/.asdf/asdf.sh"
 
 bindkey -s '^p' 'find_files\n'
+bindkey -s '^g' 'find_dir\n'
 
 # see https://github.com/deliveryhero/kube-env
 # if [[ -f ~/dh/bin/kube-env ]]; then

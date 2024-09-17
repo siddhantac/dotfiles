@@ -25,6 +25,13 @@ find_files() {
 	[[ -n "$files" ]] && ${EDITOR} "${files[@]}"
 }
 
+# fzf browse directories and cd into them
+find_dir() {
+	local dir
+	dir=$(fd -IH -t d -E '.git' 2> /dev/null | fzf --prompt 'go to: ' +m --preview-window='right:50%:nohidden:wrap' --preview='eza --tree --level=2 {}') && cd "$dir"
+}
+
+
 # tmux aliases
 alias tns='tmux new -s $(echo $(pwd) | xargs basename)'   # [t]mux [n]ew-[s]ession
 alias tx=tmuxinator
