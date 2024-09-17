@@ -14,7 +14,7 @@ if [[ $1 == "list-sessions" ]]; then
         tmux list-sessions -F '#{?session_attached,,#{session_name}}' |\
         sed '/^$/d' |\
         fzf --reverse --header jump-to-session |\
-        xargs tmux switch-client -t"
+        xargs -I {} tmux switch-client -t \"{}\""
 fi
 
 if [[ $1 == "new-session" ]]; then
@@ -26,7 +26,7 @@ if [[ $1 == "kill-session" ]]; then
         tmux list-sessions -F '#{?session_attached,,#{session_name}}' |\
         sed '/^$/d' |\
         fzf --reverse --header kill-session |\
-        xargs tmux kill-session -t"
+        xargs -I {} tmux kill-session -t \"{}\""
 fi
 
 if [[ $1 == "rename-session" ]]; then
