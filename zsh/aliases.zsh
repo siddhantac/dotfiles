@@ -31,6 +31,30 @@ find_dir() {
 	dir=$(fd -IH -t d -E '.git' 2> /dev/null | fzf --prompt 'go to: ' +m --preview-window='right:50%:nohidden:wrap' --preview='eza --tree --level=2 {}') && cd "$dir"
 }
 
+# quick commit all
+quick_commit(){
+	[[ ! "$(git rev-parse --is-inside-work-tree 2>/dev/null)" = "true" ]] && { echo "not a git repo"; return; }
+
+	local unstaged_list="$(git status -s)"
+	if [[ -z "$unstaged_list" ]]; then
+		echo "no files to commit"
+		return
+	fi
+
+	gum style --border rounded --foreground "#d33682" --border-foreground "#2aa198" --margin "1 1" --padding "1 1" $unstaged_list
+
+	local message=$(gum input --prompt="commit: " --placeholder="commit message...")
+
+	if [[ -z "$message" ]]; then
+		echo "commit aborted"
+		return
+	fi
+
+	gum confirm "add files and commit?" && \
+	git add . && git commit -m "$message" && \
+	gum confirm "push to $(git rev-parse --abbrev-ref --symbolic-full-name @{u})?" && gum spin --spinner dot --title "git push..." --show-output -- git push
+}
+
 
 # tmux aliases
 alias tns='tmux new -s $(echo $(pwd) | xargs basename)'   # [t]mux [n]ew-[s]ession
