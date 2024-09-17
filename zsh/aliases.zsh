@@ -32,7 +32,7 @@ find_dir() {
 }
 
 # quick commit all
-quick_commit(){
+qc(){
 	[[ ! "$(git rev-parse --is-inside-work-tree 2>/dev/null)" = "true" ]] && { echo "not a git repo"; return; }
 
 	local unstaged_list="$(git status -s)"
@@ -198,4 +198,40 @@ mdcd() {
 # TODO: delete if unused (last checked 8th Feb, 2022)
 gtr() {
   go test -v -run $1 $2
+}
+
+# preview files
+pf() {
+	local selection
+	if [[ -z "$1" ]]; then
+		selection="$(fd -u -t f -E '.git/' | fzf)" && preview_files "$selection"
+		return 0
+	fi
+
+	case $1 in
+		-e)
+        # 2024-09-17 not using this
+			shift
+			selection="$(fd -u -t f -E '.git/' -e $1 | fzf --multi --select-1 --exit-0 | tr '\n' ' ')"
+			[[ -n "$selection" ]] && preview_files "${(z)selection}"
+			shift
+			;;
+		-t)
+        # 2024-09-17 not using this
+			bat --style='grid' ~/.todo;;
+		*.md)
+			glow -p $@;;
+		*.json)
+			jq '.' -C $1 | less -R;;
+		*.csv)
+			vd "$@";;
+		*.pdf)
+			zathura $1;;
+		*)
+			if [[ -f $1 ]]; then
+				bat --style='header,grid' $1
+			else
+				which $1 | bat -l sh --style 'grid'
+			fi
+	esac
 }
