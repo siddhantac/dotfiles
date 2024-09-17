@@ -21,7 +21,7 @@ alias v='nvim'
 alias vf='nvim $(fzf)'
 
 find_files() {
-	IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0 --prompt 'files:' --preview='eza --tree --level=1 $(dirname {})'))
+	IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0 --prompt 'edit file: ' --preview='eza --tree --level=1 $(dirname {})'))
 	[[ -n "$files" ]] && ${EDITOR} "${files[@]}"
 }
 
