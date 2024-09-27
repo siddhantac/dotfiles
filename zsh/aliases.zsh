@@ -18,18 +18,22 @@ alias cpv='rsync -ah --progress'
 
 alias hl='hledger'
 alias v='nvim'
-alias vf='nvim $(fzf)'
 
 find_files() {
-	IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0 --prompt 'edit file: ' --preview='eza --tree --level=1 $(dirname {})'))
+	# IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0 --prompt 'edit file: ' --preview='eza --tree --level=1 $(dirname {})'))
+	IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0 --prompt 'edit file: ' --preview='bat {}'))
 	[[ -n "$files" ]] && ${EDITOR} "${files[@]}"
 }
+alias vf='find_files'
 
 # fzf browse directories and cd into them
 find_dir() {
 	local dir
 	dir=$(fd -IH -t d -E '.git' 2> /dev/null | fzf --prompt 'go to: ' +m --preview-window='right:50%:nohidden:wrap' --preview='eza --tree --level=2 {}') && cd "$dir"
 }
+
+# paginate help
+help() { "$@" --help | bat -l man -p ; }
 
 # quick commit all
 qc(){
@@ -234,4 +238,21 @@ pf() {
 				which $1 | bat -l sh --style 'grid'
 			fi
 	esac
+}
+
+# open PRs in nvim diffview
+nvim_diff() {
+	[[ ! "$(git rev-parse --is-inside-work-tree 2>/dev/null)" = "true" ]] && { echo "not a git repo"; return; }
+
+	local branches="$(git branch -a --format='%(refname:short)' | grep -v 'HEAD' |
+		fzf -d' ' \
+		--prompt="branches:" \
+		--preview="git log --oneline --format='%C(bold blue)%h%C(reset) - %C(green)%ar%C(reset) - %C(cyan)%an%C(reset)%C(bold yellow)%d%C(reset): %s' --color=always {}" \
+		--header=$'\n' \
+		--no-info
+	)"
+
+	if [[ -n "$branches" ]]; then
+		nvim +"DiffviewOpen $branches" +tabonly
+	fi
 }
