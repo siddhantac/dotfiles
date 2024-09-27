@@ -350,4 +350,19 @@ function M.trouble_mappings()
     }
 end
 
+function M.overseer_mappings()
+    return {
+        {
+            "<leader>oo",
+            "<cmd>OverseerToggle<cr>",
+            desc = "Toggle Overseer",
+        },
+        {
+            "<leader>or",
+            "<cmd>OverseerRun<cr>",
+            desc = "Run Overseer",
+        }
+    }
+end
+
 return M

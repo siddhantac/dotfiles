@@ -503,4 +503,9 @@ require("lazy").setup({
             -- })
         end,
     },
+    {
+        'stevearc/overseer.nvim',
+        opts = {},
+        keys = core_mappings.overseer_mappings,
+    },
 })
