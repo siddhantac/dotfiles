@@ -508,8 +508,4 @@ require("lazy").setup({
         opts = {},
         keys = core_mappings.overseer_mappings,
     },
-    {
-        "folke/drop.nvim",
-        opts = {}
-    },
 })
