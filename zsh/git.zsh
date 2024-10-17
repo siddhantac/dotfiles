@@ -45,8 +45,8 @@ pretty_git_log() {
     num=$1
     if [ -z "$num" ]
     then
-        num=5
-        echo "defaulting to last 5 commits"
+        num=10
+        echo "defaulting to last 10 commits"
     fi
     git log --since="6 months ago" --graph --pretty="tformat:${LOG_FORMAT}" -n $num | pretty_git_format | git_page_maybe
 }
@@ -81,14 +81,4 @@ pretty_git_format() {
     sed -Ee 's/<([^ >]+) [^>]*>/<\1>/' |
     # Line columns up based on } delimiter
     column -s '}' -t
-}
-
-git_page_maybe() {
-    # Page only if we're asked to.
-    if [ -n "${GIT_NO_PAGER}" ]; then
-        cat
-    else
-        # Page only if needed.
-        less --quit-if-one-screen --no-init --RAW-CONTROL-CHARS --chop-long-lines
-    fi
 }

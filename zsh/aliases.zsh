@@ -74,11 +74,12 @@ alias gc='git commit -m'
 alias gca='git commit -a -m'              # [g]it [c]ommit -[a] -m
 alias gcm='git commit --amend -m'         # [g]it [c]ommit --amend -[m]
 alias gcn='git commit --amend --no-edit'  # [g]it [c]ommit --amend --[n]o-edit
-alias gb='git branch'
-alias gbl=pretty_git_branch
+# alias gb='git branch'
+alias gb=pretty_git_branch_sorted
 alias gbd='git branch -d'
 alias gbD='git branch -D'
 alias gco='git checkout'
+alias ghd=show_git_head
 alias co='git branch | cut -c 3- | gum filter | xargs git checkout' # prettier branch checkout
 alias nb='git checkout -b'                                          # new branch
 alias gd='git diff'
@@ -97,6 +98,7 @@ alias gr='git rebase'
 alias grc='git add -A && git rebase --continue'
 alias gra='git rebase --abort'
 alias gl=pretty_git_log
+alias gla=pretty_git_log_all
 alias gw='git worktree'
 alias gwl='git worktree list'
 alias gwa='git worktree add'
@@ -152,7 +154,7 @@ bco() {
 }
 # [p]ull request [c]heck[o]ut
 pco() {
-  gh pr list --author "@me" | fzf --header 'checkout PR' | awk '{print $(NF-5)}' | xargs git checkout
+  gh pr list --author "@me" | fzf --header 'checkout PR' | awk '{print $1}' | xargs gh pr checkout
 }
 
 # suffix aliases (just typing the json filename in terminal will open it in vim)
