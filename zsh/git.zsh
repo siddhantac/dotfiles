@@ -82,3 +82,13 @@ pretty_git_format() {
     # Line columns up based on } delimiter
     column -s '}' -t
 }
+
+git_page_maybe() {
+    # Page only if we're asked to.
+    if [ -n "${GIT_NO_PAGER}" ]; then
+        cat
+    else
+        # Page only if needed.
+        less --quit-if-one-screen --no-init --RAW-CONTROL-CHARS --chop-long-lines
+    fi
+}
