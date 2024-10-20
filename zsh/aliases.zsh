@@ -2,6 +2,8 @@ alias q="exit"
 alias today='date +%Y-%m-%d'
 alias md="mkdir"
 
+alias puffin='puffin -cfg ~/workspace/bin/config.json'
+
 # list files and dirs
 alias ls='eza --icons'
 alias ll='ls -lh'
