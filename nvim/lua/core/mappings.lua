@@ -240,7 +240,7 @@ function M.neogit_mappings()
     end
 
     nmap({ "<leader>gc", function() neogit.open({ "commit" }) end, { desc = "Commit" } })
-    nmap({ "<leader>gg", function() neogit.open({ kind = "split" }) end, { desc = "neogit" } })
+    nmap({ "<leader>gg", function() neogit.open({}) end, { desc = "neogit" } })
 end
 
 -- function M.neotree_mappings()
