@@ -59,17 +59,13 @@ matches:
   - regex: ":pr\\((?P<num>.*)\\)"
     replace: "https://github.com/deliveryhero/pd-pablo-payment-gateway/pull/{{num}}"
 
-  #- regex: ":pr\\((?P<num>.*)\\)"
-  #  replace: "[PR#{{num}}](https://github.com/deliveryhero/pd-pablo-payment-gateway/pull/{{num}})"
-
-  # prmd = PR link in markdown with PR title as display text
-  - regex: ":prmd\\((?P<num>.*)\\)"
-    replace: "🔀 *{{display}}* [pd-pablo/{{num}}](https://github.com/deliveryhero/pd-pablo-payment-gateway/pull/{{num}}) "
+  - trigger: ":prlink"
+    replace: "🔀 {{output}}"
     vars:
-      - name: display
+      - name: output
         type: shell
         params:
-          cmd: ~/workspace/dotfiles/scripts/get_pr_title.sh {{num}}
+          cmd: ~/workspace/dotfiles/scripts/get_pr_title.sh
 
   - trigger: ":lnk"
     replace: "[link]({{output}})"
