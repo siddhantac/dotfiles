@@ -152,9 +152,8 @@ sr() {
 
 # [p]ull remote [b]ranch
 pb() {
-    echo "this is broken, it merges the branch into master"
-    exit 1
-    git branch --remote --no-color --sort=-committerdate --format='%(refname:short)' | fzf --header 'git checkout' | rg '(.*)/(.*)' -or '$1 $2' | xargs git pull
+    git branch --remote --no-color --sort=-committerdate --format='%(refname:short)' | fzf --header 'git checkout' | rg '(.*)/(.*)' -or '$2' | xargs git checkout
+  # git branch --remote --no-color --sort=-committerdate --format='%(refname:short)' | fzf --header 'git checkout' | xargs git checkout
 }
 
 # [b]ranch [c]heck[o]ut
