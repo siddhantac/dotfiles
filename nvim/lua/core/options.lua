@@ -35,8 +35,10 @@ vim.opt.hidden = true
 vim.opt.autoread = true
 vim.opt.swapfile = false
 
-vim.opt.foldmethod = 'indent'
-vim.opt.foldlevel = 99
+vim.o.foldmethod = 'expr'
+vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.o.foldlevelstart = 99
+
 vim.opt.hlsearch = false
 -- vim.opt.laststatus = 2
 -- vim.opt.list = true
