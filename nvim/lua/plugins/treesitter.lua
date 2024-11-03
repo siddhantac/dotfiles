@@ -10,6 +10,7 @@ M.config = function()
             "gomod",
             "gowork",
             "gosum",
+            "json",
             "ledger",
             "lua",
             "markdown",
