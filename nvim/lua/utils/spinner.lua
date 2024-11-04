@@ -28,6 +28,9 @@ local function update_spinner(client_id, title)
 end
 
 local function run_spinner(client_id, type, message, title)
+    if message == nil then
+        return
+    end
     local notif_data = client_notifs[client_id]
     if type == "begin" then
         local notification = vim.notify(message, vim.log.levels.INFO, {
