@@ -60,7 +60,7 @@ matches:
     replace: "https://github.com/deliveryhero/pd-pablo-payment-gateway/pull/{{num}}"
 
   - trigger: ":prlink"
-    replace: "🔀 {{output}}"
+    replace: "🔀 *{{output}}* "
     vars:
       - name: output
         type: shell
