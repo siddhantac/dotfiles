@@ -512,11 +512,11 @@ require("lazy").setup({
         'daliusd/ghlite.nvim',
         config = function()
             require('ghlite').setup({
-                debug = false,   -- if set to true debugging information is written to ~/.ghlite.log file
-                view_split = 'vsplit', -- set to empty string '' to open in active buffer
-                diff_split = 'vsplit', -- set to empty string '' to open in active buffer
+                debug = false,           -- if set to true debugging information is written to ~/.ghlite.log file
+                view_split = 'vsplit',   -- set to empty string '' to open in active buffer
+                diff_split = 'vsplit',   -- set to empty string '' to open in active buffer
                 comment_split = 'split', -- set to empty string '' to open in active buffer
-                open_command = 'open', -- open command to use, e.g. on Linux you might want to use xdg-open
+                open_command = 'open',   -- open command to use, e.g. on Linux you might want to use xdg-open
                 merge = {
                     approved = '--squash',
                     nonapproved = '--auto --squash',
