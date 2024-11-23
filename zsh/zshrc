@@ -80,7 +80,7 @@ bindkey -s '^g' 'find_dir\n'
 # 	eval "$(~/dh/bin/kube-env)"
 # fi
 
-source $HOME/.zshrc_custom
+source_if_exists $HOME/.zshrc_custom
 
 # vim controls
 #   https://dougblack.io/words/zsh-vi-mode.html
