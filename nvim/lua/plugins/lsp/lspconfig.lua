@@ -1,12 +1,24 @@
+local nmap = function(tbl)
+    vim.keymap.set('n', tbl[1], tbl[2], tbl[3])
+end
+
 local on_attach = function(client, bufnr)
-    -- if client.server_capabilities.documentFormattingProvider then
-    vim.api.nvim_create_autocmd("BufWritePre", {
-        buffer = bufnr,
-        callback = function()
-            vim.lsp.buf.format()
-        end,
-    })
-    -- end
+    nmap({ "<leader>lf", vim.lsp.buf.format, { desc = "Format" } })
+    nmap({ "<leader>lh", vim.lsp.buf.hover, { desc = "Hover" } })
+    nmap({ "<leader>ll", "<cmd>LspInfo<CR>", { desc = "LSP Info" } })
+    nmap({ "<leader>lR", vim.lsp.buf.references, { desc = "Refs (quickfix)" } })
+
+    -- don't setup autoformat for JSON because the
+    -- LSP's default formatting doesn't match the formatting
+    -- in some of DH's repos.
+    if vim.bo.filetype ~= "json" then
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            buffer = bufnr,
+            callback = function()
+                vim.lsp.buf.format()
+            end,
+        })
+    end
 end
 
 local M = {}
