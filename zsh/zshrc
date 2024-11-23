@@ -1,3 +1,10 @@
+# to debug startup time
+# source: https://gist.github.com/elalemanyo/cb3395af64ac23df2e0c3ded8bd63b2f
+#   `time ZSH_DEBUGRC=1 zsh -i -c exit`
+if [ -n "${ZSH_DEBUGRC+1}" ]; then
+    zmodload zsh/zprof
+fi
+
 typeset -U PATH
 autoload colors; colors;
 autoload -U compinit
@@ -130,5 +137,12 @@ simple_prompt() {
 eval "$(zoxide init zsh)"
 
 export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+source_if_exists nvm-lazy.sh # lazy load nvm to keep the terminal init fast
+
+
+# to debug startup time
+if [ -n "${ZSH_DEBUGRC+1}" ]; then
+    zprof
+fi
