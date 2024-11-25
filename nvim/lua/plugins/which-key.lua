@@ -24,6 +24,7 @@ M.setup        = function()
         { "<leader>z",  function() lazy.home() end,                                  desc = "Lazy",                    mode = "n" },
         { "<leader>w",  "<cmd>w<CR>",                                                desc = "Save",                    mode = "n", icon = get_icon("Save") },
         { "<leader>e",  function() MiniFiles.open(vim.api.nvim_buf_get_name(0)) end, desc = "File explorer",           mode = "n", icon = get_icon("FolderClosed") },
+        { "<leader>x",  group = "Git conflict",                                      icon = get_icon("Git") },
 
         -- Sessions
         -- ["<leader>s"]  = { name = "Sessions", desc = get_icon("Session") .. "Sessions" },

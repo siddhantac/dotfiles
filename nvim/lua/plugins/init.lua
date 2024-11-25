@@ -89,13 +89,6 @@ require("lazy").setup({
             require "plugins.octo".setup()
         end,
     },
-    {
-        'akinsho/git-conflict.nvim',
-        event = "BufEnter",
-        version = "*",
-        config = true,
-    },
-
 
     {
         "ThePrimeagen/harpoon",

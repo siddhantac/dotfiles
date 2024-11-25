@@ -164,7 +164,6 @@ function M.telescope_mappings()
 
     nmap({ "<leader>gb", function() tscopebuiltin.git_branches { use_file_path = true } end, { desc = "Branches" } })
     nmap({ "<leader>gC", function() tscopebuiltin.git_commits { use_file_path = true } end, { desc = "Commits", } })
-    nmap({ "<leader>gt", function() tscopebuiltin.git_status { use_file_path = true } end, { desc = "Status" } })
 
     nmap({ "<leader>lm", "<cmd>Telescope lsp_implementations show_line=false default_text=!mocks<cr>",
         { desc = "Implementation" } })
@@ -241,6 +240,10 @@ function M.neogit_mappings()
 
     nmap({ "<leader>gc", function() neogit.open({ "commit" }) end, { desc = "Commit" } })
     nmap({ "<leader>gg", function() neogit.open({}) end, { desc = "neogit" } })
+
+    nmap({ "<leader>xx", '<cmd>DiffviewOpen<cr>', { desc = "Open diffview" } })
+    nmap({ "<leader>xr", '<cmd>DiffviewRefresh<cr>', { desc = "Refresh diffview" } })
+    nmap({ "<leader>xX", '<cmd>DiffviewClose<cr>', { desc = "Close diffview" } })
 end
 
 -- function M.neotree_mappings()
@@ -284,8 +287,8 @@ function M.gitlinker_mappings()
     end
     local actions = gitlinker.actions
 
-    nmap({ "<leader>gy", '<cmd>lua require"gitlinker".get_buf_range_url("n")<cr>', { desc = "copy Github url" } })
-    vmap({ "<leader>gy", '<cmd>lua require"gitlinker".get_buf_range_url("v")<cr>', { desc = "copy Github url" } })
+    nmap({ "<leader>gy", '<cmd>lua require"gitlinker".get_buf_range_url("n")<cr>', { desc = "Copy Github url" } })
+    vmap({ "<leader>gy", '<cmd>lua require"gitlinker".get_buf_range_url("v")<cr>', { desc = "Copy Github url" } })
 end
 
 function M.lspsaga_mappings()
