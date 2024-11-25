@@ -8,6 +8,7 @@ vim.opt.updatetime = 500 -- affects CursorHold time (to highlight a text object)
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.numberwidth = 5
+vim.opt.signcolumn = "yes" -- stops flickering from the LSP code-action lightbulb icon
 
 vim.opt.splitright = true
 vim.opt.splitbelow = true
