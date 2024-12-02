@@ -361,7 +361,9 @@ require("lazy").setup({
     },
     {
         'stevearc/overseer.nvim',
-        opts = {},
+        opts = {
+            -- templates = { "builtin", "user.run_script" },
+        },
         keys = core_mappings.overseer_mappings,
     },
     {

@@ -6,6 +6,7 @@ M.setup = function()
     require('mini.sessions').setup()
     require('mini.files').setup()
     require('mini.cursorword').setup()
+    require('mini.ai').setup()
 
     -- local pad = string.rep(" ", 22)
     local new_section = function(name, action, section)
