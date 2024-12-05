@@ -138,30 +138,123 @@ require("lazy").setup({
         end,
         keys = core_mappings.other_mappings,
     },
+    -- {
+    --     "nvim-neotest/neotest-go",
+    --     ft = "*_test.go",
+    --     dependencies = {
+    --         "nvim-neotest/neotest",
+    --     },
+    --     config = function()
+    --         require("plugins.neotest_go").setup()
+    --     end,
+    --     keys = core_mappings.neotest_mappings,
+    -- },
+    -- {
+    --     "nvim-neotest/neotest",
+    --     name = "neotest",
+    --     event = "BufEnter *_test.go",
+    --     dependencies = {
+    --         "nvim-neotest/nvim-nio",
+    --         "nvim-lua/plenary.nvim",
+    --         "nvim-treesitter/nvim-treesitter",
+    --         "antoinemadec/FixCursorHold.nvim",
+    --     },
+    --     config = function()
+    --         require("plugins.neotest").setup()
+    --     end,
+    -- },
     {
-        "nvim-neotest/neotest-go",
-        ft = "*_test.go",
-        dependencies = {
-            "nvim-neotest/neotest",
-        },
+        "quolpr/quicktest.nvim",
         config = function()
-            require("plugins.neotest_go").setup()
+            local qt = require("quicktest")
+
+            qt.setup({
+                -- Choose your adapter, here all supported adapters are listed
+                adapters = {
+                    require("quicktest.adapters.golang")({}),
+                    require("quicktest.adapters.vitest")({}),
+                    require("quicktest.adapters.playwright")({}),
+                    require("quicktest.adapters.elixir"),
+                    require("quicktest.adapters.criterion"),
+                    require("quicktest.adapters.dart"),
+                },
+                -- split or popup mode, when argument not specified
+                default_win_mode = "split",
+                use_experimental_colorizer = true
+            })
         end,
-        keys = core_mappings.neotest_mappings,
-    },
-    {
-        "nvim-neotest/neotest",
-        name = "neotest",
-        event = "BufEnter *_test.go",
         dependencies = {
-            "nvim-neotest/nvim-nio",
             "nvim-lua/plenary.nvim",
-            "nvim-treesitter/nvim-treesitter",
-            "antoinemadec/FixCursorHold.nvim",
+            "MunifTanjim/nui.nvim",
         },
-        config = function()
-            require("plugins.neotest").setup()
-        end,
+        keys = {
+            {
+                "<leader>tl",
+                function()
+                    local qt = require("quicktest")
+                    -- current_win_mode return currently opened panel, split or popup
+                    qt.run_line()
+                    -- You can force open split or popup like this:
+                    -- qt.run_line('split')
+                    -- qt.run_line('popup')
+                end,
+                desc = "[T]est Run [L]line",
+            },
+            {
+                "<leader>tf",
+                function()
+                    local qt = require("quicktest")
+
+                    qt.run_file()
+                end,
+                desc = "[T]est Run [F]ile",
+            },
+            {
+                '<leader>td',
+                function()
+                    local qt = require 'quicktest'
+
+                    qt.run_dir()
+                end,
+                desc = '[T]est Run [D]ir',
+            },
+            {
+                '<leader>ta',
+                function()
+                    local qt = require 'quicktest'
+
+                    qt.run_all()
+                end,
+                desc = '[T]est Run [A]ll',
+            },
+            {
+                "<leader>tp",
+                function()
+                    local qt = require("quicktest")
+
+                    qt.run_previous()
+                end,
+                desc = "[T]est Run [P]revious",
+            },
+            {
+                "<leader>tt",
+                function()
+                    local qt = require("quicktest")
+
+                    qt.toggle_win("split")
+                end,
+                desc = "[T]est [T]oggle Window",
+            },
+            {
+                "<leader>tc",
+                function()
+                    local qt = require("quicktest")
+
+                    qt.cancel_current_run()
+                end,
+                desc = "[T]est [C]ancel Current Run",
+            },
+        },
     },
 
 
