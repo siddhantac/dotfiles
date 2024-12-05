@@ -104,9 +104,18 @@ alias gla=pretty_git_log_all
 alias gw='git worktree'
 alias gwl='git worktree list'
 alias gwa='git worktree add'
-alias gwr='git worktree remove'
+# alias gwr='git worktree remove'
 alias pr='gh pr create -a @me  -w'
 alias gclean='git fetch --prune && git gc'
+
+# gwr: remove worktree
+gwr() {
+    if [[ -z "$1" ]]; then
+        git worktree list | awk '{print $1}' | fzf | xargs -I {} git worktree remove {}
+    else
+        git worktree remove $1
+    fi
+}
 
 # gcap: commit all and push
 gcap() {
