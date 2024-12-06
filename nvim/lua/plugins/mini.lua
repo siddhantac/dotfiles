@@ -87,12 +87,16 @@ M.setup = function()
         local rhs = function()
             -- Make new window and set it as target
             local new_target_window
-            vim.api.nvim_win_call(MiniFiles.get_target_window(), function()
-                vim.cmd(direction .. ' split')
-                new_target_window = vim.api.nvim_get_current_win()
-            end)
+            vim.api.nvim_win_call(
+                MiniFiles.get_explorer_state().target_window,
+                function()
+                    vim.cmd(direction .. ' split')
+                    new_target_window = vim.api.nvim_get_current_win()
+                end
+            )
 
             MiniFiles.set_target_window(new_target_window)
+            MiniFiles.go_in()
         end
 
         -- Adding `desc` will result into `show_help` entries
@@ -105,7 +109,7 @@ M.setup = function()
         callback = function(args)
             local buf_id = args.data.buf_id
             -- Tweak keys to your liking
-            map_split(buf_id, '<C-h>', 'belowright horizontal')
+            map_split(buf_id, '<C-x>', 'belowright horizontal')
             map_split(buf_id, '<C-v>', 'belowright vertical')
         end,
     })
