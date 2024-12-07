@@ -7,6 +7,9 @@ M.setup = function()
     require('mini.files').setup()
     require('mini.cursorword').setup()
     require('mini.ai').setup()
+    require('mini.indentscope').setup({
+        symbol = "│",
+    })
 
     -- local pad = string.rep(" ", 22)
     local new_section = function(name, action, section)
