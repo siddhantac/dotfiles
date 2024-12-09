@@ -85,6 +85,7 @@ setup_links() {
 	[ -d ~/.config/zsh ] || ln -s $(PWD)/zsh ~/.config/
 	[ -d ~/.config/kitty ] || ln -s $(PWD)/kitty ~/.config/
 	[ -d ~/.config/nvim ] || ln -s $(PWD)/nvim ~/.config/
+	[ -d ~/.config/gh-dash ] || ln -s $(PWD)/gh-dash ~/.config/
 
 	# `-f` checks if file exists
 	[ -f ~/.gitconfig ] || ln -s $(PWD)/gitconfig ~/.gitconfig
@@ -111,6 +112,9 @@ install_extras() {
 
     brew install gh
     brew cleanup
+
+    # install gh extensions
+    gh extension install dlvhdr/gh-dash
 
     message "success" "extra tools installed"
 }
@@ -144,8 +148,8 @@ case $1 in
 
         homebrew || message "error" "failed to install homebrew"
         core || message "error" "failed to install core tools"
-        setup_links || message "error" "failed to setup links"
         install_extras || message "error" "failed to install extra tools"
+        setup_links || message "error" "failed to setup links"
         ;;
     homebrew)
         homebrew || message "error" "failed to install homebrew"
