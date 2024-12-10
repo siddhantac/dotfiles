@@ -56,7 +56,7 @@ map({ '', '<s-UP>', ':resize +5 <CR>' })
 map({ '', '<s-DOWN>', ':resize -5 <CR>' })
 
 -- Keep cursor centered when moving by pages.
-nmap({ '<C-f>', '<C-f>zz' })
+nmap({ '<C-f>', '<C-f>zt' })
 nmap({ '<C-d>', '<C-d>zz' })
 
 -- When pasting, don't overwrite the register with the deleted text.
