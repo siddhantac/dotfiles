@@ -224,7 +224,7 @@ gtr() {
 }
 
 # preview files
-pf() {
+preview_files() {
 	local selection
 	if [[ -z "$1" ]]; then
 		selection="$(fd -u -t f -E '.git/' | fzf)" && preview_files "$selection"
@@ -258,6 +258,7 @@ pf() {
 			fi
 	esac
 }
+alias pf=preview_files
 
 # open PRs in nvim diffview
 nvim_diff() {
