@@ -64,6 +64,10 @@ core() {
     brew install zsh-autosuggestions
     brew install zsh-syntax-highlighting
     brew install mos
+
+    # yazi
+    brew install yazi ffmpeg sevenzip jq poppler fd ripgrep fzf zoxide imagemagick font-symbols-only-nerd-font
+
 	brew cleanup
 
     # tpm

@@ -146,3 +146,14 @@ source_if_exists nvm-lazy.sh # lazy load nvm to keep the terminal init fast
 if [ -n "${ZSH_DEBUGRC+1}" ]; then
     zprof
 fi
+
+# yazi
+#   change the current working directory when exiting yazi
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
