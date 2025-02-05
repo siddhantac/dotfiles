@@ -76,8 +76,8 @@ local lsp_progress_notification = function(ev)
     local client = vim.lsp.get_client_by_id(client_id)
     local value = ev.data.params.value
     local token = ev.data.params.token
-    local msg = value.message
-    local title = " LSP [" .. client.name .. "]: " .. value.title
+    local msg = client.name .. "\n  " .. value.title .. ": " .. value.message
+    local title = "LSP"
 
     return { token = token, msg = msg, title = title }
 end
