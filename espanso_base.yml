@@ -76,7 +76,7 @@ matches:
           cmd: echo $(pbpaste)
 
   - trigger: ":slk"
-    replace: "[slack]({{output}}) "
+    replace: "([slack]({{output}}))"
     vars:
       - name: output
         type: shell
