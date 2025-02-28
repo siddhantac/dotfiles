@@ -77,6 +77,10 @@ local lsp_progress_notification = function(ev)
     local value = ev.data.params.value
     local token = ev.data.params.token
 
+    if not value then
+        return
+    end
+
     local message = value.message or ""
     local msg = client.name .. " - " .. value.title .. "\n  " .. message
     local title = "LSP"
@@ -91,6 +95,10 @@ vim.api.nvim_create_autocmd('LspProgress', {
     callback = function(ev)
         local spinner = require("utils.spinner")
         local notif = lsp_progress_notification(ev)
+
+        if notif == nil then
+            return
+        end
         spinner.start(notif.token, notif.msg, notif.title)
     end
 })
