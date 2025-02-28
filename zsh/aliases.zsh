@@ -143,8 +143,18 @@ gsync() {
 }
 
 gwab() {
-    git worktree add ../$1 -b $1
-    cd ../$1
+    worktree_dir="../$1"
+    # Check if the branch exists in remote
+    if git show-ref --verify --quiet "refs/remotes/origin/$1"; then
+        echo "Branch '$1' exists in remote. Checking out..."
+        git worktree add $worktree_dir "$1"
+        (cd $worktree_dir && git pull origin "$1")
+    else
+        echo "Branch '$1' does not exist in remote. Creating a new branch..."
+        git worktree add -b "$1" $worktree_dir 
+    fi
+
+    echo "\nWorktree created at '$worktree_dir'"
 }
 
 # gsr: gsync() + git rebase
