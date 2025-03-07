@@ -14,6 +14,7 @@ require("lazy").setup({
             require("notify").setup({
                 stages = "fade",
                 top_down = true,
+                background_colour = "#000000",
             })
 
             local banned_messages = { "No code actions available" }
