@@ -104,6 +104,7 @@ nmap({ "<leader>dh", function() vim.diagnostic.open_float() end, { desc = "Hover
 
 -- LSP
 nmap({ "gd", vim.lsp.buf.definition, { desc = "Go to def" } })
+nmap({ "<leader>lf", function() vim.lsp.buf.format() end, { desc = "Format" } })
 
 -- Git
 local utils = require("utils")
