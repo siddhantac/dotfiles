@@ -77,7 +77,7 @@ local lsp_progress_notification = function(ev)
     local value = ev.data.params.value
     local token = ev.data.params.token
 
-    if not value then
+    if not value or not value.title then
         return
     end
 
@@ -103,7 +103,7 @@ vim.api.nvim_create_autocmd('LspProgress', {
     end
 })
 
-vim.api.nvim_create_autocmd('LspProgress', {
+vim.api.nvim_create_autocmd("LspProgress", {
     pattern = 'end',
     group = lsp_progress,
     callback = function(ev)
