@@ -48,6 +48,7 @@ require("lazy").setup({
 
     -- Git plugins
     {
+        -- testing ldesossa/gh.nvim
         'ldelossa/gh.nvim',
         dependencies = { 'ldelossa/litee.nvim' },
         event = { "BufReadPre", "BufNewFile" },
