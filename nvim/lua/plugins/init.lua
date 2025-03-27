@@ -17,17 +17,7 @@ require("lazy").setup({
                 background_colour = "#000000",
             })
 
-            local banned_messages = { "No code actions available" }
-
-            vim.notify = function(msg, ...)
-                for _, banned in ipairs(banned_messages) do
-                    if msg == banned then
-                        print(msg)
-                        return
-                    end
-                end
-                require("notify")(msg, ...)
-            end
+            vim.notify = require("notify")
             -- TODO:: call mappings from here
             -- https://github.com/dkarter/dotfiles/blob/57c6a4c2e98c0cd6ed851aa5791351591eb34df5/config/nvim/lua/plugins/init.lua#L799
         end,
