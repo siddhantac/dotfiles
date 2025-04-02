@@ -2,6 +2,18 @@ local core_mappings = require("core.mappings")
 
 require("lazy").setup({
     {
+        "vimwiki/vimwiki",
+        init = function()
+            -- Setting vimwiki configuration in Lua
+            vim.g.vimwiki_list = {
+                {
+                    syntax = 'markdown',
+                    ext = 'md'
+                }
+            }
+        end
+    },
+    {
         "iamcco/markdown-preview.nvim",
         cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
         ft = { "markdown" },
