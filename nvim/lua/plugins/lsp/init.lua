@@ -1,5 +1,20 @@
 local core_mappings = require("core.mappings")
 
+vim.lsp.config.gopls = {
+    cmd = { 'gopls' },
+    root_markers = { 'go.mod', 'go.sum' },
+    filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
+}
+vim.lsp.enable({ "gopls" })
+vim.diagnostic.config({
+    severity_sort = true,
+    virtual_lines = {
+        current_line = true,
+        severity = { min = vim.diagnostic.severity.ERROR }
+    },
+    virtual_text = true
+})
+
 return {
     {
         "maxandron/goplements.nvim",
