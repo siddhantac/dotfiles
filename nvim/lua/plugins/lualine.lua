@@ -169,7 +169,7 @@ M.setup = function()
                 },
 
             },
-            lualine_x = {},
+            lualine_x = { "overseer" },
             lualine_y = {
                 'filetype',
                 lsp_provider,
