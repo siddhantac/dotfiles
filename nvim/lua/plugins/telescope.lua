@@ -1,5 +1,6 @@
-local M = {}
-M.setup = function()
+local core_mappings = require("core.mappings")
+
+config = function()
     local actions  = require "telescope.actions"
     local get_icon = require("utils").get_icon
 
@@ -56,4 +57,20 @@ M.setup = function()
     end
 end
 
-return M
+return {
+    -- Telescope
+    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+    { 'nvim-telescope/telescope-ui-select.nvim' },
+    {
+        'nvim-telescope/telescope.nvim',
+        name = "telescope.nvim",
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+        },
+        config = config,
+        keys = core_mappings.telescope_mappings,
+        event = "VeryLazy",
+    },
+
+
+}

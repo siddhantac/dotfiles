@@ -1,18 +1,17 @@
 local core_mappings = require("core.mappings")
 
 require("lazy").setup({
-    {
-        "vimwiki/vimwiki",
-        init = function()
-            -- Setting vimwiki configuration in Lua
-            vim.g.vimwiki_list = {
-                {
-                    syntax = 'markdown',
-                    ext = 'md'
-                }
-            }
-        end
-    },
+    require("plugins.git"),
+    require("plugins.code_review"),
+    require("plugins.coding"),
+    require("plugins.treesitter"),
+    require("plugins.treesitter_textobjects"),
+    require("plugins.pkm"),
+    require("plugins.codeium"),
+    require("plugins.telescope"),
+
+    require("plugins.lsp"),
+
     {
         "iamcco/markdown-preview.nvim",
         cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
@@ -46,61 +45,6 @@ require("lazy").setup({
         'windwp/nvim-autopairs',
         event = "InsertEnter",
         opts = {} -- this is equalent to setup({}) function
-    },
-
-    -- Git plugins
-    {
-        'ldelossa/gh.nvim',
-        dependencies = { 'ldelossa/litee.nvim' },
-        event = { "BufReadPre", "BufNewFile" },
-        config = function()
-            require('litee.lib').setup()
-            require('litee.gh').setup()
-        end,
-    },
-    {
-        "NeogitOrg/neogit",
-        event = { "BufReadPre", "BufNewFile" },
-        dependencies = {
-            "nvim-lua/plenary.nvim",         -- required
-            "sindrets/diffview.nvim",        -- optional
-            "nvim-telescope/telescope.nvim", -- optional
-            -- "ibhagwan/fzf-lua",              -- either this or Telescope, not both
-        },
-        config = true,
-        keys = core_mappings.neogit_mappings,
-    },
-    {
-        -- works better than tpope/vim-rhubarb
-        'ruifm/gitlinker.nvim',
-        dependencies = 'nvim-lua/plenary.nvim',
-        opts = {},
-        keys = core_mappings.gitlinker_mappings,
-        event = { "BufReadPre", "BufNewFile" },
-    },
-    {
-        'tpope/vim-fugitive',
-        event = { "BufReadPre", "BufNewFile" },
-    },
-    {
-        'lewis6991/gitsigns.nvim',
-        config = function()
-            require("gitsigns").setup()
-        end,
-        keys = core_mappings.gitsigns_mappings,
-        event = { "VeryLazy" },
-    },
-    {
-        'pwntester/octo.nvim',
-        dependencies = {
-            'nvim-lua/plenary.nvim',
-            'nvim-telescope/telescope.nvim',
-            'nvim-tree/nvim-web-devicons',
-        },
-        cmd = { "Octo" },
-        config = function()
-            require "plugins.octo".setup()
-        end,
     },
 
     {
@@ -151,98 +95,6 @@ require("lazy").setup({
         end,
         keys = core_mappings.other_mappings,
     },
-    -- {
-    --     "nvim-neotest/neotest-go",
-    --     ft = "*_test.go",
-    --     dependencies = {
-    --         "nvim-neotest/neotest",
-    --     },
-    --     config = function()
-    --         require("plugins.neotest_go").setup()
-    --     end,
-    --     keys = core_mappings.neotest_mappings,
-    -- },
-    -- {
-    --     "nvim-neotest/neotest",
-    --     name = "neotest",
-    --     event = "BufEnter *_test.go",
-    --     dependencies = {
-    --         "nvim-neotest/nvim-nio",
-    --         "nvim-lua/plenary.nvim",
-    --         "nvim-treesitter/nvim-treesitter",
-    --         "antoinemadec/FixCursorHold.nvim",
-    --     },
-    --     config = function()
-    --         require("plugins.neotest").setup()
-    --     end,
-    -- },
-    {
-        "quolpr/quicktest.nvim",
-        config = function()
-            local qt = require("quicktest")
-
-            qt.setup({
-                -- Choose your adapter, here all supported adapters are listed
-                adapters = {
-                    require("quicktest.adapters.golang")({}),
-                    require("quicktest.adapters.vitest")({}),
-                },
-                -- split or popup mode, when argument not specified
-                default_win_mode = "split",
-                use_experimental_colorizer = true
-            })
-        end,
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "MunifTanjim/nui.nvim",
-        },
-        keys = core_mappings.quicktest_mappings,
-    },
-
-
-    -- auto completion
-    {
-        "L3MON4D3/LuaSnip",
-        event = { "InsertEnter" },
-        dependencies = {
-            "rafamadriz/friendly-snippets",
-        },
-        config = function()
-            require("luasnip.loaders.from_vscode").lazy_load({ include = "go" })
-        end
-    },
-    {
-        "hrsh7th/nvim-cmp",
-        event = { "InsertEnter" },
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "L3MON4D3/LuaSnip",         -- snippet engine
-            "saadparwaiz1/cmp_luasnip", -- for autocompletion
-            "hrsh7th/cmp-nvim-lsp",
-            "hrsh7th/cmp-buffer",
-            "hrsh7th/cmp-path",
-            "onsails/lspkind.nvim", -- optional dependency
-        },
-        config = function()
-            require("plugins.nvim_cmp").setup()
-        end,
-    },
-
-    -- Telescope
-    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-    { 'nvim-telescope/telescope-ui-select.nvim' },
-    {
-        'nvim-telescope/telescope.nvim',
-        name = "telescope.nvim",
-        dependencies = {
-            'nvim-lua/plenary.nvim',
-        },
-        config = function()
-            require("plugins.telescope").setup()
-        end,
-        keys = core_mappings.telescope_mappings,
-        event = "VeryLazy",
-    },
 
     -- UI
     {
@@ -267,7 +119,7 @@ require("lazy").setup({
     {
         'yorickpeterse/nvim-grey',
     },
-    { "fcancelinha/nordern.nvim", branch = "master", priority = 1000 },
+    { "fcancelinha/nordern.nvim",      branch = "master", priority = 1000 },
     {
         'szw/vim-maximizer',
         cmd = { "MaximizerToggle" },
@@ -292,9 +144,6 @@ require("lazy").setup({
         keys = core_mappings.terminal_mappings,
     },
 
-    -- LSP
-    require("plugins.lsp"),
-
 
     {
         "folke/which-key.nvim",
@@ -313,86 +162,10 @@ require("lazy").setup({
         },
     },
 
-    {
-        'nvim-treesitter/nvim-treesitter',
-        name = 'treesitter',
-        cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
-        build = ":TSUpdate",
-        event = { "BufReadPre", "BufNewFile" },
-        config = function()
-            require("plugins.treesitter").config()
-        end,
-    },
-    {
-        'nvim-treesitter/nvim-treesitter-textobjects',
-        name = 'treesitter-textobjects',
-        dependencies = {
-            'nvim-treesitter/nvim-treesitter',
-        },
-        event = { "BufReadPre", "BufNewFile" },
-        config = function()
-            require("plugins.treesitter_textobjects").config()
-        end,
-    },
-    {
-        'nvim-treesitter/nvim-treesitter-context',
-        event = 'BufReadPre',
-        keys = {
-            { '[x', function() require('treesitter-context').go_to_context() end },
-        },
-    },
-
-    {
-        'Exafunction/codeium.vim',
-        -- event = 'BufReadPre',
-        config = function()
-            -- Change '<C-g>' here to any keycode you like.
-            vim.keymap.set('i', '<C-g>', function() return vim.fn['codeium#Accept']() end, { expr = true, silent = true })
-            vim.keymap.set('i', '<c-;>', function() return vim.fn['codeium#CycleCompletions'](1) end,
-                { expr = true, silent = true })
-            vim.keymap.set('i', '<c-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end,
-                { expr = true, silent = true })
-            vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true, silent = true })
-        end
-    },
 
     {
         'kevinhwang91/nvim-bqf',
         event = 'BufReadPre',
-    },
-    {
-        'nvim-orgmode/orgmode',
-        ft = { 'org' },
-        dependencies = {
-            {
-                'akinsho/org-bullets.nvim',
-                config = function()
-                    require('org-bullets').setup()
-                end
-            }
-        },
-        config = function()
-            -- Setup orgmode
-            require('orgmode').setup({
-                org_agenda_files = '~/workspace/deliveryhero/todos/**/*',
-                org_default_notes_file = '~/workspace/deliveryhero/todos/refile.org',
-                org_todo_keywords = { 'TODO', 'DOING', '|', 'DONE' },
-                org_capture_templates = {
-                    r = {
-                        description = "Repo",
-                        template = "* [[%x][%(return string.match('%x', '([^/]+)$'))]]%?",
-                        target = "~/org/repos.org",
-                    }
-                },
-            })
-
-            -- NOTE: If you are using nvim-treesitter with `ensure_installed = "all"` option
-            -- add `org` to ignore_install
-            -- require('nvim-treesitter.configs').setup({
-            --   ensure_installed = 'all',
-            --   ignore_install = { 'org' },
-            -- })
-        end,
     },
     {
         'stevearc/overseer.nvim',
@@ -400,38 +173,5 @@ require("lazy").setup({
             templates = { "builtin", "user.pull_request" },
         },
         keys = core_mappings.overseer_mappings,
-    },
-    {
-        'daliusd/ghlite.nvim',
-        config = function()
-            require('ghlite').setup({
-                debug = false,           -- if set to true debugging information is written to ~/.ghlite.log file
-                view_split = 'vsplit',   -- set to empty string '' to open in active buffer
-                diff_split = 'vsplit',   -- set to empty string '' to open in active buffer
-                comment_split = 'split', -- set to empty string '' to open in active buffer
-                open_command = 'open',   -- open command to use, e.g. on Linux you might want to use xdg-open
-                merge = {
-                    approved = '--squash',
-                    nonapproved = '--auto --squash',
-                },
-                keymaps = { -- override default keymaps with the ones you prefer
-                    diff = {
-                        open_file = 'gf',
-                        open_file_tab = 'gt',
-                        open_file_split = 'gs',
-                        open_file_vsplit = 'gv',
-                        approve = '<C-A>',
-                    },
-                    comment = {
-                        send_comment = '<C-CR>'
-                    },
-                    pr = {
-                        approve = '<C-A>',
-                        merge = '<C-M>',
-                    },
-                },
-            })
-        end,
-        -- keys = core_mappings.ghlite_mappings,
     },
 })
