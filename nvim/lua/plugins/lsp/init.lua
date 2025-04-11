@@ -6,10 +6,11 @@ local core_mappings = require("core.mappings")
 --     filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
 -- }
 
-vim.lsp.enable({
-    "gopls",
-    -- "pyright",
-})
+-- vim.lsp.enable({
+--     "gopls",
+--     "pyright",
+-- })
+
 vim.diagnostic.config({
     severity_sort = true,
     virtual_lines = {

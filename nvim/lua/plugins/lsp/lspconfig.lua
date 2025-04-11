@@ -37,10 +37,10 @@ M.setup = function()
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end
 
-    -- lspconfig.gopls.setup {
-    --     on_attach = on_attach,
-    --     capabilities = capabilities,
-    -- }
+    lspconfig.gopls.setup {
+        on_attach = on_attach,
+        capabilities = capabilities,
+    }
 
     -- configure lua server (with special settings)
     lspconfig["lua_ls"].setup({
