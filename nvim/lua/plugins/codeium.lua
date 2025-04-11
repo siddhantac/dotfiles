@@ -11,8 +11,7 @@ return {
         vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true, silent = true })
     end,
     cond = function()
-        -- disable if cwd is deliveryero
-        local cwd = vim.fn.getcwd()
-        return string.find(cwd, "deliveryero") == nil
+        -- disable if cwd is deliveryhero
+        return string.find(vim.fn.getcwd(), "deliveryhero") == nil
     end,
 }
