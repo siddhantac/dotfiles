@@ -1,5 +1,47 @@
 return {
     {
+        'mfussenegger/nvim-dap',
+        keys = require("core.mappings").dap(),
+    },
+    {
+        'leoluz/nvim-dap-go',
+        dependencies = "mfussenegger/nvim-dap",
+        config = function()
+            require("dap-go").setup()
+        end,
+        ft = "go",
+    },
+    {
+        "rcarriga/nvim-dap-ui",
+        dependencies = {
+            "mfussenegger/nvim-dap",
+            "nvim-neotest/nvim-nio",
+            "folke/lazydev.nvim",
+        },
+        keys = require("core.mappings").dapui(),
+        config = function()
+            require("dapui").setup()
+            require("lazydev").setup({
+                library = { "nvim-dap-ui" }
+            })
+
+            -- automatic opening and closing of UI
+            local dap, dapui = require("dap"), require("dapui")
+            dap.listeners.before.attach.dapui_config = function()
+                dapui.open()
+            end
+            dap.listeners.before.launch.dapui_config = function()
+                dapui.open()
+            end
+            dap.listeners.before.event_terminated.dapui_config = function()
+                dapui.close()
+            end
+            dap.listeners.before.event_exited.dapui_config = function()
+                dapui.close()
+            end
+        end,
+    },
+    {
         "quolpr/quicktest.nvim",
         config = function()
             local qt = require("quicktest")

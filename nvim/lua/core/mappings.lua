@@ -440,4 +440,27 @@ function M.quicktest_mappings()
     }
 end
 
+function M.dap()
+    return {
+        { "<leader>db", "<cmd>DapToggleBreakpoint<CR>", "Toggle Breakpoint" },
+        { "<leader>dc", "<cmd>DapContinue<CR>",         "Continue" },
+        { "<leader>di", "<cmd>DapStepInto<CR>",         "Step Into" },
+        { "<leader>do", "<cmd>DapStepOver<CR>",         "Step Over" },
+        { "<leader>dx", "<cmd>DapClearBreakpoints<CR>", "Clear Breakpoints" },
+        { "<leader>dt", "<cmd>DapTerminate<CR>",        "Terminate" },
+    }
+end
+
+function M.dapui()
+    return {
+        {
+            "<leader>du",
+            function()
+                require("dapui").toggle()
+            end,
+            "Toggle DAP UI",
+        }
+    }
+end
+
 return M
