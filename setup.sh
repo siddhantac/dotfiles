@@ -93,6 +93,7 @@ setup_links() {
 
 	# `-f` checks if file exists
 	[ -f ~/.gitconfig ] || ln -s $(PWD)/gitconfig ~/.gitconfig
+	[ -f ~/.config/git/template ] || ln -s $(PWD)/gittemplate ~/.config/git/template
 	[ -f ~/.zshrc ] || ln -s $(PWD)/zsh/zshrc ~/.zshrc
 	[ -f ~/.tmux.conf ] || ln -s $(PWD)/tmux/tmux.conf ~/.tmux.conf
 	[ -f ~/.config/karabiner/karabiner.json ] || ln -s $(PWD)/karabiner/karabiner.json ~/.config/karabiner/karabiner.json
@@ -128,6 +129,7 @@ clean() {
 
 	rm -rf ~/.config/tmux
 	rm -f ~/.gitconfig
+	rm -rf ~/.config/git
 	rm -f ~/.zshrc
 	rm -rf ~/.config/zsh
 	rm -rf ~/.config/kitty
