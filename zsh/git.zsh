@@ -48,11 +48,11 @@ pretty_git_log() {
         num=10
         echo "defaulting to last 10 commits"
     fi
-    git log --since="6 months ago" --graph --pretty="tformat:${LOG_FORMAT}" -n $num | pretty_git_format | git_page_maybe
+    git log --graph --pretty="tformat:${LOG_FORMAT}" -n $num | pretty_git_format | git_page_maybe
 }
 
 pretty_git_log_all() {
-    git log --all --since="6 months ago" --graph --pretty="tformat:${LOG_FORMAT}" $* | pretty_git_format | git_page_maybe
+    git log --all --graph --pretty="tformat:${LOG_FORMAT}" $* | pretty_git_format | git_page_maybe
 }
 
 
