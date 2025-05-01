@@ -9,6 +9,9 @@
 	editor = vim
     excludesFile = ~/.gitignore
     pager = delta
+    compression = 9
+    preloadindex = true
+    whitespace = error
 
 [user]
     name = Siddhanta
@@ -17,11 +20,32 @@
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
 
+[status]
+    branch = true
+    showStash = true
+    showUntrackedFiles = all  # show files in untracked directories
+
+[commit]
+    template = ~/.config/git/template
+
+[branch]
+    sort = -committerdate
+
+[tag]
+    sort = -taggerdate
+
 [pull]
 	rebase = true
+
+[log]
+    abbrevCommit = true  # short commits
+    graphColors = blue,yellow,cyan,magenta,green,red
+
 [push]
-	default = simple
+	default = simple   # pushes the current branch to its upstream branch, but only if they have the same name
 	autoSetupRemote = true
+    followTags = true
+
 [pager]
 	branch = false
 
