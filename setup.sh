@@ -90,10 +90,10 @@ setup_links() {
 	[ -d ~/.config/kitty ] || ln -s $(PWD)/kitty ~/.config/
 	[ -d ~/.config/nvim ] || ln -s $(PWD)/nvim ~/.config/
 	[ -d ~/.config/gh-dash ] || ln -s $(PWD)/gh-dash ~/.config/
+	[ -d ~/.config/git ] || ln -s $(PWD)/git ~/.config/
 
 	# `-f` checks if file exists
 	[ -f ~/.gitconfig ] || ln -s $(PWD)/gitconfig ~/.gitconfig
-	[ -f ~/.config/git/template ] || ln -s $(PWD)/gittemplate ~/.config/git/template
 	[ -f ~/.zshrc ] || ln -s $(PWD)/zsh/zshrc ~/.zshrc
 	[ -f ~/.tmux.conf ] || ln -s $(PWD)/tmux/tmux.conf ~/.tmux.conf
 	[ -f ~/.config/karabiner/karabiner.json ] || ln -s $(PWD)/karabiner/karabiner.json ~/.config/karabiner/karabiner.json
