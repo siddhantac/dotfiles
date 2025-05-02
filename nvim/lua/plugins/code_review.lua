@@ -23,14 +23,16 @@ return {
     {
         'ldelossa/gh.nvim',
         dependencies = { 'ldelossa/litee.nvim' },
-        event = { "BufReadPre", "BufNewFile" },
+        -- event = { "BufReadPre", "BufNewFile" },
         config = function()
             require('litee.lib').setup()
             require('litee.gh').setup()
         end,
+        cmd = { "GHOpenPR", "GHOpenToPR" },
     },
     {
         'daliusd/ghlite.nvim',
+        cmd = { "GHLitePRSelect" },
         config = function()
             require('ghlite').setup({
                 debug = false,           -- if set to true debugging information is written to ~/.ghlite.log file
