@@ -64,7 +64,10 @@ M.setup = function()
     })
     lspconfig.pyright.setup {}
     lspconfig.ts_ls.setup {}
-    lspconfig.marksman.setup {}
+    lspconfig.marksman.setup {
+        on_attach = on_attach,
+        capabilities = capabilities,
+    }
     lspconfig.terraformls.setup {}
     lspconfig.jsonls.setup {
         capabilities = capabilities,
