@@ -22,11 +22,17 @@ M.setup = function()
             b = { bg = colors.darkblue },
             c = { bg = colors.darkblue },
             x = { bg = colors.darkblue },
-            y = { bg = colors.darkblue },
-            z = { bg = colors.darkblue },
+            y = { bg = colors.darkblue, fg = colors.white },
+            z = { bg = colors.darkblue, fg = colors.white },
         },
-        insert = { a = { bg = colors.darkblue } },
-        visual = { a = { bg = colors.darkblue } },
+        insert = {
+            a = { bg = colors.darkblue },
+            z = { bg = colors.darkblue, fg = colors.white },
+        },
+        visual = {
+            a = { bg = colors.darkblue },
+            z = { bg = colors.darkblue, fg = colors.white },
+        },
         replace = { a = { bg = colors.darkblue } },
         command = { a = { bg = colors.darkblue } },
     }
