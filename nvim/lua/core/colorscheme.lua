@@ -2,3 +2,4 @@
 -- vim.cmd.colorscheme "darkvoid"
 -- vim.cmd.colorscheme "grey"
 -- vim.cmd.colorscheme "nordern"
+vim.cmd.colorscheme "kanso"

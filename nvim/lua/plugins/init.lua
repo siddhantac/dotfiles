@@ -138,6 +138,12 @@ require("lazy").setup({
         cmd = { "MaximizerToggle" },
     },
     {
+        "webhooked/kanso.nvim",
+        lazy = false,
+        priority = 1000,
+    },
+
+    {
         'nvim-lualine/lualine.nvim',
         name = "lualine.nvim",
         dependencies = {
