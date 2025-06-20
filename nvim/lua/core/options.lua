@@ -37,7 +37,7 @@ vim.opt.autoread = true
 vim.opt.swapfile = false
 
 vim.o.foldmethod = 'expr'
-vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 vim.o.foldlevelstart = 99
 
 vim.opt.hlsearch = false

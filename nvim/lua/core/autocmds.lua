@@ -123,3 +123,15 @@ vim.api.nvim_create_autocmd('User', {
         end)
     end
 })
+
+vim.api.nvim_create_autocmd("LspAttach", {
+    desc = "User: Set LSP folding if client supports it",
+    callback = function(ctx)
+        local client = assert(vim.lsp.get_client_by_id(ctx.data.client_id))
+        if client:supports_method("textDocument/foldingRange") then
+            local win = vim.api.nvim_get_current_win()
+            vim.wo[win][0].foldexpr = "v:lua.vim.lsp.foldexpr()"
+            vim.notify("set lsp folding")
+        end
+    end,
+})
