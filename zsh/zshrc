@@ -18,7 +18,7 @@ source_if_exists () {
 
 export WORKSPACE=$HOME/workspace
 export DOTFILES=$WORKSPACE/dotfiles
-export PATH=/usr/local/go/bin:$HOME/.local/share/nvim/mason/bin:/usr/local/bin:$HOME/go/bin:$HOME/workspace/bin:/opt/homebrew/bin:$HOME/.tmux/plugins/tmuxifier/bin:$PATH
+export PATH=/usr/local/go/bin:$HOME/.local/share/nvim/mason/bin:/usr/local/bin:$HOME/go/bin:$HOME/workspace/bin:/opt/homebrew/bin:$HOME/.tmux/plugins/tmuxifier/bin:$PATH:$HOME/.local/bin/env
 export GOPATH=$HOME/go
 export TERM=screen-256color
 export XDG_CONFIG_HOME=$HOME/.config
@@ -157,3 +157,4 @@ function y() {
 	fi
 	rm -f -- "$tmp"
 }
+
