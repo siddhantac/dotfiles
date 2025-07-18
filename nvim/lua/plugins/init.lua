@@ -47,7 +47,12 @@ require("lazy").setup({
         end,
     },
 
-    { 'christoomey/vim-tmux-navigator' },
+    -- { 'christoomey/vim-tmux-navigator' },
+    {
+        'knubie/vim-kitty-navigator',
+        build = "cp ./*.py ~/.config/kitty/",
+    },
+
     {
         "folke/todo-comments.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
@@ -132,7 +137,7 @@ require("lazy").setup({
     {
         'yorickpeterse/nvim-grey',
     },
-    { "fcancelinha/nordern.nvim",      branch = "master", priority = 1000 },
+    { "fcancelinha/nordern.nvim", branch = "master", priority = 1000 },
     {
         'szw/vim-maximizer',
         cmd = { "MaximizerToggle" },
