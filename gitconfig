@@ -25,9 +25,6 @@
     showStash = true
     showUntrackedFiles = all  # show files in untracked directories
 
-[commit]
-    template = ~/.config/git/template
-
 [branch]
     sort = -committerdate
 
