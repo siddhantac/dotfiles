@@ -16,9 +16,10 @@ github_url_to_markdown() {
     local url="$1"
     
     # Check if URL matches GitHub PR pattern and extract PR number
-    if [[ $url =~ ^https://github\.com/[^/]+/[^/]+/pull/([0-9]+)$ ]]; then
-        pr_number="${BASH_REMATCH[1]}"
-        echo "[$pr_number]($url)"
+    if [[ $url =~ ^https://github\.com/[^/]+/(.*)/pull/([0-9]+)$ ]]; then
+        pr_number="${BASH_REMATCH[2]}"
+        repo="${BASH_REMATCH[1]}"
+        echo "[$repo/$pr_number]($url)"
     else
         echo "invalid url"
     fi
