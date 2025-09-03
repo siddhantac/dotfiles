@@ -60,6 +60,8 @@ main() {
         elif [[ "$OSTYPE" == "msys" ]] || [[ "$OSTYPE" == "cygwin" ]] || [[ "$OSTYPE" == "win32" ]]; then
             echo "$result" | clip.exe
         fi
+
+        echo "Copied to clipboard"
     fi
 }
 
