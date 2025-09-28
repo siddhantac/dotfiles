@@ -2,7 +2,15 @@ local M = {}
 M.setup = function()
     -- most of this is taken from the Lazy distro https://www.lazyvim.org/extras/ui/mini-starter
 
-    require('mini.comment').setup()
+    require('mini.comment').setup({
+        options = {
+            custom_commentstring = function()
+                if vim.bo.filetype == 'ledger' then
+                    return '; %s'
+                end
+            end,
+        }
+    })
     require('mini.surround').setup()
     require('mini.sessions').setup()
     require('mini.files').setup()
