@@ -158,3 +158,6 @@ function y() {
 	rm -f -- "$tmp"
 }
 
+
+# opencode
+export PATH=/Users/siddhanta.c/.opencode/bin:$PATH

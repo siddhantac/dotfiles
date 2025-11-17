@@ -91,4 +91,55 @@ return {
             require("plugins.nvim_cmp").setup()
         end,
     },
+
+    {
+        "olimorris/codecompanion.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
+        },
+        opts = {
+            -- NOTE: The log_level is in `opts.opts`
+            opts = {
+                log_level = "DEBUG", -- or "TRACE"
+            },
+        },
+        config = function()
+            require("codecompanion").setup({
+                strategies = {
+                    chat = {
+                        adapter = "pd_llm",
+                    },
+                    inline = {
+                        adapter = "pd_llm",
+                    },
+                    cmd = {
+                        adapter = "pd_llm",
+                    }
+                },
+                adapters = {
+                    http = {
+                        opts = {
+                            show_defaults = false,
+                        },
+                        pd_llm = function()
+                            return require("codecompanion.adapters").extend("openai_compatible", {
+                                env = {
+                                    url = "https://pd-llm-proxy.deliveryhero.net",
+                                    api_key = "sk-tBlmAhuxk3KBmJJ2FDCj9w",
+                                    -- please do not use plaintext, this example uses 1Password
+                                },
+                                schema = {
+                                    model = {
+                                        default = "gemini-2-5-pro-exp", -- define llm model to be used
+                                    },
+                                },
+                            })
+                        end,
+                    },
+                },
+            })
+        end,
+
+    },
 }
