@@ -21,6 +21,8 @@ alias cpv='rsync -ah --progress'
 alias hl='hledger'
 alias v='nvim'
 
+alias tt='taskwarrior-tui'
+
 find_files() {
 	# IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0 --prompt 'edit file: ' --preview='eza --tree --level=1 $(dirname {})'))
 	IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0 --prompt 'edit file: ' --preview='bat {} --color=always'))
