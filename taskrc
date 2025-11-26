@@ -1,0 +1,41 @@
+# [Created by task 3.1.0 12/14/2024 12:58:05]
+data.location=/Users/siddhanta.c/.task
+news.version=3.4.1
+
+# To use the default location of the XDG directories,
+# move this configuration file from ~/.taskrc to ~/.config/task/taskrc and update location config as follows:
+
+#data.location=~/.local/share/task
+#hooks.location=~/.config/task/hooks
+
+# Color theme (uncomment one to use)
+#include light-16.theme
+# include light-256.theme
+#include dark-16.theme
+# include dark-256.theme
+#include dark-red-256.theme
+# include dark-green-256.theme
+# include dark-blue-256.theme
+# include dark-violets-256.theme
+#include dark-yellow-green.theme
+#include dark-gray-256.theme
+#include dark-gray-blue-256.theme
+#include solarized-dark-256.theme
+#include solarized-light-256.theme
+#include no-color.theme
+
+context.ghar.read=+home project:projA
+context.ghar.write=+home project:projA
+context.work.read=+work
+context.work.write=+work
+uda.reviewed.type=date
+uda.reviewed.label=Reviewed
+report.next.columns=id,project,tags,description.count,urgency,due,priority
+report.next.labels=id,project,tags,description,urgency,due,priority
+report._reviewed.description=Tasksh review report.  Adjust the filter to your needs.
+report._reviewed.columns=id,description.count,project
+report._reviewed.sort=reviewed+,modified+
+report._reviewed.filter=( reviewed.none: or reviewed.before:now-6days ) and ( +PENDING or +WAITING )
+
+color.active=rgb050
+color.uda.priority.H=bold
