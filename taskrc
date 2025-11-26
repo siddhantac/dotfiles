@@ -39,3 +39,7 @@ report._reviewed.filter=( reviewed.none: or reviewed.before:now-6days ) and ( +P
 
 color.active=rgb050
 color.uda.priority.H=bold
+
+uda.taskwarrior-tui.shortcuts.1=~/workspace/dotfiles/taskwarrior/set_priority_H.sh
+uda.taskwarrior-tui.shortcuts.2=~/workspace/dotfiles/taskwarrior/set_priority_L.sh
+uda.taskwarrior-tui.shortcuts.9=~/workspace/dotfiles/taskwarrior/set_priority_none.sh
