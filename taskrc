@@ -26,20 +26,23 @@ news.version=3.4.1
 
 context.ghar.read=+home project:projA
 context.ghar.write=+home project:projA
-context.work.read=+work
+context.work.read=project.not:twcolors
 context.work.write=+work
 uda.reviewed.type=date
 uda.reviewed.label=Reviewed
-report.next.columns=id,project,tags,description.count,urgency,due,priority
-report.next.labels=id,project,tags,description,urgency,due,priority
+report.next.columns=id,project,tags,description.count,due,priority
+report.next.labels=id,project,tags,description,due,priority
 report._reviewed.description=Tasksh review report.  Adjust the filter to your needs.
 report._reviewed.columns=id,description.count,project
 report._reviewed.sort=reviewed+,modified+
 report._reviewed.filter=( reviewed.none: or reviewed.before:now-6days ) and ( +PENDING or +WAITING )
 
-color.active=rgb050
+# color.active=rgb050
+color.active=green on gray4
 color.uda.priority.H=bold
 
 uda.taskwarrior-tui.shortcuts.1=~/workspace/dotfiles/taskwarrior/set_priority_H.sh
-uda.taskwarrior-tui.shortcuts.2=~/workspace/dotfiles/taskwarrior/set_priority_L.sh
+uda.taskwarrior-tui.shortcuts.2=~/workspace/dotfiles/taskwarrior/set_priority_M.sh
+uda.taskwarrior-tui.shortcuts.3=~/workspace/dotfiles/taskwarrior/set_priority_L.sh
 uda.taskwarrior-tui.shortcuts.9=~/workspace/dotfiles/taskwarrior/set_priority_none.sh
+context=work
