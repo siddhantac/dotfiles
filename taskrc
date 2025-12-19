@@ -32,12 +32,14 @@ uda.reviewed.type=date
 uda.reviewed.label=Reviewed
 uda.assignee.type=string
 uda.assignee.label=Assignee
-report.next.columns=id,project,description.count,due,priority,tags,assignee
-report.next.labels=id,project,description,due,priority,tags,assignee
+report.next.columns=id,icon,project,description.count,due,tags,assignee
+report.next.labels=id,icon,project,description,due,tags,assignee
 report._reviewed.description=Tasksh review report.  Adjust the filter to your needs.
 report._reviewed.columns=uuid
 report._reviewed.sort=reviewed+,modified+
 report._reviewed.filter=( reviewed.none: or reviewed.before:now-6days ) and ( +PENDING or +WAITING )
+uda.icon.type=string
+uda.icon.label=Icon
 
 # color.active=rgb050
 color.overdue=rgb300 on gray18
