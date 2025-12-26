@@ -42,9 +42,11 @@ uda.icon.type=string
 uda.icon.label=Icon
 
 # color.active=rgb050
-color.overdue=rgb300 on gray18
 color.due=
-color.uda.priority.H=white on rgb201
+# color.overdue=rgb300 on gray18
+# color.uda.priority.H=white on rgb201
+color.overdue=rgb550 on rgb002
+color.uda.priority.H=white on rgb100
 color.uda.priority.M=white
 color.tagged=
 color.tag.next=
