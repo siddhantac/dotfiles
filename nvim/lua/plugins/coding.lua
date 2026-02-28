@@ -12,6 +12,14 @@ return {
         ft = "go",
     },
     {
+        'mfussenegger/nvim-dap-python',
+        dependencies = "mfussenegger/nvim-dap",
+        config = function()
+            require("dap-python").setup("uv")
+        end,
+        ft = "python",
+    },
+    {
         "rcarriga/nvim-dap-ui",
         dependencies = {
             "mfussenegger/nvim-dap",
