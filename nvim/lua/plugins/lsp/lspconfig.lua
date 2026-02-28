@@ -23,7 +23,7 @@ end
 
 local M = {}
 M.setup = function()
-    local lspconfig = require("lspconfig")
+    local lspconfig = vim.lsp.config
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
     local on_attach = on_attach
 
@@ -31,21 +31,13 @@ M.setup = function()
 
     -- Change the Diagnostic symbols in the sign column (gutter)
     -- (not in youtube nvim video)
-    local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+    local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
     for type, icon in pairs(signs) do
         local hl = "DiagnosticSign" .. type
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end
 
-    lspconfig.gopls.setup {
-        on_attach = on_attach,
-        capabilities = capabilities,
-    }
-
-    -- configure lua server (with special settings)
-    lspconfig["lua_ls"].setup({
-        capabilities = capabilities,
-        on_attach = on_attach,
+    vim.lsp.config('lua_ls', {
         settings = { -- custom settings for lua
             Lua = {
                 -- make the language server recognize "vim" global
@@ -59,27 +51,15 @@ M.setup = function()
         },
     })
 
-    lspconfig.yamlls.setup({
-        on_attach = on_attach
-    })
-    lspconfig.pyright.setup {}
-    lspconfig.ts_ls.setup {}
-    lspconfig.marksman.setup {
-        on_attach = on_attach,
-        capabilities = capabilities,
-    }
-    lspconfig.terraformls.setup {}
-    lspconfig.jsonls.setup {
-        capabilities = capabilities,
-        on_attach = on_attach,
-        commands = {
-            Format = {
-                function()
-                    vim.lsp.buf.range_formatting({}, { 0, 0 }, { vim.fn.line("$"), 0 })
-                end
-            }
-        }
-    }
+    vim.lsp.enable('gopls')
+    vim.lsp.enable('lua_ls')
+    vim.lsp.enable('yamlls')
+    vim.lsp.enable('pyright')
+    vim.lsp.enable('ts_ls')
+    vim.lsp.enable('terraformls')
+    vim.lsp.enable('jsonls')
+    vim.lsp.enable('marksman')
+
 end
 
 return M
