@@ -33,6 +33,14 @@ if [[ $1 == "rename-session" ]]; then
     tmux command-prompt "rename-session %%"
 fi
 
+# if [[ $1 == "rename-session-target" ]]; then
+#     # $2 is the target session name
+#     read -p "Rename session \"$2\" to: " new_name
+#     if [ -n "$new_name" ]; then
+#         tmux rename-session -t "$2" "$new_name"
+#     fi
+# fi
+#
 
 if [[ $1 == "window-left" ]]; then
     tmux swap-window -t -1
