@@ -2,6 +2,15 @@ return {
     {
         'mfussenegger/nvim-dap',
         keys = require("core.mappings").dap(),
+        config = function()
+            -- vim.api.nvim_set_hl(0, 'DapBreakpoint', { bg = '#ffff00' })
+            vim.fn.sign_define('DapBreakpoint', {
+              text = '',
+              texthl = 'DapBreakpoint',
+              linehl = '',
+              numhl = ''
+            })
+        end
     },
     {
         'leoluz/nvim-dap-go',
