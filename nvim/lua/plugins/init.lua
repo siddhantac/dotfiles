@@ -142,6 +142,7 @@ require("lazy").setup({
         lazy = false,
         priority = 1000,
     },
+    "rebelot/kanagawa.nvim",
 
     {
         'nvim-lualine/lualine.nvim',
