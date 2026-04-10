@@ -5,7 +5,7 @@ require("lazy").setup({
     require("plugins.code_review"),
     require("plugins.coding"),
     require("plugins.treesitter"),
-    require("plugins.treesitter_textobjects"),
+    -- require("plugins.treesitter_textobjects"),
     require("plugins.pkm"),
     require("plugins.codeium"),
     require("plugins.telescope"),

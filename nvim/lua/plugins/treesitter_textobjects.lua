@@ -4,9 +4,11 @@ return {
     dependencies = {
         'nvim-treesitter/nvim-treesitter',
     },
-    event = { "BufReadPre", "BufNewFile" },
+    -- event = { "BufReadPre", "BufNewFile" },
     config = function()
-        require 'nvim-treesitter.configs'.setup {
+        -- nvim-treesitter-textobjects has its own setup() in the new API.
+        -- The textobjects table must NOT be passed to nvim-treesitter's setup().
+        require('nvim-treesitter-textobjects').setup {
             textobjects = {
                 select = {
                     enable = true,
