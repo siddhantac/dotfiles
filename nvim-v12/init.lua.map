@@ -17,4 +17,5 @@ return {
   { init_start=312, init_end=316, readme_line=373, section="LSP" },
   { init_start=319, init_end=321, readme_line=383, section="Markdown renderer" },
   { init_start=324, init_end=389, readme_line=391, section="Telescope" },
+  { init_start=392, init_end=464, readme_line=467, section="Telescope keymaps" },
 }

@@ -463,3 +463,81 @@ require('telescope').setup({
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('ui-select')
 ```
+
+### Telescope keymaps
+
+```lua
+local ok, telescope = pcall(require, "telescope")
+if not ok then
+    vim.notify("failed to load telescope", "error")
+end
+
+local ok, tscopebuiltin = pcall(require, "telescope.builtin")
+if not ok then
+    vim.notify("failed to load telescope builtin", "error")
+end
+
+local ok, tscopeutils = pcall(require, "telescope.utils")
+if not ok then
+    vim.notify("failed to load telescope builtin", "error")
+end
+
+nmap({ "<leader>bf", "<cmd>Telescope buffers<CR>", { desc = "Find" } })
+
+nmap({ "<leader>ff", function() tscopebuiltin.find_files({ default_text = "!mocks " }) end, { desc = "Files" } })
+nmap({ "<leader>f<CR>", function() tscopebuiltin.resume() end, { desc = "Resume previous search" } })
+nmap({ "<leader>f'", function() tscopebuiltin.marks() end, { desc = "Marks" } })
+nmap({ "<leader>f/", function() tscopebuiltin.current_buffer_fuzzy_find()() end,
+    { desc = "Find words in current buffer" } })
+nmap({ "<leader>fb", function() tscopebuiltin.buffers() end, { desc = "Buffers" } })
+nmap({ "<leader>fc", function() tscopebuiltin.grep_string() end, { desc = "Word under cursor" } })
+nmap({ "<leader>fC", function() tscopebuiltin.commands() end, { desc = "Commands" } })
+nmap({ "<leader>fF", function() tscopebuiltin.find_files({ hidden = true, no_ignore = true }) end,
+    { desc = "All files" } })
+nmap({ "<leader>fd", function() tscopebuiltin.find_files({ cwd = tscopeutils.buffer_dir() }) end,
+    { desc = "Find files in buffer dir" } }) -- find files in dir of the current file
+nmap({ "<leader>fh", function() tscopebuiltin.help_tags() end, { desc = "Help" } })
+nmap({ "<leader>fk", function() tscopebuiltin.keymaps() end, { desc = "Keymaps" } })
+nmap({ "<leader>fm", function() tscopebuiltin.man_pages() end, { desc = "Man" } })
+nmap({ "<leader>fn", function() telescope.extensions.notify.notify() end, { desc = "Notifications" } })
+nmap({ "<leader>fo", function() tscopebuiltin.oldfiles() end, { desc = "History" } })
+nmap({ "<leader>fr", function() tscopebuiltin.registers() end, { desc = "Registers" } })
+nmap({ "<leader>fs", function() tscopebuiltin.colorscheme { enable_preview = true } end, { desc = "Themes" } })
+nmap({ "<leader>ft", "<cmd>TodoTelescope<CR>", { desc = "Todos" } })
+nmap({ "<leader>fw", function() tscopebuiltin.live_grep() end, { desc = "Words" } })
+nmap({ "<leader>fW",
+    function()
+        tscopebuiltin.live_grep {
+            additional_args = function(args) return vim.list_extend(args, { "--hidden", "--no-ignore" }) end,
+        }
+    end,
+    { desc = "Words in all files" }
+})
+
+nmap({ "<leader>dd", function() tscopebuiltin.diagnostics() end, { desc = "Search diagnostics" } })
+
+nmap({ "<leader>gb", function() tscopebuiltin.git_branches { use_file_path = true } end, { desc = "Branches" } })
+nmap({ "<leader>gC", function() tscopebuiltin.git_commits { use_file_path = true } end, { desc = "Commits", } })
+
+nmap({ "<leader>lm", "<cmd>Telescope lsp_implementations show_line=false default_text=!mocks<cr>",
+    { desc = "Implementation" } })
+nmap({ "<leader>lr", '<cmd>Telescope lsp_references show_line=false default_text=!_test.go<CR>',
+    { desc = "Refs" } })
+
+nmap({
+    "<leader>ls",
+    function()
+        local aerial_avail, _ = pcall(require, "aerial")
+        if aerial_avail then
+            telescope.extensions.aerial.aerial()
+        else
+            tscopebuiltin.lsp_document_symbols()
+        end
+    end,
+    { desc = "Symbols" },
+})
+-- S = { '<cmd>Telescope lsp_workspace_symbols<CR>', "Workspace symbols" },
+
+nmap({ "<leader>lo", "<cmd>AerialToggle<CR>", { desc = "Show outline", icon = icons["Package"]} })
+nmap({ "<leader>j", function() tscopebuiltin.jumplist { show_line = false } end, { desc = "Jumplist", icon = icons["Jump"]} })
+```
