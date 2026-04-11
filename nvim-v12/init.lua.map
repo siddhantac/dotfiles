@@ -24,4 +24,6 @@ return {
   { init_start=382, init_end=399, readme_line=456, section="Markdown renderer" },
   { init_start=402, init_end=467, readme_line=487, section="Telescope" },
   { init_start=470, init_end=542, readme_line=563, section="Telescope keymaps" },
+  { init_start=545, init_end=550, readme_line=641, section="Git" },
+  { init_start=553, init_end=569, readme_line=655, section="Git signs keymaps" },
 }

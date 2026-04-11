@@ -541,3 +541,30 @@ nmap({
 nmap({ "<leader>lo", "<cmd>AerialToggle<CR>", { desc = "Show outline", icon = icons["Package"]} })
 nmap({ "<leader>j", function() tscopebuiltin.jumplist { show_line = false } end, { desc = "Jumplist", icon = icons["Jump"]} })
 
+-- [Git]
+vim.pack.add({
+    "https://github.com/sindrets/diffview.nvim",
+    "https://github.com/NeogitOrg/neogit",
+    "https://github.com/ruifm/gitlinker.nvim",
+    "https://github.com/lewis6991/gitsigns.nvim",
+})
+
+-- [Git signs keymaps]
+local ok, gitsigns = pcall(require, "gitsigns")
+if not ok then
+    vim.notify("failed to load gitsigns", "error")
+    return
+end
+
+nmap({ "]g", function() gitsigns.next_hunk() end, { desc = "Next Git hunk" } })
+nmap({ "[g", function() gitsigns.prev_hunk() end, { desc = "Previous Git hunk" } })
+-- ["<leader>gl"] = { function() gitsigns.blame_line() end, "View Git blame" },
+-- ["<leader>gL"] = { function() gitsigns.blame_line { full = true } end, "View full Git blame" },
+nmap({ "<leader>gh", function() gitsigns.preview_hunk() end, { desc = "Preview Git hunk" } })
+-- ["<leader>gh"] = { function() gitsigns.reset_hunk() end, "Reset Git hunk" },
+-- ["<leader>gr"] = { function() gitsigns.reset_buffer() end, "Reset Git buffer" },
+nmap({ "<leader>gs", function() gitsigns.stage_hunk() end, { desc = "Stage Git hunk" } })
+nmap({ "<leader>gS", function() gitsigns.stage_buffer() end, { desc = "Stage Git buffer" } })
+nmap({ "<leader>gu", function() gitsigns.undo_stage_hunk() end, { desc = "Unstage Git hunk" } })
+nmap({ "<leader>gd", function() gitsigns.diffthis() end, { desc = "View Git diff" } })
+
