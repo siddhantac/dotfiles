@@ -376,8 +376,45 @@ vim.notify = require("notify")
 vim.pack.add({
     'https://github.com/neovim/nvim-lspconfig',
 })
+```
 
+- Config for Lua LSP. Make it recognize the vim global.
+
+```lua
+vim.lsp.config('lua_ls', {
+    settings = {
+        Lua = {
+            diagnostics = {
+                globals = { "vim" },
+            },
+            telemetry = {
+                enable = false,
+            },
+        },
+    },
+})
+```
+
+- Enable the language servers I need
+
+```lua
+vim.lsp.enable('gopls')
+vim.lsp.enable('lua_ls')
+vim.lsp.enable('yamlls')
+vim.lsp.enable('pyright')
+vim.lsp.enable('ts_ls')
+vim.lsp.enable('terraformls')
+vim.lsp.enable('jsonls')
 vim.lsp.enable('marksman')
+```
+
+- LSP keymaps
+
+```lua
+nmap({ "<leader>lf", vim.lsp.buf.format, { desc = "Format" } })
+nmap({ "<leader>lh", vim.lsp.buf.hover, { desc = "Hover" } })
+nmap({ "<leader>ll", "<cmd>LspInfo<CR>", { desc = "LSP Info" } })
+nmap({ "<leader>lR", vim.lsp.buf.references, { desc = "Refs (quickfix)" } })
 ```
 
 ### Markdown renderer
@@ -385,6 +422,29 @@ vim.lsp.enable('marksman')
 ```lua
 vim.pack.add({
     'https://github.com/MeanderingProgrammer/render-markdown.nvim'
+})
+```
+
+ ### Diagnostics
+
+```lua
+local sev = vim.diagnostic.severity
+
+vim.diagnostic.config({
+  severity_sort = true,
+  update_in_insert = false,
+  float = {
+    border = 'rounded',
+    source = true,
+  },
+  signs = {
+    text = {
+      [sev.ERROR] = icons["DiagnosticError"],
+      [sev.WARN]  = icons["DiagnosticWarn"],
+      [sev.INFO]  = icons["DiagnosticInfo"],
+      [sev.HINT]  = icons["DiagnosticHint"],
+    },
+  },
 })
 ```
 
