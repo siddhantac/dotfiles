@@ -16,5 +16,5 @@ return {
   { init_start=300, init_end=309, readme_line=357, section="Notifications" },
   { init_start=312, init_end=316, readme_line=373, section="LSP" },
   { init_start=319, init_end=321, readme_line=383, section="Markdown renderer" },
-  { init_start=324, init_end=333, readme_line=391, section="Telescope" },
+  { init_start=324, init_end=389, readme_line=391, section="Telescope" },
 }

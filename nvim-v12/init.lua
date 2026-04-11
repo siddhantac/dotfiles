@@ -321,14 +321,70 @@ vim.pack.add({
 })
 
 -- [Telescope]
-vim.pack.add({
-    'https://github.com/nvim-lua/plenary.nvim',
-    'https://github.com/nvim-telescope/telescope.nvim',
-    'https://github.com/nvim-telescope/telescope-fzf-native.nvim',
-    'https://github.com/nvim-telescope/telescope-ui-select.nvim',
+vim.api.nvim_create_autocmd('PackChanged', {
+  callback = function(ev)
+    local name = ev.data.spec.name
+    local kind = ev.data.kind  -- 'install' or 'update'
+
+    if name == 'telescope-fzf-native.nvim' and (kind == 'install' or kind == 'update') then
+      vim.system({ 'make' }, { cwd = ev.data.path }):wait()
+    end
+  end,
 })
 
-require('telescope').setup()
+vim.pack.add({
+    'https://github.com/nvim-lua/plenary.nvim',
+    'https://github.com/nvim-telescope/telescope-fzf-native.nvim',
+    'https://github.com/nvim-telescope/telescope-ui-select.nvim',
+    'https://github.com/nvim-telescope/telescope.nvim',
+})
+
+local actions  = require "telescope.actions"
+
+require('telescope').setup({
+        defaults = {
+            prompt_prefix = icons["Search"],
+            selection_caret = icons["Selected"],
+            path_display = { "filename_first" },
+            sorting_strategy = "ascending",
+            preview = {
+                filesize_limit = 0.1, -- MB
+            },
+            layout_config = {
+                horizontal = { prompt_position = "top", preview_width = 0.55 },
+                vertical = { mirror = false },
+                width = 0.87,
+                height = 0.80,
+                preview_cutoff = 120,
+            },
+            mappings = {
+                i = {
+                    ["<C-n>"] = actions.cycle_history_next,
+                    ["<C-p>"] = actions.cycle_history_prev,
+                    ["<C-j>"] = actions.move_selection_next,
+                    ["<C-k>"] = actions.move_selection_previous,
+                    ["<C-S-j>"] = actions.preview_scrolling_down,
+                    ["<C-S-k>"] = actions.preview_scrolling_up,
+                    ['<c-d>'] = require('telescope.actions').delete_buffer,
+                    -- ["<esc>"] = require('telescope.actions').close, -- replaced this with 'q' in normal mode
+                },
+                n = { q = actions.close },
+            },
+        },
+        extensions = {
+            ["ui-select"] = {
+                require("telescope.themes").get_dropdown {}
+            },
+            fzf = {
+                fuzzy = true,                   -- false will only do exact matching
+                override_generic_sorter = true, -- override the generic sorter
+                override_file_sorter = true,    -- override the file sorter
+                case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
+                -- the default case_mode is "smart_case"
+            }
+        }
+})
+
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('ui-select')
 
