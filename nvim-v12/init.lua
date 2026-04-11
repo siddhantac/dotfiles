@@ -93,6 +93,11 @@ nmap({ "<leader>bc", "<cmd>close<CR>", { desc = "Close" } })
 nmap({ "<leader>bD", "<cmd>bufdo bd<CR>", { desc = "Delete all" } })
 nmap({ "<leader>bm", "<cmd>MaximizerToggle<CR>", { desc = "Maximize (toggle)" } })
 
+-- [Mappings / Keybinds]
+nmap({ "]q", ":cnext<CR>zz", { desc = "Next quickfix item" } })
+nmap({ "[q", ":cprev<CR>zz", { desc = "Prev quickfix item" } })
+nmap({ "<C-c>", ":cclose<CR>" })
+
 -- [Theme]
 vim.pack.add({
     "https://github.com/rebelot/kanagawa.nvim",
@@ -319,6 +324,23 @@ vim.notify = require("notify")
 -- [LSP]
 vim.pack.add({
     'https://github.com/neovim/nvim-lspconfig',
+    'https://github.com/stevearc/aerial.nvim', 
+})
+
+require("aerial").setup({
+    attach_mode = "global",
+    backends = { "lsp", "treesitter", "markdown", "man" },
+    -- disable_max_lines = vim.g.max_file.lines,
+    -- disable_max_size = vim.g.max_file.size,
+    layout = { min_width = 28 },
+    show_guides = true,
+    filter_kind = false,
+    guides = {
+        mid_item = "├ ",
+        last_item = "└ ",
+        nested_top = "│ ",
+        whitespace = "  ",
+    },
 })
 
 -- [LSP]
