@@ -127,6 +127,17 @@ nmap({ 'n', 'nzzzv' })
 nmap({ '<leader>R', '<cmd>restart<CR>'})
 ```
 
+- Buffer management
+
+```lua
+nmap({ "]b", "<cmd>bnext<CR>", { desc = "Next buffer" } })
+nmap({ "[b", "<cmd>bprev<CR>", { desc = "Prev buffer" } })
+nmap({ "<leader>bb", "<cmd>b#<CR>", { desc = "Swap" } })
+nmap({ "<leader>bc", "<cmd>close<CR>", { desc = "Close" } })
+nmap({ "<leader>bD", "<cmd>bufdo bd<CR>", { desc = "Delete all" } })
+nmap({ "<leader>bm", "<cmd>MaximizerToggle<CR>", { desc = "Maximize (toggle)" } })
+```
+
 ## Theme
 
 ```lua

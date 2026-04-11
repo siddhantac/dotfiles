@@ -85,6 +85,14 @@ nmap({ 'n', 'nzzzv' })
 -- [Mappings / Keybinds]
 nmap({ '<leader>R', '<cmd>restart<CR>'})
 
+-- [Mappings / Keybinds]
+nmap({ "]b", "<cmd>bnext<CR>", { desc = "Next buffer" } })
+nmap({ "[b", "<cmd>bprev<CR>", { desc = "Prev buffer" } })
+nmap({ "<leader>bb", "<cmd>b#<CR>", { desc = "Swap" } })
+nmap({ "<leader>bc", "<cmd>close<CR>", { desc = "Close" } })
+nmap({ "<leader>bD", "<cmd>bufdo bd<CR>", { desc = "Delete all" } })
+nmap({ "<leader>bm", "<cmd>MaximizerToggle<CR>", { desc = "Maximize (toggle)" } })
+
 -- [Theme]
 vim.pack.add({
     "https://github.com/rebelot/kanagawa.nvim",
