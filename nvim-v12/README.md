@@ -1,3 +1,56 @@
+# Neovim Configuration
+
+This configuration is a **literate document**: the code lives here in `README.md`
+as fenced code blocks, and a script called `tangle.lua` extracts those blocks in
+order to produce `init.lua`, the file Neovim actually loads.
+
+The idea is borrowed from the Emacs community (org-babel). Every plugin and
+setting has its explanation right next to the code, so the config stays readable
+even months later. GitHub renders this file for free. Never edit `init.lua`
+directly; this file is the single source of truth.
+
+## How It Works
+
+Every ` ```lua ` fenced block in this file gets extracted into `init.lua` in
+the order it appears. Blocks marked ` ```lua notangle ` are skipped: they
+display with syntax highlighting but are not included in the output. Use them
+for example code or temporarily disabled snippets.
+
+Blocks marked ` ```sh install ` are extracted into `dependencies.sh`, a shell
+script you run once on a fresh machine to install all system dependencies.
+Each install block lives next to the section that needs it, so the reason for
+every dependency is always documented in context.
+
+## Prerequisites
+
+Install Neovim >= 0.11 manually. Ubuntu's apt version is too old; use the
+[official release](https://github.com/neovim/neovim/releases/latest).
+Everything else is handled by `dependencies.sh` after the first tangle.
+
+```sh install
+# Core tools: git (lazy.nvim bootstrap), curl, gcc + make (parser/plugin builds)
+PKG git curl gcc make
+```
+
+## Bootstrap
+
+Install Neovim, clone this repo, then run three commands:
+
+```sh
+git clone <your-repo-url> ~/.config/nvim
+nvim -l ~/.config/nvim/tangle.lua       # generates init.lua + dependencies.sh
+bash ~/.config/nvim/dependencies.sh     # installs ripgrep, fd, clangd, pylsp...
+nvim                                    # plugins auto-install on first launch
+```
+
+Saving this file inside Neovim re-tangles automatically. If you add a new
+dependency later, add an `sh install` block next to the relevant section and
+run `bash dependencies.sh` again. Already-installed packages are skipped.
+
+After that, saving this file inside Neovim auto-tangles on every write.
+
+---
+
 ## Auto-Tangle on Save
 
 When you save `README.md` inside Neovim this autocmd fires, runs `tangle.lua`,
@@ -499,6 +552,78 @@ vim.diagnostic.config({
       [sev.HINT]  = icons["DiagnosticHint"],
     },
   },
+})
+```
+
+### Treesitter
+
+In nvim v0.12, treesitter now requires `tree-sitter-cli` as an external tool.
+
+```sh install
+PKG tree-sitter-cli
+```
+
+Setup autocmd to run `:TSUpdate` on `PackChanged`
+
+```lua
+vim.api.nvim_create_autocmd('PackChanged', {
+  callback = function(ev)
+    if ev.data.spec.name == 'nvim-treesitter' then
+      vim.schedule(function()
+        vim.cmd('TSUpdate')
+      end)
+    end
+  end,
+})
+```
+
+Finally install treesitter.
+
+```lua
+vim.pack.add({
+  {
+    src = 'https://github.com/nvim-treesitter/nvim-treesitter',
+    version = 'main',
+  },
+  {
+    src = 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects',
+    version = 'main',
+  },
+  {
+    src = 'https://github.com/nvim-treesitter/nvim-treesitter-context',
+  },
+})
+
+nmap({'[x', function() require('treesitter-context').go_to_context() end })
+
+local ensureInstalled = { 
+    "bash",
+    "csv",
+    "go",
+    "gomod",
+    "gowork",
+    "gosum",
+    "json",
+    "ledger",
+    "lua",
+    "markdown",
+    "markdown_inline",
+    "python",
+}
+local alreadyInstalled = require('nvim-treesitter.config').get_installed()
+local toInstall = vim.iter(ensureInstalled)
+  :filter(function(p) return not vim.tbl_contains(alreadyInstalled, p) end)
+  :totable()
+require('nvim-treesitter').install(toInstall)
+```
+
+Enable highlighting (replaces highlight = { enable = true })
+
+```lua
+vim.api.nvim_create_autocmd('FileType', {
+  callback = function()
+    pcall(vim.treesitter.start)
+  end,
 })
 ```
 

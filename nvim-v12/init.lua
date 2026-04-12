@@ -411,6 +411,61 @@ vim.diagnostic.config({
   },
 })
 
+-- [Treesitter]
+vim.api.nvim_create_autocmd('PackChanged', {
+  callback = function(ev)
+    if ev.data.spec.name == 'nvim-treesitter' then
+      vim.schedule(function()
+        vim.cmd('TSUpdate')
+      end)
+    end
+  end,
+})
+
+-- [Treesitter]
+vim.pack.add({
+  {
+    src = 'https://github.com/nvim-treesitter/nvim-treesitter',
+    version = 'main',
+  },
+  {
+    src = 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects',
+    version = 'main',
+  },
+  {
+    src = 'https://github.com/nvim-treesitter/nvim-treesitter-context',
+  },
+})
+
+nmap({'[x', function() require('treesitter-context').go_to_context() end })
+
+local ensureInstalled = { 
+    "bash",
+    "csv",
+    "go",
+    "gomod",
+    "gowork",
+    "gosum",
+    "json",
+    "ledger",
+    "lua",
+    "markdown",
+    "markdown_inline",
+    "python",
+}
+local alreadyInstalled = require('nvim-treesitter.config').get_installed()
+local toInstall = vim.iter(ensureInstalled)
+  :filter(function(p) return not vim.tbl_contains(alreadyInstalled, p) end)
+  :totable()
+require('nvim-treesitter').install(toInstall)
+
+-- [Treesitter]
+vim.api.nvim_create_autocmd('FileType', {
+  callback = function()
+    pcall(vim.treesitter.start)
+  end,
+})
+
 -- [Telescope]
 vim.api.nvim_create_autocmd('PackChanged', {
   callback = function(ev)

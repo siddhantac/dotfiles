@@ -16,3 +16,10 @@ else
     echo 'No supported package manager found (apt, pacman, brew).' >&2
     exit 1
 fi
+
+# [Prerequisites]
+# Core tools: git (lazy.nvim bootstrap), curl, gcc + make (parser/plugin builds)
+PKG git curl gcc make
+
+# [Treesitter]
+PKG tree-sitter-cli
