@@ -21,6 +21,19 @@ vim.opt.splitbelow = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = true
+vim.opt.scrolloff = 3
+vim.opt.sidescrolloff = 5
+vim.opt.clipboard = "unnamedplus"
+vim.opt.autoread = true
+vim.opt.swapfile = false
+vim.opt.timeoutlen = 500   
+vim.opt.syntax = "on"
+vim.opt.list = true
+vim.opt.listchars = "trail:·"
+vim.opt.expandtab = true
+vim.opt.tabstop = 4     -- show existing tab with 4 spaces width
+vim.opt.shiftwidth = 4  -- when indenting with '>', use 4 spaces width
+vim.opt.softtabstop = 4 -- control <tab> and <bs> keys to match tabstop
 
 -- [Utilities]
 local nmap = function(tbl)

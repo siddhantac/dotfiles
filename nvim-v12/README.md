@@ -24,10 +24,15 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 
 ## Editor Options
 
-- `updatetime` - affects CursorHold time (to highlight a text object)
+- `updatetime` - swap file written to disk after this time (affects CursorHold time (to highlight a text object))
 - `relativenumber` - shows relative line numbers in gutter
 - `number` - shows the actual line number of the cursor
 - `cursorline` - highlights the line the cursor is on, and also adds color to the line number
+- `scrolloff` - number of lines to keep above and below the cursor
+- `autoread` - automatically read a file that has been changed on disk
+- `timeoutlen` - controls how long to wait before showing which-key menu
+- `expandtab` - use spaces instead of tabs
+- `listchars` - characters to use for list mode (vim.opt.list must be true for this to work)
 
 ```lua
 vim.g.mapleader = ' '
@@ -37,6 +42,19 @@ vim.opt.splitbelow = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = true
+vim.opt.scrolloff = 3
+vim.opt.sidescrolloff = 5
+vim.opt.clipboard = "unnamedplus"
+vim.opt.autoread = true
+vim.opt.swapfile = false
+vim.opt.timeoutlen = 500   
+vim.opt.syntax = "on"
+vim.opt.list = true
+vim.opt.listchars = "trail:·"
+vim.opt.expandtab = true
+vim.opt.tabstop = 4     -- show existing tab with 4 spaces width
+vim.opt.shiftwidth = 4  -- when indenting with '>', use 4 spaces width
+vim.opt.softtabstop = 4 -- control <tab> and <bs> keys to match tabstop
 ```
 
 ## Utilities
