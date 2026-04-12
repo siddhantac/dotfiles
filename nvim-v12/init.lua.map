@@ -26,4 +26,8 @@ return {
   { init_start=483, init_end=555, readme_line=581, section="Telescope keymaps" },
   { init_start=558, init_end=563, readme_line=659, section="Git" },
   { init_start=566, init_end=582, readme_line=673, section="Git signs keymaps" },
+  { init_start=585, init_end=589, readme_line=695, section="Custom autocommands" },
+  { init_start=592, init_end=611, readme_line=695, section="Custom autocommands" },
+  { init_start=614, init_end=620, readme_line=695, section="Custom autocommands" },
+  { init_start=623, init_end=664, readme_line=695, section="Custom autocommands" },
 }

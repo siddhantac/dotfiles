@@ -50,7 +50,7 @@ vim.opt.swapfile = false
 vim.opt.timeoutlen = 500   
 vim.opt.syntax = "on"
 vim.opt.list = true
-vim.opt.listchars = "trail:·"
+vim.opt.listchars = "tab:  ,trail:·"
 vim.opt.expandtab = true
 vim.opt.tabstop = 4     -- show existing tab with 4 spaces width
 vim.opt.shiftwidth = 4  -- when indenting with '>', use 4 spaces width
@@ -690,4 +690,105 @@ nmap({ "<leader>gs", function() gitsigns.stage_hunk() end, { desc = "Stage Git h
 nmap({ "<leader>gS", function() gitsigns.stage_buffer() end, { desc = "Stage Git buffer" } })
 nmap({ "<leader>gu", function() gitsigns.undo_stage_hunk() end, { desc = "Unstage Git hunk" } })
 nmap({ "<leader>gd", function() gitsigns.diffthis() end, { desc = "View Git diff" } })
+```
+
+## Custom autocommands
+
+**Highlight on yank**
+
+```lua
+local yankGrp = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
+vim.api.nvim_create_autocmd("TextYankPost", {
+    command = "silent! lua vim.highlight.on_yank()",
+    group = yankGrp,
+})
+```
+
+**Show relative numbers only for active buffer**
+
+Also don't run the autocmd for telescopeprompt, prevents the annoying 0 from showing next to the cursor in the prompt.
+
+```lua
+local linenumtoggle = vim.api.nvim_create_augroup("LineNumberToggle", { clear = true })
+vim.api.nvim_create_autocmd("BufLeave",
+    {
+        pattern = '*', -- '* if index(ignoreFiletype, &ft) < 0',
+        callback = function()
+            vim.wo.relativenumber = false
+        end,
+        group = linenumtoggle,
+    }
+)
+
+vim.api.nvim_create_autocmd("BufEnter",
+    {
+        pattern = '*', -- * if index(ignoreFiletype, &ft) < 0',
+        callback = function()
+            vim.wo.relativenumber = true
+        end,
+        group = linenumtoggle,
+    }
+)
+```
+
+**Organise imports**
+
+```lua
+vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = '*.go',
+    callback = function(args)
+        vim.lsp.buf.format()
+        vim.lsp.buf.code_action { context = { only = { 'source.organizeImports' } }, apply = true }
+    end,
+})
+```
+
+**Report LSP setup progress**
+
+- ref: https://neovim.io/doc/user/lsp.html#LspProgress
+- ref: https://github.com/linrongbin16/lsp-progress.nvim/blob/d5f4d28efe75ce636bfbe271eb45f39689765aab/lua/lsp-progress.lua#L170
+
+```lua
+local lsp_progress_notification = function(ev)
+    local client_id = ev.data.client_id
+    local client = vim.lsp.get_client_by_id(client_id)
+    local value = ev.data.params.value
+    local token = ev.data.params.token
+
+    if not value or not value.title then
+        return
+    end
+
+    local message = value.message or ""
+    local msg = client.name .. " - " .. value.title .. "\n  " .. message
+    local title = "LSP"
+
+    return { token = token, msg = msg, title = title }
+end
+
+local lsp_progress = vim.api.nvim_create_augroup("lsp_progress", { clear = true })
+
+vim.api.nvim_create_autocmd('LspProgress', {
+    pattern = 'begin',
+    group = lsp_progress,
+    callback = function(ev)
+        local spinner = require("spinner")
+        local notif = lsp_progress_notification(ev)
+
+        if notif == nil then
+            return
+        end
+        spinner.start(notif.token, notif.msg, notif.title)
+    end
+})
+
+vim.api.nvim_create_autocmd("LspProgress", {
+    pattern = 'end',
+    group = lsp_progress,
+    callback = function(ev)
+        local spinner = require("spinner")
+        local notif = lsp_progress_notification(ev)
+        spinner.stop(notif.token, notif.msg, notif.title)
+    end
+})
 ```
