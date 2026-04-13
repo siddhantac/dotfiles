@@ -15,6 +15,16 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 
 -- [Editor Options]
 vim.g.mapleader = ' '
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_gzip = 1
+vim.g.loaded_tarPlugin = 1
+vim.g.loaded_zipPlugin = 1
+vim.g.loaded_tutor = 1
+vim.g.loaded_rplugin = 1
+vim.g.loaded_spellfile = 1
+vim.g.loaded_matchit = 1
+
 vim.opt.updatetime = 500
 vim.opt.splitright = true
 vim.opt.splitbelow = true

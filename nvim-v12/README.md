@@ -77,6 +77,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 
 ## Editor Options
 
+- `netrw` - disable native file explorer
 - `updatetime` - swap file written to disk after this time (affects CursorHold time (to highlight a text object))
 - `relativenumber` - shows relative line numbers in gutter
 - `number` - shows the actual line number of the cursor
@@ -89,6 +90,16 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 
 ```lua
 vim.g.mapleader = ' '
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_gzip = 1
+vim.g.loaded_tarPlugin = 1
+vim.g.loaded_zipPlugin = 1
+vim.g.loaded_tutor = 1
+vim.g.loaded_rplugin = 1
+vim.g.loaded_spellfile = 1
+vim.g.loaded_matchit = 1
+
 vim.opt.updatetime = 500
 vim.opt.splitright = true
 vim.opt.splitbelow = true
@@ -1000,6 +1011,8 @@ vim.api.nvim_create_autocmd("LspProgress", {
 ```
 
 ## Mini plugins
+
+>[!note] 2026-04-13: I am considering moving to Oil.nvim and combining with Neotree. 
 
 ```lua
 vim.pack.add({
