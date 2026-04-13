@@ -45,6 +45,10 @@ local nmap = function(tbl)
     end
 end
 
+local vmap = function(tbl)
+    vim.keymap.set('v', tbl[1], tbl[2], tbl[3])
+end
+
 local icons = require("nerd_font")
 
 -- [Which-key]
@@ -338,6 +342,7 @@ vim.notify = require("notify")
 vim.pack.add({
     'https://github.com/neovim/nvim-lspconfig',
     'https://github.com/stevearc/aerial.nvim', 
+    'https://github.com/glepnir/lspsaga.nvim',
 })
 
 require("aerial").setup({
@@ -353,6 +358,41 @@ require("aerial").setup({
         last_item = "└ ",
         nested_top = "│ ",
         whitespace = "  ",
+    },
+})
+
+require("lspsaga").setup({
+    lightbulb = {
+        sign = false,
+    },
+    -- keybinds for navigation in lspsaga window
+    move_in_saga = { prev = "<C-k>", next = "<C-j>" },
+    -- use enter to open file with finder
+    finder = {
+        keys = {
+            open = "<CR>",
+            vsplit = '<C-v>',
+            split = '<C-h>',
+            tabe = '<C-t>',
+            quit = { 'q', '<ESC>' },
+            close_in_preview = "<Esc>",
+        }
+    },
+    -- use enter to open file with definition preview
+    definition = {
+        keys = {
+            edit = "<CR>",
+            vsplit = '<C-v>',
+            split = '<C-h>',
+            tabe = '<C-t>',
+            quit = 'q',
+            close = "<Esc>",
+        },
+    },
+
+    rename = {
+        in_select = false,
+        auto_save = true,
     },
 })
 
@@ -385,6 +425,14 @@ nmap({ "<leader>lf", vim.lsp.buf.format, { desc = "Format" } })
 nmap({ "<leader>lh", vim.lsp.buf.hover, { desc = "Hover" } })
 nmap({ "<leader>ll", "<cmd>LspInfo<CR>", { desc = "LSP Info" } })
 nmap({ "<leader>lR", vim.lsp.buf.references, { desc = "Refs (quickfix)" } })
+
+nmap({ "<leader>ld", "<cmd>Lspsaga peek_definition<CR>", { desc = "Peek def" } })
+nmap({ "<leader>ly", "<cmd>Lspsaga peek_type_definition<CR>", { desc = "Peek type def" } })
+nmap({ "<leader>ln", "<cmd>Lspsaga rename<CR>", { desc = "Rename" } })
+nmap({ "<leader>lx", "<cmd>Lspsaga finder<CR>", { desc = "Finder" } })
+nmap({ "<leader>la", "<cmd>Lspsaga code_action<CR>", { desc = "Code action" } })
+nmap({ "<leader>li", "<cmd>Lspsaga incoming_calls<CR>", { desc = "Incoming calls" } })
+nmap({ "<leader>lu", "<cmd>Lspsaga outgoing_calls<CR>", { desc = "Outgoing calls" } })
 
 -- [Markdown renderer]
 vim.pack.add({
@@ -473,6 +521,7 @@ vim.api.nvim_create_autocmd('PackChanged', {
     local kind = ev.data.kind  -- 'install' or 'update'
 
     if name == 'telescope-fzf-native.nvim' and (kind == 'install' or kind == 'update') then
+      vim.notify("installing fzf-native")
       vim.system({ 'make' }, { cwd = ev.data.path }):wait()
     end
   end,
@@ -617,7 +666,7 @@ vim.pack.add({
     "https://github.com/lewis6991/gitsigns.nvim",
 })
 
--- [Git signs keymaps]
+-- [Git keymaps]
 local ok, gitsigns = pcall(require, "gitsigns")
 if not ok then
     vim.notify("failed to load gitsigns", "error")
@@ -635,6 +684,30 @@ nmap({ "<leader>gs", function() gitsigns.stage_hunk() end, { desc = "Stage Git h
 nmap({ "<leader>gS", function() gitsigns.stage_buffer() end, { desc = "Stage Git buffer" } })
 nmap({ "<leader>gu", function() gitsigns.undo_stage_hunk() end, { desc = "Unstage Git hunk" } })
 nmap({ "<leader>gd", function() gitsigns.diffthis() end, { desc = "View Git diff" } })
+
+-- [Git keymaps]
+local ok, neogit = pcall(require, "neogit")
+if not ok then
+    vim.notify("failed to load neogit", "warn")
+    return
+end
+
+nmap({ "<leader>gg", function() neogit.open({}) end, { desc = "neogit" } })
+
+nmap({ "<leader>xx", '<cmd>DiffviewOpen<cr>', { desc = "Open diffview" } })
+nmap({ "<leader>xr", '<cmd>DiffviewRefresh<cr>', { desc = "Refresh diffview" } })
+nmap({ "<leader>xX", '<cmd>DiffviewClose<cr>', { desc = "Close diffview" } })
+
+-- [Git keymaps]
+local ok, gitlinker = pcall(require, "gitlinker")
+if not ok then
+    vim.notify("failed to load gitlinker", "warn")
+    return
+end
+local actions = gitlinker.actions
+
+nmap({ "<leader>gy", '<cmd>lua require"gitlinker".get_buf_range_url("n")<cr>', { desc = "Copy Github url" } })
+vmap({ "<leader>gy", '<cmd>lua require"gitlinker".get_buf_range_url("v")<cr>', { desc = "Copy Github url" } })
 
 -- [Custom autocommands]
 local yankGrp = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
@@ -717,4 +790,61 @@ vim.api.nvim_create_autocmd("LspProgress", {
         spinner.stop(notif.token, notif.msg, notif.title)
     end
 })
+
+-- [Mini plugins]
+vim.pack.add({
+    'https://github.com/mrquantumcodes/configpulse',
+    "https://github.com/echasnovski/mini.nvim",
+})
+
+require('mini.files').setup()
+    local new_section = function(name, action, section)
+        return { name = name, action = action, section = section }
+    end
+
+    local starter = require("mini.starter")
+
+    local time_since = function()
+        local cp = require('configpulse').get_time()
+        return cp['days'] .. "d " .. cp['hours'] .. "h " .. cp['minutes'] .. "m since last change"
+    end
+
+    local logo = [[
+                                                      
+               ████ ██████           █████      ██
+              ███████████             █████ 
+              █████████ ███████████████████ ███   ███████████
+             █████████  ███    █████████████ █████ ██████████████
+            █████████ ██████████ █████████ █████ █████ ████ █████
+          ███████████ ███    ███ █████████ █████ █████ ████ █████
+         ██████  █████████████████████ ████ █████ █████ ████ ██████
+      ]]
+
+    local logo2 =
+    "                                                    \n ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ \n ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ \n ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ \n ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ \n ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ \n ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ \n "
+
+    starter.setup({
+        evaluate_single = true,
+        -- header = "Welcome back, Sid",
+        header = logo .. "   Welcome back, Sid",
+        items = {
+            new_section("Find file", "Telescope find_files", "Telescope"),
+            new_section("Recent files", "Telescope oldfiles", "Telescope"),
+            new_section("Grep text", "Telescope live_grep", "Telescope"),
+            new_section("New file", "ene | startinsert", "Built-in"),
+            new_section("Quit", "qa", "Built-in"),
+        },
+        footer = time_since,
+        -- left-aligned is good.
+        -- if you want to try center align, then the logic for sessions
+        -- has to be extracted from mini.starter source code and pasted here.
+        --
+        -- content_hooks = {
+        --     starter.gen_hook.adding_bullet(pad .. "░ ", false),
+        --     starter.gen_hook.aligning("center", "center"),
+        -- },
+    })
+
+-- [Debug]
+vim.notify("Using new config")
 
