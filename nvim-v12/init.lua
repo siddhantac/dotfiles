@@ -15,15 +15,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 
 -- [Editor Options]
 vim.g.mapleader = ' '
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_gzip = 1
-vim.g.loaded_tarPlugin = 1
-vim.g.loaded_zipPlugin = 1
-vim.g.loaded_tutor = 1
-vim.g.loaded_rplugin = 1
-vim.g.loaded_spellfile = 1
-vim.g.loaded_matchit = 1
 
 vim.opt.updatetime = 500
 vim.opt.splitright = true
@@ -44,6 +36,17 @@ vim.opt.expandtab = true
 vim.opt.tabstop = 4     -- show existing tab with 4 spaces width
 vim.opt.shiftwidth = 4  -- when indenting with '>', use 4 spaces width
 vim.opt.softtabstop = 4 -- control <tab> and <bs> keys to match tabstop
+
+-- [Editor Options]
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_tarPlugin = 1
+vim.g.loaded_zipPlugin = 1
+vim.g.loaded_tutor = 1
+vim.g.loaded_rplugin = 1
+vim.g.loaded_spellfile = 1
+vim.g.loaded_matchit = 1
+
 
 -- [Utilities]
 local nmap = function(tbl)
