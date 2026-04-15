@@ -112,6 +112,16 @@ vim.opt.shiftwidth = 4  -- when indenting with '>', use 4 spaces width
 vim.opt.softtabstop = 4 -- control <tab> and <bs> keys to match tabstop
 ```
 
+- Folding: use treesitter as the fold provider by default. `foldlevelstart = 99` means all folds are
+  open when a buffer is first entered. The LSP upgrade (see Custom autocommands) will replace this
+  with a more semantically accurate provider once an LSP attaches.
+
+```lua
+vim.o.foldmethod = 'expr'
+vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.o.foldlevelstart = 99
+```
+
 - disable unused native plugins
 
 ```lua
@@ -970,6 +980,26 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     callback = function(args)
         vim.lsp.buf.format()
         vim.lsp.buf.code_action { context = { only = { 'source.organizeImports' } }, apply = true }
+    end,
+})
+```
+
+**Upgrade fold provider to LSP when supported**
+
+Treesitter folds are available immediately, but LSP folds are more semantically accurate. When an
+LSP attaches that supports `foldingRange`, this autocmd upgrades the fold provider for that window
+to `vim.lsp.foldexpr()`. The `vim.wo[win][0]` scoping sets it window-local AND buffer-local, which
+is the correct way to do it in Neovim 0.10+.
+
+```lua
+vim.api.nvim_create_autocmd("LspAttach", {
+    desc = "Upgrade fold provider to LSP when supported",
+    callback = function(ctx)
+        local client = vim.lsp.get_client_by_id(ctx.data.client_id)
+        if client and client:supports_method("textDocument/foldingRange") then
+            local win = vim.api.nvim_get_current_win()
+            vim.wo[win][0].foldexpr = "v:lua.vim.lsp.foldexpr()"
+        end
     end,
 })
 ```
