@@ -723,6 +723,12 @@ nmap({ "<leader>gy", '<cmd>lua require"gitlinker".get_buf_range_url("n")<cr>', {
 vmap({ "<leader>gy", '<cmd>lua require"gitlinker".get_buf_range_url("v")<cr>', { desc = "Copy Github url" } })
 
 -- [Custom autocommands]
+api.nvim_create_autocmd(
+    "FocusLost",
+    { pattern = "*", command = "silent! wa" }
+)
+
+-- [Custom autocommands]
 local yankGrp = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
     command = "silent! lua vim.highlight.on_yank()",

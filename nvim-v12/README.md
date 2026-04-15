@@ -916,6 +916,15 @@ vmap({ "<leader>gy", '<cmd>lua require"gitlinker".get_buf_range_url("v")<cr>', {
 
 ## Custom autocommands
 
+
+**Autosave** on focus lost, but only when there is something to save, always saving makes build watchers crazy.
+```lua
+api.nvim_create_autocmd(
+    "FocusLost",
+    { pattern = "*", command = "silent! wa" }
+)
+```
+
 **Highlight on yank**
 
 ```lua
