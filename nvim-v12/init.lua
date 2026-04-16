@@ -107,6 +107,9 @@ wk.add({
 nmap({"<leader>w", ":w<CR>"})
 
 -- [Mappings / Keybinds]
+vim.keymap.set("x", "<leader>p", "\"_dP", { desc = "Paste (no overwrite)" })
+
+-- [Mappings / Keybinds]
 nmap({ '<s-LEFT>', ':vertical resize +5 <CR>' })
 nmap({ '<s-RIGHT>', ':vertical resize -5 <CR>' })
 nmap({ '<s-UP>', ':resize +5 <CR>' })
@@ -439,6 +442,7 @@ vim.lsp.enable('jsonls')
 vim.lsp.enable('marksman')
 
 -- [LSP]
+nmap({ "gd", vim.lsp.buf.definition, { desc = "Go to def" } })
 nmap({ "<leader>lf", vim.lsp.buf.format, { desc = "Format" } })
 nmap({ "<leader>lh", vim.lsp.buf.hover, { desc = "Hover" } })
 nmap({ "<leader>ll", "<cmd>LspInfo<CR>", { desc = "LSP Info" } })
@@ -728,7 +732,7 @@ nmap({ "<leader>gy", '<cmd>lua require"gitlinker".get_buf_range_url("n")<cr>', {
 vmap({ "<leader>gy", '<cmd>lua require"gitlinker".get_buf_range_url("v")<cr>', { desc = "Copy Github url" } })
 
 -- [Custom autocommands]
-api.nvim_create_autocmd(
+vim.api.nvim_create_autocmd(
     "FocusLost",
     { pattern = "*", command = "silent! wa" }
 )

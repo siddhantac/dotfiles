@@ -1,5 +1,33 @@
 # Neovim Configuration
 
+<!--toc:start-->
+- [Neovim Configuration](#neovim-configuration)
+  - [How It Works](#how-it-works)
+  - [Prerequisites](#prerequisites)
+  - [Bootstrap](#bootstrap)
+  - [Auto-Tangle on Save](#auto-tangle-on-save)
+  - [Editor Options](#editor-options)
+  - [Utilities](#utilities)
+  - [Which-key](#which-key)
+  - [Mappings / Keybinds](#mappings-keybinds)
+  - [Theme](#theme)
+    - [Status line](#status-line)
+  - [Navigate between tmux and nvim](#navigate-between-tmux-and-nvim)
+  - [Overseer](#overseer)
+  - [Notifications](#notifications)
+  - [LSP](#lsp)
+    - [Markdown renderer](#markdown-renderer)
+    - [Diagnostics](#diagnostics)
+    - [Treesitter](#treesitter)
+  - [Telescope](#telescope)
+    - [Telescope keymaps](#telescope-keymaps)
+  - [Git](#git)
+    - [Git keymaps](#git-keymaps)
+  - [Custom autocommands](#custom-autocommands)
+  - [Mini plugins](#mini-plugins)
+  - [Debug](#debug)
+<!--toc:end-->
+
 This configuration is a **literate document**: the code lives here in `README.md`
 as fenced code blocks, and a script called `tangle.lua` extracts those blocks in
 order to produce `init.lua`, the file Neovim actually loads.
@@ -203,6 +231,12 @@ wk.add({
 
 ```lua
 nmap({"<leader>w", ":w<CR>"})
+```
+
+- Paste without overwriting register
+
+```lua
+vim.keymap.set("x", "<leader>p", "\"_dP", { desc = "Paste (no overwrite)" })
 ```
 
 - Easier resize
@@ -584,6 +618,7 @@ vim.lsp.enable('marksman')
 - LSP keymaps
 
 ```lua
+nmap({ "gd", vim.lsp.buf.definition, { desc = "Go to def" } })
 nmap({ "<leader>lf", vim.lsp.buf.format, { desc = "Format" } })
 nmap({ "<leader>lh", vim.lsp.buf.hover, { desc = "Hover" } })
 nmap({ "<leader>ll", "<cmd>LspInfo<CR>", { desc = "LSP Info" } })
@@ -929,7 +964,7 @@ vmap({ "<leader>gy", '<cmd>lua require"gitlinker".get_buf_range_url("v")<cr>', {
 
 **Autosave** on focus lost, but only when there is something to save, always saving makes build watchers crazy.
 ```lua
-api.nvim_create_autocmd(
+vim.api.nvim_create_autocmd(
     "FocusLost",
     { pattern = "*", command = "silent! wa" }
 )
