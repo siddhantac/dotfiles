@@ -392,8 +392,9 @@ vim.notify = require("notify")
 
 -- [LSP]
 vim.pack.add({
+    'https://github.com/nvim-tree/nvim-web-devicons', -- required by aerial and lspsaga
     'https://github.com/neovim/nvim-lspconfig',
-    'https://github.com/stevearc/aerial.nvim', 
+    'https://github.com/stevearc/aerial.nvim',
     'https://github.com/glepnir/lspsaga.nvim',
 })
 
@@ -501,7 +502,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 -- [Markdown renderer]
 vim.pack.add({
-    'https://github.com/MeanderingProgrammer/render-markdown.nvim'
+    'https://github.com/nvim-tree/nvim-web-devicons',
+    'https://github.com/nvim-treesitter/nvim-treesitter',
+    'https://github.com/MeanderingProgrammer/render-markdown.nvim',
 })
 
 -- [Markdown renderer]
@@ -725,9 +728,18 @@ nmap({ "<leader>j", function() tscopebuiltin.jumplist { show_line = false } end,
 
 -- [Git]
 vim.pack.add({
+    'https://github.com/nvim-lua/plenary.nvim',
     "https://github.com/sindrets/diffview.nvim",
+    "https://github.com/nvim-telescope/telescope.nvim",
     "https://github.com/NeogitOrg/neogit",
+})
+
+vim.pack.add({
+    'https://github.com/nvim-lua/plenary.nvim',
     "https://github.com/ruifm/gitlinker.nvim",
+})
+
+vim.pack.add({
     "https://github.com/lewis6991/gitsigns.nvim",
 })
 
