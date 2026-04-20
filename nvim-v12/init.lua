@@ -353,6 +353,31 @@ vim.pack.add({
 nmap({ "<leader>oo", "<cmd>OverseerToggle<cr>", { desc = "Toggle Overseer", icon = icons["Toggle"] } })
 nmap({ "<leader>or", "<cmd>OverseerRun<cr>", { desc = "Run Overseer" } })
 
+-- [Quicktest]
+vim.pack.add({
+    'https://github.com/nvim-lua/plenary.nvim',
+    'https://github.com/MunifTanjim/nui.nvim',
+    'https://github.com/quolpr/quicktest.nvim',
+})
+
+local qt = require("quicktest")
+qt.setup({
+    adapters = {
+        require("quicktest.adapters.golang")({}),
+        require("quicktest.adapters.vitest")({}),
+    },
+    default_win_mode = "split",
+    use_experimental_colorizer = true,
+})
+
+nmap({ "<leader>tl", function() qt.run_line() end,          { desc = "Run line" } })
+nmap({ "<leader>tf", function() qt.run_file() end,          { desc = "Run file" } })
+nmap({ "<leader>td", function() qt.run_dir() end,           { desc = "Run dir" } })
+nmap({ "<leader>ta", function() qt.run_all() end,           { desc = "Run all" } })
+nmap({ "<leader>tp", function() qt.run_previous() end,      { desc = "Run previous" } })
+nmap({ "<leader>tt", function() qt.toggle_win("split") end, { desc = "Toggle window" } })
+nmap({ "<leader>tc", function() qt.cancel_current_run() end, { desc = "Cancel" } })
+
 -- [Notifications]
 vim.pack.add({
     "https://github.com/rcarriga/nvim-notify",
