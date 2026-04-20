@@ -42,7 +42,7 @@ return {
   { init_start=803, init_end=822, readme_line=1050, section="Custom autocommands" },
   { init_start=825, init_end=831, readme_line=1050, section="Custom autocommands" },
   { init_start=834, init_end=843, readme_line=1050, section="Custom autocommands" },
-  { init_start=846, init_end=887, readme_line=1050, section="Custom autocommands" },
-  { init_start=890, init_end=941, readme_line=1180, section="Mini plugins" },
-  { init_start=944, init_end=944, readme_line=1240, section="Debug" },
+  { init_start=846, init_end=889, readme_line=1050, section="Custom autocommands" },
+  { init_start=892, init_end=943, readme_line=1182, section="Mini plugins" },
+  { init_start=946, init_end=946, readme_line=1242, section="Debug" },
 }

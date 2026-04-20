@@ -866,13 +866,14 @@ vim.api.nvim_create_autocmd('LspProgress', {
     pattern = 'begin',
     group = lsp_progress,
     callback = function(ev)
-        local spinner = require("spinner")
-        local notif = lsp_progress_notification(ev)
-
-        if notif == nil then
-            return
-        end
-        spinner.start(notif.token, notif.msg, notif.title)
+        -- local spinner = require("spinner")
+        -- local notif = lsp_progress_notification(ev)
+        --
+        -- if notif == nil then
+        --     return
+        -- end
+        -- spinner.start(notif.token, notif.msg, notif.title)
+        require('lsp_progress').start(ev.data.client_id)
     end
 })
 
@@ -880,9 +881,10 @@ vim.api.nvim_create_autocmd("LspProgress", {
     pattern = 'end',
     group = lsp_progress,
     callback = function(ev)
-        local spinner = require("spinner")
-        local notif = lsp_progress_notification(ev)
-        spinner.stop(notif.token, notif.msg, notif.title)
+        -- local spinner = require("spinner")
+        -- local notif = lsp_progress_notification(ev)
+        -- spinner.stop(notif.token, notif.msg, notif.title)
+        require('lsp_progress').stop(ev.data.client_id)
     end
 })
 
