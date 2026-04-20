@@ -227,11 +227,11 @@ wk.add({
     { "<leader>l",  group = "LSP",                                               icon = icons["ActiveLSP"] },
     { "<leader>u",  group = "Plugins",                                           icon = icons["Package"] },
     { "<leader>f",  group = "Find (telescope)",                                  icon = icons["Search"] },
-    { "<leader>h",  group = "Harpoon",                                           icon = icons["Hook"] },
+    -- { "<leader>h",  group = "Harpoon",                                           icon = icons["Hook"] },
     { "<leader>u",  group = "UI",                                                icon = icons["GitUntracked"] },
     { "<leader>o",  group = "Overseer",                                          icon = icons["CommandPalette"] },
 
-    { "<leader>ga", "<cmd>Git add -A|Git commit<CR>",                            desc = "Add & Commit",            mode = "n" },
+    -- { "<leader>ga", "<cmd>Git add -A|Git commit<CR>",                            desc = "Add & Commit",            mode = "n" },
     { "<leader>z",  function() lazy.home() end,                                  desc = "Lazy",                    mode = "n" },
     { "<leader>w",  "<cmd>w<CR>",                                                desc = "Save",                    mode = "n", icon = icons["Save"] },
     { "<leader>e",  function() MiniFiles.open(vim.api.nvim_buf_get_name(0)) end, desc = "File explorer",           mode = "n", icon = icons["FolderClosed"] },
@@ -931,7 +931,7 @@ nmap({ "<leader>fn", function() telescope.extensions.notify.notify() end, { desc
 nmap({ "<leader>fo", function() tscopebuiltin.oldfiles() end, { desc = "History" } })
 nmap({ "<leader>fr", function() tscopebuiltin.registers() end, { desc = "Registers" } })
 nmap({ "<leader>fs", function() tscopebuiltin.colorscheme { enable_preview = true } end, { desc = "Themes" } })
-nmap({ "<leader>ft", "<cmd>TodoTelescope<CR>", { desc = "Todos" } })
+-- nmap({ "<leader>ft", "<cmd>TodoTelescope<CR>", { desc = "Todos" } }) -- requires todo-comments
 nmap({ "<leader>fw", function() tscopebuiltin.live_grep() end, { desc = "Words" } })
 nmap({ "<leader>fW",
     function()
