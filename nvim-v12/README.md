@@ -114,6 +114,8 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 - `timeoutlen` - controls how long to wait before showing which-key menu
 - `expandtab` - use spaces instead of tabs
 - `listchars` - characters to use for list mode (vim.opt.list must be true for this to work)
+- `ignorecase` - makes searches case-insensitive by default
+- `smartcase` - overrides `ignorecase` when the search pattern contains any uppercase letter, making it case-sensitive again
 
 ```lua
 vim.g.mapleader = ' '
@@ -138,6 +140,8 @@ vim.opt.expandtab = true
 vim.opt.tabstop = 4     -- show existing tab with 4 spaces width
 vim.opt.shiftwidth = 4  -- when indenting with '>', use 4 spaces width
 vim.opt.softtabstop = 4 -- control <tab> and <bs> keys to match tabstop
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 ```
 
 - Completion popup behaviour. `menuone` shows the menu even for a single match. `noselect` means

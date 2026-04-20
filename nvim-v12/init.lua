@@ -36,6 +36,8 @@ vim.opt.expandtab = true
 vim.opt.tabstop = 4     -- show existing tab with 4 spaces width
 vim.opt.shiftwidth = 4  -- when indenting with '>', use 4 spaces width
 vim.opt.softtabstop = 4 -- control <tab> and <bs> keys to match tabstop
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 -- [Editor Options]
 vim.opt.completeopt = { "menuone", "noselect", "popup", "fuzzy" }
