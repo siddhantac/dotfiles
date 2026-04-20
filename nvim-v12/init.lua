@@ -38,6 +38,10 @@ vim.opt.shiftwidth = 4  -- when indenting with '>', use 4 spaces width
 vim.opt.softtabstop = 4 -- control <tab> and <bs> keys to match tabstop
 
 -- [Editor Options]
+vim.opt.completeopt = { "menuone", "noselect", "popup", "fuzzy" }
+vim.opt.pumborder = "rounded"   -- border on the completion popup (0.12+)
+
+-- [Editor Options]
 vim.o.foldmethod = 'expr'
 vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 vim.o.foldlevelstart = 99
@@ -455,6 +459,18 @@ nmap({ "<leader>lx", "<cmd>Lspsaga finder<CR>", { desc = "Finder" } })
 nmap({ "<leader>la", "<cmd>Lspsaga code_action<CR>", { desc = "Code action" } })
 nmap({ "<leader>li", "<cmd>Lspsaga incoming_calls<CR>", { desc = "Incoming calls" } })
 nmap({ "<leader>lu", "<cmd>Lspsaga outgoing_calls<CR>", { desc = "Outgoing calls" } })
+
+-- [Completion]
+vim.api.nvim_create_autocmd('LspAttach', {
+    desc = "Enable native LSP completion",
+    group = vim.api.nvim_create_augroup('lsp_completion', { clear = true }),
+    callback = function(ev)
+        local client = vim.lsp.get_client_by_id(ev.data.client_id)
+        if client and client:supports_method('textDocument/completion') then
+            vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+        end
+    end,
+})
 
 -- [Markdown renderer]
 vim.pack.add({
