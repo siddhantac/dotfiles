@@ -140,6 +140,15 @@ vim.opt.shiftwidth = 4  -- when indenting with '>', use 4 spaces width
 vim.opt.softtabstop = 4 -- control <tab> and <bs> keys to match tabstop
 ```
 
+- Completion popup behaviour. `menuone` shows the menu even for a single match. `noselect` means
+  nothing is pre-selected — you must explicitly confirm with `<C-y>`. `popup` shows a preview window
+  alongside the popup. `fuzzy` enables fuzzy matching on completion items (0.11+).
+
+```lua
+vim.opt.completeopt = { "menuone", "noselect", "popup", "fuzzy" }
+vim.opt.pumborder = "rounded"   -- border on the completion popup (0.12+)
+```
+
 - Folding: use treesitter as the fold provider by default. `foldlevelstart = 99` means all folds are
   open when a buffer is first entered. The LSP upgrade (see Custom autocommands) will replace this
   with a more semantically accurate provider once an LSP attaches.
@@ -631,6 +640,29 @@ nmap({ "<leader>lx", "<cmd>Lspsaga finder<CR>", { desc = "Finder" } })
 nmap({ "<leader>la", "<cmd>Lspsaga code_action<CR>", { desc = "Code action" } })
 nmap({ "<leader>li", "<cmd>Lspsaga incoming_calls<CR>", { desc = "Incoming calls" } })
 nmap({ "<leader>lu", "<cmd>Lspsaga outgoing_calls<CR>", { desc = "Outgoing calls" } })
+```
+
+### Completion
+
+Neovim 0.12 ships a built-in LSP completion engine — no nvim-cmp or LuaSnip required. Completion
+is enabled per-buffer inside `LspAttach`, gated on whether the server advertises
+`textDocument/completion` support. `autotrigger = true` fires completion automatically as you type
+(equivalent to cmp's `CompleteChanged` behaviour). Confirm a selection with `<C-y>`.
+
+Built-in snippets (`vim.snippet`) are supported natively — the LSP client expands snippet items
+automatically when confirmed.
+
+```lua
+vim.api.nvim_create_autocmd('LspAttach', {
+    desc = "Enable native LSP completion",
+    group = vim.api.nvim_create_augroup('lsp_completion', { clear = true }),
+    callback = function(ev)
+        local client = vim.lsp.get_client_by_id(ev.data.client_id)
+        if client and client:supports_method('textDocument/completion') then
+            vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+        end
+    end,
+})
 ```
 
 ### Markdown renderer
