@@ -31,7 +31,7 @@ vim.opt.swapfile = false
 vim.opt.timeoutlen = 500   
 vim.opt.syntax = "on"
 vim.opt.list = true
-vim.opt.listchars = "tab:  ,trail:·"
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 vim.opt.expandtab = true
 vim.opt.tabstop = 4     -- show existing tab with 4 spaces width
 vim.opt.shiftwidth = 4  -- when indenting with '>', use 4 spaces width
