@@ -26,6 +26,9 @@
     - [Git keymaps](#git-keymaps)
   - [Custom autocommands](#custom-autocommands)
   - [Mini plugins](#mini-plugins)
+    - [Install](#install)
+    - [MiniFiles](#minifiles)
+    - [Starter page](#starter-page)
   - [Debug](#debug)
 <!--toc:end-->
 
@@ -126,7 +129,7 @@ vim.opt.updatetime = 500
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.number = true
-vim.opt.relativenumber = true
+vim.wo.relativenumber = true
 vim.opt.cursorline = true
 vim.opt.scrolloff = 3
 vim.opt.sidescrolloff = 5
@@ -1073,24 +1076,28 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 Also don't run the autocmd for telescopeprompt, prevents the annoying 0 from showing next to the cursor in the prompt.
 
 ```lua
-local linenumtoggle = vim.api.nvim_create_augroup("LineNumberToggle", { clear = true })
-vim.api.nvim_create_autocmd("BufLeave",
+local relnumsToggle = vim.api.nvim_create_augroup("RelativeNumberToggle", { clear = true })
+vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "WinLeave" },
     {
         pattern = '*', -- '* if index(ignoreFiletype, &ft) < 0',
         callback = function()
-            vim.wo.relativenumber = false
+            if vim.wo.number then
+                vim.wo.relativenumber = false
+            end
         end,
-        group = linenumtoggle,
+        group = relnumsToggle,
     }
 )
 
-vim.api.nvim_create_autocmd("BufEnter",
+vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "WinEnter" },
     {
         pattern = '*', -- * if index(ignoreFiletype, &ft) < 0',
         callback = function()
-            vim.wo.relativenumber = true
+            if vim.wo.number then
+                vim.wo.relativenumber = true
+            end
         end,
-        group = linenumtoggle,
+        group = relnumsToggle,
     }
 )
 ```
@@ -1189,19 +1196,54 @@ vim.pack.add({
     "https://github.com/echasnovski/mini.nvim",
 })
 
+require('mini.surround').setup()
+require('mini.cursorword').setup()
+require('mini.ai').setup()
 require('mini.files').setup()
-    local new_section = function(name, action, section)
-        return { name = name, action = action, section = section }
-    end
+```
 
-    local starter = require("mini.starter")
+### MiniFiles
 
-    local time_since = function()
-        local cp = require('configpulse').get_time()
-        return cp['days'] .. "d " .. cp['hours'] .. "h " .. cp['minutes'] .. "m since last change"
-    end
+Open splits from within MiniFiles with `<C-x>` (horizontal) and `<C-v>` (vertical). `set_target_window` makes the new split the destination so `go_in()` lands there. `close_on_file = true` closes the explorer once a file (not a directory) is entered.
 
-    local logo = [[
+```lua
+local map_split = function(buf_id, lhs, direction)
+    vim.keymap.set('n', lhs, function()
+        local state = MiniFiles.get_explorer_state()
+        if not state or not state.target_window then return end
+        local new_win
+        vim.api.nvim_win_call(state.target_window, function()
+            vim.cmd(direction .. ' split')
+            new_win = vim.api.nvim_get_current_win()
+        end)
+        MiniFiles.set_target_window(new_win)
+        MiniFiles.go_in({ close_on_file = true })
+    end, { buffer = buf_id, desc = 'Split ' .. direction })
+end
+
+vim.api.nvim_create_autocmd('User', {
+    pattern = 'MiniFilesBufferCreate',
+    callback = function(args)
+        local buf_id = args.data.buf_id
+        map_split(buf_id, '<C-x>', 'belowright horizontal')
+        map_split(buf_id, '<C-v>', 'belowright vertical')
+    end,
+})
+```
+
+```lua
+local new_section = function(name, action, section)
+    return { name = name, action = action, section = section }
+end
+
+local starter = require("mini.starter")
+
+local time_since = function()
+    local cp = require('configpulse').get_time()
+    return cp['days'] .. "d " .. cp['hours'] .. "h " .. cp['minutes'] .. "m since last change"
+end
+
+local logo = [[
                                                       
                ████ ██████           █████      ██
               ███████████             █████ 
@@ -1210,32 +1252,32 @@ require('mini.files').setup()
             █████████ ██████████ █████████ █████ █████ ████ █████
           ███████████ ███    ███ █████████ █████ █████ ████ █████
          ██████  █████████████████████ ████ █████ █████ ████ ██████
-      ]]
+  ]]
 
-    local logo2 =
+local logo2 =
     "                                                    \n ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ \n ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ \n ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ \n ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ \n ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ \n ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ \n "
 
-    starter.setup({
-        evaluate_single = true,
-        -- header = "Welcome back, Sid",
-        header = logo .. "   Welcome back, Sid",
-        items = {
-            new_section("Find file", "Telescope find_files", "Telescope"),
-            new_section("Recent files", "Telescope oldfiles", "Telescope"),
-            new_section("Grep text", "Telescope live_grep", "Telescope"),
-            new_section("New file", "ene | startinsert", "Built-in"),
-            new_section("Quit", "qa", "Built-in"),
-        },
-        footer = time_since,
-        -- left-aligned is good.
-        -- if you want to try center align, then the logic for sessions
-        -- has to be extracted from mini.starter source code and pasted here.
-        --
-        -- content_hooks = {
-        --     starter.gen_hook.adding_bullet(pad .. "░ ", false),
-        --     starter.gen_hook.aligning("center", "center"),
-        -- },
-    })
+starter.setup({
+    evaluate_single = true,
+    -- header = "Welcome back, Sid",
+    header = logo .. "   Welcome back, Sid",
+    items = {
+        new_section("Find file", "Telescope find_files", "Telescope"),
+        new_section("Recent files", "Telescope oldfiles", "Telescope"),
+        new_section("Grep text", "Telescope live_grep", "Telescope"),
+        new_section("New file", "ene | startinsert", "Built-in"),
+        new_section("Quit", "qa", "Built-in"),
+    },
+    footer = time_since,
+    -- left-aligned is good.
+    -- if you want to try center align, then the logic for sessions
+    -- has to be extracted from mini.starter source code and pasted here.
+    --
+    -- content_hooks = {
+    --     starter.gen_hook.adding_bullet(pad .. "░ ", false),
+    --     starter.gen_hook.aligning("center", "center"),
+    -- },
+})
 ```
 
 
