@@ -32,6 +32,10 @@
       "rev": "f5d2a8570f8b736ddb9bb4be504355bcd6e15ec8",
       "src": "https://github.com/nvim-lualine/lualine.nvim"
     },
+    "milli.nvim": {
+      "rev": "6a19fe9ab2a068b7ce384cea277c24672add161e",
+      "src": "https://github.com/Amansingh-afk/milli.nvim"
+    },
     "mini.nvim": {
       "rev": "418ef4930ddabe80f449c6f1323f8b6abb172d1c",
       "src": "https://github.com/echasnovski/mini.nvim"

@@ -583,17 +583,30 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 -- [Telescope]
-vim.api.nvim_create_autocmd('PackChanged', {
-  callback = function(ev)
-    local name = ev.data.spec.name
-    local kind = ev.data.kind  -- 'install' or 'update'
+local hooks = function(ev)
+  -- Use available |event-data|
+  local name, kind = ev.data.spec.name, ev.data.kind
+  -- Run build script after plugin's code has changed
+  if name == 'telescope-fzf-native.nvim' and (kind == 'install' or kind == 'update') then
+    vim.system({ 'make' }, { cwd = ev.data.path }).wait()
+  end
+end
+-- If hooks need to run on install, run this before `vim.pack.add()`
+-- To act on install from lockfile, run before very first `vim.pack.add()`
+vim.api.nvim_create_autocmd('PackChanged', { callback = hooks })
 
-    if name == 'telescope-fzf-native.nvim' and (kind == 'install' or kind == 'update') then
-      vim.notify("installing fzf-native")
-      vim.system({ 'make' }, { cwd = ev.data.path }):wait()
-    end
-  end,
-})
+
+-- vim.api.nvim_create_autocmd('PackChanged', {
+--   callback = function(ev)
+--     local name = ev.data.spec.name
+--     local kind = ev.data.kind  -- 'install' or 'update'
+--
+--     if name == 'telescope-fzf-native.nvim' and (kind == 'install' or kind == 'update') then
+--       vim.notify("installing fzf-native")
+--       vim.system({ 'make' }, { cwd = ev.data.path }):wait()
+--     end
+--   end,
+-- })
 
 vim.pack.add({
     'https://github.com/nvim-lua/plenary.nvim',
@@ -940,41 +953,41 @@ local time_since = function()
 end
 
 local logo = [[
-                                                      
-               ████ ██████           █████      ██
-              ███████████             █████ 
-              █████████ ███████████████████ ███   ███████████
-             █████████  ███    █████████████ █████ ██████████████
-            █████████ ██████████ █████████ █████ █████ ████ █████
-          ███████████ ███    ███ █████████ █████ █████ ████ █████
-         ██████  █████████████████████ ████ █████ █████ ████ ██████
-  ]]
+                                             
+      ████ ██████           █████      ██
+     ███████████             █████ 
+     █████████ ███████████████████ ███   ███████████
+    █████████  ███    █████████████ █████ ██████████████
+   █████████ ██████████ █████████ █████ █████ ████ █████
+ ███████████ ███    ███ █████████ █████ █████ ████ █████
+██████  █████████████████████ ████ █████ █████ ████ ██████
+]]
 
-local logo2 =
-    "                                                    \n ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ \n ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ \n ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ \n ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ \n ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ \n ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ \n "
+-- vim.pack.add({ "https://github.com/Amansingh-afk/milli.nvim" })
+-- require("milli").vimenter({ splash = "blackhole", loop = true })
+-- require("milli").starter({ splash = "fire", loop = true })
 
+section = "Quick Actions"
 starter.setup({
     evaluate_single = true,
     -- header = "Welcome back, Sid",
-    header = logo .. "   Welcome back, Sid",
+    header = logo .. "Welcome back, Sid",
     items = {
-        new_section("Find file", "Telescope find_files", "Telescope"),
-        new_section("Recent files", "Telescope oldfiles", "Telescope"),
-        new_section("Grep text", "Telescope live_grep", "Telescope"),
-        new_section("New file", "ene | startinsert", "Built-in"),
-        new_section("Quit", "qa", "Built-in"),
+        { name = "Git", action = "Neogit", section = section },
+        { name = "Files", action = "Telescope find_files", section = section },
+        { name = "Quit", action = "qa", section = section },
     },
     footer = time_since,
-    -- left-aligned is good.
-    -- if you want to try center align, then the logic for sessions
-    -- has to be extracted from mini.starter source code and pasted here.
-    --
-    -- content_hooks = {
-    --     starter.gen_hook.adding_bullet(pad .. "░ ", false),
-    --     starter.gen_hook.aligning("center", "center"),
-    -- },
+    content_hooks = {
+      -- starter.gen_hook.adding_bullet(string.rep(" ", 10) .. "░ ", false),
+      starter.gen_hook.adding_bullet(),
+      starter.gen_hook.aligning("center", "center"),
+    },
 })
 
 -- [Debug]
 vim.notify("Using new config")
+
+-- [Animated starter splash screen]
+vim.pack.add({ "https://github.com/Amansingh-afk/milli.nvim" })
 
