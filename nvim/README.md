@@ -1065,6 +1065,26 @@ vmap({ "<leader>gy", '<cmd>lua require"gitlinker".get_buf_range_url("v")<cr>', {
 
 ## Custom autocommands
 
+### Create GH PR
+
+```lua
+local create_pull_request = function()
+-- vim.schedule(
+        local on_exit = function(obj)
+          vim.notify(obj.code)
+          vim.notify(obj.signal)
+          vim.notify(obj.stdout)
+          vim.notify(obj.stderr)
+        end
+
+        -- Runs asynchronously:
+            local args = { "gh", "pr", "create", "-a", "@me", "-w" }
+        vim.system(args, { text = true }, on_exit)
+-- )
+end
+nmap({"<leader>gp", function() create_pull_request() end, {desc = "Create pull request"}})
+```
+
 ### Autosave on focus lost
 
 Only when there is something to save, always saving makes build watchers crazy.
@@ -1215,6 +1235,7 @@ require('mini.surround').setup()
 require('mini.cursorword').setup()
 require('mini.ai').setup()
 require('mini.files').setup()
+require('mini.pairs').setup()
 ```
 
 ### MiniFiles

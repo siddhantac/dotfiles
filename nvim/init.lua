@@ -799,6 +799,23 @@ local actions = gitlinker.actions
 nmap({ "<leader>gy", '<cmd>lua require"gitlinker".get_buf_range_url("n")<cr>', { desc = "Copy Github url" } })
 vmap({ "<leader>gy", '<cmd>lua require"gitlinker".get_buf_range_url("v")<cr>', { desc = "Copy Github url" } })
 
+-- [Create GH PR]
+local create_pull_request = function()
+-- vim.schedule(
+        local on_exit = function(obj)
+          print(obj.code)
+          print(obj.signal)
+          print(obj.stdout)
+          print(obj.stderr)
+        end
+
+        -- Runs asynchronously:
+            local args = { "gh", "pr", "create", "-a", "@me", "-w" }
+        vim.system(args, { text = true }, on_exit)
+-- )
+end
+nmap({"<leader>gp", function() create_pull_request() end, {desc = "Create pull request"}})
+
 -- [Autosave on focus lost]
 vim.api.nvim_create_autocmd(
     "FocusLost",
@@ -915,6 +932,7 @@ require('mini.surround').setup()
 require('mini.cursorword').setup()
 require('mini.ai').setup()
 require('mini.files').setup()
+require('mini.pairs').setup()
 
 -- [MiniFiles]
 local map_split = function(buf_id, lhs, direction)
