@@ -799,20 +799,20 @@ local actions = gitlinker.actions
 nmap({ "<leader>gy", '<cmd>lua require"gitlinker".get_buf_range_url("n")<cr>', { desc = "Copy Github url" } })
 vmap({ "<leader>gy", '<cmd>lua require"gitlinker".get_buf_range_url("v")<cr>', { desc = "Copy Github url" } })
 
--- [Custom autocommands]
+-- [Autosave on focus lost]
 vim.api.nvim_create_autocmd(
     "FocusLost",
     { pattern = "*", command = "silent! wa" }
 )
 
--- [Custom autocommands]
+-- [Highlight on yank]
 local yankGrp = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
     command = "silent! lua vim.highlight.on_yank()",
     group = yankGrp,
 })
 
--- [Custom autocommands]
+-- [Show relative numbers only for active buffer]
 local relnumsToggle = vim.api.nvim_create_augroup("RelativeNumberToggle", { clear = true })
 vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "WinLeave" },
     {
@@ -838,7 +838,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "WinEnter" },
     }
 )
 
--- [Custom autocommands]
+-- [Organise imports]
 vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = '*.go',
     callback = function(args)
@@ -847,7 +847,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     end,
 })
 
--- [Custom autocommands]
+-- [Upgrade fold provider to LSP when supported]
 vim.api.nvim_create_autocmd("LspAttach", {
     desc = "Upgrade fold provider to LSP when supported",
     callback = function(ctx)
@@ -859,7 +859,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end,
 })
 
--- [Custom autocommands]
+-- [Report LSP setup progress]
 local lsp_progress_notification = function(ev)
     local client_id = ev.data.client_id
     local client = vim.lsp.get_client_by_id(client_id)
@@ -953,35 +953,38 @@ local time_since = function()
 end
 
 local logo = [[
-                                             
-      ████ ██████           █████      ██
-     ███████████             █████ 
-     █████████ ███████████████████ ███   ███████████
-    █████████  ███    █████████████ █████ ██████████████
-   █████████ ██████████ █████████ █████ █████ ████ █████
- ███████████ ███    ███ █████████ █████ █████ ████ █████
-██████  █████████████████████ ████ █████ █████ ████ ██████
-]]
+                                                      
+               ████ ██████           █████      ██
+              ███████████             █████ 
+              █████████ ███████████████████ ███   ███████████
+             █████████  ███    █████████████ █████ ██████████████
+            █████████ ██████████ █████████ █████ █████ ████ █████
+          ███████████ ███    ███ █████████ █████ █████ ████ █████
+         ██████  █████████████████████ ████ █████ █████ ████ ██████
+  ]]
 
 -- vim.pack.add({ "https://github.com/Amansingh-afk/milli.nvim" })
 -- require("milli").vimenter({ splash = "blackhole", loop = true })
 -- require("milli").starter({ splash = "fire", loop = true })
-
-section = "Quick Actions"
+section = "Quick actions"
 starter.setup({
     evaluate_single = true,
     -- header = "Welcome back, Sid",
-    header = logo .. "Welcome back, Sid",
+    header = logo .. "       Welcome back, Sid",
     items = {
         { name = "Git", action = "Neogit", section = section },
         { name = "Files", action = "Telescope find_files", section = section },
         { name = "Quit", action = "qa", section = section },
     },
     footer = time_since,
+    -- left-aligned is good.
+    -- if you want to try center align, then the logic for sessions
+    -- has to be extracted from mini.starter source code and pasted here.
+    --
     content_hooks = {
-      -- starter.gen_hook.adding_bullet(string.rep(" ", 10) .. "░ ", false),
+        -- starter.gen_hook.adding_bullet(pad .. "░ ", false),
       starter.gen_hook.adding_bullet(),
-      starter.gen_hook.aligning("center", "center"),
+    starter.gen_hook.aligning("center", "center"),
     },
 })
 

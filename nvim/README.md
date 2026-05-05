@@ -1065,8 +1065,10 @@ vmap({ "<leader>gy", '<cmd>lua require"gitlinker".get_buf_range_url("v")<cr>', {
 
 ## Custom autocommands
 
+### Autosave on focus lost
 
-**Autosave** on focus lost, but only when there is something to save, always saving makes build watchers crazy.
+Only when there is something to save, always saving makes build watchers crazy.
+
 ```lua
 vim.api.nvim_create_autocmd(
     "FocusLost",
@@ -1074,7 +1076,7 @@ vim.api.nvim_create_autocmd(
 )
 ```
 
-**Highlight on yank**
+### Highlight on yank
 
 ```lua
 local yankGrp = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
@@ -1084,7 +1086,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 ```
 
-**Show relative numbers only for active buffer**
+### Show relative numbers only for active buffer
 
 Also don't run the autocmd for telescopeprompt, prevents the annoying 0 from showing next to the cursor in the prompt.
 
@@ -1115,7 +1117,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "WinEnter" },
 )
 ```
 
-**Organise imports**
+### Organise imports
 
 ```lua
 vim.api.nvim_create_autocmd("BufWritePre", {
@@ -1127,7 +1129,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 ```
 
-**Upgrade fold provider to LSP when supported**
+### Upgrade fold provider to LSP when supported
 
 Treesitter folds are available immediately, but LSP folds are more semantically accurate. When an
 LSP attaches that supports `foldingRange`, this autocmd upgrades the fold provider for that window
@@ -1147,7 +1149,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 ```
 
-**Report LSP setup progress**
+### Report LSP setup progress
 
 - ref: https://neovim.io/doc/user/lsp.html#LspProgress
 - ref: https://github.com/linrongbin16/lsp-progress.nvim/blob/d5f4d28efe75ce636bfbe271eb45f39689765aab/lua/lsp-progress.lua#L170
