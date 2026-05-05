@@ -801,20 +801,19 @@ vmap({ "<leader>gy", '<cmd>lua require"gitlinker".get_buf_range_url("v")<cr>', {
 
 -- [Create GH PR]
 local create_pull_request = function()
--- vim.schedule(
-        local on_exit = function(obj)
-          print(obj.code)
-          print(obj.signal)
-          print(obj.stdout)
-          print(obj.stderr)
-        end
-
-        -- Runs asynchronously:
-            local args = { "gh", "pr", "create", "-a", "@me", "-w" }
-        vim.system(args, { text = true }, on_exit)
--- )
+    vim.cmd("botright 10split | terminal gh pr create -a @me -w")
+    local buf = vim.api.nvim_get_current_buf()
+    vim.api.nvim_create_autocmd("TermClose", {
+        buffer = buf,
+        once = true,
+        callback = function(args)
+            if vim.v.event.status == 0 then
+                vim.api.nvim_buf_delete(args.buf, { force = true })
+            end
+        end,
+    })
 end
-nmap({"<leader>gp", function() create_pull_request() end, {desc = "Create pull request"}})
+nmap({"<leader>gp", create_pull_request, {desc = "Create pull request"}})
 
 -- [Autosave on focus lost]
 vim.api.nvim_create_autocmd(
