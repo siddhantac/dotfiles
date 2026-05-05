@@ -1065,6 +1065,34 @@ vmap({ "<leader>gy", '<cmd>lua require"gitlinker".get_buf_range_url("v")<cr>', {
 
 ## Custom autocommands
 
+### Create GH PR
+
+Opens `gh pr create -w` in a terminal split. A terminal is used (instead of
+`vim.system` or `:!`) so that gh has a real TTY for any interactive prompts
+(pushing the branch upstream, choosing a base, etc.) and the editor stays
+usable while the browser handoff happens.
+
+The `TermClose` autocmd is buffer-scoped and `once = true`, so it auto-cleans
+after firing. On exit code 0 the split is removed; on failure the buffer is
+left open so the error output is readable.
+
+```lua
+local create_pull_request = function()
+    vim.cmd("botright 10split | terminal gh pr create -a @me -w")
+    local buf = vim.api.nvim_get_current_buf()
+    vim.api.nvim_create_autocmd("TermClose", {
+        buffer = buf,
+        once = true,
+        callback = function(args)
+            if vim.v.event.status == 0 then
+                vim.api.nvim_buf_delete(args.buf, { force = true })
+            end
+        end,
+    })
+end
+nmap({"<leader>gp", create_pull_request, {desc = "Create pull request"}})
+```
+
 ### Autosave on focus lost
 
 Only when there is something to save, always saving makes build watchers crazy.
@@ -1215,6 +1243,7 @@ require('mini.surround').setup()
 require('mini.cursorword').setup()
 require('mini.ai').setup()
 require('mini.files').setup()
+require('mini.pairs').setup()
 ```
 
 ### MiniFiles
