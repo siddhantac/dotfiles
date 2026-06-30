@@ -161,3 +161,6 @@ function y() {
 
 # opencode
 export PATH=/Users/siddhanta.c/.opencode/bin:$PATH
+
+# Added by git-ai installer on Wed Jun 10 17:25:40 +08 2026
+export PATH="/Users/siddhanta.c/.git-ai/bin:$PATH"

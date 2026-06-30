@@ -86,3 +86,6 @@
 	process = git-lfs filter-process
 [rerere]
 	enabled = true
+[trace2]
+	eventTarget = af_unix:stream:/Users/siddhanta.c/.git-ai/internal/daemon/trace2.sock
+	eventNesting = 10
