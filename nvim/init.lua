@@ -799,6 +799,19 @@ local actions = gitlinker.actions
 nmap({ "<leader>gy", '<cmd>lua require"gitlinker".get_buf_range_url("n")<cr>', { desc = "Copy Github url" } })
 vmap({ "<leader>gy", '<cmd>lua require"gitlinker".get_buf_range_url("v")<cr>', { desc = "Copy Github url" } })
 
+-- [Easy open hledger files]
+vim.api.nvim_create_user_command("stmt", function(opts)
+  local base = vim.fn.expand("~/workspace/accounts/main")
+  local stem = opts.args ~= "" and opts.args
+    or vim.fn.expand("%:t"):gsub("%.csv%.rules$", ""):gsub("%.csv$", ""):gsub("%.journal$", "")
+  local year = stem:sub(1, 4)
+  local dir = base .. "/statements/" .. year
+  local files = { dir.."/"..stem..".csv", dir.."/"..stem..".csv.rules", dir.."/"..stem..".journal" }
+  vim.cmd("edit " .. vim.fn.fnameescape(files[1]))
+  vim.cmd("vsplit " .. vim.fn.fnameescape(files[2]))
+  vim.cmd("vsplit " .. vim.fn.fnameescape(files[3]))
+end, { nargs = "?", desc = "Open statement csv/rules/journal" })
+
 -- [Create GH PR]
 local create_pull_request = function()
     vim.cmd("botright 10split | terminal gh pr create -a @me -w")
