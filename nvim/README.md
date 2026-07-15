@@ -1072,11 +1072,11 @@ Opens the 3 files for a statement: .journal, .csv, .csv.rules
 It can be triggered from any one of the files, or by an explicit argument as below:
 
 ```lua notangle
-:stmt 202503_dbs_sid
+:Stmt 202503_dbs_sid
 ```
 
 ```lua
-vim.api.nvim_create_user_command("stmt", function(opts)
+vim.api.nvim_create_user_command("Stmt", function(opts)
   local base = vim.fn.expand("~/workspace/accounts/main")
   local stem = opts.args ~= "" and opts.args
     or vim.fn.expand("%:t"):gsub("%.csv%.rules$", ""):gsub("%.csv$", ""):gsub("%.journal$", "")

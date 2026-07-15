@@ -800,7 +800,7 @@ nmap({ "<leader>gy", '<cmd>lua require"gitlinker".get_buf_range_url("n")<cr>', {
 vmap({ "<leader>gy", '<cmd>lua require"gitlinker".get_buf_range_url("v")<cr>', { desc = "Copy Github url" } })
 
 -- [Easy open hledger files]
-vim.api.nvim_create_user_command("stmt", function(opts)
+vim.api.nvim_create_user_command("Stmt", function(opts)
   local base = vim.fn.expand("~/workspace/accounts/main")
   local stem = opts.args ~= "" and opts.args
     or vim.fn.expand("%:t"):gsub("%.csv%.rules$", ""):gsub("%.csv$", ""):gsub("%.journal$", "")
