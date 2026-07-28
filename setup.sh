@@ -99,6 +99,7 @@ setup_links() {
 	[ -f ~/.config/karabiner/karabiner.json ] || ln -s $(PWD)/karabiner/karabiner.json ~/.config/karabiner/karabiner.json
 	[ -f ~/.config/karabiner/assets/complex_modifications/custom-capslock.json ] || ln -s $(PWD)/karabiner/custom-capslock.json ~/.config/karabiner/assets/complex_modifications/custom-capslock.json
 	[ -f ~/.config/karabiner/assets/complex_modifications/keychron-k6.json ] || ln -s $(PWD)/karabiner/keychron-k6.json ~/.config/karabiner/assets/complex_modifications/keychron-k6.json
+	[ -f ~/.config/herdr/config.toml ] || ln -s $(PWD)/herdr/config.toml ~/.config/herdr/
 
     message "success" "links setup"
 }
