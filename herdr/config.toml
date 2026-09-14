@@ -7,8 +7,8 @@ delivery = "system"
 
 [ui]
 show_agent_labels_on_pane_borders = true
-
 agent_panel_sort = "spaces"
+
 [theme]
 name = "catppuccin"
 auto_switch = false
