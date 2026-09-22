@@ -1352,7 +1352,7 @@ starter.setup({
 ## Debug
 
 ```lua
-vim.notify("Using new config")
+-- vim.notify("Using new config")
 ```
 
 ## Animated starter splash screen

@@ -1019,7 +1019,7 @@ starter.setup({
 })
 
 -- [Debug]
-vim.notify("Using new config")
+-- vim.notify("Using new config")
 
 -- [Animated starter splash screen]
 vim.pack.add({ "https://github.com/Amansingh-afk/milli.nvim" })
